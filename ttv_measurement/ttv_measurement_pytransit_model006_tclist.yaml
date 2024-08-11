@@ -1,20 +1,21 @@
 inputs:
   LCdata_inst00:
-    file: subset_transits/WASP47_simulated_instrument00.dat
+    file: tclist_transits/WASP47_simulated_instrument00.dat
     kind: Phot
     models:
-      - lc_model
+      - lc_model_inst0
   LCdata_inst01:
-    file: subset_transits/WASP47_simulated_instrument01.dat
+    file: tclist_transits/WASP47_simulated_instrument01.dat
     kind: Phot
     models:
-      - lc_model
+      - lc_model_inst1
 common:
   planets:
     b:
       orbit: circular
       parametrization: Eastman2013
       use_time_inferior_conjunction: True
+      TTV_Tc_list: tclist_transits/WASP47_simulated_planetb_tclist.dat
       boundaries:
         P: [4.155, 4.165]
         Tc: [-2, 2]
@@ -35,15 +36,20 @@ common:
         ld_c1: ['Gaussian', 0.50 ,0.05]
         ld_c2: ['Gaussian', 0.10 ,0.05]
 models:
-  lc_model:
-    model: batman_transit_ttv_subset
+  lc_model_inst00:
+    model: pytransit_transit_ttv_tclist
     planets:
       - b
-    use_shared_ttvs: True
+    use_shared_ttv: False
+  lc_model_inst01:
+    model: pytransit_transit_ttv_tclist
+    planets:
+      - b
+    use_shared_ttv: False
 parameters:
   Tref: 0000.00
   use_tex: False
-  cpu_threads: 12
+  cpu_threads: 16
 solver:
   pyde:
     ngen: 50000

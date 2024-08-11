@@ -1,31 +1,6 @@
 inputs:
-  LCdata_transit00:
-    file: individual_transits/WASP47_simulated_transit00.dat
-    kind: Phot
-    models:
-      - lc_model
-  LCdata_transit01:
-    file: individual_transits/WASP47_simulated_transit01.dat
-    kind: Phot
-    models:
-      - lc_model
-  LCdata_transit02:
-    file: individual_transits/WASP47_simulated_transit02.dat
-    kind: Phot
-    models:
-      - lc_model
-  LCdata_transit03:
-    file: individual_transits/WASP47_simulated_transit03.dat
-    kind: Phot
-    models:
-      - lc_model
-  LCdata_transit04:
-    file: individual_transits/WASP47_simulated_transit04.dat
-    kind: Phot
-    models:
-      - lc_model
-  LCdata_transit05:
-    file: individual_transits/WASP47_simulated_transit05.dat
+  LCdata:
+    file: ancillary_transits/WASP47_simulated_instrument00.dat
     kind: Phot
     models:
       - lc_model
@@ -35,6 +10,7 @@ common:
       orbit: circular
       parametrization: Eastman2013
       use_time_inferior_conjunction: True
+      TTV_Tc_flag: id_transit_b
       boundaries:
         P: [4.155, 4.165]
         Tc: [-2, 2]
@@ -56,13 +32,14 @@ common:
         ld_c2: ['Gaussian', 0.10 ,0.05]
 models:
   lc_model:
-    model: batman_transit_ttv
+    model: pytransit_transit_ttv_ancillary
     planets:
       - b
+    use_shared_ttv: False
 parameters:
   Tref: 0000.00
   use_tex: False
-  cpu_threads: 12
+  cpu_threads: 16
 solver:
   pyde:
     ngen: 50000
