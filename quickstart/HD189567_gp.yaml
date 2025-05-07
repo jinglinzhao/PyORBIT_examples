@@ -1,0 +1,57 @@
+inputs:
+  HD189567_HARPS:
+    file: HD189567_HARPS.dat
+    kind: RV
+    models:
+      - radial_velocities
+      - gp_quasiperiodic
+  HD189567_ESPRESSO:
+    file: HD189567_ESPRESSO.dat
+    kind: RV
+    models:
+      - radial_velocities      
+      - gp_quasiperiodic
+common:
+  planets:
+    b:
+      orbit: keplerian
+      boundaries:
+        P: [10, 30]
+        K: [0.1, 5.0]
+        e: [0.00, 0.40]
+    c:
+      orbit: keplerian
+      boundaries:
+        P: [30, 40]
+        K: [0.1, 5.0]
+        e: [0.00, 0.40]        
+    d:
+      orbit: keplerian
+      boundaries:
+        P: [500, 5000]
+        K: [0.1, 5.0]
+        e: [0.00, 0.90]
+  star:
+    star_parameters:
+      priors:
+        mass: ['Gaussian', 0.83, 0.01]
+models:
+  radial_velocities:
+    planets:
+      - b
+      - c
+      - d
+parameters:
+  Tref: 2452937.54737118
+solver:
+  pyde:
+    ngen: 50000
+    npop_mult: 4
+  emcee:
+    npop_mult: 4
+    nsteps: 50000
+    nburn: 12000
+    thin: 100
+  nested_sampling:
+    nlive: 1000
+  recenter_bounds: True
