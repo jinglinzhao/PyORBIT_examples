@@ -9,7 +9,6 @@ inputs:
     kind: RV
     models:
       - radial_velocities      
-      # - gp_regression
 common:
   planets:
     b:
@@ -30,9 +29,9 @@ common:
     d:
       orbit: keplerian
       boundaries:
-        P: [500, 3000]
+        P: [3000, 5000]
         K: [0.1, 5.0]
-        e: [0.00, 0.90]
+        e: [0.00, 0.50]
   star:
     star_parameters:
       priors:
@@ -42,7 +41,7 @@ models:
     planets:
       - b
       - c
-      # - d
+      - d
 parameters:
   Tref: 2452937.54737118
 solver:
