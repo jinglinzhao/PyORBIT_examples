@@ -12,7 +12,7 @@ inputs:
       - gp_multidimensional
   ESSP_FIESTA1_EXPRES:
     file: ESSP_FIESTA1_EXPRES.dat
-    kind: FIESTA
+    kind: FWHM
     models:
       - gp_multidimensional
 common:
@@ -42,7 +42,7 @@ models:
     planets:
       - b
   gp_multidimensional:
-    model: tinygp_multidimensional_quasiperiodic
+    model: spleaf_multidimensional_esp
     common: activity
     n_harmonics: 4
     hyperparameters_condition: True
@@ -64,18 +64,18 @@ models:
         con_amp: [-200.0, 200.0]
 parameters:
   Tref: 59332.189797
-  safe_reload: True
+  # safe_reload: True
   # cpu_threads: 64
   low_ram_plot: True
   plot_split_threshold: 1000
 solver:
   pyde:
-    ngen: 100000
+    ngen: 50000
     npop_mult: 12
   emcee:
     npop_mult: 12
-    nsteps: 300000
-    nburn: 100000
+    nsteps: 25000
+    nburn: 25000
     thin: 20
   nested_sampling:
     nlive: 1000
