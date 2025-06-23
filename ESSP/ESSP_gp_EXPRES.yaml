@@ -1,17 +1,17 @@
 inputs:
-  ESSP_HARPS:
-    file: ESSP_HARPS.dat
+  ESSP_EXPRES:
+    file: ESSP_EXPRES.dat
     kind: RV
     models:
       - radial_velocities
       - gp_multidimensional
-  ESSP_BIS_HARPS:
-    file: ESSP_BIS_HARPS.dat
+  ESSP_BIS_EXPRES:
+    file: ESSP_BIS_EXPRES.dat
     kind: BIS
     models:
       - gp_multidimensional
-  ESSP_FIESTA1_HARPS:
-    file: ESSP_FIESTA1_HARPS.dat
+  ESSP_FIESTA1_EXPRES:
+    file: ESSP_FIESTA1_EXPRES.dat
     kind: FWHM
     models:
       - gp_multidimensional
@@ -42,24 +42,24 @@ models:
     planets:
       - b
   gp_multidimensional:
-    model: tinygp_multidimensional_quasiperiodic
+    model: spleaf_multidimensional_esp
     common: activity
     n_harmonics: 4
     hyperparameters_condition: True
     rotation_decay_condition: True
     derivative:
-        ESSP_HARPS: True
-        ESSP_BIS_HARPS: True
-        ESSP_FIESTA1_HARPS: False
-    ESSP_HARPS:
+        ESSP_EXPRES: True
+        ESSP_BIS_EXPRES: True
+        ESSP_FIESTA1_EXPRES: False
+    ESSP_EXPRES:
       boundaries:
         rot_amp: [0.0, 10.0] #at least one must be positive definite
         con_amp: [-200.0, 200.0]
-    ESSP_BIS_HARPS:
+    ESSP_BIS_EXPRES:
       boundaries:
         rot_amp: [0.0, 10.0]
         con_amp: [-300.0, 300.0]
-    ESSP_FIESTA1_HARPS:
+    ESSP_FIESTA1_EXPRES:
       boundaries:
         con_amp: [-200.0, 200.0]
 parameters:

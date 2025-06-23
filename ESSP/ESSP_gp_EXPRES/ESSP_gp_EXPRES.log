@@ -1,0 +1,464 @@
+
+PyORBIT v10.9.1
+
+Python version in use:
+3.10.16 (main, Dec 11 2024, 10:24:41) [Clang 14.0.6 ]
+ LaTeX disabled by default
+Using orbital model:  keplerian
+Using orbital parametrization:  Eastman2013
+
+gp_multidimensional  S+LEAF model, number of harmonics: 4
+
+
+WARNING: burn-in value is larger than the length of the chains, resized to 1/4 of the chain length
+new burn-in will be used for statistical analysis, but kept in the plots as a reminder of your mistake
+
+ emcee version:  3.1.6
+
+ Reference Time Tref: 59332.189797
+
+ Dimensions: 19
+ Nwalkers:   228
+ Steps:      25000
+
+
+Recomputing ln-prior, it may take a while...
+
+ln-probability distribution:   -553.20       -3.65      4.98 (15-84 p) 
+ln-prior       distribution:    -90.47       -0.24      0.12 (15-84 p) 
+ln-likelihood  distribution:   -462.73       -3.64      5.11 (15-84 p) 
+
+
+*** Information criteria using the likelihood distribution
+
+ BIC from distribution  (using likelihood)  =   1027.58    -10.21    7.28 (15-84 p)
+ AIC from distribution  (using likelihood)  =    963.45    -10.21    7.28 (15-84 p)
+ AICc from distribution (using likelihood)  =    967.33    -10.21    7.28 (15-84 p)
+
+
+*** Information criteria using the median parameter set
+
+ Median ln_probability =   -547.06
+ Median ln_priors      =    -90.38
+ Median ln_likelihood  =   -456.67
+
+ Median BIC  (using likelihood) =   1015.47
+ Median AIC  (using likelihood) =    951.34
+ Median AICc (using likelihood) =    955.22
+
+
+*** Information criteria using the MAP parameter set
+
+ MAP ln_priors     =   -530.20
+ MAP ln_priors     =    -90.71
+ MAP ln_likelihood =   -439.48
+
+ MAP BIC  (using likelihood)    =    981.09
+ MAP AIC  (using likelihood)    =    916.96
+ MAP AICc (using likelihood)    =    920.84
+
+ AICc suggested over AIC because NDATA ( 216 ) < 40 * NDIM ( 19 )
+
+****************************************************************************************************
+
+
+Computing the autocorrelation time of the chains
+
+***** WARNING ******
+The integrated autocorrelation time cannot be reliably estimated
+likely the chains are too short, and ACF analysis is not fully reliable
+emcee.autocorr.integrated_time tolerance lowered to 20
+If you still get a warning, you should drop these results entirely
+Chains too short to apply convergence criteria
+They should be at least 7250*nthin = 145000
+
+ ACF computation failed, no plot will be generated 
+
+
+====================================================================================================
+     Ids, spaces (s), boundaries (b) and priors (p) of the sampler parameters     
+====================================================================================================
+
+----- dataset:  ESSP_EXPRES
+jitter_0      id:   8  s:Linear      b:[      0.0017,      18.9000]   p:Uniform   []
+offset_0      id:   9  s:Linear      b:[ -10004.1700,   10004.5630]   p:Uniform   []
+
+----- dataset: ESSP_EXPRES               ----- model: gp_multidimensional           
+rot_amp       id:  10  s:Linear      b:[      0.0000,      10.0000]   p:Uniform   []
+con_amp       id:  11  s:Linear      b:[   -200.0000,     200.0000]   p:Uniform   []
+
+----- dataset:  ESSP_BIS_EXPRES
+jitter_0      id:  12  s:Linear      b:[      0.0095,      95.0000]   p:Uniform   []
+offset_0      id:  13  s:Linear      b:[ -10007.9920,   10006.5920]   p:Uniform   []
+
+----- dataset: ESSP_BIS_EXPRES           ----- model: gp_multidimensional           
+rot_amp       id:  14  s:Linear      b:[      0.0000,      10.0000]   p:Uniform   []
+con_amp       id:  15  s:Linear      b:[   -300.0000,     300.0000]   p:Uniform   []
+
+----- dataset:  ESSP_FIESTA1_EXPRES
+jitter_0      id:  16  s:Linear      b:[      0.0077,      77.7000]   p:Uniform   []
+offset_0      id:  17  s:Linear      b:[ -10004.9930,   10004.7140]   p:Uniform   []
+
+----- dataset: ESSP_FIESTA1_EXPRES       ----- model: gp_multidimensional           
+con_amp       id:  18  s:Linear      b:[   -200.0000,     200.0000]   p:Uniform   []
+rot_amp       derived (no id, space, bound)                           p:None   []
+
+----- common model:  b
+P             id:   0  s:Log_Base2   b:[      0.5850,       3.3219]   p:Gaussian   [2.9 1. ]
+K             id:   1  s:Log_Base2   b:[     -3.3219,       2.0000]   p:Uniform   []
+sre_coso      id:   2  s:Linear      b:[     -1.0000,       1.0000]   p:Uniform   []
+sre_sino      id:   3  s:Linear      b:[     -1.0000,       1.0000]   p:Uniform   []
+mean_long     id:   4  s:Linear      b:[    -65.9720,     294.0280]   p:Uniform   []
+e             derived (no id, space, bound)                           p:Uniform   [0.  0.5]
+omega         derived (no id, space, bound)                           p:Uniform   [0.0, 360.0]
+
+----- common model:  activity
+Prot          id:   5  s:Linear      b:[     20.0000,      35.0000]   p:Gaussian   [28.  5.]
+Pdec          id:   6  s:Linear      b:[     10.0000,    2000.0000]   p:Uniform   []
+Oamp          id:   7  s:Log_Base2   b:[     -6.6439,       3.3219]   p:Uniform   []
+
+----- common model:  star_parameters
+mass          derived (no id, space, bound)                           p:Gaussian   [1.e+00 1.e-10]
+
+
+****************************************************************************************************
+****************************************************************************************************
+
+ Confidence intervals (median value, 34.135th percentile from the median on the left and right side)
+
+====================================================================================================
+     Statistics on the posterior of the sampler parameters     
+====================================================================================================
+
+----- dataset:  ESSP_EXPRES
+jitter_0         8          1.13        -0.11         0.12   (15-84 p)   [    0.0017,    18.9000]
+offset_0         9            -1          -29           18   (15-84 p)   [-10004.1700, 10004.5630]
+
+----- dataset: ESSP_EXPRES               ----- model: gp_multidimensional           
+rot_amp         10           3.8         -3.1          4.1   (15-84 p)   [    0.0000,    10.0000]
+con_amp         11            45          -48           73   (15-84 p)   [ -200.0000,   200.0000]
+
+----- dataset:  ESSP_BIS_EXPRES
+jitter_0        12          2.76        -0.29         0.34   (15-84 p)   [    0.0095,    95.0000]
+offset_0        13             1          -40           62   (15-84 p)   [-10007.9920, 10006.5920]
+
+----- dataset: ESSP_BIS_EXPRES           ----- model: gp_multidimensional           
+rot_amp         14           4.2         -3.2          4.0   (15-84 p)   [    0.0000,    10.0000]
+con_amp         15          -100         -143          107   (15-84 p)   [ -300.0000,   300.0000]
+
+----- dataset:  ESSP_FIESTA1_EXPRES
+jitter_0        16          1.84        -0.17         0.20   (15-84 p)   [    0.0077,    77.7000]
+offset_0        17          -0.2          -11          7.8   (15-84 p)   [-10004.9930, 10004.7140]
+
+----- dataset: ESSP_FIESTA1_EXPRES       ----- model: gp_multidimensional           
+con_amp         18            12          -17           47   (15-84 p)   [ -200.0000,   200.0000]
+
+----- common model:  b
+P                0        1.5256      -0.0064       0.0066   (15-84 p)   [    0.5850,     3.3219]
+K                1          1.35        -0.16         0.17   (15-84 p)   [   -3.3219,     2.0000]
+sre_coso         2         -0.33        -0.14         0.20   (15-84 p)   [   -1.0000,     1.0000]
+sre_sino         3         -0.19        -0.20         0.23   (15-84 p)   [   -1.0000,     1.0000]
+mean_long        4           112          -11           11   (15-84 p)   [  -65.9720,   294.0280]
+
+----- common model:  activity
+Prot             5          26.3         -2.4          3.6   (15-84 p)   [   20.0000,    35.0000]
+Pdec             6           885         -532          709   (15-84 p)   [   10.0000,  2000.0000]
+Oamp             7          1.36         -1.7         0.97   (15-84 p)   [   -6.6439,     3.3219]
+
+----- common model:  star_parameters
+
+====================================================================================================
+     Statistics on the model parameters obtained from the posteriors samples     
+====================================================================================================
+
+----- dataset:  ESSP_EXPRES
+jitter_0                  1.13        -0.11         0.12    (15-84 p)
+offset_0                    -1          -29           18    (15-84 p)
+
+
+----- dataset: ESSP_EXPRES               ----- model: gp_multidimensional           
+rot_amp                    3.8         -3.1          4.1    (15-84 p)
+con_amp                     45          -48           73    (15-84 p)
+
+----- dataset:  ESSP_BIS_EXPRES
+jitter_0                  2.76        -0.29         0.34    (15-84 p)
+offset_0                     1          -40           62    (15-84 p)
+
+
+----- dataset: ESSP_BIS_EXPRES           ----- model: gp_multidimensional           
+rot_amp                    4.2         -3.2          4.0    (15-84 p)
+con_amp                   -100         -143          107    (15-84 p)
+
+----- dataset:  ESSP_FIESTA1_EXPRES
+jitter_0                  1.84        -0.17         0.20    (15-84 p)
+offset_0                  -0.2          -11          7.8    (15-84 p)
+
+
+----- dataset: ESSP_FIESTA1_EXPRES       ----- model: gp_multidimensional           
+rot_amp                   0.00                              [fixed]
+con_amp                     12          -17           47    (15-84 p)
+
+----- common model:  b
+P                        2.879       -0.013        0.013    (15-84 p)
+K                         2.55        -0.27         0.32    (15-84 p)
+mean_long                  112          -11           11    (15-84 p)
+e                        0.200        -0.11        0.099    (15-84 p)
+omega                     -149          -36           36    (15-84 p)
+
+----- common model:  activity
+Prot                      26.3         -2.4          3.6    (15-84 p)
+Pdec                       885         -532          709    (15-84 p)
+Oamp                       2.6         -1.8          2.5    (15-84 p)
+
+----- common model:  star_parameters
+
+====================================================================================================
+     Statistics on the derived parameters obtained from the posteriors samples     
+====================================================================================================
+
+----- common model:  b
+Inclination fixed to 90 deg!
+Computing planetary mass under the approximation M_planet << M_star (threshold at 30.0 Me)
+M_Mj                    0.0174      -0.0018       0.0020    (15-84 p)
+M_Me                      5.54        -0.59         0.64    (15-84 p)
+Tc                    59334.85         -2.6         0.17    (15-84 p)
+a_AU_(M)               0.03961     -0.00012      0.00012    (15-84 p)
+
+
+====================================================================================================
+     ------------------------------------------------------------------------------------------     
+====================================================================================================
+
+
+
+****************************************************************************************************
+
+ Parameters corresponding to the Maximum a Posteriori probability ( -530.1955083095112 )
+
+====================================================================================================
+     Statistics on the posterior of the sampler parameters     
+====================================================================================================
+
+----- dataset:  ESSP_EXPRES
+jitter_0         8      0.960239 [    0.0017,    18.9000]
+offset_0         9     -0.065986 [-10004.1700, 10004.5630]
+
+----- dataset: ESSP_EXPRES               ----- model: gp_multidimensional           
+rot_amp         10      0.100205 [    0.0000,    10.0000]
+con_amp         11      0.828853 [ -200.0000,   200.0000]
+
+----- dataset:  ESSP_BIS_EXPRES
+jitter_0        12      2.631271 [    0.0095,    95.0000]
+offset_0        13      0.434016 [-10007.9920, 10006.5920]
+
+----- dataset: ESSP_BIS_EXPRES           ----- model: gp_multidimensional           
+rot_amp         14      0.017508 [    0.0000,    10.0000]
+con_amp         15     -1.530933 [ -300.0000,   300.0000]
+
+----- dataset:  ESSP_FIESTA1_EXPRES
+jitter_0        16      1.937478 [    0.0077,    77.7000]
+offset_0        17      0.005490 [-10004.9930, 10004.7140]
+
+----- dataset: ESSP_FIESTA1_EXPRES       ----- model: gp_multidimensional           
+con_amp         18      0.075503 [ -200.0000,   200.0000]
+
+----- common model:  b
+P                0      1.529439 [    0.5850,     3.3219]
+K                1      1.314370 [   -3.3219,     2.0000]
+sre_coso         2     -0.329477 [   -1.0000,     1.0000]
+sre_sino         3     -0.320487 [   -1.0000,     1.0000]
+mean_long        4    116.408767 [  -65.9720,   294.0280]
+
+----- common model:  activity
+Prot             5     23.606753 [   20.0000,    35.0000]
+Pdec             6    967.071324 [   10.0000,  2000.0000]
+Oamp             7     -5.325951 [   -6.6439,     3.3219]
+
+----- common model:  star_parameters
+
+====================================================================================================
+     Statistics on the model parameters obtained from the posteriors samples     
+====================================================================================================
+
+----- dataset:  ESSP_EXPRES
+jitter_0              0.960239 
+offset_0             -0.065986 
+
+
+----- dataset: ESSP_EXPRES               ----- model: gp_multidimensional           
+rot_amp               0.100205 
+con_amp               0.828853 
+
+----- dataset:  ESSP_BIS_EXPRES
+jitter_0              2.631271 
+offset_0              0.434016 
+
+
+----- dataset: ESSP_BIS_EXPRES           ----- model: gp_multidimensional           
+rot_amp               0.017508 
+con_amp              -1.530933 
+
+----- dataset:  ESSP_FIESTA1_EXPRES
+jitter_0              1.937478 
+offset_0              0.005490 
+
+
+----- dataset: ESSP_FIESTA1_EXPRES       ----- model: gp_multidimensional           
+rot_amp                   0.00 
+con_amp               0.075503 
+
+----- common model:  b
+P                     2.886735 
+K                     2.486937 
+mean_long           116.408767 
+e                     0.211267 
+omega              -135.792401 
+
+----- common model:  activity
+Prot                 23.606753 
+Pdec                967.071324 
+Oamp                  0.024930 
+
+----- common model:  star_parameters
+
+====================================================================================================
+     Statistics on the derived parameters obtained from the posteriors samples     
+====================================================================================================
+
+----- common model:  b
+Inclination fixed to 90 deg!
+M_Mj                  0.017026 
+M_Me                  5.412599 
+Tc                59335.020386 
+a_AU_(M)              0.039677 
+
+
+====================================================================================================
+     ------------------------------------------------------------------------------------------     
+====================================================================================================
+
+
+
+****************************************************************************************************
+
+ Parameters corresponding to the sample closest to the median values ( -547.9136540641663 )
+
+====================================================================================================
+     Statistics on the posterior of the sampler parameters     
+====================================================================================================
+
+----- dataset:  ESSP_EXPRES
+jitter_0         8      1.178921 [    0.0017,    18.9000]
+offset_0         9    -10.863656 [-10004.1700, 10004.5630]
+
+----- dataset: ESSP_EXPRES               ----- model: gp_multidimensional           
+rot_amp         10      3.706358 [    0.0000,    10.0000]
+con_amp         11     21.212240 [ -200.0000,   200.0000]
+
+----- dataset:  ESSP_BIS_EXPRES
+jitter_0        12      2.636135 [    0.0095,    95.0000]
+offset_0        13     26.340273 [-10007.9920, 10006.5920]
+
+----- dataset: ESSP_BIS_EXPRES           ----- model: gp_multidimensional           
+rot_amp         14      4.147502 [    0.0000,    10.0000]
+con_amp         15    -50.257583 [ -300.0000,   300.0000]
+
+----- dataset:  ESSP_FIESTA1_EXPRES
+jitter_0        16      1.883180 [    0.0077,    77.7000]
+offset_0        17     -5.198932 [-10004.9930, 10004.7140]
+
+----- dataset: ESSP_FIESTA1_EXPRES       ----- model: gp_multidimensional           
+con_amp         18     10.366421 [ -200.0000,   200.0000]
+
+----- common model:  b
+P                0      1.527489 [    0.5850,     3.3219]
+K                1      1.262869 [   -3.3219,     2.0000]
+sre_coso         2     -0.291872 [   -1.0000,     1.0000]
+sre_sino         3     -0.231810 [   -1.0000,     1.0000]
+mean_long        4    110.188107 [  -65.9720,   294.0280]
+
+----- common model:  activity
+Prot             5     25.824313 [   20.0000,    35.0000]
+Pdec             6    781.123157 [   10.0000,  2000.0000]
+Oamp             7      1.388676 [   -6.6439,     3.3219]
+
+----- common model:  star_parameters
+
+====================================================================================================
+     Statistics on the model parameters obtained from the posteriors samples     
+====================================================================================================
+
+----- dataset:  ESSP_EXPRES
+jitter_0              1.178921 
+offset_0            -10.863656 
+
+
+----- dataset: ESSP_EXPRES               ----- model: gp_multidimensional           
+rot_amp               3.706358 
+con_amp              21.212240 
+
+----- dataset:  ESSP_BIS_EXPRES
+jitter_0              2.636135 
+offset_0             26.340273 
+
+
+----- dataset: ESSP_BIS_EXPRES           ----- model: gp_multidimensional           
+rot_amp               4.147502 
+con_amp             -50.257583 
+
+----- dataset:  ESSP_FIESTA1_EXPRES
+jitter_0              1.883180 
+offset_0             -5.198932 
+
+
+----- dataset: ESSP_FIESTA1_EXPRES       ----- model: gp_multidimensional           
+rot_amp                   0.00 
+con_amp              10.366421 
+
+----- common model:  b
+P                     2.882836 
+K                     2.399725 
+mean_long           110.188107 
+e                     0.138925 
+omega              -141.542768 
+
+----- common model:  activity
+Prot                 25.824313 
+Pdec                781.123157 
+Oamp                  2.618382 
+
+----- common model:  star_parameters
+
+====================================================================================================
+     Statistics on the derived parameters obtained from the posteriors samples     
+====================================================================================================
+
+----- common model:  b
+Inclination fixed to 90 deg!
+M_Mj                  0.016638 
+M_Me                  5.289199 
+Tc                59335.017451 
+a_AU_(M)              0.039641 
+
+
+====================================================================================================
+     ------------------------------------------------------------------------------------------     
+====================================================================================================
+
+
+
+****************************************************************************************************
+
+Inclination fixed to 90 deg!
+ *** Please provide a prior on stellar mass, radius or density *** 
+
+Inclination fixed to 90 deg!
+Inclination fixed to 90 deg!
+ Plot FLAT chain 
+
+****************************************************************************************************
+
+Plotting full_correlation plot with pygtc
+
+****************************************************************************************************
+

@@ -1,0 +1,555 @@
+
+PyORBIT v10.9.1
+
+Python version in use:
+3.10.16 (main, Dec 11 2024, 10:24:41) [Clang 14.0.6 ]
+ LaTeX disabled by default
+Using orbital model:  keplerian
+Using orbital parametrization:  Eastman2013
+
+gp_multidimensional  S+LEAF model, number of harmonics: 4
+
+
+WARNING: burn-in value is larger than the length of the chains, resized to 1/4 of the chain length
+new burn-in will be used for statistical analysis, but kept in the plots as a reminder of your mistake
+
+ emcee version:  3.1.6
+
+ Reference Time Tref: 59332.189797
+
+ Dimensions: 19
+ Nwalkers:   228
+ Steps:      25000
+
+
+Recomputing ln-prior, it may take a while...
+
+ln-probability distribution:   -613.55       -3.62      3.39 (15-84 p) 
+ln-prior       distribution:    -91.03       -0.44      0.23 (15-84 p) 
+ln-likelihood  distribution:   -522.46       -3.63      3.44 (15-84 p) 
+
+
+*** Information criteria using the likelihood distribution
+
+ BIC from distribution  (using likelihood)  =   1147.82     -6.87    7.27 (15-84 p)
+ AIC from distribution  (using likelihood)  =   1082.91     -6.87    7.27 (15-84 p)
+ AICc from distribution (using likelihood)  =   1086.62     -6.87    7.27 (15-84 p)
+
+
+*** Information criteria using the median parameter set
+
+ Median ln_probability =   -611.64
+ Median ln_priors      =    -90.99
+ Median ln_likelihood  =   -520.65
+
+ Median BIC  (using likelihood) =   1144.20
+ Median AIC  (using likelihood) =   1079.29
+ Median AICc (using likelihood) =   1083.00
+
+
+*** Information criteria using the MAP parameter set
+
+ MAP ln_priors     =   -600.36
+ MAP ln_priors     =    -91.58
+ MAP ln_likelihood =   -508.78
+
+ MAP BIC  (using likelihood)    =   1120.47
+ MAP AIC  (using likelihood)    =   1055.56
+ MAP AICc (using likelihood)    =   1059.27
+
+ AICc suggested over AIC because NDATA ( 225 ) < 40 * NDIM ( 19 )
+
+****************************************************************************************************
+
+
+Computing the autocorrelation time of the chains
+
+***** WARNING ******
+The integrated autocorrelation time cannot be reliably estimated
+likely the chains are too short, and ACF analysis is not fully reliable
+emcee.autocorr.integrated_time tolerance lowered to 20
+If you still get a warning, you should drop these results entirely
+Chains too short to apply convergence criteria
+They should be at least 6550*nthin = 131000
+
+ ACF computation failed, no plot will be generated 
+
+
+====================================================================================================
+     Ids, spaces (s), boundaries (b) and priors (p) of the sampler parameters     
+====================================================================================================
+
+----- dataset:  ESSP_NEID
+jitter_0      id:   8  s:Linear      b:[      0.0024,      28.9000]   p:Uniform   []
+offset_0      id:   9  s:Linear      b:[ -10003.7260,   10006.8360]   p:Uniform   []
+
+----- dataset: ESSP_NEID                 ----- model: gp_multidimensional           
+rot_amp       id:  10  s:Linear      b:[      0.0000,      10.0000]   p:Uniform   []
+con_amp       id:  11  s:Linear      b:[   -200.0000,     200.0000]   p:Uniform   []
+
+----- dataset:  ESSP_BIS_NEID
+jitter_0      id:  12  s:Linear      b:[      0.0095,      95.0000]   p:Uniform   []
+offset_0      id:  13  s:Linear      b:[ -10005.2830,   10005.2330]   p:Uniform   []
+
+----- dataset: ESSP_BIS_NEID             ----- model: gp_multidimensional           
+rot_amp       id:  14  s:Linear      b:[      0.0000,      10.0000]   p:Uniform   []
+con_amp       id:  15  s:Linear      b:[   -300.0000,     300.0000]   p:Uniform   []
+
+----- dataset:  ESSP_FIESTA1_NEID
+jitter_0      id:  16  s:Linear      b:[      0.0079,      78.8000]   p:Uniform   []
+offset_0      id:  17  s:Linear      b:[ -10007.9250,   10006.8290]   p:Uniform   []
+
+----- dataset: ESSP_FIESTA1_NEID         ----- model: gp_multidimensional           
+con_amp       id:  18  s:Linear      b:[   -200.0000,     200.0000]   p:Uniform   []
+rot_amp       derived (no id, space, bound)                           p:None   []
+
+----- common model:  b
+P             id:   0  s:Log_Base2   b:[      0.5850,       3.3219]   p:Gaussian   [2.9 1. ]
+K             id:   1  s:Log_Base2   b:[     -3.3219,       2.0000]   p:Uniform   []
+sre_coso      id:   2  s:Linear      b:[     -1.0000,       1.0000]   p:Uniform   []
+sre_sino      id:   3  s:Linear      b:[     -1.0000,       1.0000]   p:Uniform   []
+mean_long     id:   4  s:Linear      b:[      0.2872,     360.2872]   p:Uniform   []
+e             derived (no id, space, bound)                           p:Uniform   [0.  0.5]
+omega         derived (no id, space, bound)                           p:Uniform   [0.0, 360.0]
+
+----- common model:  activity
+Prot          id:   5  s:Linear      b:[     20.0000,      35.0000]   p:Gaussian   [28.  5.]
+Pdec          id:   6  s:Linear      b:[     10.0000,    2000.0000]   p:Uniform   []
+Oamp          id:   7  s:Log_Base2   b:[     -6.6439,       3.3219]   p:Uniform   []
+
+----- common model:  star_parameters
+mass          derived (no id, space, bound)                           p:Gaussian   [1.e+00 1.e-10]
+
+
+****************************************************************************************************
+****************************************************************************************************
+
+ Confidence intervals (median value, 34.135th percentile from the median on the left and right side)
+
+====================================================================================================
+     Statistics on the posterior of the sampler parameters     
+====================================================================================================
+
+----- dataset:  ESSP_NEID
+jitter_0         8          1.68        -0.16         0.19   (15-84 p)   [    0.0024,    28.9000]
+offset_0         9            -1          -56           52   (15-84 p)   [-10003.7260, 10006.8360]
+
+----- dataset: ESSP_NEID                 ----- model: gp_multidimensional           
+rot_amp         10           5.2         -3.6          3.3   (15-84 p)   [    0.0000,    10.0000]
+con_amp         11           -95          -67           75   (15-84 p)   [ -200.0000,   200.0000]
+
+----- dataset:  ESSP_BIS_NEID
+jitter_0        12          1.76        -0.19         0.21   (15-84 p)   [    0.0095,    95.0000]
+offset_0        13             3          -37           37   (15-84 p)   [-10005.2830, 10005.2330]
+
+----- dataset: ESSP_BIS_NEID             ----- model: gp_multidimensional           
+rot_amp         14           4.9         -3.5          3.6   (15-84 p)   [    0.0000,    10.0000]
+con_amp         15            64          -52           51   (15-84 p)   [ -300.0000,   300.0000]
+
+----- dataset:  ESSP_FIESTA1_NEID
+jitter_0        16          3.56        -0.31         0.34   (15-84 p)   [    0.0079,    78.8000]
+offset_0        17            -1          -36           32   (15-84 p)   [-10007.9250, 10006.8290]
+
+----- dataset: ESSP_FIESTA1_NEID         ----- model: gp_multidimensional           
+con_amp         18           -56          -62           55   (15-84 p)   [ -200.0000,   200.0000]
+
+----- common model:  b
+P                0         1.559       -0.026        0.016   (15-84 p)   [    0.5850,     3.3219]
+K                1          1.22        -0.38         0.37   (15-84 p)   [   -3.3219,     2.0000]
+sre_coso         2          0.37        -0.23         0.17   (15-84 p)   [   -1.0000,     1.0000]
+sre_sino         3          0.42        -0.30         0.20   (15-84 p)   [   -1.0000,     1.0000]
+mean_long        4           148          -36           27   (15-84 p)   [    0.2872,   360.2872]
+
+----- common model:  activity
+Prot             5          31.4         -3.2          2.4   (15-84 p)   [   20.0000,    35.0000]
+Pdec             6          1071         -637          657   (15-84 p)   [   10.0000,  2000.0000]
+Oamp             7          2.07        -0.80         0.66   (15-84 p)   [   -6.6439,     3.3219]
+
+----- common model:  star_parameters
+
+====================================================================================================
+     Statistics on the model parameters obtained from the posteriors samples     
+====================================================================================================
+
+----- dataset:  ESSP_NEID
+jitter_0                  1.68        -0.16         0.19    (15-84 p)
+offset_0                    -1          -56           52    (15-84 p)
+
+
+----- dataset: ESSP_NEID                 ----- model: gp_multidimensional           
+rot_amp                    5.2         -3.6          3.3    (15-84 p)
+con_amp                    -95          -67           75    (15-84 p)
+
+----- dataset:  ESSP_BIS_NEID
+jitter_0                  1.76        -0.19         0.21    (15-84 p)
+offset_0                     3          -37           37    (15-84 p)
+
+
+----- dataset: ESSP_BIS_NEID             ----- model: gp_multidimensional           
+rot_amp                    4.9         -3.5          3.6    (15-84 p)
+con_amp                     64          -52           51    (15-84 p)
+
+----- dataset:  ESSP_FIESTA1_NEID
+jitter_0                  3.56        -0.31         0.34    (15-84 p)
+offset_0                    -1          -36           32    (15-84 p)
+
+
+----- dataset: ESSP_FIESTA1_NEID         ----- model: gp_multidimensional           
+rot_amp                   0.00                              [fixed]
+con_amp                    -56          -62           55    (15-84 p)
+
+----- common model:  b
+P                        2.946       -0.052        0.032    (15-84 p)
+K                         2.33        -0.54         0.68    (15-84 p)
+mean_long                  148          -36           27    (15-84 p)
+e                        0.397        -0.19        0.081    (15-84 p)
+omega                       48          -32           27    (15-84 p)
+
+----- common model:  activity
+Prot                      31.4         -3.2          2.4    (15-84 p)
+Pdec                      1071         -637          657    (15-84 p)
+Oamp                       4.2         -1.8          2.4    (15-84 p)
+
+----- common model:  star_parameters
+
+====================================================================================================
+     Statistics on the derived parameters obtained from the posteriors samples     
+====================================================================================================
+
+----- common model:  b
+Inclination fixed to 90 deg!
+Computing planetary mass under the approximation M_planet << M_star (threshold at 30.0 Me)
+M_Mj                    0.0151      -0.0032       0.0039    (15-84 p)
+M_Me                       4.8         -1.0          1.2    (15-84 p)
+Tc                    59334.45        -0.14         0.27    (15-84 p)
+a_AU_(M)               0.04022     -0.00048      0.00029    (15-84 p)
+
+
+====================================================================================================
+     ------------------------------------------------------------------------------------------     
+====================================================================================================
+
+
+
+****************************************************************************************************
+
+ Parameters corresponding to the Maximum a Posteriori probability ( -600.3616172212307 )
+
+====================================================================================================
+     Statistics on the posterior of the sampler parameters     
+====================================================================================================
+
+----- dataset:  ESSP_NEID
+jitter_0         8      1.349668 [    0.0024,    28.9000]
+offset_0         9      2.293243 [-10003.7260, 10006.8360]
+
+----- dataset: ESSP_NEID                 ----- model: gp_multidimensional           
+rot_amp         10      0.621788 [    0.0000,    10.0000]
+con_amp         11      2.006746 [ -200.0000,   200.0000]
+
+----- dataset:  ESSP_BIS_NEID
+jitter_0        12      1.779960 [    0.0095,    95.0000]
+offset_0        13     -0.181986 [-10005.2830, 10005.2330]
+
+----- dataset: ESSP_BIS_NEID             ----- model: gp_multidimensional           
+rot_amp         14      2.641831 [    0.0000,    10.0000]
+con_amp         15     -1.552690 [ -300.0000,   300.0000]
+
+----- dataset:  ESSP_FIESTA1_NEID
+jitter_0        16      3.669179 [    0.0079,    78.8000]
+offset_0        17      0.250517 [-10007.9250, 10006.8290]
+
+----- dataset: ESSP_FIESTA1_NEID         ----- model: gp_multidimensional           
+con_amp         18      1.216623 [ -200.0000,   200.0000]
+
+----- common model:  b
+P                0      1.578632 [    0.5850,     3.3219]
+K                1      1.619518 [   -3.3219,     2.0000]
+sre_coso         2      0.264454 [   -1.0000,     1.0000]
+sre_sino         3      0.648320 [   -1.0000,     1.0000]
+mean_long        4    182.648958 [    0.2872,   360.2872]
+
+----- common model:  activity
+Prot             5     34.368304 [   20.0000,    35.0000]
+Pdec             6    196.333947 [   10.0000,  2000.0000]
+Oamp             7     -5.700642 [   -6.6439,     3.3219]
+
+----- common model:  star_parameters
+
+====================================================================================================
+     Statistics on the model parameters obtained from the posteriors samples     
+====================================================================================================
+
+----- dataset:  ESSP_NEID
+jitter_0              1.349668 
+offset_0              2.293243 
+
+
+----- dataset: ESSP_NEID                 ----- model: gp_multidimensional           
+rot_amp               0.621788 
+con_amp               2.006746 
+
+----- dataset:  ESSP_BIS_NEID
+jitter_0              1.779960 
+offset_0             -0.181986 
+
+
+----- dataset: ESSP_BIS_NEID             ----- model: gp_multidimensional           
+rot_amp               2.641831 
+con_amp              -1.552690 
+
+----- dataset:  ESSP_FIESTA1_NEID
+jitter_0              3.669179 
+offset_0              0.250517 
+
+
+----- dataset: ESSP_FIESTA1_NEID         ----- model: gp_multidimensional           
+rot_amp                   0.00 
+con_amp               1.216623 
+
+----- common model:  b
+P                     2.986866 
+K                     3.072725 
+mean_long           182.648958 
+e                     0.490255 
+omega                67.809165 
+
+----- common model:  activity
+Prot                 34.368304 
+Pdec                196.333947 
+Oamp                  0.019228 
+
+----- common model:  star_parameters
+
+====================================================================================================
+     Statistics on the derived parameters obtained from the posteriors samples     
+====================================================================================================
+
+----- common model:  b
+Inclination fixed to 90 deg!
+M_Mj                  0.018973 
+M_Me                  6.031473 
+Tc                59334.279660 
+a_AU_(M)              0.040590 
+
+
+====================================================================================================
+     ------------------------------------------------------------------------------------------     
+====================================================================================================
+
+
+
+****************************************************************************************************
+
+ Parameters corresponding to the sample closest to the median values ( -610.0361542587934 )
+
+====================================================================================================
+     Statistics on the posterior of the sampler parameters     
+====================================================================================================
+
+----- dataset:  ESSP_NEID
+jitter_0         8      1.663214 [    0.0024,    28.9000]
+offset_0         9    -12.672963 [-10003.7260, 10006.8360]
+
+----- dataset: ESSP_NEID                 ----- model: gp_multidimensional           
+rot_amp         10      4.538316 [    0.0000,    10.0000]
+con_amp         11    -95.594964 [ -200.0000,   200.0000]
+
+----- dataset:  ESSP_BIS_NEID
+jitter_0        12      1.753103 [    0.0095,    95.0000]
+offset_0        13      8.391684 [-10005.2830, 10005.2330]
+
+----- dataset: ESSP_BIS_NEID             ----- model: gp_multidimensional           
+rot_amp         14      5.038796 [    0.0000,    10.0000]
+con_amp         15     54.536227 [ -300.0000,   300.0000]
+
+----- dataset:  ESSP_FIESTA1_NEID
+jitter_0        16      3.423984 [    0.0079,    78.8000]
+offset_0        17    -12.591041 [-10007.9250, 10006.8290]
+
+----- dataset: ESSP_FIESTA1_NEID         ----- model: gp_multidimensional           
+con_amp         18    -81.062817 [ -200.0000,   200.0000]
+
+----- common model:  b
+P                0      1.567345 [    0.5850,     3.3219]
+K                1      1.130547 [   -3.3219,     2.0000]
+sre_coso         2      0.429205 [   -1.0000,     1.0000]
+sre_sino         3      0.470948 [   -1.0000,     1.0000]
+mean_long        4    154.447361 [    0.2872,   360.2872]
+
+----- common model:  activity
+Prot             5     31.367072 [   20.0000,    35.0000]
+Pdec             6   1079.117271 [   10.0000,  2000.0000]
+Oamp             7      1.048326 [   -6.6439,     3.3219]
+
+----- common model:  star_parameters
+
+====================================================================================================
+     Statistics on the model parameters obtained from the posteriors samples     
+====================================================================================================
+
+----- dataset:  ESSP_NEID
+jitter_0              1.663214 
+offset_0            -12.672963 
+
+
+----- dataset: ESSP_NEID                 ----- model: gp_multidimensional           
+rot_amp               4.538316 
+con_amp             -95.594964 
+
+----- dataset:  ESSP_BIS_NEID
+jitter_0              1.753103 
+offset_0              8.391684 
+
+
+----- dataset: ESSP_BIS_NEID             ----- model: gp_multidimensional           
+rot_amp               5.038796 
+con_amp              54.536227 
+
+----- dataset:  ESSP_FIESTA1_NEID
+jitter_0              3.423984 
+offset_0            -12.591041 
+
+
+----- dataset: ESSP_FIESTA1_NEID         ----- model: gp_multidimensional           
+rot_amp                   0.00 
+con_amp             -81.062817 
+
+----- common model:  b
+P                     2.963589 
+K                     2.189417 
+mean_long           154.447361 
+e                     0.406008 
+omega                47.655089 
+
+----- common model:  activity
+Prot                 31.367072 
+Pdec               1079.117271 
+Oamp                  2.068129 
+
+----- common model:  star_parameters
+
+====================================================================================================
+     Statistics on the derived parameters obtained from the posteriors samples     
+====================================================================================================
+
+----- common model:  b
+Inclination fixed to 90 deg!
+M_Mj                  0.014138 
+M_Me                  4.494400 
+Tc                59334.416228 
+a_AU_(M)              0.040378 
+
+
+====================================================================================================
+     ------------------------------------------------------------------------------------------     
+====================================================================================================
+
+
+
+****************************************************************************************************
+
+Inclination fixed to 90 deg!
+ *** Please provide a prior on stellar mass, radius or density *** 
+
+Inclination fixed to 90 deg!
+Inclination fixed to 90 deg!
+ Plot FLAT chain 
+
+****************************************************************************************************
+
+Plotting full_correlation plot with pygtc
+
+****************************************************************************************************
+
+ Plotting the chains... 
+
+****************************************************************************************************
+
+ Plotting the Gelman-Rubin traces... 
+
+     Gelman-Rubin:     8     1.170480 ESSP_NEID_jitter_0 
+     Gelman-Rubin:     9     1.609774 ESSP_NEID_offset_0 
+     Gelman-Rubin:    10     1.175927 ESSP_NEID_gp_multidimensional_rot_amp 
+     Gelman-Rubin:    11     1.391848 ESSP_NEID_gp_multidimensional_con_amp 
+     Gelman-Rubin:    12     1.156390 ESSP_BIS_NEID_jitter_0 
+     Gelman-Rubin:    13     1.552624 ESSP_BIS_NEID_offset_0 
+     Gelman-Rubin:    14     1.159647 ESSP_BIS_NEID_gp_multidimensional_rot_amp 
+     Gelman-Rubin:    15     1.374799 ESSP_BIS_NEID_gp_multidimensional_con_amp 
+     Gelman-Rubin:    16     1.189595 ESSP_FIESTA1_NEID_jitter_0 
+     Gelman-Rubin:    17     1.513139 ESSP_FIESTA1_NEID_offset_0 
+     Gelman-Rubin:    18     1.352182 ESSP_FIESTA1_NEID_gp_multidimensional_con_amp 
+     Gelman-Rubin:     0     1.241177 b_P 
+     Gelman-Rubin:     1     1.217491 b_K 
+     Gelman-Rubin:     2     1.225549 b_sre_coso 
+     Gelman-Rubin:     3     1.218151 b_sre_sino 
+     Gelman-Rubin:     4     1.249324 b_mean_long 
+     Gelman-Rubin:     5     1.217916 activity_Prot 
+     Gelman-Rubin:     6     1.161829 activity_Pdec 
+     Gelman-Rubin:     7     1.176211 activity_Oamp 
+
+****************************************************************************************************
+
+Plotting the common models corner plots
+     Common model:  b
+     Common model:  activity
+     Common model:  star_parameters
+
+****************************************************************************************************
+
+Plotting the dataset + models corner plots 
+
+     Dataset:  ESSP_NEID     model:  gp_multidimensional  corner plot  starting 
+     Dataset:  ESSP_NEID     model:  gp_multidimensional  corner plot  done 
+     Dataset:  ESSP_NEID     model:  radial_velocities_b  corner plot  starting 
+     Dataset:  ESSP_NEID     model:  radial_velocities_b  corner plot  done 
+     Dataset:  ESSP_BIS_NEID     model:  gp_multidimensional  corner plot  starting 
+     Dataset:  ESSP_BIS_NEID     model:  gp_multidimensional  corner plot  done 
+     Dataset:  ESSP_FIESTA1_NEID     model:  gp_multidimensional  corner plot  starting 
+     Dataset:  ESSP_FIESTA1_NEID     model:  gp_multidimensional  corner plot  done 
+
+****************************************************************************************************
+
+ Saving the planet parameter samplings to files (with plots)
+
+****************************************************************************************************
+
+ Saving all the parameter samplings to files (with plots)
+
+****************************************************************************************************
+
+ Computing the models for plot/data writing 
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 21 chunks of 75 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 13 chunks of 75 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 13 chunks of 75 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 21 chunks of 75 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 13 chunks of 75 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 13 chunks of 75 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 21 chunks of 75 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 13 chunks of 75 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 13 chunks of 75 times each
+     Check the documentation if the code is taking too long or if it crashes...
+ Writing the plots 
+ Writing the   data files 
+ Writing the  MAP_ data files 
+ Writing the  sampleMED_ data files 
+
+****************************************************************************************************
+
