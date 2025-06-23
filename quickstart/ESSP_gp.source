@@ -1,6 +1,10 @@
-NAME="ESSP_gp_expres_tinygp"
+instrument="EXPRES"
+NAME="ESSP_gp_${instrument}"
 
 pyorbit_run emcee ${NAME}.yaml
 pyorbit_results emcee ${NAME}.yaml -all > ./${NAME}/${NAME}.log
 
+cp ${NAME}.yaml ./${NAME}/
+
 afplay /System/Library/Sounds/Glass.aiff
+
