@@ -1,0 +1,1403 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Model Comparison Results</title>
+    <style>
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #fafafa;
+            color: #2c3e50;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            font-weight: 600;
+            margin-bottom: 30px;
+            font-size: 32px;
+        }
+        .dataset-section {
+            background-color: white;
+            margin: 30px 0;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        .dataset-header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px 30px;
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        .config-section {
+            margin: 0;
+            padding: 25px 30px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+        .config-section:last-child {
+            border-bottom: none;
+        }
+        h2 { 
+            color: #34495e;
+            margin: 0 0 15px 0;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        table { 
+            border-collapse: collapse; 
+            margin: 15px 0;
+            width: 100%;
+            background-color: white;
+        }
+        th, td { 
+            padding: 12px 16px; 
+            text-align: left;
+            border-bottom: 1px solid #ecf0f1;
+        }
+        th { 
+            background-color: #f8f9fa;
+            color: #2c3e50;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        td {
+            color: #34495e;
+            font-size: 15px;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        tr:hover td {
+            background-color: #f8f9fa;
+        }
+        .highlight-bic {
+            background-color: #e8f5e9 !important;
+            font-weight: 600;
+            color: #2e7d32;
+        }
+        .convergence-good {
+            color: #2e7d32;
+            font-weight: 600;
+        }
+        .convergence-warning {
+            color: #f57c00;
+            font-weight: 600;
+        }
+        .convergence-bad {
+            color: #c62828;
+            font-weight: 600;
+        }
+        .summary {
+            margin: 15px 0 0 0;
+            padding: 15px 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            font-size: 15px;
+            color: #34495e;
+        }
+        .summary strong {
+            color: #2c3e50;
+        }
+        .legend {
+            margin: 0 0 30px 0;
+            padding: 20px 25px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .legend h3 {
+            margin: 0 0 15px 0;
+            color: #2c3e50;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        .legend-item {
+            margin: 8px 0;
+            color: #34495e;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .badge-green {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>PyORBIT Model Comparison Results</h1>
+        
+        <div class="legend">
+            <h3>Legend</h3>
+            <div class="legend-item"><span class="badge badge-green">Green highlight</span> = Best BIC in configuration</div>
+            <div class="legend-item"><strong>Convergence %:</strong> Percentage of parameters with Gelman-Rubin < 1.1</div>
+            <div class="legend-item"><strong>Max GR:</strong> Maximum Gelman-Rubin value across all parameters</div>
+            <div class="legend-item">
+                <span class="convergence-good">Green</span> = 100% converged | 
+                <span class="convergence-warning">Orange</span> = 90-99% converged | 
+                <span class="convergence-bad">Red</span> = <90% converged
+            </div>
+        </div>
+        <div class="dataset-section">
+            <div class="dataset-header">DS1</div>
+            <div class="config-section">
+                <h2>Configuration: 2activity_indi</h2>
+                <table>
+                    <tr><th>Planets</th><th>MAP BIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="highlight-bic">4064.94</td>
+                        <td class="convergence-warning">96.6%</td>
+                        <td>1.1670</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">4073.05</td>
+                        <td class="convergence-warning">97.1%</td>
+                        <td>1.1470</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">4101.75</td>
+                        <td class="convergence-warning">94.9%</td>
+                        <td>1.3158</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 1p model (BIC = 4064.94)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: 4activity_indi</h2>
+                <table>
+                    <tr><th>Planets</th><th>MAP BIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="highlight-bic">-1672.83</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0300</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">-1671.98</td>
+                        <td class="convergence-warning">95.8%</td>
+                        <td>1.1989</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">-1649.50</td>
+                        <td class="convergence-warning">92.5%</td>
+                        <td>1.1722</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 1p model (BIC = -1672.83)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: 5activity_indi</h2>
+                <table>
+                    <tr><th>Planets</th><th>MAP BIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="highlight-bic">2294.32</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0322</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">2312.26</td>
+                        <td class="convergence-warning">98.2%</td>
+                        <td>1.1145</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">2339.16</td>
+                        <td class="convergence-warning">96.7%</td>
+                        <td>1.2367</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 1p model (BIC = 2294.32)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: CCFs</h2>
+                <table>
+                    <tr><th>Planets</th><th>MAP BIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="highlight-bic">6741.09</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0139</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">6762.07</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0807</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">6782.80</td>
+                        <td class="convergence-bad">89.7%</td>
+                        <td>1.1594</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 1p model (BIC = 6741.09)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: white_noise</h2>
+                <table>
+                    <tr><th>Planets</th><th>MAP BIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">1172.78</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0012</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">1128.68</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0040</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="highlight-bic">1110.86</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0061</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 3p model (BIC = 1110.86)
+                </div>
+            </div>
+        </div>
+        <div class="dataset-section">
+            <div class="dataset-header">DS2</div>
+            <div class="config-section">
+                <h2>Configuration: 2activity_indi</h2>
+                <table>
+                    <tr><th>Planets</th><th>MAP BIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="highlight-bic">4632.53</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0103</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">4649.26</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0317</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">4639.91</td>
+                        <td class="convergence-warning">97.4%</td>
+                        <td>1.1831</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 1p model (BIC = 4632.53)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: 4activity_indi</h2>
+                <table>
+                    <tr><th>Planets</th><th>MAP BIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="highlight-bic">-1844.43</td>
+                        <td class="convergence-warning">95.3%</td>
+                        <td>1.1514</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">-1834.37</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0350</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">-1828.94</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0580</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 1p model (BIC = -1844.43)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: 5activity_indi</h2>
+                <table>
+                    <tr><th>Planets</th><th>MAP BIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">2627.94</td>
+                        <td class="convergence-warning">98.0%</td>
+                        <td>1.1283</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="highlight-bic">2627.36</td>
+                        <td class="convergence-warning">98.2%</td>
+                        <td>1.2374</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">2639.32</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0446</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 2p model (BIC = 2627.36)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: CCFs</h2>
+                <table>
+                    <tr><th>Planets</th><th>MAP BIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="highlight-bic">7586.09</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0233</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">7592.88</td>
+                        <td class="convergence-warning">94.1%</td>
+                        <td>1.1964</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">7599.41</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0204</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 1p model (BIC = 7586.09)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: white_noise</h2>
+                <table>
+                    <tr><th>Planets</th><th>MAP BIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">1251.33</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0018</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">1252.95</td>
+                        <td class="convergence-bad">86.7%</td>
+                        <td>1.1322</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="highlight-bic">1243.03</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0064</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 3p model (BIC = 1243.03)
+                </div>
+            </div>
+        </div>
+        <div class="dataset-section">
+            <div class="dataset-header">DS3</div>
+            <div class="config-section">
+                <h2>Configuration: 2activity_indi</h2>
+                <table>
+                    <tr><th>Planets</th><th>MAP BIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="highlight-bic">4590.74</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0078</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">4607.27</td>
+                        <td class="convergence-warning">91.2%</td>
+                        <td>1.1912</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">4627.33</td>
+                        <td class="convergence-warning">94.9%</td>
+                        <td>1.2365</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 1p model (BIC = 4590.74)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: 4activity_indi</h2>
+                <table>
+                    <tr><th>Planets</th><th>MAP BIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="highlight-bic">-1873.96</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0232</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">-1850.48</td>
+                        <td class="convergence-warning">97.9%</td>
+                        <td>1.1468</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">-1837.65</td>
+                        <td class="convergence-warning">96.2%</td>
+                        <td>1.2301</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 1p model (BIC = -1873.96)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: 5activity_indi</h2>
+                <table>
+                    <tr><th>Planets</th><th>MAP BIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="highlight-bic">2635.43</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0325</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">2655.61</td>
+                        <td class="convergence-warning">96.4%</td>
+                        <td>1.1949</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">2696.86</td>
+                        <td class="convergence-warning">98.3%</td>
+                        <td>1.1467</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 1p model (BIC = 2635.43)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: CCFs</h2>
+                <table>
+                    <tr><th>Planets</th><th>MAP BIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="highlight-bic">7641.69</td>
+                        <td class="convergence-warning">93.1%</td>
+                        <td>1.1934</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">7646.59</td>
+                        <td class="convergence-warning">94.1%</td>
+                        <td>1.2059</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">7659.21</td>
+                        <td class="convergence-warning">94.9%</td>
+                        <td>1.3403</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 1p model (BIC = 7641.69)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: white_noise</h2>
+                <table>
+                    <tr><th>Planets</th><th>MAP BIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">1270.90</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0011</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">1262.95</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0024</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="highlight-bic">1238.72</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0058</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 3p model (BIC = 1238.72)
+                </div>
+            </div>
+        </div>
+        <div class="dataset-section">
+            <div class="dataset-header">DS4</div>
+            <div class="config-section">
+                <h2>Configuration: 2activity_indi</h2>
+                <table>
+                    <tr><th>Planets</th><th>MAP BIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="highlight-bic">3944.28</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0117</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">3960.65</td>
+                        <td class="convergence-warning">97.1%</td>
+                        <td>1.2956</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">3984.00</td>
+                        <td class="convergence-warning">97.4%</td>
+                        <td>1.2072</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 1p model (BIC = 3944.28)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: 4activity_indi</h2>
+                <table>
+                    <tr><th>Planets</th><th>MAP BIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">-1561.38</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0444</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="highlight-bic">-1569.36</td>
+                        <td class="convergence-warning">97.9%</td>
+                        <td>1.1606</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">-1545.51</td>
+                        <td class="convergence-warning">96.2%</td>
+                        <td>1.2172</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 2p model (BIC = -1569.36)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: 5activity_indi</h2>
+                <table>
+                    <tr><th>Planets</th><th>MAP BIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">2318.16</td>
+                        <td class="convergence-warning">96.0%</td>
+                        <td>1.2826</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="highlight-bic">2309.69</td>
+                        <td class="convergence-warning">96.4%</td>
+                        <td>1.4154</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">2345.99</td>
+                        <td class="convergence-warning">95.0%</td>
+                        <td>1.1339</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 2p model (BIC = 2309.69)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: CCFs</h2>
+                <table>
+                    <tr><th>Planets</th><th>MAP BIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">6544.43</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0424</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="highlight-bic">6542.78</td>
+                        <td class="convergence-warning">94.1%</td>
+                        <td>1.2723</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">6570.74</td>
+                        <td class="convergence-warning">94.9%</td>
+                        <td>1.1703</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 2p model (BIC = 6542.78)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: white_noise</h2>
+                <table>
+                    <tr><th>Planets</th><th>MAP BIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">1121.69</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0014</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">1092.65</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0030</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="highlight-bic">1074.86</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0059</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 3p model (BIC = 1074.86)
+                </div>
+            </div>
+        </div>
+        <div class="dataset-section">
+            <div class="dataset-header">DS5</div>
+            <div class="config-section">
+                <h2>Configuration: 2activity_indi</h2>
+                <table>
+                    <tr><th>Planets</th><th>MAP BIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="highlight-bic">4054.02</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0243</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">4067.00</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0236</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">4076.51</td>
+                        <td class="convergence-warning">92.3%</td>
+                        <td>1.1696</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 1p model (BIC = 4054.02)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: 4activity_indi</h2>
+                <table>
+                    <tr><th>Planets</th><th>MAP BIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="highlight-bic">-1550.87</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0597</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">-1539.95</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0658</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">-1521.94</td>
+                        <td class="convergence-bad">73.6%</td>
+                        <td>1.3513</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 1p model (BIC = -1550.87)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: 5activity_indi</h2>
+                <table>
+                    <tr><th>Planets</th><th>MAP BIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="highlight-bic">2371.48</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0568</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">2393.65</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0533</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">2403.12</td>
+                        <td class="convergence-warning">96.7%</td>
+                        <td>1.3421</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 1p model (BIC = 2371.48)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: CCFs</h2>
+                <table>
+                    <tr><th>Planets</th><th>MAP BIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="highlight-bic">6684.50</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0133</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">6705.87</td>
+                        <td class="convergence-warning">97.1%</td>
+                        <td>1.1239</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">6719.88</td>
+                        <td class="convergence-warning">92.3%</td>
+                        <td>1.1650</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 1p model (BIC = 6684.50)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: white_noise</h2>
+                <table>
+                    <tr><th>Planets</th><th>MAP BIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">1129.24</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0008</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">1101.51</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0025</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="highlight-bic">1092.04</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0471</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 3p model (BIC = 1092.04)
+                </div>
+            </div>
+        </div>
+        <div class="dataset-section">
+            <div class="dataset-header">DS6</div>
+            <div class="config-section">
+                <h2>Configuration: 2activity_indi</h2>
+                <table>
+                    <tr><th>Planets</th><th>MAP BIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="highlight-bic">4487.87</td>
+                        <td class="convergence-bad">79.3%</td>
+                        <td>1.4558</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">4503.45</td>
+                        <td class="convergence-warning">94.1%</td>
+                        <td>1.1350</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">4509.70</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0501</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 1p model (BIC = 4487.87)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: 4activity_indi</h2>
+                <table>
+                    <tr><th>Planets</th><th>MAP BIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="highlight-bic">-1971.45</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0354</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">-1945.56</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0866</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">-1931.99</td>
+                        <td class="convergence-warning">98.1%</td>
+                        <td>1.1144</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 1p model (BIC = -1971.45)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: 5activity_indi</h2>
+                <table>
+                    <tr><th>Planets</th><th>MAP BIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="highlight-bic">2454.02</td>
+                        <td class="convergence-warning">98.0%</td>
+                        <td>1.1412</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">2467.22</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0590</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">2472.29</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0689</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 1p model (BIC = 2454.02)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: CCFs</h2>
+                <table>
+                    <tr><th>Planets</th><th>MAP BIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="highlight-bic">7443.58</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0172</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">7476.60</td>
+                        <td class="convergence-bad">61.8%</td>
+                        <td>1.3065</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">7466.22</td>
+                        <td class="convergence-warning">94.9%</td>
+                        <td>1.4348</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 1p model (BIC = 7443.58)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: white_noise</h2>
+                <table>
+                    <tr><th>Planets</th><th>MAP BIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">1323.38</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0018</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">1172.71</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0031</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="highlight-bic">1169.70</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0057</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 3p model (BIC = 1169.70)
+                </div>
+            </div>
+        </div>
+        <div class="dataset-section">
+            <div class="dataset-header">DS7</div>
+            <div class="config-section">
+                <h2>Configuration: 2activity_indi</h2>
+                <table>
+                    <tr><th>Planets</th><th>MAP BIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="highlight-bic">4075.81</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0094</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">4077.85</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0126</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">4087.33</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0638</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 1p model (BIC = 4075.81)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: 4activity_indi</h2>
+                <table>
+                    <tr><th>Planets</th><th>MAP BIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="highlight-bic">-1709.48</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0244</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">-1708.09</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0360</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">-1703.01</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0442</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 1p model (BIC = -1709.48)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: 5activity_indi</h2>
+                <table>
+                    <tr><th>Planets</th><th>MAP BIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="highlight-bic">2241.78</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0322</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">2241.91</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0391</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">2242.17</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0429</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 1p model (BIC = 2241.78)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: CCFs</h2>
+                <table>
+                    <tr><th>Planets</th><th>MAP BIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">6701.37</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0126</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">6698.28</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0168</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="highlight-bic">6693.05</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0195</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 3p model (BIC = 6693.05)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: white_noise</h2>
+                <table>
+                    <tr><th>Planets</th><th>MAP BIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">1126.35</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0014</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="highlight-bic">1103.76</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0025</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">1104.87</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0045</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 2p model (BIC = 1103.76)
+                </div>
+            </div>
+        </div>
+        <div class="dataset-section">
+            <div class="dataset-header">DS8</div>
+            <div class="config-section">
+                <h2>Configuration: 2activity_indi</h2>
+                <table>
+                    <tr><th>Planets</th><th>MAP BIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="highlight-bic">4529.46</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0114</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">4536.71</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0169</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">4553.41</td>
+                        <td class="convergence-warning">97.4%</td>
+                        <td>1.1796</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 1p model (BIC = 4529.46)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: 4activity_indi</h2>
+                <table>
+                    <tr><th>Planets</th><th>MAP BIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="highlight-bic">-1911.50</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0409</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">-1892.54</td>
+                        <td class="convergence-warning">97.9%</td>
+                        <td>1.1529</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">-1889.18</td>
+                        <td class="convergence-warning">96.2%</td>
+                        <td>1.2912</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 1p model (BIC = -1911.50)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: 5activity_indi</h2>
+                <table>
+                    <tr><th>Planets</th><th>MAP BIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="highlight-bic">2538.35</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0313</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">2561.19</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0954</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">2575.39</td>
+                        <td class="convergence-warning">96.7%</td>
+                        <td>1.5585</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 1p model (BIC = 2538.35)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: CCFs</h2>
+                <table>
+                    <tr><th>Planets</th><th>MAP BIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">7596.63</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0783</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="highlight-bic">7575.87</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0164</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">7595.45</td>
+                        <td class="convergence-warning">97.4%</td>
+                        <td>1.2658</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 2p model (BIC = 7575.87)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: white_noise</h2>
+                <table>
+                    <tr><th>Planets</th><th>MAP BIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">1325.74</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0009</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">1320.83</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0028</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="highlight-bic">1312.31</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0061</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 3p model (BIC = 1312.31)
+                </div>
+            </div>
+        </div>
+        <div class="dataset-section">
+            <div class="dataset-header">DS9</div>
+            <div class="config-section">
+                <h2>Configuration: 2activity_indi</h2>
+                <table>
+                    <tr><th>Planets</th><th>MAP BIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="highlight-bic">3418.64</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0114</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">3431.40</td>
+                        <td class="convergence-warning">97.1%</td>
+                        <td>1.1874</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">3453.84</td>
+                        <td class="convergence-warning">92.3%</td>
+                        <td>1.2402</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 1p model (BIC = 3418.64)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: 4activity_indi</h2>
+                <table>
+                    <tr><th>Planets</th><th>MAP BIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="highlight-bic">-1357.67</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0254</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">-1352.77</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0344</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">-1337.14</td>
+                        <td class="convergence-warning">94.3%</td>
+                        <td>1.1506</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 1p model (BIC = -1357.67)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: 5activity_indi</h2>
+                <table>
+                    <tr><th>Planets</th><th>MAP BIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">2026.52</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0288</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="highlight-bic">2024.81</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0604</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">2044.52</td>
+                        <td class="convergence-warning">95.0%</td>
+                        <td>1.1654</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 2p model (BIC = 2024.81)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: CCFs</h2>
+                <table>
+                    <tr><th>Planets</th><th>MAP BIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="highlight-bic">5679.86</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0107</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">5684.43</td>
+                        <td class="convergence-warning">97.1%</td>
+                        <td>1.3012</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">5705.78</td>
+                        <td class="convergence-warning">94.9%</td>
+                        <td>1.2204</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 1p model (BIC = 5679.86)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: white_noise</h2>
+                <table>
+                    <tr><th>Planets</th><th>MAP BIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">966.23</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0012</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">945.94</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0032</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="highlight-bic">929.62</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0060</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 3p model (BIC = 929.62)
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

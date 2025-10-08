@@ -1,0 +1,779 @@
+
+:::---::: PyORBIT v11.0.1 :::---:::
+
+Python version in use:
+3.10.18 (main, Jun  5 2025, 13:14:17) [GCC 11.2.0]
+
+reloaded_optimize:  False
+reloaded_pyde:  False
+reloaded_emcee:  False
+
+number of multiprocessing threads: 16
+multiprocessing method (should be fork):  fork
+
+parameters/safe_reload flag (must be True for tinygp):  False
+
+Opening:  RVdata
+
+Adding common model of planet:  b
+Adding common model of planet:  c
+Using orbital model:  keplerian
+Using orbital parametrization:  Eastman2013
+
+Using orbital model:  keplerian
+Using orbital parametrization:  Eastman2013
+
+
+====================================================================================================
+     Ids, spaces (s), boundaries (b) and priors (p) of the sampler parameters     
+====================================================================================================
+
+----- dataset:  RVdata
+jitter_0      id:  10  s:Linear      b:[      0.0009,      12.4000]   p:Uniform   []
+offset_0      id:  11  s:Linear      b:[  -9996.0180,   10014.1890]   p:Uniform   []
+offset_1      id:  12  s:Linear      b:[  -9996.0180,   10014.1890]   p:Uniform   []
+offset_2      id:  13  s:Linear      b:[  -9996.0180,   10014.1890]   p:Uniform   []
+offset_3      id:  14  s:Linear      b:[  -9996.0180,   10014.1890]   p:Uniform   []
+
+----- common model:  b
+P             id:   0  s:Log_Base2   b:[      0.3785,       6.6439]   p:Uniform   []
+K             id:   1  s:Log_Base2   b:[     -9.9658,       3.3219]   p:Uniform   []
+sre_coso      id:   2  s:Linear      b:[     -1.0000,       1.0000]   p:Uniform   []
+sre_sino      id:   3  s:Linear      b:[     -1.0000,       1.0000]   p:Uniform   []
+mean_long     id:   4  s:Linear      b:[      0.0000,     360.0000]   p:Uniform   []
+e             derived (no id, space, bound)                           p:Gaussian   [0.    0.098]
+omega         derived (no id, space, bound)                           p:Uniform   [0.0, 360.0]
+
+----- common model:  c
+P             id:   5  s:Log_Base2   b:[      0.3785,       6.6439]   p:Uniform   []
+K             id:   6  s:Log_Base2   b:[     -9.9658,       3.3219]   p:Uniform   []
+sre_coso      id:   7  s:Linear      b:[     -1.0000,       1.0000]   p:Uniform   []
+sre_sino      id:   8  s:Linear      b:[     -1.0000,       1.0000]   p:Uniform   []
+mean_long     id:   9  s:Linear      b:[      0.0000,     360.0000]   p:Uniform   []
+e             derived (no id, space, bound)                           p:Gaussian   [0.    0.098]
+omega         derived (no id, space, bound)                           p:Uniform   [0.0, 360.0]
+
+----- common model:  star_parameters
+mass          derived (no id, space, bound)                           p:Gaussian   [1.e+00 1.e-06]
+radius        derived (no id, space, bound)                           p:Gaussian   [1.e+00 1.e-06]
+density       derived (no id, space, bound)                           p:Gaussian   [1.e+00 1.e-06]
+
+Include priors:  True
+
+Reference Time Tref:  59334.700184
+
+Dimensions =  15
+Nwalkers =  60
+
+Using threading pool for PyDE: True
+PyDE running
+Boundaries redefined after PyDE output
+PyDE completed, it took          3.3 seconds
+
+====================================================================================================
+     Starting point of the sample/optimization routines    
+====================================================================================================
+
+----- dataset:  RVdata
+jitter_0        10      1.493005 [    0.0009,    12.4000]
+offset_0        11      8.558992 [-9996.0180, 10014.1890]
+offset_1        12     10.878757 [-9996.0180, 10014.1890]
+offset_2        13      9.728438 [-9996.0180, 10014.1890]
+offset_3        14      9.734482 [-9996.0180, 10014.1890]
+
+----- common model:  b
+P                0      4.817239 [    0.3785,     6.6439]
+K                1      0.288051 [   -9.9658,     3.3219]
+sre_coso         2      0.434877 [   -1.0000,     1.0000]
+sre_sino         3     -0.175684 [   -1.0000,     1.0000]
+mean_long        4    308.058865 [  128.0589,   488.0589]
+
+----- common model:  c
+P                5      3.591748 [    0.3785,     6.6439]
+K                6     -0.323076 [   -9.9658,     3.3219]
+sre_coso         7     -0.071528 [   -1.0000,     1.0000]
+sre_sino         8     -0.237839 [   -1.0000,     1.0000]
+mean_long        9     65.720860 [ -114.2791,   245.7209]
+
+----- common model:  star_parameters
+
+====================================================================================================
+     Starting point projected onto the model parameter space     
+====================================================================================================
+
+----- dataset:  RVdata
+jitter_0              1.493005 
+offset_0              8.558992 
+offset_1             10.878757 
+offset_2              9.728438 
+offset_3              9.734482 
+
+
+----- common model:  b
+P                    28.192490 
+K                     1.220990 
+mean_long           308.058865 
+e                     0.219982 
+omega               -21.997988 
+
+----- common model:  c
+P                    12.056569 
+K                     0.799364 
+mean_long            65.720860 
+e                     0.061684 
+omega              -106.738265 
+
+----- common model:  star_parameters
+
+====================================================================================================
+     Derived parameters obtained from starting point     
+====================================================================================================
+
+----- common model:  b
+Inclination fixed to 90 deg!
+a_Rs                 38.964768 
+M_Mj                  0.017833 
+M_Me                  5.668994 
+Tc                59343.879842 
+a_AU_(M)              0.181284 
+a_AU_(rho,R)          0.181282 
+
+----- common model:  c
+Inclination fixed to 90 deg!
+a_Rs                 22.117327 
+M_Mj                  0.009000 
+M_Me                  2.860945 
+Tc                59335.584623 
+a_AU_(M)              0.102901 
+a_AU_(rho,R)          0.102900 
+
+
+====================================================================================================
+     Statistics on the log-likelihood     
+====================================================================================================
+
+ LN probability:  -666.053313 
+
+====================================================================================================
+     ------------------------------------------------------------------------------------------     
+====================================================================================================
+
+
+
+*************************************************************
+
+Running emcee
+
+emcee version:  3.1.6
+Using threading pool for emcee: True
+
+
+Computing the autocorrelation time of the chains
+
+The chains are more than 50 times longer than the ACF, the estimate can be trusted
+
+Reference thinning used in the analysis: 100
+Maximum value of the integrated ACF: 3
+Step length used in the analysis: 3*nthin = 300
+
+Convergence criteria: less than 1% variation in ACF after 50 times the integrated ACF
+At least 50*ACF after convergence, 100*ACF would be ideal
+Negative values: not converged yet
+
+   sampler parameter              |    ACF   | ACF*nthin | converged at | nsteps/ACF | to 100*ACF
+                                  |          |           |              |            | 
+   RVdata_jitter_0                |    2.52  |      252  |    14700     |     140    |       0 
+   RVdata_offset_0                |    2.57  |      257  |    17400     |     127    |       0 
+   RVdata_offset_1                |    2.47  |      247  |    14700     |     143    |       0 
+   RVdata_offset_2                |    2.59  |      259  |    14700     |     137    |       0 
+   RVdata_offset_3                |    2.44  |      244  |    15000     |     143    |       0 
+   b_P                            |    2.68  |      268  |    15600     |     129    |       0 
+   b_K                            |    2.60  |      260  |    15900     |     131    |       0 
+   b_sre_coso                     |    3.34  |      334  |    18600     |      94    |    2009 
+   b_sre_sino                     |    2.73  |      273  |    15000     |     128    |       0 
+   b_mean_long                    |    2.66  |      266  |    15900     |     128    |       0 
+   c_P                            |    2.75  |      275  |    15900     |     124    |       0 
+   c_K                            |    2.58  |      258  |    15000     |     136    |       0 
+   c_sre_coso                     |    2.73  |      273  |    16200     |     124    |       0 
+   c_sre_sino                     |    2.81  |      281  |    16200     |     120    |       0 
+   c_mean_long                    |    2.68  |      268  |    15300     |     130    |       0 
+
+All the chains are longer than 50*ACF, but some are shorter than 100*ACF
+PyORBIT should keep running for about 2009 more steps to reach 100*ACF
+Suggested value for burnin: 15740
+
+Check the documentation for the correct interpretation of these results:
+https://pyorbit.readthedocs.io/running_pyorbit/terminal_output/#autocorrelation-analysis
+
+====================================================================================================
+     Statistics on the posterior of the sampler parameters     
+====================================================================================================
+
+----- dataset:  RVdata
+jitter_0        10         1.534       -0.060        0.064   (15-84 p)   [    0.0009,    12.4000]
+offset_0        11          8.54        -0.15         0.15   (15-84 p)   [-9996.0180, 10014.1890]
+offset_1        12         10.85        -0.38         0.39   (15-84 p)   [-9996.0180, 10014.1890]
+offset_2        13          9.73        -0.16         0.16   (15-84 p)   [-9996.0180, 10014.1890]
+offset_3        14          9.73        -0.18         0.17   (15-84 p)   [-9996.0180, 10014.1890]
+
+----- common model:  b
+P                0         4.805       -0.029        0.030   (15-84 p)   [    0.3785,     6.6439]
+K                1          0.20        -0.18         0.16   (15-84 p)   [   -9.9658,     3.3219]
+sre_coso         2          0.32        -0.22         0.13   (15-84 p)   [   -1.0000,     1.0000]
+sre_sino         3         -0.15        -0.15         0.18   (15-84 p)   [   -1.0000,     1.0000]
+mean_long        4           305          -13           12   (15-84 p)   [  128.0589,   488.0589]
+
+----- common model:  c
+P                5         3.603       -0.020        0.023   (15-84 p)   [    0.3785,     6.6439]
+K                6         -0.45        -0.30         0.25   (15-84 p)   [   -9.9658,     3.3219]
+sre_coso         7         -0.01        -0.20         0.20   (15-84 p)   [   -1.0000,     1.0000]
+sre_sino         8         -0.03        -0.21         0.22   (15-84 p)   [   -1.0000,     1.0000]
+mean_long        9            75          -24           25   (15-84 p)   [ -114.2791,   245.7209]
+
+----- common model:  star_parameters
+
+====================================================================================================
+     Statistics on the model parameters obtained from the posteriors samples     
+====================================================================================================
+
+----- dataset:  RVdata
+jitter_0                 1.534       -0.060        0.064    (15-84 p)
+offset_0                  8.54        -0.15         0.15    (15-84 p)
+offset_1                 10.85        -0.38         0.39    (15-84 p)
+offset_2                  9.73        -0.16         0.16    (15-84 p)
+offset_3                  9.73        -0.18         0.17    (15-84 p)
+
+
+----- common model:  b
+P                        27.96        -0.56         0.60    (15-84 p)
+K                         1.15        -0.13         0.13    (15-84 p)
+mean_long                  305          -13           12    (15-84 p)
+e                        0.153       -0.089        0.089    (15-84 p)
+omega                      -26          -35           31    (15-84 p)
+
+----- common model:  c
+P                        12.15        -0.17         0.19    (15-84 p)
+K                         0.73        -0.14         0.14    (15-84 p)
+mean_long                   75          -24           25    (15-84 p)
+e                        0.063       -0.045        0.071    (15-84 p)
+omega                      -18         -110          133    (15-84 p)
+
+----- common model:  star_parameters
+
+====================================================================================================
+     Statistics on the derived parameters obtained from the posteriors samples     
+====================================================================================================
+
+----- common model:  b
+Inclination fixed to 90 deg!
+Computing planetary mass under the approximation M_planet << M_star (threshold at 30.0 Me)
+a_Rs                     38.75        -0.52         0.55    (15-84 p)
+M_Mj                    0.0169      -0.0020       0.0019    (15-84 p)
+M_Me                      5.38        -0.62         0.62    (15-84 p)
+Tc                     59344.8         -1.4          1.3    (15-84 p)
+a_AU_(M)                0.1803      -0.0024       0.0026    (15-84 p)
+a_AU_(rho,R)            0.1803      -0.0024       0.0026    (15-84 p)
+
+----- common model:  c
+Inclination fixed to 90 deg!
+Computing planetary mass under the approximation M_planet << M_star (threshold at 30.0 Me)
+a_Rs                     22.23        -0.21         0.23    (15-84 p)
+M_Mj                    0.0083      -0.0016       0.0015    (15-84 p)
+M_Me                      2.62        -0.50         0.49    (15-84 p)
+Tc                    59335.90        -0.83           11    (15-84 p)
+a_AU_(M)               0.10342     -0.00097       0.0011    (15-84 p)
+a_AU_(rho,R)           0.10342     -0.00097       0.0011    (15-84 p)
+
+
+====================================================================================================
+     ------------------------------------------------------------------------------------------     
+====================================================================================================
+
+
+
+emcee completed
+
+
+:::---::: PyORBIT v11.0.1 :::---:::
+
+Python version in use:
+3.10.18 (main, Jun  5 2025, 13:14:17) [GCC 11.2.0]
+LaTeX disabled by default
+
+Using orbital model:  keplerian
+Using orbital parametrization:  Eastman2013
+
+Using orbital model:  keplerian
+Using orbital parametrization:  Eastman2013
+
+
+### PyORBIT version used in the analysis:  11.0.1
+
+ emcee version:  3.1.6
+
+ Reference Time Tref: 59334.700184
+
+ Data points:322
+ Dimensions: 15
+ Nwalkers:   60
+ Steps:      50000
+
+
+Number of samplings: 18000
+
+Recomputing ln-prior, it may take a while...
+
+ln-probability   distribution:   -673.58       -3.07      2.47 (15-84 p) 
+ln-prior         distribution:    -78.38       -2.00      1.19 (15-84 p) 
+ln-likelihood    distribution:   -594.98       -3.45      3.18 (15-84 p) 
+
+
+*** Information criteria using the likelihood distribution
+
+ BIC from distribution  (using likelihood)  =   1276.57     -6.36    6.91 (15-84 p)
+ AIC from distribution  (using likelihood)  =   1219.95     -6.36    6.91 (15-84 p)
+ AICc from distribution (using likelihood)  =   1221.52     -6.36    6.91 (15-84 p)
+
+
+*** Information criteria using the median parameter set
+
+ ln_probability of Median solution =   -667.01
+ ln_priors of Median solution      =    -77.46
+ ln_likelihood of Median solution  =   -589.55
+
+ Median BIC  (using likelihood) =   1265.71
+ Median AIC  (using likelihood) =   1209.10
+ Median AICc (using likelihood) =   1210.66
+
+
+*** Information criteria using the MAP parameter set
+
+ ln_probability of MAP solution =   -667.03
+ ln_priors of MAP solution      =    -78.87
+ ln_likelihood of MAP solution  =   -588.16
+
+ MAP BIC  (using likelihood)    =   1262.95
+ MAP AIC  (using likelihood)    =   1206.33
+ MAP AICc (using likelihood)    =   1207.90
+
+ AICc suggested over AIC because NDATA ( 322 ) < 40 * NDIM ( 15 )
+
+****************************************************************************************************
+
+
+Computing the autocorrelation time of the chains
+
+The chains are more than 50 times longer than the ACF, the estimate can be trusted
+
+Reference thinning used in the analysis: 100
+Maximum value of the integrated ACF: 3
+Step length used in the analysis: 3*nthin = 300
+
+Convergence criteria: less than 1% variation in ACF after 50 times the integrated ACF
+At least 50*ACF after convergence, 100*ACF would be ideal
+Negative values: not converged yet
+
+   sampler parameter              |    ACF   | ACF*nthin | converged at | nsteps/ACF | to 100*ACF
+                                  |          |           |              |            | 
+   RVdata_jitter_0                |    2.52  |      252  |    14700     |     140    |       0 
+   RVdata_offset_0                |    2.57  |      257  |    17400     |     127    |       0 
+   RVdata_offset_1                |    2.47  |      247  |    14700     |     143    |       0 
+   RVdata_offset_2                |    2.59  |      259  |    14700     |     137    |       0 
+   RVdata_offset_3                |    2.44  |      244  |    15000     |     143    |       0 
+   b_P                            |    2.68  |      268  |    15600     |     129    |       0 
+   b_K                            |    2.60  |      260  |    15900     |     131    |       0 
+   b_sre_coso                     |    3.34  |      334  |    18600     |      94    |    2009 
+   b_sre_sino                     |    2.73  |      273  |    15000     |     128    |       0 
+   b_mean_long                    |    2.66  |      266  |    15900     |     128    |       0 
+   c_P                            |    2.75  |      275  |    15900     |     124    |       0 
+   c_K                            |    2.58  |      258  |    15000     |     136    |       0 
+   c_sre_coso                     |    2.73  |      273  |    16200     |     124    |       0 
+   c_sre_sino                     |    2.81  |      281  |    16200     |     120    |       0 
+   c_mean_long                    |    2.68  |      268  |    15300     |     130    |       0 
+
+All the chains are longer than 50*ACF, but some are shorter than 100*ACF
+PyORBIT should keep running for about 2009 more steps to reach 100*ACF
+Suggested value for burnin: 15740
+
+Check the documentation for the correct interpretation of these results:
+https://pyorbit.readthedocs.io/running_pyorbit/terminal_output/#autocorrelation-analysis
+
+ Plotting the ACF... 
+
+
+====================================================================================================
+     Ids, spaces (s), boundaries (b) and priors (p) of the sampler parameters     
+====================================================================================================
+
+----- dataset:  RVdata
+jitter_0      id:  10  s:Linear      b:[      0.0009,      12.4000]   p:Uniform   []
+offset_0      id:  11  s:Linear      b:[  -9996.0180,   10014.1890]   p:Uniform   []
+offset_1      id:  12  s:Linear      b:[  -9996.0180,   10014.1890]   p:Uniform   []
+offset_2      id:  13  s:Linear      b:[  -9996.0180,   10014.1890]   p:Uniform   []
+offset_3      id:  14  s:Linear      b:[  -9996.0180,   10014.1890]   p:Uniform   []
+
+----- common model:  b
+P             id:   0  s:Log_Base2   b:[      0.3785,       6.6439]   p:Uniform   []
+K             id:   1  s:Log_Base2   b:[     -9.9658,       3.3219]   p:Uniform   []
+sre_coso      id:   2  s:Linear      b:[     -1.0000,       1.0000]   p:Uniform   []
+sre_sino      id:   3  s:Linear      b:[     -1.0000,       1.0000]   p:Uniform   []
+mean_long     id:   4  s:Linear      b:[    128.0589,     488.0589]   p:Uniform   []
+e             derived (no id, space, bound)                           p:Gaussian   [0.    0.098]
+omega         derived (no id, space, bound)                           p:Uniform   [0.0, 360.0]
+
+----- common model:  c
+P             id:   5  s:Log_Base2   b:[      0.3785,       6.6439]   p:Uniform   []
+K             id:   6  s:Log_Base2   b:[     -9.9658,       3.3219]   p:Uniform   []
+sre_coso      id:   7  s:Linear      b:[     -1.0000,       1.0000]   p:Uniform   []
+sre_sino      id:   8  s:Linear      b:[     -1.0000,       1.0000]   p:Uniform   []
+mean_long     id:   9  s:Linear      b:[   -114.2791,     245.7209]   p:Uniform   []
+e             derived (no id, space, bound)                           p:Gaussian   [0.    0.098]
+omega         derived (no id, space, bound)                           p:Uniform   [0.0, 360.0]
+
+----- common model:  star_parameters
+mass          derived (no id, space, bound)                           p:Gaussian   [1.e+00 1.e-06]
+radius        derived (no id, space, bound)                           p:Gaussian   [1.e+00 1.e-06]
+density       derived (no id, space, bound)                           p:Gaussian   [1.e+00 1.e-06]
+
+
+****************************************************************************************************
+****************************************************************************************************
+
+ Confidence intervals (median value, 34.135th percentile from the median on the left and right side)
+
+====================================================================================================
+     Statistics on the posterior of the sampler parameters     
+====================================================================================================
+
+----- dataset:  RVdata
+jitter_0        10         1.534       -0.060        0.064   (15-84 p)   [    0.0009,    12.4000]
+offset_0        11          8.54        -0.15         0.15   (15-84 p)   [-9996.0180, 10014.1890]
+offset_1        12         10.85        -0.38         0.39   (15-84 p)   [-9996.0180, 10014.1890]
+offset_2        13          9.73        -0.16         0.16   (15-84 p)   [-9996.0180, 10014.1890]
+offset_3        14          9.73        -0.18         0.17   (15-84 p)   [-9996.0180, 10014.1890]
+
+----- common model:  b
+P                0         4.805       -0.029        0.030   (15-84 p)   [    0.3785,     6.6439]
+K                1          0.20        -0.18         0.16   (15-84 p)   [   -9.9658,     3.3219]
+sre_coso         2          0.32        -0.22         0.13   (15-84 p)   [   -1.0000,     1.0000]
+sre_sino         3         -0.15        -0.15         0.18   (15-84 p)   [   -1.0000,     1.0000]
+mean_long        4           305          -13           12   (15-84 p)   [  128.0589,   488.0589]
+
+----- common model:  c
+P                5         3.603       -0.020        0.023   (15-84 p)   [    0.3785,     6.6439]
+K                6         -0.45        -0.30         0.25   (15-84 p)   [   -9.9658,     3.3219]
+sre_coso         7         -0.01        -0.20         0.20   (15-84 p)   [   -1.0000,     1.0000]
+sre_sino         8         -0.03        -0.21         0.22   (15-84 p)   [   -1.0000,     1.0000]
+mean_long        9            75          -24           25   (15-84 p)   [ -114.2791,   245.7209]
+
+----- common model:  star_parameters
+
+====================================================================================================
+     Statistics on the model parameters obtained from the posteriors samples     
+====================================================================================================
+
+----- dataset:  RVdata
+jitter_0                 1.534       -0.060        0.064    (15-84 p)
+offset_0                  8.54        -0.15         0.15    (15-84 p)
+offset_1                 10.85        -0.38         0.39    (15-84 p)
+offset_2                  9.73        -0.16         0.16    (15-84 p)
+offset_3                  9.73        -0.18         0.17    (15-84 p)
+
+
+----- common model:  b
+P                        27.96        -0.56         0.60    (15-84 p)
+K                         1.15        -0.13         0.13    (15-84 p)
+mean_long                  305          -13           12    (15-84 p)
+e                        0.153       -0.089        0.089    (15-84 p)
+omega                      -26          -36           30    (15-84 p)
+
+----- common model:  c
+P                        12.15        -0.17         0.19    (15-84 p)
+K                         0.73        -0.14         0.14    (15-84 p)
+mean_long                   75          -24           25    (15-84 p)
+e                        0.063       -0.045        0.071    (15-84 p)
+omega                      -80         -105          130    (15-84 p)
+
+----- common model:  star_parameters
+
+====================================================================================================
+     Statistics on the derived parameters obtained from the posteriors samples     
+====================================================================================================
+
+----- common model:  b
+Inclination fixed to 90 deg!
+Computing planetary mass under the approximation M_planet << M_star (threshold at 30.0 Me)
+a_Rs                     38.75        -0.52         0.55    (15-84 p)
+M_Mj                    0.0169      -0.0020       0.0019    (15-84 p)
+M_Me                      5.38        -0.62         0.62    (15-84 p)
+Tc                     59344.8         -1.4          1.3    (15-84 p)
+a_AU_(M)                0.1803      -0.0024       0.0026    (15-84 p)
+a_AU_(rho,R)            0.1803      -0.0024       0.0026    (15-84 p)
+
+----- common model:  c
+Inclination fixed to 90 deg!
+Computing planetary mass under the approximation M_planet << M_star (threshold at 30.0 Me)
+a_Rs                     22.23        -0.21         0.23    (15-84 p)
+M_Mj                    0.0083      -0.0016       0.0015    (15-84 p)
+M_Me                      2.62        -0.50         0.49    (15-84 p)
+Tc                    59335.90        -0.83           11    (15-84 p)
+a_AU_(M)               0.10342     -0.00097       0.0011    (15-84 p)
+a_AU_(rho,R)           0.10342     -0.00097       0.0011    (15-84 p)
+
+
+====================================================================================================
+     ------------------------------------------------------------------------------------------     
+====================================================================================================
+
+
+
+****************************************************************************************************
+
+ Parameters corresponding to the Maximum a Posteriori probability ( -667.0308502389862 )
+
+====================================================================================================
+     Statistics on the posterior of the sampler parameters     
+====================================================================================================
+
+----- dataset:  RVdata
+jitter_0        10      1.521232 [    0.0009,    12.4000]
+offset_0        11      8.574617 [-9996.0180, 10014.1890]
+offset_1        12     10.648808 [-9996.0180, 10014.1890]
+offset_2        13      9.724553 [-9996.0180, 10014.1890]
+offset_3        14      9.746115 [-9996.0180, 10014.1890]
+
+----- common model:  b
+P                0      4.804571 [    0.3785,     6.6439]
+K                1      0.312922 [   -9.9658,     3.3219]
+sre_coso         2      0.382687 [   -1.0000,     1.0000]
+sre_sino         3     -0.204317 [   -1.0000,     1.0000]
+mean_long        4    301.971032 [  128.0589,   488.0589]
+
+----- common model:  c
+P                5      3.583356 [    0.3785,     6.6439]
+K                6     -0.227792 [   -9.9658,     3.3219]
+sre_coso         7      0.094451 [   -1.0000,     1.0000]
+sre_sino         8     -0.273026 [   -1.0000,     1.0000]
+mean_long        9     53.816309 [ -114.2791,   245.7209]
+
+----- common model:  star_parameters
+
+====================================================================================================
+     Statistics on the model parameters obtained from the posteriors samples     
+====================================================================================================
+
+----- dataset:  RVdata
+jitter_0              1.521232 
+offset_0              8.574617 
+offset_1             10.648808 
+offset_2              9.724553 
+offset_3              9.746115 
+
+
+----- common model:  b
+P                    27.946022 
+K                     1.242221 
+mean_long           301.971032 
+e                     0.188195 
+omega               -28.097792 
+
+----- common model:  c
+P                    11.986648 
+K                     0.853941 
+mean_long            53.816309 
+e                     0.083464 
+omega               -70.917337 
+
+----- common model:  star_parameters
+
+====================================================================================================
+     Statistics on the derived parameters obtained from the posteriors samples     
+====================================================================================================
+
+----- common model:  b
+Inclination fixed to 90 deg!
+a_Rs                 38.737306 
+M_Mj                  0.018213 
+M_Me                  5.789786 
+Tc                59344.617684 
+a_AU_(M)              0.180226 
+a_AU_(rho,R)          0.180224 
+
+----- common model:  c
+Inclination fixed to 90 deg!
+a_Rs                 22.031680 
+M_Mj                  0.009580 
+M_Me                  3.045514 
+Tc                59335.794359 
+a_AU_(M)              0.102502 
+a_AU_(rho,R)          0.102502 
+
+
+====================================================================================================
+     ------------------------------------------------------------------------------------------     
+====================================================================================================
+
+
+
+****************************************************************************************************
+
+ Parameters corresponding to the sample closest to the median values ( -668.6471466342866 )
+
+====================================================================================================
+     Statistics on the posterior of the sampler parameters     
+====================================================================================================
+
+----- dataset:  RVdata
+jitter_0        10      1.535900 [    0.0009,    12.4000]
+offset_0        11      8.593959 [-9996.0180, 10014.1890]
+offset_1        12     10.890540 [-9996.0180, 10014.1890]
+offset_2        13      9.789387 [-9996.0180, 10014.1890]
+offset_3        14      9.788809 [-9996.0180, 10014.1890]
+
+----- common model:  b
+P                0      4.814727 [    0.3785,     6.6439]
+K                1      0.135752 [   -9.9658,     3.3219]
+sre_coso         2      0.335832 [   -1.0000,     1.0000]
+sre_sino         3     -0.219657 [   -1.0000,     1.0000]
+mean_long        4    297.823353 [  128.0589,   488.0589]
+
+----- common model:  c
+P                5      3.606862 [    0.3785,     6.6439]
+K                6     -0.265607 [   -9.9658,     3.3219]
+sre_coso         7     -0.095291 [   -1.0000,     1.0000]
+sre_sino         8     -0.027988 [   -1.0000,     1.0000]
+mean_long        9     85.418996 [ -114.2791,   245.7209]
+
+----- common model:  star_parameters
+
+====================================================================================================
+     Statistics on the model parameters obtained from the posteriors samples     
+====================================================================================================
+
+----- dataset:  RVdata
+jitter_0              1.535900 
+offset_0              8.593959 
+offset_1             10.890540 
+offset_2              9.789387 
+offset_3              9.788809 
+
+
+----- common model:  b
+P                    28.143444 
+K                     1.098665 
+mean_long           297.823353 
+e                     0.161032 
+omega               -33.187482 
+
+----- common model:  c
+P                    12.183546 
+K                     0.831849 
+mean_long            85.418996 
+e                     0.009864 
+omega              -163.631806 
+
+----- common model:  star_parameters
+
+====================================================================================================
+     Statistics on the derived parameters obtained from the posteriors samples     
+====================================================================================================
+
+----- common model:  b
+Inclination fixed to 90 deg!
+a_Rs                 38.919563 
+M_Mj                  0.016225 
+M_Me                  5.157896 
+Tc                59345.308689 
+a_AU_(M)              0.181073 
+a_AU_(rho,R)          0.181072 
+
+----- common model:  c
+Inclination fixed to 90 deg!
+a_Rs                 22.272277 
+M_Mj                  0.009416 
+M_Me                  2.993179 
+Tc                59334.891998 
+a_AU_(M)              0.103622 
+a_AU_(rho,R)          0.103621 
+
+
+====================================================================================================
+     ------------------------------------------------------------------------------------------     
+====================================================================================================
+
+
+
+****************************************************************************************************
+
+Inclination fixed to 90 deg!
+Inclination fixed to 90 deg!
+Note: stellar density derived from stellar mass and radius
+
+Inclination fixed to 90 deg!
+Inclination fixed to 90 deg!
+Inclination fixed to 90 deg!
+Inclination fixed to 90 deg!
+ Plot FLAT chain 
+
+****************************************************************************************************
+
+Plotting full_correlation plot with pygtc
+
+****************************************************************************************************
+
+ Plotting the chains... 
+
+****************************************************************************************************
+
+ Plotting the Gelman-Rubin traces... 
+
+     Gelman-Rubin:    10     1.001088 RVdata_jitter_0 
+     Gelman-Rubin:    11     1.000727 RVdata_offset_0 
+     Gelman-Rubin:    12     1.002107 RVdata_offset_1 
+     Gelman-Rubin:    13     1.000931 RVdata_offset_2 
+     Gelman-Rubin:    14     1.002377 RVdata_offset_3 
+     Gelman-Rubin:     0     1.002351 b_P 
+     Gelman-Rubin:     1     1.001195 b_K 
+     Gelman-Rubin:     2     1.001649 b_sre_coso 
+     Gelman-Rubin:     3     1.001650 b_sre_sino 
+     Gelman-Rubin:     4     1.001579 b_mean_long 
+     Gelman-Rubin:     5     1.001697 c_P 
+     Gelman-Rubin:     6     1.002102 c_K 
+     Gelman-Rubin:     7     1.002273 c_sre_coso 
+     Gelman-Rubin:     8     1.002137 c_sre_sino 
+     Gelman-Rubin:     9     1.002294 c_mean_long 
+
+****************************************************************************************************
+
+Plotting the common models corner plots
+     Common model:  b
+     Common model:  c
+     Common model:  star_parameters
+
+****************************************************************************************************
+
+Plotting the dataset + models corner plots 
+
+     Dataset:  RVdata     model:  radial_velocities_b  corner plot  starting 
+     Dataset:  RVdata     model:  radial_velocities_b  corner plot  done 
+     Dataset:  RVdata     model:  radial_velocities_c  corner plot  starting 
+     Dataset:  RVdata     model:  radial_velocities_c  corner plot  done 
+
+****************************************************************************************************
+
+ Saving the planet parameter samplings to files (with plots)
+
+****************************************************************************************************
+
+ Saving all the parameter samplings to files (with plots)
+
+****************************************************************************************************
+
+ Computing the models for plot/data writing 
+ Writing the plots 
+ Writing the   data files 
+ Writing the  MAP_ data files 
+ Writing the  sampleMED_ data files 
+
+****************************************************************************************************
+

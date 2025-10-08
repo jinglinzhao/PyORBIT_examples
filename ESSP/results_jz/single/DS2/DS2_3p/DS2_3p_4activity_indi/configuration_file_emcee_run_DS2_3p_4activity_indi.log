@@ -1,0 +1,2340 @@
+
+:::---::: PyORBIT v11.0.1 :::---:::
+
+Python version in use:
+3.10.18 (main, Jun  5 2025, 13:14:17) [GCC 11.2.0]
+
+reloaded_optimize:  False
+reloaded_pyde:  False
+reloaded_emcee:  False
+
+number of multiprocessing threads: 16
+multiprocessing method (should be fork):  fork
+
+parameters/safe_reload flag (must be True for tinygp):  False
+
+Opening:  RVdata
+Opening:  BISdata
+Opening:  FWHMdata
+Opening:  CaIIdata
+Opening:  Halphadata
+
+Adding common model of planet:  b
+Adding common model of planet:  c
+Adding common model of planet:  d
+Using orbital model:  keplerian
+Using orbital parametrization:  Eastman2013
+
+Using orbital model:  keplerian
+Using orbital parametrization:  Eastman2013
+
+Using orbital model:  keplerian
+Using orbital parametrization:  Eastman2013
+
+gp_multidimensional  S+LEAF model, number of harmonics: 4
+
+GP model: gp_multidimensional  hyperparameters_condition:    True
+GP model: gp_multidimensional  rotation_decay_condition:     True
+
+====================================================================================================
+     Ids, spaces (s), boundaries (b) and priors (p) of the sampler parameters     
+====================================================================================================
+
+----- dataset:  RVdata
+jitter_0      id:  18  s:Linear      b:[      0.0009,      13.2000]   p:Uniform   []
+offset_0      id:  19  s:Linear      b:[  -9995.2560,   10015.1650]   p:Uniform   []
+offset_1      id:  20  s:Linear      b:[  -9995.2560,   10015.1650]   p:Uniform   []
+offset_2      id:  21  s:Linear      b:[  -9995.2560,   10015.1650]   p:Uniform   []
+offset_3      id:  22  s:Linear      b:[  -9995.2560,   10015.1650]   p:Uniform   []
+
+----- dataset: RVdata                    ----- model: gp_multidimensional           
+rot_amp       id:  23  s:Linear      b:[      0.0000,      10.0000]   p:Uniform   []
+con_amp       id:  24  s:Linear      b:[    -20.0000,      20.0000]   p:Uniform   []
+
+----- dataset:  BISdata
+jitter_0      id:  25  s:Linear      b:[      0.0095,      95.0000]   p:Uniform   []
+offset_0      id:  26  s:Linear      b:[ -10080.3833,    9960.4333]   p:Uniform   []
+offset_1      id:  27  s:Linear      b:[ -10080.3833,    9960.4333]   p:Uniform   []
+offset_2      id:  28  s:Linear      b:[ -10080.3833,    9960.4333]   p:Uniform   []
+offset_3      id:  29  s:Linear      b:[ -10080.3833,    9960.4333]   p:Uniform   []
+
+----- dataset: BISdata                   ----- model: gp_multidimensional           
+rot_amp       id:  30  s:Linear      b:[    -10.0000,      10.0000]   p:Uniform   []
+con_amp       id:  31  s:Linear      b:[    -20.0000,      20.0000]   p:Uniform   []
+
+----- dataset:  FWHMdata
+jitter_0      id:  32  s:Linear      b:[      0.0500,     500.0000]   p:Uniform   []
+offset_0      id:  33  s:Linear      b:[  -3318.1198,   16953.1282]   p:Uniform   []
+offset_1      id:  34  s:Linear      b:[  -3318.1198,   16953.1282]   p:Uniform   []
+offset_2      id:  35  s:Linear      b:[  -3318.1198,   16953.1282]   p:Uniform   []
+offset_3      id:  36  s:Linear      b:[  -3318.1198,   16953.1282]   p:Uniform   []
+
+----- dataset: FWHMdata                  ----- model: gp_multidimensional           
+rot_amp       id:  37  s:Linear      b:[    -10.0000,      10.0000]   p:Uniform   []
+con_amp       id:  38  s:Linear      b:[    -20.0000,      20.0000]   p:Uniform   []
+
+----- dataset:  CaIIdata
+jitter_0      id:  39  s:Linear      b:[      0.0000,       0.3000]   p:Uniform   []
+offset_0      id:  40  s:Linear      b:[  -9999.9104,   10000.1167]   p:Uniform   []
+offset_1      id:  41  s:Linear      b:[  -9999.9104,   10000.1167]   p:Uniform   []
+offset_2      id:  42  s:Linear      b:[  -9999.9104,   10000.1167]   p:Uniform   []
+offset_3      id:  43  s:Linear      b:[  -9999.9104,   10000.1167]   p:Uniform   []
+
+----- dataset: CaIIdata                  ----- model: gp_multidimensional           
+rot_amp       id:  44  s:Linear      b:[    -10.0000,      10.0000]   p:Uniform   []
+con_amp       id:  45  s:Linear      b:[    -20.0000,      20.0000]   p:Uniform   []
+
+----- dataset:  Halphadata
+jitter_0      id:  46  s:Linear      b:[      0.0000,       0.1000]   p:Uniform   []
+offset_0      id:  47  s:Linear      b:[  -9999.8300,   10000.1778]   p:Uniform   []
+offset_1      id:  48  s:Linear      b:[  -9999.8300,   10000.1778]   p:Uniform   []
+offset_2      id:  49  s:Linear      b:[  -9999.8300,   10000.1778]   p:Uniform   []
+offset_3      id:  50  s:Linear      b:[  -9999.8300,   10000.1778]   p:Uniform   []
+
+----- dataset: Halphadata                ----- model: gp_multidimensional           
+rot_amp       id:  51  s:Linear      b:[    -10.0000,      10.0000]   p:Uniform   []
+con_amp       id:  52  s:Linear      b:[    -20.0000,      20.0000]   p:Uniform   []
+
+----- common model:  b
+P             id:   0  s:Log_Base2   b:[      0.3785,       6.6439]   p:Uniform   []
+K             id:   1  s:Log_Base2   b:[     -9.9658,       3.3219]   p:Uniform   []
+sre_coso      id:   2  s:Linear      b:[     -1.0000,       1.0000]   p:Uniform   []
+sre_sino      id:   3  s:Linear      b:[     -1.0000,       1.0000]   p:Uniform   []
+mean_long     id:   4  s:Linear      b:[      0.0000,     360.0000]   p:Uniform   []
+e             derived (no id, space, bound)                           p:Gaussian   [0.    0.098]
+omega         derived (no id, space, bound)                           p:Uniform   [0.0, 360.0]
+
+----- common model:  c
+P             id:   5  s:Log_Base2   b:[      0.3785,       6.6439]   p:Uniform   []
+K             id:   6  s:Log_Base2   b:[     -9.9658,       3.3219]   p:Uniform   []
+sre_coso      id:   7  s:Linear      b:[     -1.0000,       1.0000]   p:Uniform   []
+sre_sino      id:   8  s:Linear      b:[     -1.0000,       1.0000]   p:Uniform   []
+mean_long     id:   9  s:Linear      b:[      0.0000,     360.0000]   p:Uniform   []
+e             derived (no id, space, bound)                           p:Gaussian   [0.    0.098]
+omega         derived (no id, space, bound)                           p:Uniform   [0.0, 360.0]
+
+----- common model:  d
+P             id:  10  s:Log_Base2   b:[      0.3785,       6.6439]   p:Uniform   []
+K             id:  11  s:Log_Base2   b:[     -9.9658,       3.3219]   p:Uniform   []
+sre_coso      id:  12  s:Linear      b:[     -1.0000,       1.0000]   p:Uniform   []
+sre_sino      id:  13  s:Linear      b:[     -1.0000,       1.0000]   p:Uniform   []
+mean_long     id:  14  s:Linear      b:[      0.0000,     360.0000]   p:Uniform   []
+e             derived (no id, space, bound)                           p:Gaussian   [0.    0.098]
+omega         derived (no id, space, bound)                           p:Uniform   [0.0, 360.0]
+
+----- common model:  activity
+Prot          id:  15  s:Linear      b:[     20.0000,      35.0000]   p:Gaussian   [28.   0.5]
+Pdec          id:  16  s:Linear      b:[     30.0000,    1000.0000]   p:Uniform   []
+Oamp          id:  17  s:Log_Base2   b:[     -6.6439,       0.0000]   p:Gaussian   [0.35  0.035]
+
+----- common model:  star_parameters
+mass          derived (no id, space, bound)                           p:Gaussian   [1.e+00 1.e-06]
+radius        derived (no id, space, bound)                           p:Gaussian   [1.e+00 1.e-06]
+density       derived (no id, space, bound)                           p:Gaussian   [1.e+00 1.e-06]
+
+Include priors:  True
+
+Reference Time Tref:  59334.700184
+
+Dimensions =  53
+Nwalkers =  212
+
+Using threading pool for PyDE: True
+PyDE running
+Boundaries redefined after PyDE output
+PyDE completed, it took        620.2 seconds
+
+====================================================================================================
+     Starting point of the sample/optimization routines    
+====================================================================================================
+
+----- dataset:  RVdata
+jitter_0        18      1.236914 [    0.0009,    13.2000]
+offset_0        19      8.801096 [-9995.2560, 10015.1650]
+offset_1        20     10.873573 [-9995.2560, 10015.1650]
+offset_2        21      9.811220 [-9995.2560, 10015.1650]
+offset_3        22      9.850877 [-9995.2560, 10015.1650]
+
+----- dataset: RVdata                    ----- model: gp_multidimensional           
+rot_amp         23      3.850788 [    0.0000,    10.0000]
+con_amp         24      0.748626 [  -20.0000,    20.0000]
+
+----- dataset:  BISdata
+jitter_0        25      2.082372 [    0.0095,    95.0000]
+offset_0        26    -73.773304 [-10080.3833,  9960.4333]
+offset_1        27    -44.271021 [-10080.3833,  9960.4333]
+offset_2        28    -52.437056 [-10080.3833,  9960.4333]
+offset_3        29    -59.712216 [-10080.3833,  9960.4333]
+
+----- dataset: BISdata                   ----- model: gp_multidimensional           
+rot_amp         30      3.178760 [  -10.0000,    10.0000]
+con_amp         31      0.125620 [  -20.0000,    20.0000]
+
+----- dataset:  FWHMdata
+jitter_0        32      0.051477 [    0.0500,   500.0000]
+offset_0        33   6693.703714 [-3318.1198, 16953.1282]
+offset_1        34   6940.158987 [-3318.1198, 16953.1282]
+offset_2        35   6856.583678 [-3318.1198, 16953.1282]
+offset_3        36   6896.821918 [-3318.1198, 16953.1282]
+
+----- dataset: FWHMdata                  ----- model: gp_multidimensional           
+rot_amp         37      3.151326 [  -10.0000,    10.0000]
+con_amp         38     -3.443385 [  -20.0000,    20.0000]
+
+----- dataset:  CaIIdata
+jitter_0        39      0.000032 [    0.0000,     0.3000]
+offset_0        40      0.099789 [-9999.9104, 10000.1167]
+offset_1        41      0.103026 [-9999.9104, 10000.1167]
+offset_2        42      0.104391 [-9999.9104, 10000.1167]
+offset_3        43      0.099308 [-9999.9104, 10000.1167]
+
+----- dataset: CaIIdata                  ----- model: gp_multidimensional           
+rot_amp         44     -0.000381 [  -10.0000,    10.0000]
+con_amp         45     -0.000151 [  -20.0000,    20.0000]
+
+----- dataset:  Halphadata
+jitter_0        46      0.000010 [    0.0000,     0.1000]
+offset_0        47      0.171997 [-9999.8300, 10000.1778]
+offset_1        48      0.173977 [-9999.8300, 10000.1778]
+offset_2        49      0.174826 [-9999.8300, 10000.1778]
+offset_3        50      0.171048 [-9999.8300, 10000.1778]
+
+----- dataset: Halphadata                ----- model: gp_multidimensional           
+rot_amp         51      0.000501 [  -10.0000,    10.0000]
+con_amp         52     -0.000068 [  -20.0000,    20.0000]
+
+----- common model:  b
+P                0      3.753534 [    0.3785,     6.6439]
+K                1      0.502757 [   -9.9658,     3.3219]
+sre_coso         2      0.217954 [   -1.0000,     1.0000]
+sre_sino         3     -0.168513 [   -1.0000,     1.0000]
+mean_long        4    257.016330 [   77.0163,   437.0163]
+
+----- common model:  c
+P                5      2.034421 [    0.3785,     6.6439]
+K                6     -0.280004 [   -9.9658,     3.3219]
+sre_coso         7      0.001630 [   -1.0000,     1.0000]
+sre_sino         8      0.313683 [   -1.0000,     1.0000]
+mean_long        9    134.999401 [  -45.0006,   314.9994]
+
+----- common model:  d
+P               10      1.851453 [    0.3785,     6.6439]
+K               11     -0.344061 [   -9.9658,     3.3219]
+sre_coso        12     -0.091974 [   -1.0000,     1.0000]
+sre_sino        13      0.421601 [   -1.0000,     1.0000]
+mean_long       14    202.610611 [   22.6106,   382.6106]
+
+----- common model:  activity
+Prot            15     28.544219 [   20.0000,    35.0000]
+Pdec            16     30.002999 [   30.0000,  1000.0000]
+Oamp            17     -1.341162 [   -6.6439,     0.0000]
+
+----- common model:  star_parameters
+
+====================================================================================================
+     Starting point projected onto the model parameter space     
+====================================================================================================
+
+----- dataset:  RVdata
+jitter_0              1.236914 
+offset_0              8.801096 
+offset_1             10.873573 
+offset_2              9.811220 
+offset_3              9.850877 
+
+
+----- dataset: RVdata                    ----- model: gp_multidimensional           
+rot_amp               3.850788 
+con_amp               0.748626 
+
+----- dataset:  BISdata
+jitter_0              2.082372 
+offset_0            -73.773304 
+offset_1            -44.271021 
+offset_2            -52.437056 
+offset_3            -59.712216 
+
+
+----- dataset: BISdata                   ----- model: gp_multidimensional           
+rot_amp               3.178760 
+con_amp               0.125620 
+
+----- dataset:  FWHMdata
+jitter_0              0.051477 
+offset_0           6693.703714 
+offset_1           6940.158987 
+offset_2           6856.583678 
+offset_3           6896.821918 
+
+
+----- dataset: FWHMdata                  ----- model: gp_multidimensional           
+rot_amp               3.151326 
+con_amp              -3.443385 
+
+----- dataset:  CaIIdata
+jitter_0              0.000032 
+offset_0              0.099789 
+offset_1              0.103026 
+offset_2              0.104391 
+offset_3              0.099308 
+
+
+----- dataset: CaIIdata                  ----- model: gp_multidimensional           
+rot_amp              -0.000381 
+con_amp              -0.000151 
+
+----- dataset:  Halphadata
+jitter_0              0.000010 
+offset_0              0.171997 
+offset_1              0.173977 
+offset_2              0.174826 
+offset_3              0.171048 
+
+
+----- dataset: Halphadata                ----- model: gp_multidimensional           
+rot_amp               0.000501 
+con_amp              -0.000068 
+
+----- common model:  b
+P                    13.487343 
+K                     1.416919 
+mean_long           257.016330 
+e                     0.075901 
+omega               -37.709723 
+
+----- common model:  c
+P                     4.096584 
+K                     0.823589 
+mean_long           134.999401 
+e                     0.098400 
+omega                89.702355 
+
+----- common model:  d
+P                     3.608634 
+K                     0.787820 
+mean_long           202.610611 
+e                     0.186207 
+omega               102.306442 
+
+----- common model:  activity
+Prot                 28.544219 
+Pdec                 30.002999 
+Oamp                  0.394703 
+
+----- common model:  star_parameters
+
+====================================================================================================
+     Derived parameters obtained from starting point     
+====================================================================================================
+
+----- common model:  b
+Inclination fixed to 90 deg!
+a_Rs                 23.834164 
+M_Mj                  0.016544 
+M_Me                  5.259194 
+Tc                59341.663396 
+a_AU_(M)              0.110889 
+a_AU_(rho,R)          0.110888 
+
+----- common model:  c
+Inclination fixed to 90 deg!
+a_Rs                 10.769532 
+M_Mj                  0.006451 
+M_Me                  2.050795 
+Tc                59338.284081 
+a_AU_(M)              0.050105 
+a_AU_(rho,R)          0.050105 
+
+----- common model:  d
+Inclination fixed to 90 deg!
+a_Rs                  9.896425 
+M_Mj                  0.005840 
+M_Me                  1.856649 
+Tc                59337.220020 
+a_AU_(M)              0.046043 
+a_AU_(rho,R)          0.046043 
+
+
+====================================================================================================
+     Statistics on the log-likelihood     
+====================================================================================================
+
+ LN probability:   821.893823 
+
+====================================================================================================
+     ------------------------------------------------------------------------------------------     
+====================================================================================================
+
+
+
+*************************************************************
+
+Running emcee
+
+emcee version:  3.1.6
+Using threading pool for emcee: True
+
+Saving temporary steps
+
+
+Computing the autocorrelation time of the chains
+
+***** WARNING ******
+The integrated autocorrelation time cannot be reliably estimated
+likely the chains are too short, and ACF analysis is not fully reliable
+emcee.autocorr.integrated_time tolerance lowered to 20
+If you still get a warning, you should drop these results entirely
+Chains too short to apply convergence criteria
+They should be at least 550*nthin = 82500
+
+====================================================================================================
+     Statistics on the posterior of the sampler parameters     
+====================================================================================================
+
+----- dataset:  RVdata
+jitter_0        18         1.281       -0.055        0.057   (15-84 p)   [    0.0009,    13.2000]
+offset_0        19          8.96        -0.48         0.55   (15-84 p)   [-9995.2560, 10015.1650]
+offset_1        20         10.98        -0.54         0.58   (15-84 p)   [-9995.2560, 10015.1650]
+offset_2        21          9.97        -0.50         0.54   (15-84 p)   [-9995.2560, 10015.1650]
+offset_3        22          9.99        -0.50         0.57   (15-84 p)   [-9995.2560, 10015.1650]
+
+----- dataset: RVdata                    ----- model: gp_multidimensional           
+rot_amp         23           6.1         -1.6          1.8   (15-84 p)   [    0.0000,    10.0000]
+con_amp         24          1.05        -0.23         0.31   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  BISdata
+jitter_0        25          2.11        -0.11         0.10   (15-84 p)   [    0.0095,    95.0000]
+offset_0        26        -73.73        -0.28         0.29   (15-84 p)   [-10080.3833,  9960.4333]
+offset_1        27        -44.24        -0.44         0.46   (15-84 p)   [-10080.3833,  9960.4333]
+offset_2        28        -52.40        -0.29         0.31   (15-84 p)   [-10080.3833,  9960.4333]
+offset_3        29        -59.66        -0.29         0.31   (15-84 p)   [-10080.3833,  9960.4333]
+
+----- dataset: BISdata                   ----- model: gp_multidimensional           
+rot_amp         30           4.9         -1.6          2.0   (15-84 p)   [  -10.0000,    10.0000]
+con_amp         31          0.20        -0.21         0.23   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  FWHMdata
+jitter_0        32          0.29        -0.17         0.28   (15-84 p)   [    0.0500,   500.0000]
+offset_0        33        6693.0         -2.4          2.3   (15-84 p)   [-3318.1198, 16953.1282]
+offset_1        34        6939.4         -2.5          2.4   (15-84 p)   [-3318.1198, 16953.1282]
+offset_2        35        6855.9         -2.4          2.3   (15-84 p)   [-3318.1198, 16953.1282]
+offset_3        36        6896.1         -2.4          2.3   (15-84 p)   [-3318.1198, 16953.1282]
+
+----- dataset: FWHMdata                  ----- model: gp_multidimensional           
+rot_amp         37           3.9         -3.3          3.1   (15-84 p)   [  -10.0000,    10.0000]
+con_amp         38         -4.95         -1.3         0.97   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  CaIIdata
+jitter_0        39       0.00023     -0.00014      0.00022   (15-84 p)   [    0.0000,     0.3000]
+offset_0        40       0.09976     -0.00035      0.00034   (15-84 p)   [-9999.9104, 10000.1167]
+offset_1        41       0.10297     -0.00058      0.00058   (15-84 p)   [-9999.9104, 10000.1167]
+offset_2        42       0.10437     -0.00039      0.00037   (15-84 p)   [-9999.9104, 10000.1167]
+offset_3        43       0.09926     -0.00037      0.00036   (15-84 p)   [-9999.9104, 10000.1167]
+
+----- dataset: CaIIdata                  ----- model: gp_multidimensional           
+rot_amp         44       -0.0005      -0.0016       0.0017   (15-84 p)   [  -10.0000,    10.0000]
+con_amp         45      -0.00022     -0.00025      0.00024   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  Halphadata
+jitter_0        46      0.000054    -0.000031     0.000051   (15-84 p)   [    0.0000,     0.1000]
+offset_0        47       0.17198     -0.00012      0.00012   (15-84 p)   [-9999.8300, 10000.1778]
+offset_1        48       0.17396     -0.00020      0.00019   (15-84 p)   [-9999.8300, 10000.1778]
+offset_2        49       0.17481     -0.00013      0.00012   (15-84 p)   [-9999.8300, 10000.1778]
+offset_3        50       0.17104     -0.00013      0.00012   (15-84 p)   [-9999.8300, 10000.1778]
+
+----- dataset: Halphadata                ----- model: gp_multidimensional           
+rot_amp         51       0.00060     -0.00057      0.00059   (15-84 p)   [  -10.0000,    10.0000]
+con_amp         52     -0.000094    -0.000091     0.000080   (15-84 p)   [  -20.0000,    20.0000]
+
+----- common model:  b
+P                0         3.753       -0.026        0.029   (15-84 p)   [    0.3785,     6.6439]
+K                1          0.30        -0.30         0.27   (15-84 p)   [   -9.9658,     3.3219]
+sre_coso         2          0.05        -0.20         0.19   (15-84 p)   [   -1.0000,     1.0000]
+sre_sino         3         -0.04        -0.20         0.20   (15-84 p)   [   -1.0000,     1.0000]
+mean_long        4           255          -24           26   (15-84 p)   [   77.0163,   437.0163]
+
+----- common model:  c
+P                5        2.0347      -0.0070       0.0068   (15-84 p)   [    0.3785,     6.6439]
+K                6         -0.48        -0.37         0.29   (15-84 p)   [   -9.9658,     3.3219]
+sre_coso         7          0.02        -0.21         0.20   (15-84 p)   [   -1.0000,     1.0000]
+sre_sino         8          0.12        -0.23         0.19   (15-84 p)   [   -1.0000,     1.0000]
+mean_long        9           135          -24           21   (15-84 p)   [  -45.0006,   314.9994]
+
+----- common model:  d
+P               10        1.8553      -0.0070       0.0074   (15-84 p)   [    0.3785,     6.6439]
+K               11         -0.52        -0.29         0.25   (15-84 p)   [   -9.9658,     3.3219]
+sre_coso        12         -0.03        -0.20         0.21   (15-84 p)   [   -1.0000,     1.0000]
+sre_sino        13          0.19        -0.25         0.20   (15-84 p)   [   -1.0000,     1.0000]
+mean_long       14           214          -30           28   (15-84 p)   [   22.6106,   382.6106]
+
+----- common model:  activity
+Prot            15         28.48        -0.47         0.45   (15-84 p)   [   20.0000,    35.0000]
+Pdec            16          32.4         -1.8          5.3   (15-84 p)   [   30.0000,  1000.0000]
+Oamp            17         -1.31        -0.12         0.11   (15-84 p)   [   -6.6439,     0.0000]
+
+----- common model:  star_parameters
+
+====================================================================================================
+     Statistics on the model parameters obtained from the posteriors samples     
+====================================================================================================
+
+----- dataset:  RVdata
+jitter_0                 1.281       -0.055        0.057    (15-84 p)
+offset_0                  8.96        -0.48         0.55    (15-84 p)
+offset_1                 10.98        -0.54         0.58    (15-84 p)
+offset_2                  9.97        -0.50         0.54    (15-84 p)
+offset_3                  9.99        -0.50         0.57    (15-84 p)
+
+
+----- dataset: RVdata                    ----- model: gp_multidimensional           
+rot_amp                    6.1         -1.6          1.8    (15-84 p)
+con_amp                   1.05        -0.23         0.31    (15-84 p)
+
+----- dataset:  BISdata
+jitter_0                  2.11        -0.11         0.10    (15-84 p)
+offset_0                -73.73        -0.28         0.29    (15-84 p)
+offset_1                -44.24        -0.44         0.46    (15-84 p)
+offset_2                -52.40        -0.29         0.31    (15-84 p)
+offset_3                -59.66        -0.29         0.31    (15-84 p)
+
+
+----- dataset: BISdata                   ----- model: gp_multidimensional           
+rot_amp                    4.9         -1.6          2.0    (15-84 p)
+con_amp                   0.20        -0.21         0.23    (15-84 p)
+
+----- dataset:  FWHMdata
+jitter_0                  0.29        -0.17         0.28    (15-84 p)
+offset_0                6693.0         -2.4          2.3    (15-84 p)
+offset_1                6939.4         -2.5          2.4    (15-84 p)
+offset_2                6855.9         -2.4          2.3    (15-84 p)
+offset_3                6896.1         -2.4          2.3    (15-84 p)
+
+
+----- dataset: FWHMdata                  ----- model: gp_multidimensional           
+rot_amp                    3.9         -3.3          3.1    (15-84 p)
+con_amp                  -4.95         -1.3         0.97    (15-84 p)
+
+----- dataset:  CaIIdata
+jitter_0               0.00023     -0.00014      0.00022    (15-84 p)
+offset_0               0.09976     -0.00035      0.00034    (15-84 p)
+offset_1               0.10297     -0.00058      0.00058    (15-84 p)
+offset_2               0.10437     -0.00039      0.00037    (15-84 p)
+offset_3               0.09926     -0.00037      0.00036    (15-84 p)
+
+
+----- dataset: CaIIdata                  ----- model: gp_multidimensional           
+rot_amp                -0.0005      -0.0016       0.0017    (15-84 p)
+con_amp               -0.00022     -0.00025      0.00024    (15-84 p)
+
+----- dataset:  Halphadata
+jitter_0              0.000054    -0.000031     0.000051    (15-84 p)
+offset_0               0.17198     -0.00012      0.00012    (15-84 p)
+offset_1               0.17396     -0.00020      0.00019    (15-84 p)
+offset_2               0.17481     -0.00013      0.00012    (15-84 p)
+offset_3               0.17104     -0.00013      0.00012    (15-84 p)
+
+
+----- dataset: Halphadata                ----- model: gp_multidimensional           
+rot_amp                0.00060     -0.00057      0.00059    (15-84 p)
+con_amp              -0.000094    -0.000091     0.000080    (15-84 p)
+
+----- common model:  b
+P                        13.48        -0.24         0.27    (15-84 p)
+K                         1.23        -0.23         0.25    (15-84 p)
+mean_long                  255          -24           26    (15-84 p)
+e                        0.060       -0.042        0.067    (15-84 p)
+omega                      -21          -88          120    (15-84 p)
+
+----- common model:  c
+P                        4.097       -0.020        0.019    (15-84 p)
+K                         0.72        -0.16         0.16    (15-84 p)
+mean_long                  135          -24           21    (15-84 p)
+e                        0.076       -0.053        0.078    (15-84 p)
+omega                       56         -134           71    (15-84 p)
+
+----- common model:  d
+P                        3.618       -0.017        0.019    (15-84 p)
+K                         0.70        -0.13         0.13    (15-84 p)
+mean_long                  214          -30           28    (15-84 p)
+e                        0.096       -0.067         0.10    (15-84 p)
+omega                       81         -128           52    (15-84 p)
+
+----- common model:  activity
+Prot                     28.48        -0.47         0.45    (15-84 p)
+Pdec                      32.4         -1.8          5.3    (15-84 p)
+Oamp                     0.405       -0.032        0.031    (15-84 p)
+
+----- common model:  star_parameters
+
+====================================================================================================
+     Statistics on the derived parameters obtained from the posteriors samples     
+====================================================================================================
+
+----- common model:  b
+Inclination fixed to 90 deg!
+Computing planetary mass under the approximation M_planet << M_star (threshold at 30.0 Me)
+a_Rs                     23.82        -0.29         0.32    (15-84 p)
+M_Mj                    0.0144      -0.0027       0.0029    (15-84 p)
+M_Me                      4.57        -0.86         0.93    (15-84 p)
+Tc                    59341.93        -0.94         0.80    (15-84 p)
+a_AU_(M)                0.1108      -0.0013       0.0015    (15-84 p)
+a_AU_(rho,R)            0.1108      -0.0013       0.0015    (15-84 p)
+
+----- common model:  c
+Inclination fixed to 90 deg!
+Computing planetary mass under the approximation M_planet << M_star (threshold at 30.0 Me)
+a_Rs                    10.771       -0.035        0.034    (15-84 p)
+M_Mj                    0.0056      -0.0013       0.0012    (15-84 p)
+M_Me                      1.78        -0.40         0.39    (15-84 p)
+Tc                    59338.26        -0.26         0.25    (15-84 p)
+a_AU_(M)               0.05011     -0.00016      0.00016    (15-84 p)
+a_AU_(rho,R)           0.05011     -0.00016      0.00016    (15-84 p)
+
+----- common model:  d
+Inclination fixed to 90 deg!
+Computing planetary mass under the approximation M_planet << M_star (threshold at 30.0 Me)
+a_Rs                     9.914       -0.032        0.034    (15-84 p)
+M_Mj                   0.00522     -0.00093      0.00095    (15-84 p)
+M_Me                      1.66        -0.29         0.30    (15-84 p)
+Tc                    59337.09        -0.28         0.28    (15-84 p)
+a_AU_(M)               0.04612     -0.00015      0.00016    (15-84 p)
+a_AU_(rho,R)           0.04612     -0.00015      0.00016    (15-84 p)
+
+
+====================================================================================================
+     ------------------------------------------------------------------------------------------     
+====================================================================================================
+
+
+
+15000.0   steps completed, average lnprob:,  792.1023976542202
+
+
+Computing the autocorrelation time of the chains
+
+***** WARNING ******
+The integrated autocorrelation time cannot be reliably estimated
+likely the chains are too short, and ACF analysis is not fully reliable
+emcee.autocorr.integrated_time tolerance lowered to 20
+If you still get a warning, you should drop these results entirely
+Chains too short to apply convergence criteria
+They should be at least 1000*nthin = 150000
+
+====================================================================================================
+     Statistics on the posterior of the sampler parameters     
+====================================================================================================
+
+----- dataset:  RVdata
+jitter_0        18         1.282       -0.054        0.057   (15-84 p)   [    0.0009,    13.2000]
+offset_0        19          9.09        -0.60         0.73   (15-84 p)   [-9995.2560, 10015.1650]
+offset_1        20         11.12        -0.63         0.76   (15-84 p)   [-9995.2560, 10015.1650]
+offset_2        21         10.10        -0.60         0.74   (15-84 p)   [-9995.2560, 10015.1650]
+offset_3        22         10.12        -0.61         0.74   (15-84 p)   [-9995.2560, 10015.1650]
+
+----- dataset: RVdata                    ----- model: gp_multidimensional           
+rot_amp         23           6.8         -1.6          1.8   (15-84 p)   [    0.0000,    10.0000]
+con_amp         24          1.25        -0.32         0.48   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  BISdata
+jitter_0        25          2.11        -0.10         0.11   (15-84 p)   [    0.0095,    95.0000]
+offset_0        26        -73.73        -0.28         0.32   (15-84 p)   [-10080.3833,  9960.4333]
+offset_1        27        -44.23        -0.46         0.49   (15-84 p)   [-10080.3833,  9960.4333]
+offset_2        28        -52.40        -0.30         0.33   (15-84 p)   [-10080.3833,  9960.4333]
+offset_3        29        -59.66        -0.30         0.35   (15-84 p)   [-10080.3833,  9960.4333]
+
+----- dataset: BISdata                   ----- model: gp_multidimensional           
+rot_amp         30           5.5         -1.8          2.1   (15-84 p)   [  -10.0000,    10.0000]
+con_amp         31          0.23        -0.24         0.28   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  FWHMdata
+jitter_0        32          0.31        -0.18         0.29   (15-84 p)   [    0.0500,   500.0000]
+offset_0        33        6692.4         -3.2          2.8   (15-84 p)   [-3318.1198, 16953.1282]
+offset_1        34        6938.8         -3.3          3.0   (15-84 p)   [-3318.1198, 16953.1282]
+offset_2        35        6855.3         -3.2          2.8   (15-84 p)   [-3318.1198, 16953.1282]
+offset_3        36        6895.5         -3.2          2.8   (15-84 p)   [-3318.1198, 16953.1282]
+
+----- dataset: FWHMdata                  ----- model: gp_multidimensional           
+rot_amp         37           4.4         -3.6          3.2   (15-84 p)   [  -10.0000,    10.0000]
+con_amp         38          -5.8         -2.1          1.3   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  CaIIdata
+jitter_0        39       0.00023     -0.00014      0.00023   (15-84 p)   [    0.0000,     0.3000]
+offset_0        40       0.09972     -0.00037      0.00036   (15-84 p)   [-9999.9104, 10000.1167]
+offset_1        41       0.10296     -0.00061      0.00059   (15-84 p)   [-9999.9104, 10000.1167]
+offset_2        42       0.10435     -0.00041      0.00037   (15-84 p)   [-9999.9104, 10000.1167]
+offset_3        43       0.09924     -0.00040      0.00039   (15-84 p)   [-9999.9104, 10000.1167]
+
+----- dataset: CaIIdata                  ----- model: gp_multidimensional           
+rot_amp         44       -0.0007      -0.0018       0.0018   (15-84 p)   [  -10.0000,    10.0000]
+con_amp         45      -0.00025     -0.00032      0.00029   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  Halphadata
+jitter_0        46      0.000059    -0.000035     0.000055   (15-84 p)   [    0.0000,     0.1000]
+offset_0        47       0.17197     -0.00013      0.00012   (15-84 p)   [-9999.8300, 10000.1778]
+offset_1        48       0.17395     -0.00020      0.00020   (15-84 p)   [-9999.8300, 10000.1778]
+offset_2        49       0.17480     -0.00015      0.00013   (15-84 p)   [-9999.8300, 10000.1778]
+offset_3        50       0.17103     -0.00015      0.00013   (15-84 p)   [-9999.8300, 10000.1778]
+
+----- dataset: Halphadata                ----- model: gp_multidimensional           
+rot_amp         51       0.00069     -0.00061      0.00066   (15-84 p)   [  -10.0000,    10.0000]
+con_amp         52      -0.00012     -0.00012      0.00010   (15-84 p)   [  -20.0000,    20.0000]
+
+----- common model:  b
+P                0         3.756       -0.025        0.026   (15-84 p)   [    0.3785,     6.6439]
+K                1          0.31        -0.27         0.25   (15-84 p)   [   -9.9658,     3.3219]
+sre_coso         2          0.05        -0.20         0.19   (15-84 p)   [   -1.0000,     1.0000]
+sre_sino         3         -0.06        -0.19         0.21   (15-84 p)   [   -1.0000,     1.0000]
+mean_long        4           257          -23           25   (15-84 p)   [   77.0163,   437.0163]
+
+----- common model:  c
+P                5        2.0353      -0.0069       0.0069   (15-84 p)   [    0.3785,     6.6439]
+K                6         -0.48        -0.36         0.28   (15-84 p)   [   -9.9658,     3.3219]
+sre_coso         7          0.01        -0.21         0.20   (15-84 p)   [   -1.0000,     1.0000]
+sre_sino         8          0.11        -0.23         0.20   (15-84 p)   [   -1.0000,     1.0000]
+mean_long        9           137          -24           21   (15-84 p)   [  -45.0006,   314.9994]
+
+----- common model:  d
+P               10        1.8553      -0.0066       0.0076   (15-84 p)   [    0.3785,     6.6439]
+K               11         -0.51        -0.28         0.24   (15-84 p)   [   -9.9658,     3.3219]
+sre_coso        12         -0.03        -0.21         0.21   (15-84 p)   [   -1.0000,     1.0000]
+sre_sino        13          0.18        -0.25         0.20   (15-84 p)   [   -1.0000,     1.0000]
+mean_long       14           215          -28           28   (15-84 p)   [   22.6106,   382.6106]
+
+----- common model:  activity
+Prot            15         28.53        -0.45         0.46   (15-84 p)   [   20.0000,    35.0000]
+Pdec            16          38.9         -6.2           10   (15-84 p)   [   30.0000,  1000.0000]
+Oamp            17         -1.30        -0.12         0.11   (15-84 p)   [   -6.6439,     0.0000]
+
+----- common model:  star_parameters
+
+====================================================================================================
+     Statistics on the model parameters obtained from the posteriors samples     
+====================================================================================================
+
+----- dataset:  RVdata
+jitter_0                 1.282       -0.054        0.057    (15-84 p)
+offset_0                  9.09        -0.60         0.73    (15-84 p)
+offset_1                 11.12        -0.63         0.76    (15-84 p)
+offset_2                 10.10        -0.60         0.74    (15-84 p)
+offset_3                 10.12        -0.61         0.74    (15-84 p)
+
+
+----- dataset: RVdata                    ----- model: gp_multidimensional           
+rot_amp                    6.8         -1.6          1.8    (15-84 p)
+con_amp                   1.25        -0.32         0.48    (15-84 p)
+
+----- dataset:  BISdata
+jitter_0                  2.11        -0.10         0.11    (15-84 p)
+offset_0                -73.73        -0.28         0.32    (15-84 p)
+offset_1                -44.23        -0.46         0.49    (15-84 p)
+offset_2                -52.40        -0.30         0.33    (15-84 p)
+offset_3                -59.66        -0.30         0.35    (15-84 p)
+
+
+----- dataset: BISdata                   ----- model: gp_multidimensional           
+rot_amp                    5.5         -1.8          2.1    (15-84 p)
+con_amp                   0.23        -0.24         0.28    (15-84 p)
+
+----- dataset:  FWHMdata
+jitter_0                  0.31        -0.18         0.29    (15-84 p)
+offset_0                6692.4         -3.2          2.8    (15-84 p)
+offset_1                6938.8         -3.3          3.0    (15-84 p)
+offset_2                6855.3         -3.2          2.8    (15-84 p)
+offset_3                6895.5         -3.2          2.8    (15-84 p)
+
+
+----- dataset: FWHMdata                  ----- model: gp_multidimensional           
+rot_amp                    4.4         -3.6          3.2    (15-84 p)
+con_amp                   -5.8         -2.1          1.3    (15-84 p)
+
+----- dataset:  CaIIdata
+jitter_0               0.00023     -0.00014      0.00023    (15-84 p)
+offset_0               0.09972     -0.00037      0.00036    (15-84 p)
+offset_1               0.10296     -0.00061      0.00059    (15-84 p)
+offset_2               0.10435     -0.00041      0.00037    (15-84 p)
+offset_3               0.09924     -0.00040      0.00039    (15-84 p)
+
+
+----- dataset: CaIIdata                  ----- model: gp_multidimensional           
+rot_amp                -0.0007      -0.0018       0.0018    (15-84 p)
+con_amp               -0.00025     -0.00032      0.00029    (15-84 p)
+
+----- dataset:  Halphadata
+jitter_0              0.000059    -0.000035     0.000055    (15-84 p)
+offset_0               0.17197     -0.00013      0.00012    (15-84 p)
+offset_1               0.17395     -0.00020      0.00020    (15-84 p)
+offset_2               0.17480     -0.00015      0.00013    (15-84 p)
+offset_3               0.17103     -0.00015      0.00013    (15-84 p)
+
+
+----- dataset: Halphadata                ----- model: gp_multidimensional           
+rot_amp                0.00069     -0.00061      0.00066    (15-84 p)
+con_amp               -0.00012     -0.00012      0.00010    (15-84 p)
+
+----- common model:  b
+P                        13.51        -0.23         0.25    (15-84 p)
+K                         1.24        -0.21         0.24    (15-84 p)
+mean_long                  257          -23           25    (15-84 p)
+e                        0.060       -0.043        0.067    (15-84 p)
+omega                      -29          -84          123    (15-84 p)
+
+----- common model:  c
+P                        4.099       -0.020        0.020    (15-84 p)
+K                         0.72        -0.16         0.16    (15-84 p)
+mean_long                  137          -24           21    (15-84 p)
+e                        0.074       -0.051        0.077    (15-84 p)
+omega                       51         -140           75    (15-84 p)
+
+----- common model:  d
+P                        3.618       -0.017        0.019    (15-84 p)
+K                         0.70        -0.13         0.12    (15-84 p)
+mean_long                  215          -28           28    (15-84 p)
+e                        0.094       -0.066         0.10    (15-84 p)
+omega                       80         -135           54    (15-84 p)
+
+----- common model:  activity
+Prot                     28.53        -0.45         0.46    (15-84 p)
+Pdec                      38.9         -6.2           10    (15-84 p)
+Oamp                     0.405       -0.031        0.031    (15-84 p)
+
+----- common model:  star_parameters
+
+====================================================================================================
+     Statistics on the derived parameters obtained from the posteriors samples     
+====================================================================================================
+
+----- common model:  b
+Inclination fixed to 90 deg!
+Computing planetary mass under the approximation M_planet << M_star (threshold at 30.0 Me)
+a_Rs                     23.86        -0.27         0.29    (15-84 p)
+M_Mj                    0.0145      -0.0025       0.0028    (15-84 p)
+M_Me                      4.60        -0.79         0.88    (15-84 p)
+Tc                    59341.86        -0.87         0.78    (15-84 p)
+a_AU_(M)                0.1110      -0.0013       0.0013    (15-84 p)
+a_AU_(rho,R)            0.1110      -0.0013       0.0013    (15-84 p)
+
+----- common model:  c
+Inclination fixed to 90 deg!
+Computing planetary mass under the approximation M_planet << M_star (threshold at 30.0 Me)
+a_Rs                    10.774       -0.034        0.035    (15-84 p)
+M_Mj                    0.0056      -0.0012       0.0012    (15-84 p)
+M_Me                      1.78        -0.39         0.39    (15-84 p)
+Tc                    59338.25        -0.26         0.25    (15-84 p)
+a_AU_(M)               0.05013     -0.00016      0.00016    (15-84 p)
+a_AU_(rho,R)           0.05013     -0.00016      0.00016    (15-84 p)
+
+----- common model:  d
+Inclination fixed to 90 deg!
+Computing planetary mass under the approximation M_planet << M_star (threshold at 30.0 Me)
+a_Rs                     9.914       -0.030        0.035    (15-84 p)
+M_Mj                   0.00526     -0.00093      0.00091    (15-84 p)
+M_Me                      1.67        -0.30         0.29    (15-84 p)
+Tc                    59337.09        -0.28         0.26    (15-84 p)
+a_AU_(M)               0.04613     -0.00014      0.00016    (15-84 p)
+a_AU_(rho,R)           0.04613     -0.00014      0.00016    (15-84 p)
+
+
+====================================================================================================
+     ------------------------------------------------------------------------------------------     
+====================================================================================================
+
+
+
+30000.0   steps completed, average lnprob:,  790.7704218509787
+
+
+Computing the autocorrelation time of the chains
+
+***** WARNING ******
+The integrated autocorrelation time cannot be reliably estimated
+likely the chains are too short, and ACF analysis is not fully reliable
+emcee.autocorr.integrated_time tolerance lowered to 20
+If you still get a warning, you should drop these results entirely
+Chains too short to apply convergence criteria
+They should be at least 1150*nthin = 172500
+
+====================================================================================================
+     Statistics on the posterior of the sampler parameters     
+====================================================================================================
+
+----- dataset:  RVdata
+jitter_0        18         1.282       -0.054        0.057   (15-84 p)   [    0.0009,    13.2000]
+offset_0        19          9.11        -0.61         0.74   (15-84 p)   [-9995.2560, 10015.1650]
+offset_1        20         11.14        -0.64         0.78   (15-84 p)   [-9995.2560, 10015.1650]
+offset_2        21         10.11        -0.61         0.75   (15-84 p)   [-9995.2560, 10015.1650]
+offset_3        22         10.14        -0.61         0.76   (15-84 p)   [-9995.2560, 10015.1650]
+
+----- dataset: RVdata                    ----- model: gp_multidimensional           
+rot_amp         23           6.8         -1.8          1.9   (15-84 p)   [    0.0000,    10.0000]
+con_amp         24          1.27        -0.32         0.49   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  BISdata
+jitter_0        25         2.106       -0.099         0.11   (15-84 p)   [    0.0095,    95.0000]
+offset_0        26        -73.72        -0.29         0.32   (15-84 p)   [-10080.3833,  9960.4333]
+offset_1        27        -44.23        -0.46         0.50   (15-84 p)   [-10080.3833,  9960.4333]
+offset_2        28        -52.39        -0.31         0.33   (15-84 p)   [-10080.3833,  9960.4333]
+offset_3        29        -59.65        -0.30         0.35   (15-84 p)   [-10080.3833,  9960.4333]
+
+----- dataset: BISdata                   ----- model: gp_multidimensional           
+rot_amp         30           5.6         -1.8          2.2   (15-84 p)   [  -10.0000,    10.0000]
+con_amp         31          0.23        -0.25         0.28   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  FWHMdata
+jitter_0        32          0.31        -0.18         0.29   (15-84 p)   [    0.0500,   500.0000]
+offset_0        33        6692.3         -3.3          2.8   (15-84 p)   [-3318.1198, 16953.1282]
+offset_1        34        6938.7         -3.4          3.0   (15-84 p)   [-3318.1198, 16953.1282]
+offset_2        35        6855.2         -3.3          2.8   (15-84 p)   [-3318.1198, 16953.1282]
+offset_3        36        6895.4         -3.3          2.8   (15-84 p)   [-3318.1198, 16953.1282]
+
+----- dataset: FWHMdata                  ----- model: gp_multidimensional           
+rot_amp         37           4.3         -3.6          3.3   (15-84 p)   [  -10.0000,    10.0000]
+con_amp         38          -5.9         -2.1          1.4   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  CaIIdata
+jitter_0        39       0.00023     -0.00015      0.00022   (15-84 p)   [    0.0000,     0.3000]
+offset_0        40       0.09972     -0.00038      0.00036   (15-84 p)   [-9999.9104, 10000.1167]
+offset_1        41       0.10297     -0.00063      0.00059   (15-84 p)   [-9999.9104, 10000.1167]
+offset_2        42       0.10434     -0.00042      0.00038   (15-84 p)   [-9999.9104, 10000.1167]
+offset_3        43       0.09925     -0.00041      0.00039   (15-84 p)   [-9999.9104, 10000.1167]
+
+----- dataset: CaIIdata                  ----- model: gp_multidimensional           
+rot_amp         44       -0.0007      -0.0019       0.0018   (15-84 p)   [  -10.0000,    10.0000]
+con_amp         45      -0.00026     -0.00033      0.00029   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  Halphadata
+jitter_0        46      0.000059    -0.000035     0.000056   (15-84 p)   [    0.0000,     0.1000]
+offset_0        47       0.17197     -0.00013      0.00012   (15-84 p)   [-9999.8300, 10000.1778]
+offset_1        48       0.17395     -0.00021      0.00020   (15-84 p)   [-9999.8300, 10000.1778]
+offset_2        49       0.17480     -0.00014      0.00013   (15-84 p)   [-9999.8300, 10000.1778]
+offset_3        50       0.17103     -0.00015      0.00013   (15-84 p)   [-9999.8300, 10000.1778]
+
+----- dataset: Halphadata                ----- model: gp_multidimensional           
+rot_amp         51       0.00070     -0.00062      0.00068   (15-84 p)   [  -10.0000,    10.0000]
+con_amp         52     -0.000115     -0.00012     0.000098   (15-84 p)   [  -20.0000,    20.0000]
+
+----- common model:  b
+P                0         3.756       -0.025        0.027   (15-84 p)   [    0.3785,     6.6439]
+K                1          0.31        -0.27         0.25   (15-84 p)   [   -9.9658,     3.3219]
+sre_coso         2          0.06        -0.20         0.19   (15-84 p)   [   -1.0000,     1.0000]
+sre_sino         3         -0.06        -0.19         0.20   (15-84 p)   [   -1.0000,     1.0000]
+mean_long        4           257          -23           25   (15-84 p)   [   77.0163,   437.0163]
+
+----- common model:  c
+P                5        2.0353      -0.0069       0.0067   (15-84 p)   [    0.3785,     6.6439]
+K                6         -0.47        -0.36         0.28   (15-84 p)   [   -9.9658,     3.3219]
+sre_coso         7          0.01        -0.21         0.20   (15-84 p)   [   -1.0000,     1.0000]
+sre_sino         8          0.11        -0.23         0.19   (15-84 p)   [   -1.0000,     1.0000]
+mean_long        9           136          -23           21   (15-84 p)   [  -45.0006,   314.9994]
+
+----- common model:  d
+P               10        1.8556      -0.0069       0.0075   (15-84 p)   [    0.3785,     6.6439]
+K               11         -0.51        -0.28         0.24   (15-84 p)   [   -9.9658,     3.3219]
+sre_coso        12         -0.03        -0.20         0.21   (15-84 p)   [   -1.0000,     1.0000]
+sre_sino        13          0.18        -0.25         0.20   (15-84 p)   [   -1.0000,     1.0000]
+mean_long       14           216          -29           28   (15-84 p)   [   22.6106,   382.6106]
+
+----- common model:  activity
+Prot            15         28.55        -0.44         0.45   (15-84 p)   [   20.0000,    35.0000]
+Pdec            16          39.0         -6.3           10   (15-84 p)   [   30.0000,  1000.0000]
+Oamp            17         -1.31        -0.12         0.11   (15-84 p)   [   -6.6439,     0.0000]
+
+----- common model:  star_parameters
+
+====================================================================================================
+     Statistics on the model parameters obtained from the posteriors samples     
+====================================================================================================
+
+----- dataset:  RVdata
+jitter_0                 1.282       -0.054        0.057    (15-84 p)
+offset_0                  9.11        -0.61         0.74    (15-84 p)
+offset_1                 11.14        -0.64         0.78    (15-84 p)
+offset_2                 10.11        -0.61         0.75    (15-84 p)
+offset_3                 10.14        -0.61         0.76    (15-84 p)
+
+
+----- dataset: RVdata                    ----- model: gp_multidimensional           
+rot_amp                    6.8         -1.8          1.9    (15-84 p)
+con_amp                   1.27        -0.32         0.49    (15-84 p)
+
+----- dataset:  BISdata
+jitter_0                 2.106       -0.099         0.11    (15-84 p)
+offset_0                -73.72        -0.29         0.32    (15-84 p)
+offset_1                -44.23        -0.46         0.50    (15-84 p)
+offset_2                -52.39        -0.31         0.33    (15-84 p)
+offset_3                -59.65        -0.30         0.35    (15-84 p)
+
+
+----- dataset: BISdata                   ----- model: gp_multidimensional           
+rot_amp                    5.6         -1.8          2.2    (15-84 p)
+con_amp                   0.23        -0.25         0.28    (15-84 p)
+
+----- dataset:  FWHMdata
+jitter_0                  0.31        -0.18         0.29    (15-84 p)
+offset_0                6692.3         -3.3          2.8    (15-84 p)
+offset_1                6938.7         -3.4          3.0    (15-84 p)
+offset_2                6855.2         -3.3          2.8    (15-84 p)
+offset_3                6895.4         -3.3          2.8    (15-84 p)
+
+
+----- dataset: FWHMdata                  ----- model: gp_multidimensional           
+rot_amp                    4.3         -3.6          3.3    (15-84 p)
+con_amp                   -5.9         -2.1          1.4    (15-84 p)
+
+----- dataset:  CaIIdata
+jitter_0               0.00023     -0.00015      0.00022    (15-84 p)
+offset_0               0.09972     -0.00038      0.00036    (15-84 p)
+offset_1               0.10297     -0.00063      0.00059    (15-84 p)
+offset_2               0.10434     -0.00042      0.00038    (15-84 p)
+offset_3               0.09925     -0.00041      0.00039    (15-84 p)
+
+
+----- dataset: CaIIdata                  ----- model: gp_multidimensional           
+rot_amp                -0.0007      -0.0019       0.0018    (15-84 p)
+con_amp               -0.00026     -0.00033      0.00029    (15-84 p)
+
+----- dataset:  Halphadata
+jitter_0              0.000059    -0.000035     0.000056    (15-84 p)
+offset_0               0.17197     -0.00013      0.00012    (15-84 p)
+offset_1               0.17395     -0.00021      0.00020    (15-84 p)
+offset_2               0.17480     -0.00014      0.00013    (15-84 p)
+offset_3               0.17103     -0.00015      0.00013    (15-84 p)
+
+
+----- dataset: Halphadata                ----- model: gp_multidimensional           
+rot_amp                0.00070     -0.00062      0.00068    (15-84 p)
+con_amp              -0.000115     -0.00012     0.000098    (15-84 p)
+
+----- common model:  b
+P                        13.51        -0.23         0.25    (15-84 p)
+K                         1.24        -0.21         0.23    (15-84 p)
+mean_long                  257          -23           25    (15-84 p)
+e                        0.060       -0.042        0.068    (15-84 p)
+omega                      -28          -84          120    (15-84 p)
+
+----- common model:  c
+P                        4.099       -0.020        0.019    (15-84 p)
+K                         0.72        -0.16         0.16    (15-84 p)
+mean_long                  136          -23           21    (15-84 p)
+e                        0.074       -0.051        0.076    (15-84 p)
+omega                       53         -140           73    (15-84 p)
+
+----- common model:  d
+P                        3.619       -0.017        0.019    (15-84 p)
+K                         0.70        -0.13         0.13    (15-84 p)
+mean_long                  216          -29           28    (15-84 p)
+e                        0.091       -0.064         0.10    (15-84 p)
+omega                       79         -136           54    (15-84 p)
+
+----- common model:  activity
+Prot                     28.55        -0.44         0.45    (15-84 p)
+Pdec                      39.0         -6.3           10    (15-84 p)
+Oamp                     0.404       -0.031        0.031    (15-84 p)
+
+----- common model:  star_parameters
+
+====================================================================================================
+     Statistics on the derived parameters obtained from the posteriors samples     
+====================================================================================================
+
+----- common model:  b
+Inclination fixed to 90 deg!
+Computing planetary mass under the approximation M_planet << M_star (threshold at 30.0 Me)
+a_Rs                     23.86        -0.27         0.30    (15-84 p)
+M_Mj                    0.0145      -0.0024       0.0027    (15-84 p)
+M_Me                      4.60        -0.77         0.86    (15-84 p)
+Tc                    59341.85        -0.88         0.78    (15-84 p)
+a_AU_(M)                0.1110      -0.0013       0.0014    (15-84 p)
+a_AU_(rho,R)            0.1110      -0.0013       0.0014    (15-84 p)
+
+----- common model:  c
+Inclination fixed to 90 deg!
+Computing planetary mass under the approximation M_planet << M_star (threshold at 30.0 Me)
+a_Rs                    10.774       -0.034        0.033    (15-84 p)
+M_Mj                    0.0057      -0.0013       0.0012    (15-84 p)
+M_Me                      1.80        -0.40         0.39    (15-84 p)
+Tc                    59338.25        -0.25         0.24    (15-84 p)
+a_AU_(M)               0.05012     -0.00016      0.00016    (15-84 p)
+a_AU_(rho,R)           0.05012     -0.00016      0.00016    (15-84 p)
+
+----- common model:  d
+Inclination fixed to 90 deg!
+Computing planetary mass under the approximation M_planet << M_star (threshold at 30.0 Me)
+a_Rs                     9.915       -0.032        0.034    (15-84 p)
+M_Mj                   0.00525     -0.00093      0.00092    (15-84 p)
+M_Me                      1.67        -0.30         0.29    (15-84 p)
+Tc                    59337.08        -0.29         0.27    (15-84 p)
+a_AU_(M)               0.04613     -0.00015      0.00016    (15-84 p)
+a_AU_(rho,R)           0.04613     -0.00015      0.00016    (15-84 p)
+
+
+====================================================================================================
+     ------------------------------------------------------------------------------------------     
+====================================================================================================
+
+
+
+45000.0   steps completed, average lnprob:,  791.2370180066108
+
+
+Computing the autocorrelation time of the chains
+
+***** WARNING ******
+The integrated autocorrelation time cannot be reliably estimated
+likely the chains are too short, and ACF analysis is not fully reliable
+emcee.autocorr.integrated_time tolerance lowered to 20
+If you still get a warning, you should drop these results entirely
+Chains too short to apply convergence criteria
+They should be at least 1200*nthin = 180000
+
+====================================================================================================
+     Statistics on the posterior of the sampler parameters     
+====================================================================================================
+
+----- dataset:  RVdata
+jitter_0        18         1.281       -0.054        0.057   (15-84 p)   [    0.0009,    13.2000]
+offset_0        19          9.12        -0.61         0.74   (15-84 p)   [-9995.2560, 10015.1650]
+offset_1        20         11.15        -0.65         0.78   (15-84 p)   [-9995.2560, 10015.1650]
+offset_2        21         10.12        -0.61         0.75   (15-84 p)   [-9995.2560, 10015.1650]
+offset_3        22         10.15        -0.62         0.75   (15-84 p)   [-9995.2560, 10015.1650]
+
+----- dataset: RVdata                    ----- model: gp_multidimensional           
+rot_amp         23           6.8         -1.8          1.9   (15-84 p)   [    0.0000,    10.0000]
+con_amp         24          1.27        -0.33         0.51   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  BISdata
+jitter_0        25         2.106       -0.100         0.11   (15-84 p)   [    0.0095,    95.0000]
+offset_0        26        -73.71        -0.29         0.32   (15-84 p)   [-10080.3833,  9960.4333]
+offset_1        27        -44.22        -0.46         0.49   (15-84 p)   [-10080.3833,  9960.4333]
+offset_2        28        -52.40        -0.30         0.34   (15-84 p)   [-10080.3833,  9960.4333]
+offset_3        29        -59.65        -0.30         0.35   (15-84 p)   [-10080.3833,  9960.4333]
+
+----- dataset: BISdata                   ----- model: gp_multidimensional           
+rot_amp         30           5.5         -1.8          2.2   (15-84 p)   [  -10.0000,    10.0000]
+con_amp         31          0.23        -0.25         0.29   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  FWHMdata
+jitter_0        32          0.31        -0.18         0.29   (15-84 p)   [    0.0500,   500.0000]
+offset_0        33        6692.3         -3.3          2.8   (15-84 p)   [-3318.1198, 16953.1282]
+offset_1        34        6938.7         -3.3          3.0   (15-84 p)   [-3318.1198, 16953.1282]
+offset_2        35        6855.2         -3.3          2.8   (15-84 p)   [-3318.1198, 16953.1282]
+offset_3        36        6895.4         -3.3          2.9   (15-84 p)   [-3318.1198, 16953.1282]
+
+----- dataset: FWHMdata                  ----- model: gp_multidimensional           
+rot_amp         37           4.3         -3.6          3.3   (15-84 p)   [  -10.0000,    10.0000]
+con_amp         38          -5.9         -2.2          1.4   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  CaIIdata
+jitter_0        39       0.00024     -0.00015      0.00022   (15-84 p)   [    0.0000,     0.3000]
+offset_0        40       0.09972     -0.00038      0.00036   (15-84 p)   [-9999.9104, 10000.1167]
+offset_1        41       0.10296     -0.00062      0.00059   (15-84 p)   [-9999.9104, 10000.1167]
+offset_2        42       0.10434     -0.00042      0.00038   (15-84 p)   [-9999.9104, 10000.1167]
+offset_3        43       0.09925     -0.00041      0.00039   (15-84 p)   [-9999.9104, 10000.1167]
+
+----- dataset: CaIIdata                  ----- model: gp_multidimensional           
+rot_amp         44       -0.0007      -0.0019       0.0018   (15-84 p)   [  -10.0000,    10.0000]
+con_amp         45      -0.00025     -0.00033      0.00029   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  Halphadata
+jitter_0        46      0.000059    -0.000035     0.000057   (15-84 p)   [    0.0000,     0.1000]
+offset_0        47       0.17197     -0.00014      0.00012   (15-84 p)   [-9999.8300, 10000.1778]
+offset_1        48       0.17394     -0.00021      0.00020   (15-84 p)   [-9999.8300, 10000.1778]
+offset_2        49       0.17480     -0.00015      0.00013   (15-84 p)   [-9999.8300, 10000.1778]
+offset_3        50       0.17103     -0.00015      0.00013   (15-84 p)   [-9999.8300, 10000.1778]
+
+----- dataset: Halphadata                ----- model: gp_multidimensional           
+rot_amp         51       0.00071     -0.00062      0.00068   (15-84 p)   [  -10.0000,    10.0000]
+con_amp         52     -0.000118     -0.00012     0.000098   (15-84 p)   [  -20.0000,    20.0000]
+
+----- common model:  b
+P                0         3.756       -0.025        0.027   (15-84 p)   [    0.3785,     6.6439]
+K                1          0.31        -0.27         0.25   (15-84 p)   [   -9.9658,     3.3219]
+sre_coso         2          0.05        -0.20         0.19   (15-84 p)   [   -1.0000,     1.0000]
+sre_sino         3         -0.06        -0.19         0.20   (15-84 p)   [   -1.0000,     1.0000]
+mean_long        4           257          -23           25   (15-84 p)   [   77.0163,   437.0163]
+
+----- common model:  c
+P                5        2.0352      -0.0069       0.0067   (15-84 p)   [    0.3785,     6.6439]
+K                6         -0.46        -0.36         0.28   (15-84 p)   [   -9.9658,     3.3219]
+sre_coso         7          0.02        -0.21         0.20   (15-84 p)   [   -1.0000,     1.0000]
+sre_sino         8          0.11        -0.23         0.19   (15-84 p)   [   -1.0000,     1.0000]
+mean_long        9           136          -23           21   (15-84 p)   [  -45.0006,   314.9994]
+
+----- common model:  d
+P               10        1.8555      -0.0069       0.0074   (15-84 p)   [    0.3785,     6.6439]
+K               11         -0.52        -0.28         0.24   (15-84 p)   [   -9.9658,     3.3219]
+sre_coso        12         -0.03        -0.21         0.21   (15-84 p)   [   -1.0000,     1.0000]
+sre_sino        13          0.18        -0.25         0.20   (15-84 p)   [   -1.0000,     1.0000]
+mean_long       14           215          -29           28   (15-84 p)   [   22.6106,   382.6106]
+
+----- common model:  activity
+Prot            15         28.55        -0.44         0.45   (15-84 p)   [   20.0000,    35.0000]
+Pdec            16          39.0         -6.3           11   (15-84 p)   [   30.0000,  1000.0000]
+Oamp            17         -1.30        -0.12         0.11   (15-84 p)   [   -6.6439,     0.0000]
+
+----- common model:  star_parameters
+
+====================================================================================================
+     Statistics on the model parameters obtained from the posteriors samples     
+====================================================================================================
+
+----- dataset:  RVdata
+jitter_0                 1.281       -0.054        0.057    (15-84 p)
+offset_0                  9.12        -0.61         0.74    (15-84 p)
+offset_1                 11.15        -0.65         0.78    (15-84 p)
+offset_2                 10.12        -0.61         0.75    (15-84 p)
+offset_3                 10.15        -0.62         0.75    (15-84 p)
+
+
+----- dataset: RVdata                    ----- model: gp_multidimensional           
+rot_amp                    6.8         -1.8          1.9    (15-84 p)
+con_amp                   1.27        -0.33         0.51    (15-84 p)
+
+----- dataset:  BISdata
+jitter_0                 2.106       -0.100         0.11    (15-84 p)
+offset_0                -73.71        -0.29         0.32    (15-84 p)
+offset_1                -44.22        -0.46         0.49    (15-84 p)
+offset_2                -52.40        -0.30         0.34    (15-84 p)
+offset_3                -59.65        -0.30         0.35    (15-84 p)
+
+
+----- dataset: BISdata                   ----- model: gp_multidimensional           
+rot_amp                    5.5         -1.8          2.2    (15-84 p)
+con_amp                   0.23        -0.25         0.29    (15-84 p)
+
+----- dataset:  FWHMdata
+jitter_0                  0.31        -0.18         0.29    (15-84 p)
+offset_0                6692.3         -3.3          2.8    (15-84 p)
+offset_1                6938.7         -3.3          3.0    (15-84 p)
+offset_2                6855.2         -3.3          2.8    (15-84 p)
+offset_3                6895.4         -3.3          2.9    (15-84 p)
+
+
+----- dataset: FWHMdata                  ----- model: gp_multidimensional           
+rot_amp                    4.3         -3.6          3.3    (15-84 p)
+con_amp                   -5.9         -2.2          1.4    (15-84 p)
+
+----- dataset:  CaIIdata
+jitter_0               0.00024     -0.00015      0.00022    (15-84 p)
+offset_0               0.09972     -0.00038      0.00036    (15-84 p)
+offset_1               0.10296     -0.00062      0.00059    (15-84 p)
+offset_2               0.10434     -0.00042      0.00038    (15-84 p)
+offset_3               0.09925     -0.00041      0.00039    (15-84 p)
+
+
+----- dataset: CaIIdata                  ----- model: gp_multidimensional           
+rot_amp                -0.0007      -0.0019       0.0018    (15-84 p)
+con_amp               -0.00025     -0.00033      0.00029    (15-84 p)
+
+----- dataset:  Halphadata
+jitter_0              0.000059    -0.000035     0.000057    (15-84 p)
+offset_0               0.17197     -0.00014      0.00012    (15-84 p)
+offset_1               0.17394     -0.00021      0.00020    (15-84 p)
+offset_2               0.17480     -0.00015      0.00013    (15-84 p)
+offset_3               0.17103     -0.00015      0.00013    (15-84 p)
+
+
+----- dataset: Halphadata                ----- model: gp_multidimensional           
+rot_amp                0.00071     -0.00062      0.00068    (15-84 p)
+con_amp              -0.000118     -0.00012     0.000098    (15-84 p)
+
+----- common model:  b
+P                        13.51        -0.23         0.26    (15-84 p)
+K                         1.24        -0.21         0.23    (15-84 p)
+mean_long                  257          -23           25    (15-84 p)
+e                        0.060       -0.042        0.068    (15-84 p)
+omega                      -28          -85          123    (15-84 p)
+
+----- common model:  c
+P                        4.099       -0.020        0.019    (15-84 p)
+K                         0.73        -0.16         0.16    (15-84 p)
+mean_long                  136          -23           21    (15-84 p)
+e                        0.073       -0.051        0.076    (15-84 p)
+omega                       52         -140           73    (15-84 p)
+
+----- common model:  d
+P                        3.619       -0.017        0.019    (15-84 p)
+K                         0.70        -0.12         0.13    (15-84 p)
+mean_long                  215          -29           28    (15-84 p)
+e                        0.091       -0.064         0.10    (15-84 p)
+omega                       78         -134           55    (15-84 p)
+
+----- common model:  activity
+Prot                     28.55        -0.44         0.45    (15-84 p)
+Pdec                      39.0         -6.3           11    (15-84 p)
+Oamp                     0.405       -0.031        0.031    (15-84 p)
+
+----- common model:  star_parameters
+
+====================================================================================================
+     Statistics on the derived parameters obtained from the posteriors samples     
+====================================================================================================
+
+----- common model:  b
+Inclination fixed to 90 deg!
+Computing planetary mass under the approximation M_planet << M_star (threshold at 30.0 Me)
+a_Rs                     23.86        -0.27         0.30    (15-84 p)
+M_Mj                    0.0145      -0.0025       0.0027    (15-84 p)
+M_Me                      4.60        -0.78         0.87    (15-84 p)
+Tc                    59341.86        -0.89         0.79    (15-84 p)
+a_AU_(M)                0.1110      -0.0013       0.0014    (15-84 p)
+a_AU_(rho,R)            0.1110      -0.0013       0.0014    (15-84 p)
+
+----- common model:  c
+Inclination fixed to 90 deg!
+Computing planetary mass under the approximation M_planet << M_star (threshold at 30.0 Me)
+a_Rs                    10.773       -0.034        0.033    (15-84 p)
+M_Mj                    0.0057      -0.0013       0.0012    (15-84 p)
+M_Me                      1.80        -0.40         0.39    (15-84 p)
+Tc                    59338.26        -0.25         0.24    (15-84 p)
+a_AU_(M)               0.05012     -0.00016      0.00015    (15-84 p)
+a_AU_(rho,R)           0.05012     -0.00016      0.00015    (15-84 p)
+
+----- common model:  d
+Inclination fixed to 90 deg!
+Computing planetary mass under the approximation M_planet << M_star (threshold at 30.0 Me)
+a_Rs                     9.915       -0.032        0.034    (15-84 p)
+M_Mj                   0.00523     -0.00092      0.00093    (15-84 p)
+M_Me                      1.66        -0.29         0.30    (15-84 p)
+Tc                    59337.08        -0.29         0.27    (15-84 p)
+a_AU_(M)               0.04613     -0.00015      0.00016    (15-84 p)
+a_AU_(rho,R)           0.04613     -0.00015      0.00016    (15-84 p)
+
+
+====================================================================================================
+     ------------------------------------------------------------------------------------------     
+====================================================================================================
+
+
+
+60000.0   steps completed, average lnprob:,  790.8340229395889
+
+
+emcee completed
+
+
+:::---::: PyORBIT v11.0.1 :::---:::
+
+Python version in use:
+3.10.18 (main, Jun  5 2025, 13:14:17) [GCC 11.2.0]
+LaTeX disabled by default
+
+Using orbital model:  keplerian
+Using orbital parametrization:  Eastman2013
+
+Using orbital model:  keplerian
+Using orbital parametrization:  Eastman2013
+
+Using orbital model:  keplerian
+Using orbital parametrization:  Eastman2013
+
+gp_multidimensional  S+LEAF model, number of harmonics: 4
+
+GP model: gp_multidimensional  hyperparameters_condition:    True
+GP model: gp_multidimensional  rotation_decay_condition:     True
+
+### PyORBIT version used in the analysis:  11.0.1
+
+ emcee version:  3.1.6
+
+ Reference Time Tref: 59334.700184
+
+ Data points:1610
+ Dimensions: 53
+ Nwalkers:   212
+ Steps:      60000
+
+
+Number of samplings: 63600
+
+Recomputing ln-prior, it may take a while...
+
+ln-probability   distribution:    791.13       -6.14      5.39 (15-84 p) 
+ln-prior         distribution:   -301.34       -2.82      2.01 (15-84 p) 
+ln-likelihood    distribution:   1092.81       -6.32      5.70 (15-84 p) 
+
+
+*** Information criteria using the likelihood distribution
+
+ BIC from distribution  (using likelihood)  =  -1794.26    -11.40   12.65 (15-84 p)
+ AIC from distribution  (using likelihood)  =  -2079.62    -11.40   12.65 (15-84 p)
+ AICc from distribution (using likelihood)  =  -2075.94    -11.40   12.65 (15-84 p)
+
+
+*** Information criteria using the median parameter set
+
+ ln_probability of Median solution =    814.45
+ ln_priors of Median solution      =   -299.07
+ ln_likelihood of Median solution  =   1113.52
+
+ Median BIC  (using likelihood) =  -1835.69
+ Median AIC  (using likelihood) =  -2121.04
+ Median AICc (using likelihood) =  -2117.36
+
+
+*** Information criteria using the MAP parameter set
+
+ ln_probability of MAP solution =    808.95
+ ln_priors of MAP solution      =   -301.20
+ ln_likelihood of MAP solution  =   1110.15
+
+ MAP BIC  (using likelihood)    =  -1828.94
+ MAP AIC  (using likelihood)    =  -2114.29
+ MAP AICc (using likelihood)    =  -2110.61
+
+ AICc suggested over AIC because NDATA ( 1610 ) < 40 * NDIM ( 53 )
+
+****************************************************************************************************
+
+
+Computing the autocorrelation time of the chains
+
+***** WARNING ******
+The integrated autocorrelation time cannot be reliably estimated
+likely the chains are too short, and ACF analysis is not fully reliable
+emcee.autocorr.integrated_time tolerance lowered to 20
+If you still get a warning, you should drop these results entirely
+Chains too short to apply convergence criteria
+They should be at least 1200*nthin = 180000
+
+ ACF computation failed, no plot will be generated 
+
+
+====================================================================================================
+     Ids, spaces (s), boundaries (b) and priors (p) of the sampler parameters     
+====================================================================================================
+
+----- dataset:  RVdata
+jitter_0      id:  18  s:Linear      b:[      0.0009,      13.2000]   p:Uniform   []
+offset_0      id:  19  s:Linear      b:[  -9995.2560,   10015.1650]   p:Uniform   []
+offset_1      id:  20  s:Linear      b:[  -9995.2560,   10015.1650]   p:Uniform   []
+offset_2      id:  21  s:Linear      b:[  -9995.2560,   10015.1650]   p:Uniform   []
+offset_3      id:  22  s:Linear      b:[  -9995.2560,   10015.1650]   p:Uniform   []
+
+----- dataset: RVdata                    ----- model: gp_multidimensional           
+rot_amp       id:  23  s:Linear      b:[      0.0000,      10.0000]   p:Uniform   []
+con_amp       id:  24  s:Linear      b:[    -20.0000,      20.0000]   p:Uniform   []
+
+----- dataset:  BISdata
+jitter_0      id:  25  s:Linear      b:[      0.0095,      95.0000]   p:Uniform   []
+offset_0      id:  26  s:Linear      b:[ -10080.3833,    9960.4333]   p:Uniform   []
+offset_1      id:  27  s:Linear      b:[ -10080.3833,    9960.4333]   p:Uniform   []
+offset_2      id:  28  s:Linear      b:[ -10080.3833,    9960.4333]   p:Uniform   []
+offset_3      id:  29  s:Linear      b:[ -10080.3833,    9960.4333]   p:Uniform   []
+
+----- dataset: BISdata                   ----- model: gp_multidimensional           
+rot_amp       id:  30  s:Linear      b:[    -10.0000,      10.0000]   p:Uniform   []
+con_amp       id:  31  s:Linear      b:[    -20.0000,      20.0000]   p:Uniform   []
+
+----- dataset:  FWHMdata
+jitter_0      id:  32  s:Linear      b:[      0.0500,     500.0000]   p:Uniform   []
+offset_0      id:  33  s:Linear      b:[  -3318.1198,   16953.1282]   p:Uniform   []
+offset_1      id:  34  s:Linear      b:[  -3318.1198,   16953.1282]   p:Uniform   []
+offset_2      id:  35  s:Linear      b:[  -3318.1198,   16953.1282]   p:Uniform   []
+offset_3      id:  36  s:Linear      b:[  -3318.1198,   16953.1282]   p:Uniform   []
+
+----- dataset: FWHMdata                  ----- model: gp_multidimensional           
+rot_amp       id:  37  s:Linear      b:[    -10.0000,      10.0000]   p:Uniform   []
+con_amp       id:  38  s:Linear      b:[    -20.0000,      20.0000]   p:Uniform   []
+
+----- dataset:  CaIIdata
+jitter_0      id:  39  s:Linear      b:[      0.0000,       0.3000]   p:Uniform   []
+offset_0      id:  40  s:Linear      b:[  -9999.9104,   10000.1167]   p:Uniform   []
+offset_1      id:  41  s:Linear      b:[  -9999.9104,   10000.1167]   p:Uniform   []
+offset_2      id:  42  s:Linear      b:[  -9999.9104,   10000.1167]   p:Uniform   []
+offset_3      id:  43  s:Linear      b:[  -9999.9104,   10000.1167]   p:Uniform   []
+
+----- dataset: CaIIdata                  ----- model: gp_multidimensional           
+rot_amp       id:  44  s:Linear      b:[    -10.0000,      10.0000]   p:Uniform   []
+con_amp       id:  45  s:Linear      b:[    -20.0000,      20.0000]   p:Uniform   []
+
+----- dataset:  Halphadata
+jitter_0      id:  46  s:Linear      b:[      0.0000,       0.1000]   p:Uniform   []
+offset_0      id:  47  s:Linear      b:[  -9999.8300,   10000.1778]   p:Uniform   []
+offset_1      id:  48  s:Linear      b:[  -9999.8300,   10000.1778]   p:Uniform   []
+offset_2      id:  49  s:Linear      b:[  -9999.8300,   10000.1778]   p:Uniform   []
+offset_3      id:  50  s:Linear      b:[  -9999.8300,   10000.1778]   p:Uniform   []
+
+----- dataset: Halphadata                ----- model: gp_multidimensional           
+rot_amp       id:  51  s:Linear      b:[    -10.0000,      10.0000]   p:Uniform   []
+con_amp       id:  52  s:Linear      b:[    -20.0000,      20.0000]   p:Uniform   []
+
+----- common model:  b
+P             id:   0  s:Log_Base2   b:[      0.3785,       6.6439]   p:Uniform   []
+K             id:   1  s:Log_Base2   b:[     -9.9658,       3.3219]   p:Uniform   []
+sre_coso      id:   2  s:Linear      b:[     -1.0000,       1.0000]   p:Uniform   []
+sre_sino      id:   3  s:Linear      b:[     -1.0000,       1.0000]   p:Uniform   []
+mean_long     id:   4  s:Linear      b:[     77.0163,     437.0163]   p:Uniform   []
+e             derived (no id, space, bound)                           p:Gaussian   [0.    0.098]
+omega         derived (no id, space, bound)                           p:Uniform   [0.0, 360.0]
+
+----- common model:  c
+P             id:   5  s:Log_Base2   b:[      0.3785,       6.6439]   p:Uniform   []
+K             id:   6  s:Log_Base2   b:[     -9.9658,       3.3219]   p:Uniform   []
+sre_coso      id:   7  s:Linear      b:[     -1.0000,       1.0000]   p:Uniform   []
+sre_sino      id:   8  s:Linear      b:[     -1.0000,       1.0000]   p:Uniform   []
+mean_long     id:   9  s:Linear      b:[    -45.0006,     314.9994]   p:Uniform   []
+e             derived (no id, space, bound)                           p:Gaussian   [0.    0.098]
+omega         derived (no id, space, bound)                           p:Uniform   [0.0, 360.0]
+
+----- common model:  d
+P             id:  10  s:Log_Base2   b:[      0.3785,       6.6439]   p:Uniform   []
+K             id:  11  s:Log_Base2   b:[     -9.9658,       3.3219]   p:Uniform   []
+sre_coso      id:  12  s:Linear      b:[     -1.0000,       1.0000]   p:Uniform   []
+sre_sino      id:  13  s:Linear      b:[     -1.0000,       1.0000]   p:Uniform   []
+mean_long     id:  14  s:Linear      b:[     22.6106,     382.6106]   p:Uniform   []
+e             derived (no id, space, bound)                           p:Gaussian   [0.    0.098]
+omega         derived (no id, space, bound)                           p:Uniform   [0.0, 360.0]
+
+----- common model:  activity
+Prot          id:  15  s:Linear      b:[     20.0000,      35.0000]   p:Gaussian   [28.   0.5]
+Pdec          id:  16  s:Linear      b:[     30.0000,    1000.0000]   p:Uniform   []
+Oamp          id:  17  s:Log_Base2   b:[     -6.6439,       0.0000]   p:Gaussian   [0.35  0.035]
+
+----- common model:  star_parameters
+mass          derived (no id, space, bound)                           p:Gaussian   [1.e+00 1.e-06]
+radius        derived (no id, space, bound)                           p:Gaussian   [1.e+00 1.e-06]
+density       derived (no id, space, bound)                           p:Gaussian   [1.e+00 1.e-06]
+
+
+****************************************************************************************************
+****************************************************************************************************
+
+ Confidence intervals (median value, 34.135th percentile from the median on the left and right side)
+
+====================================================================================================
+     Statistics on the posterior of the sampler parameters     
+====================================================================================================
+
+----- dataset:  RVdata
+jitter_0        18         1.281       -0.054        0.057   (15-84 p)   [    0.0009,    13.2000]
+offset_0        19          9.12        -0.61         0.74   (15-84 p)   [-9995.2560, 10015.1650]
+offset_1        20         11.15        -0.65         0.78   (15-84 p)   [-9995.2560, 10015.1650]
+offset_2        21         10.12        -0.61         0.75   (15-84 p)   [-9995.2560, 10015.1650]
+offset_3        22         10.15        -0.62         0.75   (15-84 p)   [-9995.2560, 10015.1650]
+
+----- dataset: RVdata                    ----- model: gp_multidimensional           
+rot_amp         23           6.8         -1.8          1.9   (15-84 p)   [    0.0000,    10.0000]
+con_amp         24          1.27        -0.33         0.51   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  BISdata
+jitter_0        25         2.106       -0.100         0.11   (15-84 p)   [    0.0095,    95.0000]
+offset_0        26        -73.71        -0.29         0.32   (15-84 p)   [-10080.3833,  9960.4333]
+offset_1        27        -44.22        -0.46         0.49   (15-84 p)   [-10080.3833,  9960.4333]
+offset_2        28        -52.40        -0.30         0.34   (15-84 p)   [-10080.3833,  9960.4333]
+offset_3        29        -59.65        -0.30         0.35   (15-84 p)   [-10080.3833,  9960.4333]
+
+----- dataset: BISdata                   ----- model: gp_multidimensional           
+rot_amp         30           5.5         -1.8          2.2   (15-84 p)   [  -10.0000,    10.0000]
+con_amp         31          0.23        -0.25         0.29   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  FWHMdata
+jitter_0        32          0.31        -0.18         0.29   (15-84 p)   [    0.0500,   500.0000]
+offset_0        33        6692.3         -3.3          2.8   (15-84 p)   [-3318.1198, 16953.1282]
+offset_1        34        6938.7         -3.3          3.0   (15-84 p)   [-3318.1198, 16953.1282]
+offset_2        35        6855.2         -3.3          2.8   (15-84 p)   [-3318.1198, 16953.1282]
+offset_3        36        6895.4         -3.3          2.9   (15-84 p)   [-3318.1198, 16953.1282]
+
+----- dataset: FWHMdata                  ----- model: gp_multidimensional           
+rot_amp         37           4.3         -3.6          3.3   (15-84 p)   [  -10.0000,    10.0000]
+con_amp         38          -5.9         -2.2          1.4   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  CaIIdata
+jitter_0        39       0.00024     -0.00015      0.00022   (15-84 p)   [    0.0000,     0.3000]
+offset_0        40       0.09972     -0.00038      0.00036   (15-84 p)   [-9999.9104, 10000.1167]
+offset_1        41       0.10296     -0.00062      0.00059   (15-84 p)   [-9999.9104, 10000.1167]
+offset_2        42       0.10434     -0.00042      0.00038   (15-84 p)   [-9999.9104, 10000.1167]
+offset_3        43       0.09925     -0.00041      0.00039   (15-84 p)   [-9999.9104, 10000.1167]
+
+----- dataset: CaIIdata                  ----- model: gp_multidimensional           
+rot_amp         44       -0.0007      -0.0019       0.0018   (15-84 p)   [  -10.0000,    10.0000]
+con_amp         45      -0.00025     -0.00033      0.00029   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  Halphadata
+jitter_0        46      0.000059    -0.000035     0.000057   (15-84 p)   [    0.0000,     0.1000]
+offset_0        47       0.17197     -0.00014      0.00012   (15-84 p)   [-9999.8300, 10000.1778]
+offset_1        48       0.17394     -0.00021      0.00020   (15-84 p)   [-9999.8300, 10000.1778]
+offset_2        49       0.17480     -0.00015      0.00013   (15-84 p)   [-9999.8300, 10000.1778]
+offset_3        50       0.17103     -0.00015      0.00013   (15-84 p)   [-9999.8300, 10000.1778]
+
+----- dataset: Halphadata                ----- model: gp_multidimensional           
+rot_amp         51       0.00071     -0.00062      0.00068   (15-84 p)   [  -10.0000,    10.0000]
+con_amp         52     -0.000118     -0.00012     0.000098   (15-84 p)   [  -20.0000,    20.0000]
+
+----- common model:  b
+P                0         3.756       -0.025        0.027   (15-84 p)   [    0.3785,     6.6439]
+K                1          0.31        -0.27         0.25   (15-84 p)   [   -9.9658,     3.3219]
+sre_coso         2          0.05        -0.20         0.19   (15-84 p)   [   -1.0000,     1.0000]
+sre_sino         3         -0.06        -0.19         0.20   (15-84 p)   [   -1.0000,     1.0000]
+mean_long        4           257          -23           25   (15-84 p)   [   77.0163,   437.0163]
+
+----- common model:  c
+P                5        2.0352      -0.0069       0.0067   (15-84 p)   [    0.3785,     6.6439]
+K                6         -0.46        -0.36         0.28   (15-84 p)   [   -9.9658,     3.3219]
+sre_coso         7          0.02        -0.21         0.20   (15-84 p)   [   -1.0000,     1.0000]
+sre_sino         8          0.11        -0.23         0.19   (15-84 p)   [   -1.0000,     1.0000]
+mean_long        9           136          -23           21   (15-84 p)   [  -45.0006,   314.9994]
+
+----- common model:  d
+P               10        1.8555      -0.0069       0.0074   (15-84 p)   [    0.3785,     6.6439]
+K               11         -0.52        -0.28         0.24   (15-84 p)   [   -9.9658,     3.3219]
+sre_coso        12         -0.03        -0.21         0.21   (15-84 p)   [   -1.0000,     1.0000]
+sre_sino        13          0.18        -0.25         0.20   (15-84 p)   [   -1.0000,     1.0000]
+mean_long       14           215          -29           28   (15-84 p)   [   22.6106,   382.6106]
+
+----- common model:  activity
+Prot            15         28.55        -0.44         0.45   (15-84 p)   [   20.0000,    35.0000]
+Pdec            16          39.0         -6.3           11   (15-84 p)   [   30.0000,  1000.0000]
+Oamp            17         -1.30        -0.12         0.11   (15-84 p)   [   -6.6439,     0.0000]
+
+----- common model:  star_parameters
+
+====================================================================================================
+     Statistics on the model parameters obtained from the posteriors samples     
+====================================================================================================
+
+----- dataset:  RVdata
+jitter_0                 1.281       -0.054        0.057    (15-84 p)
+offset_0                  9.12        -0.61         0.74    (15-84 p)
+offset_1                 11.15        -0.65         0.78    (15-84 p)
+offset_2                 10.12        -0.61         0.75    (15-84 p)
+offset_3                 10.15        -0.62         0.75    (15-84 p)
+
+
+----- dataset: RVdata                    ----- model: gp_multidimensional           
+rot_amp                    6.8         -1.8          1.9    (15-84 p)
+con_amp                   1.27        -0.33         0.51    (15-84 p)
+
+----- dataset:  BISdata
+jitter_0                 2.106       -0.100         0.11    (15-84 p)
+offset_0                -73.71        -0.29         0.32    (15-84 p)
+offset_1                -44.22        -0.46         0.49    (15-84 p)
+offset_2                -52.40        -0.30         0.34    (15-84 p)
+offset_3                -59.65        -0.30         0.35    (15-84 p)
+
+
+----- dataset: BISdata                   ----- model: gp_multidimensional           
+rot_amp                    5.5         -1.8          2.2    (15-84 p)
+con_amp                   0.23        -0.25         0.29    (15-84 p)
+
+----- dataset:  FWHMdata
+jitter_0                  0.31        -0.18         0.29    (15-84 p)
+offset_0                6692.3         -3.3          2.8    (15-84 p)
+offset_1                6938.7         -3.3          3.0    (15-84 p)
+offset_2                6855.2         -3.3          2.8    (15-84 p)
+offset_3                6895.4         -3.3          2.9    (15-84 p)
+
+
+----- dataset: FWHMdata                  ----- model: gp_multidimensional           
+rot_amp                    4.3         -3.6          3.3    (15-84 p)
+con_amp                   -5.9         -2.2          1.4    (15-84 p)
+
+----- dataset:  CaIIdata
+jitter_0               0.00024     -0.00015      0.00022    (15-84 p)
+offset_0               0.09972     -0.00038      0.00036    (15-84 p)
+offset_1               0.10296     -0.00062      0.00059    (15-84 p)
+offset_2               0.10434     -0.00042      0.00038    (15-84 p)
+offset_3               0.09925     -0.00041      0.00039    (15-84 p)
+
+
+----- dataset: CaIIdata                  ----- model: gp_multidimensional           
+rot_amp                -0.0007      -0.0019       0.0018    (15-84 p)
+con_amp               -0.00025     -0.00033      0.00029    (15-84 p)
+
+----- dataset:  Halphadata
+jitter_0              0.000059    -0.000035     0.000057    (15-84 p)
+offset_0               0.17197     -0.00014      0.00012    (15-84 p)
+offset_1               0.17394     -0.00021      0.00020    (15-84 p)
+offset_2               0.17480     -0.00015      0.00013    (15-84 p)
+offset_3               0.17103     -0.00015      0.00013    (15-84 p)
+
+
+----- dataset: Halphadata                ----- model: gp_multidimensional           
+rot_amp                0.00071     -0.00062      0.00068    (15-84 p)
+con_amp              -0.000118     -0.00012     0.000098    (15-84 p)
+
+----- common model:  b
+P                        13.51        -0.23         0.26    (15-84 p)
+K                         1.24        -0.21         0.23    (15-84 p)
+mean_long                  257          -23           25    (15-84 p)
+e                        0.060       -0.042        0.068    (15-84 p)
+omega                      -80         -137           81    (15-84 p)
+
+----- common model:  c
+P                        4.099       -0.020        0.019    (15-84 p)
+K                         0.73        -0.16         0.16    (15-84 p)
+mean_long                  136          -23           21    (15-84 p)
+e                        0.073       -0.051        0.076    (15-84 p)
+omega                      -75         -160          132    (15-84 p)
+
+----- common model:  d
+P                        3.619       -0.017        0.019    (15-84 p)
+K                         0.70        -0.12         0.13    (15-84 p)
+mean_long                  215          -29           28    (15-84 p)
+e                        0.091       -0.064         0.10    (15-84 p)
+omega                      103          -68           77    (15-84 p)
+
+----- common model:  activity
+Prot                     28.55        -0.44         0.45    (15-84 p)
+Pdec                      39.0         -6.3           11    (15-84 p)
+Oamp                     0.405       -0.031        0.031    (15-84 p)
+
+----- common model:  star_parameters
+
+====================================================================================================
+     Statistics on the derived parameters obtained from the posteriors samples     
+====================================================================================================
+
+----- common model:  b
+Inclination fixed to 90 deg!
+Computing planetary mass under the approximation M_planet << M_star (threshold at 30.0 Me)
+a_Rs                     23.86        -0.27         0.30    (15-84 p)
+M_Mj                    0.0145      -0.0025       0.0027    (15-84 p)
+M_Me                      4.60        -0.78         0.87    (15-84 p)
+Tc                    59341.86        -0.89         0.79    (15-84 p)
+a_AU_(M)                0.1110      -0.0013       0.0014    (15-84 p)
+a_AU_(rho,R)            0.1110      -0.0013       0.0014    (15-84 p)
+
+----- common model:  c
+Inclination fixed to 90 deg!
+Computing planetary mass under the approximation M_planet << M_star (threshold at 30.0 Me)
+a_Rs                    10.773       -0.034        0.033    (15-84 p)
+M_Mj                    0.0057      -0.0013       0.0012    (15-84 p)
+M_Me                      1.80        -0.40         0.39    (15-84 p)
+Tc                    59338.26        -0.25         0.24    (15-84 p)
+a_AU_(M)               0.05012     -0.00016      0.00015    (15-84 p)
+a_AU_(rho,R)           0.05012     -0.00016      0.00015    (15-84 p)
+
+----- common model:  d
+Inclination fixed to 90 deg!
+Computing planetary mass under the approximation M_planet << M_star (threshold at 30.0 Me)
+a_Rs                     9.915       -0.032        0.034    (15-84 p)
+M_Mj                   0.00523     -0.00092      0.00093    (15-84 p)
+M_Me                      1.66        -0.29         0.30    (15-84 p)
+Tc                    59337.08        -0.29         0.27    (15-84 p)
+a_AU_(M)               0.04613     -0.00015      0.00016    (15-84 p)
+a_AU_(rho,R)           0.04613     -0.00015      0.00016    (15-84 p)
+
+
+====================================================================================================
+     ------------------------------------------------------------------------------------------     
+====================================================================================================
+
+
+
+****************************************************************************************************
+
+ Parameters corresponding to the Maximum a Posteriori probability ( 808.9457610801653 )
+
+====================================================================================================
+     Statistics on the posterior of the sampler parameters     
+====================================================================================================
+
+----- dataset:  RVdata
+jitter_0        18      1.255872 [    0.0009,    13.2000]
+offset_0        19      8.977762 [-9995.2560, 10015.1650]
+offset_1        20     11.371289 [-9995.2560, 10015.1650]
+offset_2        21     10.059982 [-9995.2560, 10015.1650]
+offset_3        22      9.887459 [-9995.2560, 10015.1650]
+
+----- dataset: RVdata                    ----- model: gp_multidimensional           
+rot_amp         23      4.922010 [    0.0000,    10.0000]
+con_amp         24      0.705363 [  -20.0000,    20.0000]
+
+----- dataset:  BISdata
+jitter_0        25      2.279138 [    0.0095,    95.0000]
+offset_0        26    -73.995336 [-10080.3833,  9960.4333]
+offset_1        27    -44.129127 [-10080.3833,  9960.4333]
+offset_2        28    -52.631968 [-10080.3833,  9960.4333]
+offset_3        29    -59.813399 [-10080.3833,  9960.4333]
+
+----- dataset: BISdata                   ----- model: gp_multidimensional           
+rot_amp         30      3.476798 [  -10.0000,    10.0000]
+con_amp         31     -0.025690 [  -20.0000,    20.0000]
+
+----- dataset:  FWHMdata
+jitter_0        32      0.472647 [    0.0500,   500.0000]
+offset_0        33   6692.056434 [-3318.1198, 16953.1282]
+offset_1        34   6938.705922 [-3318.1198, 16953.1282]
+offset_2        35   6854.926802 [-3318.1198, 16953.1282]
+offset_3        36   6895.004516 [-3318.1198, 16953.1282]
+
+----- dataset: FWHMdata                  ----- model: gp_multidimensional           
+rot_amp         37      1.971477 [  -10.0000,    10.0000]
+con_amp         38     -3.636678 [  -20.0000,    20.0000]
+
+----- dataset:  CaIIdata
+jitter_0        39      0.000108 [    0.0000,     0.3000]
+offset_0        40      0.099817 [-9999.9104, 10000.1167]
+offset_1        41      0.102926 [-9999.9104, 10000.1167]
+offset_2        42      0.104241 [-9999.9104, 10000.1167]
+offset_3        43      0.099487 [-9999.9104, 10000.1167]
+
+----- dataset: CaIIdata                  ----- model: gp_multidimensional           
+rot_amp         44      0.000110 [  -10.0000,    10.0000]
+con_amp         45     -0.000197 [  -20.0000,    20.0000]
+
+----- dataset:  Halphadata
+jitter_0        46      0.000057 [    0.0000,     0.1000]
+offset_0        47      0.171999 [-9999.8300, 10000.1778]
+offset_1        48      0.174029 [-9999.8300, 10000.1778]
+offset_2        49      0.174698 [-9999.8300, 10000.1778]
+offset_3        50      0.171005 [-9999.8300, 10000.1778]
+
+----- dataset: Halphadata                ----- model: gp_multidimensional           
+rot_amp         51      0.000372 [  -10.0000,    10.0000]
+con_amp         52     -0.000102 [  -20.0000,    20.0000]
+
+----- common model:  b
+P                0      3.734104 [    0.3785,     6.6439]
+K                1      0.751591 [   -9.9658,     3.3219]
+sre_coso         2     -0.074372 [   -1.0000,     1.0000]
+sre_sino         3     -0.130134 [   -1.0000,     1.0000]
+mean_long        4    241.636831 [   77.0163,   437.0163]
+
+----- common model:  c
+P                5      2.044066 [    0.3785,     6.6439]
+K                6     -0.088867 [   -9.9658,     3.3219]
+sre_coso         7     -0.002156 [   -1.0000,     1.0000]
+sre_sino         8     -0.112948 [   -1.0000,     1.0000]
+mean_long        9    168.986106 [  -45.0006,   314.9994]
+
+----- common model:  d
+P               10      1.847917 [    0.3785,     6.6439]
+K               11     -0.159583 [   -9.9658,     3.3219]
+sre_coso        12     -0.272186 [   -1.0000,     1.0000]
+sre_sino        13      0.406522 [   -1.0000,     1.0000]
+mean_long       14    193.040864 [   22.6106,   382.6106]
+
+----- common model:  activity
+Prot            15     28.613245 [   20.0000,    35.0000]
+Pdec            16     30.339107 [   30.0000,  1000.0000]
+Oamp            17     -1.412671 [   -6.6439,     0.0000]
+
+----- common model:  star_parameters
+
+====================================================================================================
+     Statistics on the model parameters obtained from the posteriors samples     
+====================================================================================================
+
+----- dataset:  RVdata
+jitter_0              1.255872 
+offset_0              8.977762 
+offset_1             11.371289 
+offset_2             10.059982 
+offset_3              9.887459 
+
+
+----- dataset: RVdata                    ----- model: gp_multidimensional           
+rot_amp               4.922010 
+con_amp               0.705363 
+
+----- dataset:  BISdata
+jitter_0              2.279138 
+offset_0            -73.995336 
+offset_1            -44.129127 
+offset_2            -52.631968 
+offset_3            -59.813399 
+
+
+----- dataset: BISdata                   ----- model: gp_multidimensional           
+rot_amp               3.476798 
+con_amp              -0.025690 
+
+----- dataset:  FWHMdata
+jitter_0              0.472647 
+offset_0           6692.056434 
+offset_1           6938.705922 
+offset_2           6854.926802 
+offset_3           6895.004516 
+
+
+----- dataset: FWHMdata                  ----- model: gp_multidimensional           
+rot_amp               1.971477 
+con_amp              -3.636678 
+
+----- dataset:  CaIIdata
+jitter_0              0.000108 
+offset_0              0.099817 
+offset_1              0.102926 
+offset_2              0.104241 
+offset_3              0.099487 
+
+
+----- dataset: CaIIdata                  ----- model: gp_multidimensional           
+rot_amp               0.000110 
+con_amp              -0.000197 
+
+----- dataset:  Halphadata
+jitter_0              0.000057 
+offset_0              0.171999 
+offset_1              0.174029 
+offset_2              0.174698 
+offset_3              0.171005 
+
+
+----- dataset: Halphadata                ----- model: gp_multidimensional           
+rot_amp               0.000372 
+con_amp              -0.000102 
+
+----- common model:  b
+P                    13.306913 
+K                     1.683648 
+mean_long           241.636831 
+e                     0.022466 
+omega              -119.748085 
+
+----- common model:  c
+P                     4.124062 
+K                     0.940261 
+mean_long           168.986106 
+e                     0.012762 
+omega               -91.093312 
+
+----- common model:  d
+P                     3.599801 
+K                     0.895284 
+mean_long           193.040864 
+e                     0.239345 
+omega               123.804194 
+
+----- common model:  activity
+Prot                 28.613245 
+Pdec                 30.339107 
+Oamp                  0.375616 
+
+----- common model:  star_parameters
+
+====================================================================================================
+     Statistics on the derived parameters obtained from the posteriors samples     
+====================================================================================================
+
+----- common model:  b
+Inclination fixed to 90 deg!
+a_Rs                 23.621126 
+M_Mj                  0.019622 
+M_Me                  6.237658 
+Tc                59342.449963 
+a_AU_(M)              0.109898 
+a_AU_(rho,R)          0.109897 
+
+----- common model:  c
+Inclination fixed to 90 deg!
+a_Rs                 10.817657 
+M_Mj                  0.007417 
+M_Me                  2.357794 
+Tc                59337.919725 
+a_AU_(M)              0.050329 
+a_AU_(rho,R)          0.050329 
+
+----- common model:  d
+Inclination fixed to 90 deg!
+a_Rs                  9.880270 
+M_Mj                  0.006554 
+M_Me                  2.083345 
+Tc                59337.401652 
+a_AU_(M)              0.045968 
+a_AU_(rho,R)          0.045968 
+
+
+====================================================================================================
+     ------------------------------------------------------------------------------------------     
+====================================================================================================
+
+
+
+****************************************************************************************************
+
+ Parameters corresponding to the sample closest to the median values ( 800.8202084461396 )
+
+====================================================================================================
+     Statistics on the posterior of the sampler parameters     
+====================================================================================================
+
+----- dataset:  RVdata
+jitter_0        18      1.245643 [    0.0009,    13.2000]
+offset_0        19      8.534585 [-9995.2560, 10015.1650]
+offset_1        20     10.629039 [-9995.2560, 10015.1650]
+offset_2        21      9.293760 [-9995.2560, 10015.1650]
+offset_3        22      9.641001 [-9995.2560, 10015.1650]
+
+----- dataset: RVdata                    ----- model: gp_multidimensional           
+rot_amp         23      6.610758 [    0.0000,    10.0000]
+con_amp         24      1.023338 [  -20.0000,    20.0000]
+
+----- dataset:  BISdata
+jitter_0        25      1.985293 [    0.0095,    95.0000]
+offset_0        26    -73.791793 [-10080.3833,  9960.4333]
+offset_1        27    -43.905926 [-10080.3833,  9960.4333]
+offset_2        28    -52.492988 [-10080.3833,  9960.4333]
+offset_3        29    -59.858630 [-10080.3833,  9960.4333]
+
+----- dataset: BISdata                   ----- model: gp_multidimensional           
+rot_amp         30      4.564370 [  -10.0000,    10.0000]
+con_amp         31      0.248210 [  -20.0000,    20.0000]
+
+----- dataset:  FWHMdata
+jitter_0        32      0.425603 [    0.0500,   500.0000]
+offset_0        33   6693.898960 [-3318.1198, 16953.1282]
+offset_1        34   6940.391844 [-3318.1198, 16953.1282]
+offset_2        35   6858.297823 [-3318.1198, 16953.1282]
+offset_3        36   6898.748767 [-3318.1198, 16953.1282]
+
+----- dataset: FWHMdata                  ----- model: gp_multidimensional           
+rot_amp         37      4.552016 [  -10.0000,    10.0000]
+con_amp         38     -4.839837 [  -20.0000,    20.0000]
+
+----- dataset:  CaIIdata
+jitter_0        39      0.000195 [    0.0000,     0.3000]
+offset_0        40      0.099755 [-9999.9104, 10000.1167]
+offset_1        41      0.103404 [-9999.9104, 10000.1167]
+offset_2        42      0.104836 [-9999.9104, 10000.1167]
+offset_3        43      0.099156 [-9999.9104, 10000.1167]
+
+----- dataset: CaIIdata                  ----- model: gp_multidimensional           
+rot_amp         44     -0.004048 [  -10.0000,    10.0000]
+con_amp         45     -0.000283 [  -20.0000,    20.0000]
+
+----- dataset:  Halphadata
+jitter_0        46      0.000012 [    0.0000,     0.1000]
+offset_0        47      0.172001 [-9999.8300, 10000.1778]
+offset_1        48      0.173919 [-9999.8300, 10000.1778]
+offset_2        49      0.174847 [-9999.8300, 10000.1778]
+offset_3        50      0.170995 [-9999.8300, 10000.1778]
+
+----- dataset: Halphadata                ----- model: gp_multidimensional           
+rot_amp         51      0.000213 [  -10.0000,    10.0000]
+con_amp         52     -0.000076 [  -20.0000,    20.0000]
+
+----- common model:  b
+P                0      3.736505 [    0.3785,     6.6439]
+K                1      0.376020 [   -9.9658,     3.3219]
+sre_coso         2      0.062820 [   -1.0000,     1.0000]
+sre_sino         3     -0.144497 [   -1.0000,     1.0000]
+mean_long        4    235.325168 [   77.0163,   437.0163]
+
+----- common model:  c
+P                5      2.030181 [    0.3785,     6.6439]
+K                6     -0.614693 [   -9.9658,     3.3219]
+sre_coso         7     -0.033817 [   -1.0000,     1.0000]
+sre_sino         8      0.181975 [   -1.0000,     1.0000]
+mean_long        9    138.398528 [  -45.0006,   314.9994]
+
+----- common model:  d
+P               10      1.851944 [    0.3785,     6.6439]
+K               11     -0.379498 [   -9.9658,     3.3219]
+sre_coso        12     -0.115882 [   -1.0000,     1.0000]
+sre_sino        13      0.224371 [   -1.0000,     1.0000]
+mean_long       14    198.551006 [   22.6106,   382.6106]
+
+----- common model:  activity
+Prot            15     28.607284 [   20.0000,    35.0000]
+Pdec            16     36.982102 [   30.0000,  1000.0000]
+Oamp            17     -1.275027 [   -6.6439,     0.0000]
+
+----- common model:  star_parameters
+
+====================================================================================================
+     Statistics on the model parameters obtained from the posteriors samples     
+====================================================================================================
+
+----- dataset:  RVdata
+jitter_0              1.245643 
+offset_0              8.534585 
+offset_1             10.629039 
+offset_2              9.293760 
+offset_3              9.641001 
+
+
+----- dataset: RVdata                    ----- model: gp_multidimensional           
+rot_amp               6.610758 
+con_amp               1.023338 
+
+----- dataset:  BISdata
+jitter_0              1.985293 
+offset_0            -73.791793 
+offset_1            -43.905926 
+offset_2            -52.492988 
+offset_3            -59.858630 
+
+
+----- dataset: BISdata                   ----- model: gp_multidimensional           
+rot_amp               4.564370 
+con_amp               0.248210 
+
+----- dataset:  FWHMdata
+jitter_0              0.425603 
+offset_0           6693.898960 
+offset_1           6940.391844 
+offset_2           6858.297823 
+offset_3           6898.748767 
+
+
+----- dataset: FWHMdata                  ----- model: gp_multidimensional           
+rot_amp               4.552016 
+con_amp              -4.839837 
+
+----- dataset:  CaIIdata
+jitter_0              0.000195 
+offset_0              0.099755 
+offset_1              0.103404 
+offset_2              0.104836 
+offset_3              0.099156 
+
+
+----- dataset: CaIIdata                  ----- model: gp_multidimensional           
+rot_amp              -0.004048 
+con_amp              -0.000283 
+
+----- dataset:  Halphadata
+jitter_0              0.000012 
+offset_0              0.172001 
+offset_1              0.173919 
+offset_2              0.174847 
+offset_3              0.170995 
+
+
+----- dataset: Halphadata                ----- model: gp_multidimensional           
+rot_amp               0.000213 
+con_amp              -0.000076 
+
+----- common model:  b
+P                    13.329073 
+K                     1.297757 
+mean_long           235.325168 
+e                     0.024826 
+omega               -66.502845 
+
+----- common model:  c
+P                     4.084562 
+K                     0.653069 
+mean_long           138.398528 
+e                     0.034258 
+omega               100.527362 
+
+----- common model:  d
+P                     3.609862 
+K                     0.768705 
+mean_long           198.551006 
+e                     0.063771 
+omega               117.315261 
+
+----- common model:  activity
+Prot                 28.607284 
+Pdec                 36.982102 
+Oamp                  0.413217 
+
+----- common model:  star_parameters
+
+====================================================================================================
+     Statistics on the derived parameters obtained from the posteriors samples     
+====================================================================================================
+
+----- common model:  b
+Inclination fixed to 90 deg!
+a_Rs                 23.647369 
+M_Mj                  0.015132 
+M_Me                  4.810377 
+Tc                59342.605840 
+a_AU_(M)              0.110019 
+a_AU_(rho,R)          0.110019 
+
+----- common model:  c
+Inclination fixed to 90 deg!
+a_Rs                 10.748477 
+M_Mj                  0.005132 
+M_Me                  1.631559 
+Tc                59338.243552 
+a_AU_(M)              0.050007 
+a_AU_(rho,R)          0.050007 
+
+----- common model:  d
+Inclination fixed to 90 deg!
+a_Rs                  9.898670 
+M_Mj                  0.005789 
+M_Me                  1.840301 
+Tc                59337.253806 
+a_AU_(M)              0.046053 
+a_AU_(rho,R)          0.046053 
+
+
+====================================================================================================
+     ------------------------------------------------------------------------------------------     
+====================================================================================================
+
+
+
+****************************************************************************************************
+
+Inclination fixed to 90 deg!
+Inclination fixed to 90 deg!
+Inclination fixed to 90 deg!
+Note: stellar density derived from stellar mass and radius
+
+Inclination fixed to 90 deg!
+Inclination fixed to 90 deg!
+Inclination fixed to 90 deg!
+Inclination fixed to 90 deg!
+Inclination fixed to 90 deg!
+Inclination fixed to 90 deg!
+ Plot FLAT chain 
+
+****************************************************************************************************
+
+ Skipping full correlation plot due to the high number of parameters
+ To avoid this behaviour, set the keyword parameters:force_full_correlation_plot to True
+
+****************************************************************************************************
+
+ Plotting the chains... 
+
+****************************************************************************************************
+
+ Plotting the Gelman-Rubin traces... 
+
+     Gelman-Rubin:    18     1.016562 RVdata_jitter_0 
+     Gelman-Rubin:    19     1.053538 RVdata_offset_0 
+     Gelman-Rubin:    20     1.051943 RVdata_offset_1 
+     Gelman-Rubin:    21     1.053560 RVdata_offset_2 
+     Gelman-Rubin:    22     1.053258 RVdata_offset_3 
+     Gelman-Rubin:    23     1.024870 RVdata_gp_multidimensional_rot_amp 
+     Gelman-Rubin:    24     1.040601 RVdata_gp_multidimensional_con_amp 
+     Gelman-Rubin:    25     1.021276 BISdata_jitter_0 
+     Gelman-Rubin:    26     1.033975 BISdata_offset_0 
+     Gelman-Rubin:    27     1.027845 BISdata_offset_1 
+     Gelman-Rubin:    28     1.037120 BISdata_offset_2 
+     Gelman-Rubin:    29     1.038569 BISdata_offset_3 
+     Gelman-Rubin:    30     1.024878 BISdata_gp_multidimensional_rot_amp 
+     Gelman-Rubin:    31     1.035104 BISdata_gp_multidimensional_con_amp 
+     Gelman-Rubin:    32     1.026597 FWHMdata_jitter_0 
+     Gelman-Rubin:    33     1.057284 FWHMdata_offset_0 
+     Gelman-Rubin:    34     1.055647 FWHMdata_offset_1 
+     Gelman-Rubin:    35     1.057965 FWHMdata_offset_2 
+     Gelman-Rubin:    36     1.057702 FWHMdata_offset_3 
+     Gelman-Rubin:    37     1.020720 FWHMdata_gp_multidimensional_rot_amp 
+     Gelman-Rubin:    38     1.041941 FWHMdata_gp_multidimensional_con_amp 
+     Gelman-Rubin:    39     1.020151 CaIIdata_jitter_0 
+     Gelman-Rubin:    40     1.033563 CaIIdata_offset_0 
+     Gelman-Rubin:    41     1.023103 CaIIdata_offset_1 
+     Gelman-Rubin:    42     1.030879 CaIIdata_offset_2 
+     Gelman-Rubin:    43     1.031893 CaIIdata_offset_3 
+     Gelman-Rubin:    44     1.022079 CaIIdata_gp_multidimensional_rot_amp 
+     Gelman-Rubin:    45     1.034542 CaIIdata_gp_multidimensional_con_amp 
+     Gelman-Rubin:    46     1.025773 Halphadata_jitter_0 
+     Gelman-Rubin:    47     1.036438 Halphadata_offset_0 
+     Gelman-Rubin:    48     1.025211 Halphadata_offset_1 
+     Gelman-Rubin:    49     1.029533 Halphadata_offset_2 
+     Gelman-Rubin:    50     1.033310 Halphadata_offset_3 
+     Gelman-Rubin:    51     1.023177 Halphadata_gp_multidimensional_rot_amp 
+     Gelman-Rubin:    52     1.040930 Halphadata_gp_multidimensional_con_amp 
+     Gelman-Rubin:     0     1.023000 b_P 
+     Gelman-Rubin:     1     1.021004 b_K 
+     Gelman-Rubin:     2     1.022175 b_sre_coso 
+     Gelman-Rubin:     3     1.020123 b_sre_sino 
+     Gelman-Rubin:     4     1.021087 b_mean_long 
+     Gelman-Rubin:     5     1.028373 c_P 
+     Gelman-Rubin:     6     1.029449 c_K 
+     Gelman-Rubin:     7     1.023688 c_sre_coso 
+     Gelman-Rubin:     8     1.019472 c_sre_sino 
+     Gelman-Rubin:     9     1.027140 c_mean_long 
+     Gelman-Rubin:    10     1.021160 d_P 
+     Gelman-Rubin:    11     1.027720 d_K 
+     Gelman-Rubin:    12     1.020668 d_sre_coso 
+     Gelman-Rubin:    13     1.021775 d_sre_sino 
+     Gelman-Rubin:    14     1.021549 d_mean_long 
+     Gelman-Rubin:    15     1.023069 activity_Prot 
+     Gelman-Rubin:    16     1.031743 activity_Pdec 
+     Gelman-Rubin:    17     1.024904 activity_Oamp 
+
+****************************************************************************************************
+
+Plotting the common models corner plots
+     Common model:  b
+     Common model:  c
+     Common model:  d
+     Common model:  activity
+     Common model:  star_parameters
+
+****************************************************************************************************
+
+Plotting the dataset + models corner plots 
+
+     Dataset:  RVdata     model:  gp_multidimensional  corner plot  starting 
+     Dataset:  RVdata     model:  gp_multidimensional  corner plot  done 
+     Dataset:  RVdata     model:  radial_velocities_b  corner plot  starting 
+     Dataset:  RVdata     model:  radial_velocities_b  corner plot  done 
+     Dataset:  RVdata     model:  radial_velocities_c  corner plot  starting 
+     Dataset:  RVdata     model:  radial_velocities_c  corner plot  done 
+     Dataset:  RVdata     model:  radial_velocities_d  corner plot  starting 
+     Dataset:  RVdata     model:  radial_velocities_d  corner plot  done 
+     Dataset:  BISdata     model:  gp_multidimensional  corner plot  starting 
+     Dataset:  BISdata     model:  gp_multidimensional  corner plot  done 
+     Dataset:  FWHMdata     model:  gp_multidimensional  corner plot  starting 
+     Dataset:  FWHMdata     model:  gp_multidimensional  corner plot  done 
+     Dataset:  CaIIdata     model:  gp_multidimensional  corner plot  starting 
+     Dataset:  CaIIdata     model:  gp_multidimensional  corner plot  done 
+     Dataset:  Halphadata     model:  gp_multidimensional  corner plot  starting 
+     Dataset:  Halphadata     model:  gp_multidimensional  corner plot  done 
+
+****************************************************************************************************
+
+ Saving the planet parameter samplings to files (with plots)
+
+****************************************************************************************************
+
+ Saving all the parameter samplings to files (with plots)
+
+****************************************************************************************************
+
+ Computing the models for plot/data writing 
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 65 chunks of 100 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 39 chunks of 100 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 39 chunks of 100 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 39 chunks of 100 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 39 chunks of 100 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 65 chunks of 100 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 39 chunks of 100 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 39 chunks of 100 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 39 chunks of 100 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 39 chunks of 100 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 65 chunks of 100 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 39 chunks of 100 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 39 chunks of 100 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 39 chunks of 100 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 39 chunks of 100 times each
+     Check the documentation if the code is taking too long or if it crashes...
+ Writing the plots 
+ Writing the   data files 
+ Writing the  MAP_ data files 
+ Writing the  sampleMED_ data files 
+
+****************************************************************************************************
+
