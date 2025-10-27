@@ -3,210 +3,195 @@ Combined RV and Activity Plotting Notebook
 Easily customizable for different datasets
 """
 
+
 # ============================================================================
 # CONFIGURATION SECTION - CUSTOMIZE HERE
 # ============================================================================
 
-# Configuration presets - change this to switch between different setups
-# CONFIG_PRESET = 'DS4_2p_4activity_indi'  # Options: 'iaras_DS1', 'ESSP_multi', 'HD189567'
-# CONFIG_PRESET = 'DS4_1p_4activity_indi'
-# CONFIG_PRESET = 'DS2_1p_4activity_indi'
-CONFIG_PRESET = 'DS1_1p_4activity_indi'
+
+
+if 1: #Iara (multiple files)
+    dir_base = '/work2/lbuc/iara/GitHub/PyORBIT_examples/ESSP4/results_multiple_copy_1022/DS2/DS2_1p/DS2_1p_ccfs/'
+    dir_mods = 'DS2_1p_ccfs/'
+    dir_plot = 'emcee_plot/model_files/'
+    filename = 'DS2_1p_ccfs'
+
+    datasets_list = ['RVdata_expres', 'RVdata_harps', 'RVdata_neid']
+    datasets_labels = {'RVdata_expres':'EXPRES', 'RVdata_harps':'HARPS', 'RVdata_neid':'NEID'}
+
+    activity_list = ['Contrastdata_expres', 'Contrastdata_harps', 'Contrastdata_neid', 'FWHMdata_expres', 'FWHMdata_harps', 'FWHMdata_neid']
+    activity_labels = {'Contrastdata_expres':'EXPRES_Contrast', 'Contrastdata_harps':'HARPS_Contrast', 'Contrastdata_neid':'NEID_Contrast', 'FWHMdata_expres':'EXPRES_FWHM', 'FWHMdata_harps':'HARPS_FWHM', 'FWHMdata_neid':'NEID_FWHM'}
+
+    activity_dict = {
+        'limits_full_x': [-0.25, 1.25],
+        'limits_bjd': [59329, 59433],
+        # 'limits_full_y': [-13.5, 13.5],
+        # 'limits_residuals_y': [-11.5, 11.5],
+    }
+
+    full_dict = {
+        'reference_planet': 'b',
+        'limits_full_x': [-0.25, 1.25],
+        'limits_bjd': [59329, 59433],
+    }
+
+
+if 0: #Iara (multiple files)
+    dir_base = '/work2/lbuc/iara/GitHub/PyORBIT_examples/ESSP4/results_multiple/DS1/DS1_1p/DS1_1p_2_activity_indi/'
+    dir_mods = 'DS1_1p_2_activity_indi/'
+    dir_plot = 'emcee_plot/model_files/'
+    filename = 'DS1_1p_2modes'
+
+    datasets_list = ['RVdata_expres', 'RVdata_harps', 'RVdata_neid']
+    datasets_labels = {'RVdata_expres':'EXPRES', 'RVdata_harps':'HARPS', 'RVdata_neid':'NEID'}
+
+    activity_model = 'gp_multidimensional'
+
+    activity_list = ['BISdata_expres', 'BISdata_harps', 'BISdata_neid', 'FWHMdata_expres', 'FWHMdata_harps', 'FWHMdata_neid']
+    activity_labels = {'BISdata_expres':'EXPRES_BIS', 'BISdata_harps':'HARPS_BIS', 'BISdata_neid':'NEID_BIS', 'FWHMdata_expres':'EXPRES_FWHM', 'FWHMdata_harps':'HARPS_FWHM', 'FWHMdata_neid':'NEID_FWHM'}
+
+
+    activity_dict = {
+        'limits_full_x': [-0.25, 1.25],
+        'limits_bjd': [59329, 59433],
+        # 'limits_full_y': [-13.5, 13.5],
+        # 'limits_residuals_y': [-11.5, 11.5],
+    }
+
+    full_dict = {
+        'reference_planet': 'b',
+        'limits_full_x': [-0.25, 1.25],
+        'limits_bjd': [59329, 59433],
+    }
+
+
+if 0: #FIESTA
+    # dir_base = '/work2/lbuc/iara/GitHub/PyORBIT_examples/ESSP4/results_fiesta_more_steps_1022/DS1/DS1_1p_2modes/'
+    # dir_mods = 'DS1_1p_2modes/'
+    # dir_plot = 'emcee_plot/model_files/'
+    # filename = 'DS1_1p_2modes'
+
+    dir_base = '/work2/lbuc/iara/GitHub/PyORBIT_examples/ESSP4/results_fiesta_more_steps_1022/DS2/DS2_1p_2modes/'
+    dir_mods = 'DS2_1p_2modes/'
+    dir_plot = 'emcee_plot/model_files/'
+    filename = 'DS2_1p_2modes'
+
+    datasets_list = ['RVdata_expres', 'RVdata_harps', 'RVdata_neid']
+    datasets_labels = {'RVdata_expres':'EXPRES', 'RVdata_harps':'HARPS', 'RVdata_neid':'NEID'}
+
+    activity_model = 'gp_multidimensional'
+
+    activity_list = ['FIESTAdata_expres_mode1', 'FIESTAdata_expres_mode2', 'FIESTAdata_harps_mode1', 'FIESTAdata_harps_mode2', 'FIESTAdata_harpsn_mode1', 'FIESTAdata_harpsn_mode2', 'FIESTAdata_neid_mode1', 'FIESTAdata_neid_mode2']
+    activity_labels = {'FIESTAdata_expres_mode1':'EXPRES_FIESTA1', 'FIESTAdata_expres_mode2':'EXPRES_FIESTA2', 'FIESTAdata_harps_mode1':'HARPS_FIESTA1', 'FIESTAdata_harps_mode2':'HARPS_FIESTA2', 'FIESTAdata_harpsn_mode1':'HARPSN_FIESTA1', 'FIESTAdata_harpsn_mode2':'HARPSN_FIESTA2', 'FIESTAdata_neid_mode1':'NEID_FIESTA1', 'FIESTAdata_neid_mode2':'NEID_FIESTA2'}
+
+
+    activity_dict = {
+        'limits_full_x': [-0.25, 1.25],
+        'limits_bjd': [59329, 59433],
+        # 'limits_full_y': [-13.5, 13.5],
+        # 'limits_residuals_y': [-11.5, 11.5],
+    }
+
+    full_dict = {
+        'reference_planet': 'b',
+        'limits_full_x': [-0.25, 1.25],
+        'limits_bjd': [59329, 59433],
+    }
+
+
+
+if 0: # Iara (single file)
+    dir_base = '/work2/lbuc/jzhao/PyORBIT_ESSP/ESSP/iaras/DS1/DS1_3p/DS1_3p_2activity_indi/'
+    dir_mods = 'DS1_3p_2activity_indi/'
+    dir_plot = 'emcee_plot/model_files/'
+    filename = 'iaras_DS1_3p_2activity_indi'
+
+    datasets_list = ['RVdata']
+    datasets_labels = {'RVdata': 'RV'}
+
+    activity_model = 'gp_multidimensional'
+
+    activity_list = ['BISdata', 'FWHMdata']
+    activity_labels = {'BISdata':'BIS', 'FWHMdata':'FWHM'}
+
+    activity_dict = {
+        'limits_full_x': [-0.25, 1.25],
+        'limits_bjd': [59329, 59433],
+        # 'limits_full_y': [-13.5, 13.5],
+        # 'limits_residuals_y': [-11.5, 11.5],
+    }
+
+    full_dict = {
+        'reference_planet': 'b',
+        'limits_full_x': [-0.25, 1.25],
+        'limits_bjd': [59329, 59433],
+    }
+
+
+if 0: # ESSP_gp_HARPSN_EXPRES_NEID_HARPS_poly_cpu
+    dir_base = './'
+    dir_mods = 'ESSP_gp_HARPSN_EXPRES_NEID_HARPS_poly_cpu/'
+    dir_plot = 'emcee_plot/model_files/'
+    filename = 'ESSP_gp_HARPSN_EXPRES_NEID_HARPS_poly_cpu'
+
+    datasets_list = ['ESSP_HARPSN', 'ESSP_EXPRES', 'ESSP_NEID', 'ESSP_HARPS']
+    datasets_labels = {'ESSP_HARPSN':'HARPSN', 'ESSP_EXPRES':'EXPRES', 'ESSP_NEID':'NEID', 'ESSP_HARPS':'HARPS'}
+
+    activity_model = 'gp_multidimensional'
+
+    activity_list = ['ESSP_BIS_HARPSN', 'ESSP_BIS_EXPRES', 'ESSP_BIS_NEID', 'ESSP_BIS_HARPS']
+    activity_labels = {'ESSP_BIS_HARPSN':'BIS_HARPSN', 'ESSP_BIS_EXPRES':'BIS_EXPRES', 'ESSP_BIS_NEID':'BIS_NEID', 'ESSP_BIS_HARPS':'BIS_HARPS'}
+
+    activity_dict = {
+        'limits_full_x': [-0.25, 1.25],
+        'limits_bjd': [59332, 59360],
+        # 'limits_full_y': [-13.5, 13.5],
+        # 'limits_residuals_y': [-11.5, 11.5],
+    }
+
+    full_dict = {
+        'reference_planet': 'b',
+        'limits_full_x': [-0.25, 1.25],
+        'limits_bjd': [59332, 59360],
+    }
+
+if 0: # HD189567_3p_run7
+    # Directory paths
+    dir_base = './'
+    dir_mods = 'HD189567_3p_run7/'
+    dir_plot = 'emcee_plot/model_files/'
+    filename = 'HD189567_3p_run7'
+
+    # Dataset configuration
+    datasets_list = ['RVdata']
+    datasets_labels = {'RVdata':'RV'}
+
+    # Activity model configuration
+    activity_model = 'gp_multidimensional'
+    activity_list = ['BISdata', 'FWHMdata']
+    activity_labels = {
+        'BISdata':'BIS',
+        'FWHMdata':'FWHM',
+    }
+
+    # Plot limits for activity
+    activity_dict = {
+        'limits_full_x': [-0.25, 1.25],
+        'limits_bjd': [2455480., 2460211.522268],
+        # 'limits_full_y': [-13.5, 13.5],
+        # 'limits_residuals_y': [-11.5, 11.5],
+    }
+
+    # Plot limits for full RV model
+    full_dict = {
+        'reference_planet': 'b',
+        'limits_full_x': [-0.25, 1.25],
+        'limits_bjd': [2455480., 2460211.522268],
+    }
 
 # Planet configuration
-# Specify which planets to plot (e.g., ['b'], ['b', 'c'], ['c'])
-PLANETS_TO_PLOT = ['b']
-# PLANETS_TO_PLOT = ['b', 'c']
-
-
-# Configuration dictionary containing all preset options
-CONFIGS = {
-
-
-
-    'DS1_1p_4activity_indi': {
-        'dir_base': '/work2/lbuc/iara/GitHub/PyORBIT_examples/ESSP4/results_jz/single/DS1/DS1_1p/DS1_1p_4activity_indi/',
-        'dir_mods': 'DS1_1p_4activity_indi/',
-        'dir_plot': 'emcee_plot/model_files/',
-        'filename': 'DS1_1p_4activity_indi',
-        'datasets_list': ['RVdata'],
-        'datasets_labels': {'RVdata': 'RV'},
-        'activity_model': 'gp_multidimensional',
-        'activity_list': ['BISdata', 'FWHMdata', 'CaIIdata', 'Halphadata'],
-        'activity_labels': {'BISdata': 'BIS', 'FWHMdata': 'FWHM', 'CaIIdata': 'CaII', 'Halphadata': 'Halpha'},
-        'activity_dict': {
-            'limits_full_x': [-0.25, 1.25],
-            'limits_bjd': [59329, 59433],
-        },
-        'full_dict': {
-            'reference_planet': 'b',
-            'limits_full_x': [-0.25, 1.25],
-            'limits_bjd': [59329, 59433],
-        }
-    },
-
-    'DS2_1p_4activity_indi': {
-        'dir_base': '/work2/lbuc/iara/GitHub/PyORBIT_examples/ESSP4/results_jz/single/DS2/DS2_1p/DS2_1p_4activity_indi/',
-        'dir_mods': 'DS2_1p_4activity_indi/',
-        'dir_plot': 'emcee_plot/model_files/',
-        'filename': 'DS2_1p_4activity_indi',
-        'datasets_list': ['RVdata'],
-        'datasets_labels': {'RVdata': 'RV'},
-        'activity_model': 'gp_multidimensional',
-        'activity_list': ['BISdata', 'FWHMdata', 'CaIIdata', 'Halphadata'],
-        'activity_labels': {'BISdata': 'BIS', 'FWHMdata': 'FWHM', 'CaIIdata': 'CaII', 'Halphadata': 'Halpha'},
-        'activity_dict': {
-            'limits_full_x': [-0.25, 1.25],
-            'limits_bjd': [59329, 59433],
-        },
-        'full_dict': {
-            'reference_planet': 'b',
-            'limits_full_x': [-0.25, 1.25],
-            'limits_bjd': [59329, 59433],
-        }
-    },
-
-    'DS4_1p_4activity_indi': {
-        'dir_base': '/work2/lbuc/iara/GitHub/PyORBIT_examples/ESSP4/results_jz/single/DS4/DS4_1p/DS4_1p_4activity_indi/',
-        'dir_mods': 'DS4_1p_4activity_indi/',
-        'dir_plot': 'emcee_plot/model_files/',
-        'filename': 'DS4_1p_4activity_indi',
-        'datasets_list': ['RVdata'],
-        'datasets_labels': {'RVdata': 'RV'},
-        'activity_model': 'gp_multidimensional',
-        'activity_list': ['BISdata', 'FWHMdata', 'CaIIdata', 'Halphadata'],
-        'activity_labels': {'BISdata': 'BIS', 'FWHMdata': 'FWHM', 'CaIIdata': 'CaII', 'Halphadata': 'Halpha'},
-        'activity_dict': {
-            'limits_full_x': [-0.25, 1.25],
-            'limits_bjd': [59329, 59433],
-        },
-        'full_dict': {
-            'reference_planet': 'b',
-            'limits_full_x': [-0.25, 1.25],
-            'limits_bjd': [59329, 59433],
-        }
-    },
-
-
-
-    'DS4_2p_4activity_indi': {
-        'dir_base': '/work2/lbuc/iara/GitHub/PyORBIT_examples/ESSP4/results_jz/single/DS4/DS4_2p/DS4_2p_4activity_indi/',
-        'dir_mods': 'DS4_2p_4activity_indi/',
-        'dir_plot': 'emcee_plot/model_files/',
-        'filename': 'DS4_2p_4activity_indi',
-        'datasets_list': ['RVdata'],
-        'datasets_labels': {'RVdata': 'RV'},
-        'activity_model': 'gp_multidimensional',
-        'activity_list': ['BISdata', 'FWHMdata', 'CaIIdata', 'Halphadata'],
-        'activity_labels': {'BISdata': 'BIS', 'FWHMdata': 'FWHM', 'CaIIdata': 'CaII', 'Halphadata': 'Halpha'},
-        'activity_dict': {
-            'limits_full_x': [-0.25, 1.25],
-            'limits_bjd': [59329, 59433],
-        },
-        'full_dict': {
-            'reference_planet': 'b',
-            'limits_full_x': [-0.25, 1.25],
-            'limits_bjd': [59329, 59433],
-        }
-    },
-
-
-
-
-
-
-    'iaras_DS1': {
-        'dir_base': '/work2/lbuc/jzhao/PyORBIT_ESSP/ESSP/iaras/DS1/DS1_3p/DS1_3p_2activity_indi/',
-        'dir_mods': 'DS1_3p_2activity_indi/',
-        'dir_plot': 'emcee_plot/model_files/',
-        'filename': 'iaras_DS1_3p_2activity_indi',
-        'datasets_list': ['RVdata'],
-        'datasets_labels': {'RVdata': 'RV'},
-        'activity_model': 'gp_multidimensional',
-        'activity_list': ['BISdata', 'FWHMdata'],
-        'activity_labels': {'BISdata': 'BIS', 'FWHMdata': 'FWHM'},
-        'activity_dict': {
-            'limits_full_x': [-0.25, 1.25],
-            'limits_bjd': [59329, 59433],
-        },
-        'full_dict': {
-            'reference_planet': 'b',
-            'limits_full_x': [-0.25, 1.25],
-            'limits_bjd': [59329, 59433],
-        }
-    },
-    
-    'ESSP_multi': {
-        'dir_base': './',
-        'dir_mods': 'ESSP_gp_HARPSN_EXPRES_NEID_HARPS_poly_cpu/',
-        'dir_plot': 'emcee_plot/model_files/',
-        'filename': 'ESSP_gp_HARPSN_EXPRES_NEID_HARPS_poly_cpu',
-        'datasets_list': ['ESSP_HARPSN', 'ESSP_EXPRES', 'ESSP_NEID', 'ESSP_HARPS'],
-        'datasets_labels': {
-            'ESSP_HARPSN': 'HARPSN', 
-            'ESSP_EXPRES': 'EXPRES', 
-            'ESSP_NEID': 'NEID', 
-            'ESSP_HARPS': 'HARPS'
-        },
-        'activity_model': 'gp_multidimensional',
-        'activity_list': ['ESSP_BIS_HARPSN', 'ESSP_BIS_EXPRES', 'ESSP_BIS_NEID', 'ESSP_BIS_HARPS'],
-        'activity_labels': {
-            'ESSP_BIS_HARPSN': 'BIS_HARPSN', 
-            'ESSP_BIS_EXPRES': 'BIS_EXPRES', 
-            'ESSP_BIS_NEID': 'BIS_NEID', 
-            'ESSP_BIS_HARPS': 'BIS_HARPS'
-        },
-        'activity_dict': {
-            'limits_full_x': [-0.25, 1.25],
-            'limits_bjd': [59332, 59360],
-        },
-        'full_dict': {
-            'reference_planet': 'b',
-            'limits_full_x': [-0.25, 1.25],
-            'limits_bjd': [59332, 59360],
-        }
-    },
-    
-    'HD189567': {
-        'dir_base': './',
-        'dir_mods': 'HD189567_3p_run7/',
-        'dir_plot': 'emcee_plot/model_files/',
-        'filename': 'HD189567_3p_run7',
-        'datasets_list': ['RVdata'],
-        'datasets_labels': {'RVdata': 'RV'},
-        'activity_model': 'gp_multidimensional',
-        'activity_list': ['BISdata', 'FWHMdata'],
-        'activity_labels': {
-            'BISdata': 'BIS',
-            'FWHMdata': 'FWHM',
-        },
-        'activity_dict': {
-            'limits_full_x': [-0.25, 1.25],
-            'limits_bjd': [2455480., 2460211.522268],
-        },
-        'full_dict': {
-            'reference_planet': 'b',
-            'limits_full_x': [-0.25, 1.25],
-            'limits_bjd': [2455480., 2460211.522268],
-        }
-    }
-}
-
-# Load the selected configuration
-config = CONFIGS[CONFIG_PRESET]
-
-# Extract configuration variables
-dir_base = config['dir_base']
-dir_mods = config['dir_mods']
-dir_plot = config['dir_plot']
-filename = config['filename']
-datasets_list = config['datasets_list']
-datasets_labels = config['datasets_labels']
-activity_model = config['activity_model']
-activity_list = config['activity_list']
-activity_labels = config['activity_labels']
-activity_dict = config['activity_dict']
-full_dict = config['full_dict']
+# Set to True to enable planet c, False to disable
+ENABLE_PLANET_C = False
 
 # Plotting parameters
 font_label = 12
@@ -222,7 +207,7 @@ figsize = (10, 7)
 # IMPORTS
 # ============================================================================
 import numpy as np
-# %matplotlib widget
+%matplotlib widget
 import matplotlib.pyplot as plt
 import collections
 import matplotlib.gridspec as gridspec
@@ -271,23 +256,34 @@ summary_percentiles_derived = pickle.load(
 
 planet_dict = collections.OrderedDict()
 
-# Configure planets based on PLANETS_TO_PLOT list
-for planet_name in PLANETS_TO_PLOT:
-    if planet_name in summary_percentiles_parameters:
-        planet_dict[planet_name] = {
-            'P': summary_percentiles_parameters[planet_name]['P'][3],
-            'limits_folded_x': [-0.25, 1.25],
-            'transit_folded': False,
-            'K_error_1sigma': (summary_percentiles_parameters[planet_name]['K'][4] - 
-                               summary_percentiles_parameters[planet_name]['K'][2]) / 2,
-            'K_error_2sigma': (summary_percentiles_parameters[planet_name]['K'][5] - 
-                               summary_percentiles_parameters[planet_name]['K'][1]) / 2,
-            'K_error_3sigma': (summary_percentiles_parameters[planet_name]['K'][6] - 
-                               summary_percentiles_parameters[planet_name]['K'][0]) / 2,
-        }
-        print(f"Planet {planet_name} configured successfully")
-    else:
-        print(f"Warning: Planet {planet_name} not found in data files")
+# Planet b configuration
+planet_name = 'b'
+planet_dict[planet_name] = {
+    'P': summary_percentiles_parameters[planet_name]['P'][3],
+    'limits_folded_x': [-0.25, 1.25],
+    'transit_folded': False,
+    'K_error_1sigma': (summary_percentiles_parameters[planet_name]['K'][4] - 
+                       summary_percentiles_parameters[planet_name]['K'][2]) / 2,
+    'K_error_2sigma': (summary_percentiles_parameters[planet_name]['K'][5] - 
+                       summary_percentiles_parameters[planet_name]['K'][1]) / 2,
+    'K_error_3sigma': (summary_percentiles_parameters[planet_name]['K'][6] - 
+                       summary_percentiles_parameters[planet_name]['K'][0]) / 2,
+}
+
+# Planet c configuration (optional)
+if ENABLE_PLANET_C:
+    planet_name = 'c'
+    planet_dict[planet_name] = {
+        'P': summary_percentiles_parameters[planet_name]['P'][3],
+        'limits_folded_x': [-0.25, 1.25],
+        'transit_folded': False,
+        'K_error_1sigma': (summary_percentiles_parameters[planet_name]['K'][4] - 
+                           summary_percentiles_parameters[planet_name]['K'][2]) / 2,
+        'K_error_2sigma': (summary_percentiles_parameters[planet_name]['K'][5] - 
+                           summary_percentiles_parameters[planet_name]['K'][1]) / 2,
+        'K_error_3sigma': (summary_percentiles_parameters[planet_name]['K'][6] - 
+                           summary_percentiles_parameters[planet_name]['K'][0]) / 2,
+    }
 
 print("Planet dictionary loaded:")
 print(planet_dict)
@@ -444,7 +440,14 @@ for key_name, key_val in planet_dict.items():
     ax_0.set_ylabel('RV [m/s]')
     ax_1.set_xlabel('Orbital Phase')
     ax_1.set_ylabel('Residuals [m/s]')
-    ax_0.legend(framealpha=1.0, loc='lower left')
+    handles, labels = ax_0.get_legend_handles_labels()
+    # Only keep unique labels for legend (model + datasets)
+    from collections import OrderedDict
+    unique = OrderedDict()
+    for h, l in zip(handles, labels):
+        if l not in unique and l is not None:
+            unique[l] = h
+    ax_0.legend(unique.values(), unique.keys(), framealpha=1.0, loc='lower left')
     
     plot_filename = filename + '_' + key_name + '_folded.png'
     print(f'Folded plot for planet {key_name} saved to: {plot_filename}')
@@ -462,6 +465,7 @@ key_name = full_dict['reference_planet']
 
 fig = plt.figure(figsize=figsize)
 ax_0, ax_1 = plots_in_grid()
+ax_0.set_title('Full RV time series (planetary RV + activity RV)')
 
 for n_dataset, dataset in enumerate(datasets_list):
     print(f"Processing dataset: {dataset}")
@@ -471,8 +475,9 @@ for n_dataset, dataset in enumerate(datasets_list):
         dir_base + dir_mods + dir_plot + dataset + '_full.dat', 
         skip_header=1
     )
-    ax_0.plot(RV_full[:, 0]-2450000, RV_full[:, 1], color='k', 
-              linestyle='-', zorder=2, lw=0.1)
+    # Plot model in color of this dataset/instrument
+    ax_0.plot(RV_full[:, 0]-2450000, RV_full[:, 1], color=default_color, 
+              linestyle='-', zorder=2, lw=1, alpha=0.5)
 
     RV_mod = np.genfromtxt(
         dir_base + dir_mods + dir_plot + dataset + '_radial_velocities_' + key_name + '.dat', 
@@ -514,7 +519,13 @@ ax_1.yaxis.set_minor_locator(MultipleLocator(1))
 ax_0.set_ylabel('RV [m/s]')
 ax_1.set_xlabel('Time [BJD-2450000]')
 ax_1.set_ylabel('Residuals [m/s]')
-ax_0.legend(framealpha=1.0, loc='lower left')
+handles, labels = ax_0.get_legend_handles_labels()
+from collections import OrderedDict
+unique = OrderedDict()
+for h, l in zip(handles, labels):
+    if l not in unique and l is not None:
+        unique[l] = h
+ax_0.legend(unique.values(), unique.keys(), framealpha=1.0, loc='lower left')
 
 plot_filename = filename + '_full_model.png'
 print(f'Full RV plot saved to: {plot_filename}')
@@ -530,18 +541,19 @@ print("="*60)
 
 fig = plt.figure(figsize=figsize)
 ax_0, ax_1 = plots_in_grid()
+ax_0.set_title('Activity RVs')
 
 for n_dataset, dataset in enumerate(datasets_list):
     print(f"Processing dataset: {dataset}")
     default_color = 'C' + repr(n_dataset)
 
-    # Plot model
+    # Plot model in dataset color
     activity_full = np.genfromtxt(
         dir_base + dir_mods + dir_plot + dataset + '_' + activity_model + '_full.dat', 
         skip_header=1
     )
-    ax_0.plot(activity_full[:, 0]-2450000.0, activity_full[:, 3], color='k', 
-              linestyle='-', zorder=2, label='Activity model', lw=1)
+    ax_0.plot(activity_full[:, 0]-2450000.0, activity_full[:, 3], color=default_color, 
+              linestyle='-', zorder=2, lw=1, alpha=0.5)
 
     activity_mod = np.genfromtxt(
         dir_base + dir_mods + dir_plot + dataset + '_' + activity_model + '.dat', 
@@ -583,7 +595,13 @@ ax_1.yaxis.set_minor_locator(MultipleLocator(1))
 ax_0.set_ylabel('RV [m/s]')
 ax_1.set_xlabel('Time [BJD-2450000]')
 ax_1.set_ylabel('Residuals [m/s]')
-ax_0.legend(framealpha=1.0, loc='lower left')
+handles, labels = ax_0.get_legend_handles_labels()
+from collections import OrderedDict
+unique = OrderedDict()
+for h, l in zip(handles, labels):
+    if l not in unique and l is not None:
+        unique[l] = h
+ax_0.legend(unique.values(), unique.keys(), framealpha=1.0, loc='lower left')
 
 plot_filename = filename + '_activity_RV_model.png'
 print(f'Combined activity plot saved to: {plot_filename}')
@@ -603,15 +621,14 @@ for n_dataset, dataset in enumerate(activity_list):
     fig = plt.figure(figsize=figsize)
     ax_0, ax_1 = plots_in_grid()
 
-    # Plot model
+    # Plot model in color matching data
     activity_full = np.genfromtxt(
         dir_base + dir_mods + dir_plot + dataset + '_' + activity_model + '_full.dat', 
         skip_header=1
     )
-    ax_0.plot(activity_full[:, 0], activity_full[:, 3], color='k', 
-              linestyle='-', zorder=2, label='Activity model', lw=0.1)
-
     default_color = 'C' + repr(n_dataset)
+    ax_0.plot(activity_full[:, 0], activity_full[:, 3], color=default_color, 
+              linestyle='-', zorder=2, lw=1, alpha=0.5)
 
     activity_mod = np.genfromtxt(
         dir_base + dir_mods + dir_plot + dataset + '_' + activity_model + '.dat', 
@@ -648,7 +665,13 @@ for n_dataset, dataset in enumerate(activity_list):
     ax_0.set_ylabel('Activity index')
     ax_1.set_xlabel('Time [BJD-2450000]')
     ax_1.set_ylabel('Residuals [m/s]')
-    ax_0.legend(framealpha=1.0, loc='lower left')
+    handles, labels = ax_0.get_legend_handles_labels()
+    from collections import OrderedDict
+    unique = OrderedDict()
+    for h, l in zip(handles, labels):
+        if l not in unique and l is not None:
+            unique[l] = h
+    ax_0.legend(unique.values(), unique.keys(), framealpha=1.0, loc='lower left')
     
     plot_filename = filename + '_activity_' + dataset + '.png'
     print(f'Activity plot for {dataset} saved to: {plot_filename}')

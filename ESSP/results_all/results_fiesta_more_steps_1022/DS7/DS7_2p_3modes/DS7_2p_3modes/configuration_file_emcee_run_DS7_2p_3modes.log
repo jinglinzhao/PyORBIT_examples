@@ -1,0 +1,2835 @@
+
+:::---::: PyORBIT v11.0.1 :::---:::
+
+Python version in use:
+3.10.18 (main, Jun  5 2025, 13:14:17) [GCC 11.2.0]
+
+reloaded_optimize:  False
+reloaded_pyde:  False
+reloaded_emcee:  False
+
+number of multiprocessing threads: 16
+multiprocessing method (should be fork):  fork
+
+parameters/safe_reload flag (must be True for tinygp):  False
+
+Opening:  RVdata_expres
+Opening:  RVdata_harps
+Opening:  RVdata_neid
+Opening:  FIESTAdata_expres_mode1
+Opening:  FIESTAdata_expres_mode2
+Opening:  FIESTAdata_expres_mode3
+Opening:  FIESTAdata_harps_mode1
+Opening:  FIESTAdata_harps_mode2
+Opening:  FIESTAdata_harps_mode3
+Opening:  FIESTAdata_harpsn_mode1
+Opening:  FIESTAdata_harpsn_mode2
+Opening:  FIESTAdata_harpsn_mode3
+Opening:  FIESTAdata_neid_mode1
+Opening:  FIESTAdata_neid_mode2
+Opening:  FIESTAdata_neid_mode3
+
+Adding common model of planet:  b
+Adding common model of planet:  c
+Using orbital model:  keplerian
+Using orbital parametrization:  Eastman2013
+
+Using orbital model:  keplerian
+Using orbital parametrization:  Eastman2013
+
+gp_multidimensional  S+LEAF model, number of harmonics: 4
+
+GP model: gp_multidimensional  hyperparameters_condition:    True
+GP model: gp_multidimensional  rotation_decay_condition:     True
+
+====================================================================================================
+     Ids, spaces (s), boundaries (b) and priors (p) of the sampler parameters     
+====================================================================================================
+
+----- dataset:  RVdata_expres
+jitter_0      id:  13  s:Linear      b:[      0.0010,      11.5000]   p:Uniform   []
+offset_0      id:  14  s:Linear      b:[  -9995.9050,   10012.5570]   p:Uniform   []
+
+----- dataset: RVdata_expres             ----- model: gp_multidimensional           
+rot_amp       id:  15  s:Linear      b:[      0.0000,      10.0000]   p:Uniform   []
+con_amp       id:  16  s:Linear      b:[    -20.0000,      20.0000]   p:Uniform   []
+
+----- dataset:  RVdata_harps
+jitter_0      id:  17  s:Linear      b:[      0.0009,      12.2000]   p:Uniform   []
+offset_0      id:  18  s:Linear      b:[  -9994.3035,   10013.7475]   p:Uniform   []
+offset_1      id:  19  s:Linear      b:[  -9994.3035,   10013.7475]   p:Uniform   []
+
+----- dataset: RVdata_harps              ----- model: gp_multidimensional           
+rot_amp       id:  20  s:Linear      b:[      0.0000,      10.0000]   p:Uniform   []
+con_amp       id:  21  s:Linear      b:[    -20.0000,      20.0000]   p:Uniform   []
+
+----- dataset:  RVdata_neid
+jitter_0      id:  22  s:Linear      b:[      0.0010,      12.2000]   p:Uniform   []
+offset_0      id:  23  s:Linear      b:[  -9993.3866,   10013.1434]   p:Uniform   []
+
+----- dataset: RVdata_neid               ----- model: gp_multidimensional           
+rot_amp       id:  24  s:Linear      b:[      0.0000,      10.0000]   p:Uniform   []
+con_amp       id:  25  s:Linear      b:[    -20.0000,      20.0000]   p:Uniform   []
+
+----- dataset:  FIESTAdata_expres_mode1
+jitter_0      id:  26  s:Linear      b:[      0.0017,      18.9342]   p:Uniform   []
+offset_0      id:  27  s:Linear      b:[ -10002.0587,   10002.3918]   p:Uniform   []
+
+----- dataset: FIESTAdata_expres_mode1   ----- model: gp_multidimensional           
+rot_amp       id:  28  s:Linear      b:[    -10.0000,      10.0000]   p:Uniform   []
+con_amp       id:  29  s:Linear      b:[    -20.0000,      20.0000]   p:Uniform   []
+
+----- dataset:  FIESTAdata_expres_mode2
+jitter_0      id:  30  s:Linear      b:[      0.0019,      21.6805]   p:Uniform   []
+offset_0      id:  31  s:Linear      b:[ -10003.5672,   10002.6393]   p:Uniform   []
+
+----- dataset: FIESTAdata_expres_mode2   ----- model: gp_multidimensional           
+rot_amp       id:  32  s:Linear      b:[    -10.0000,      10.0000]   p:Uniform   []
+con_amp       id:  33  s:Linear      b:[    -20.0000,      20.0000]   p:Uniform   []
+
+----- dataset:  FIESTAdata_expres_mode3
+jitter_0      id:  34  s:Linear      b:[      0.0045,      50.3391]   p:Uniform   []
+offset_0      id:  35  s:Linear      b:[ -10009.7207,   10010.7123]   p:Uniform   []
+
+----- dataset: FIESTAdata_expres_mode3   ----- model: gp_multidimensional           
+rot_amp       id:  36  s:Linear      b:[    -10.0000,      10.0000]   p:Uniform   []
+con_amp       id:  37  s:Linear      b:[    -20.0000,      20.0000]   p:Uniform   []
+
+----- dataset:  FIESTAdata_harps_mode1
+jitter_0      id:  38  s:Linear      b:[      0.0013,      13.9050]   p:Uniform   []
+offset_0      id:  39  s:Linear      b:[ -10001.2043,   10001.7494]   p:Uniform   []
+
+----- dataset: FIESTAdata_harps_mode1    ----- model: gp_multidimensional           
+rot_amp       id:  40  s:Linear      b:[    -10.0000,      10.0000]   p:Uniform   []
+con_amp       id:  41  s:Linear      b:[    -20.0000,      20.0000]   p:Uniform   []
+
+----- dataset:  FIESTAdata_harps_mode2
+jitter_0      id:  42  s:Linear      b:[      0.0016,      16.4267]   p:Uniform   []
+offset_0      id:  43  s:Linear      b:[ -10002.9651,   10001.8967]   p:Uniform   []
+
+----- dataset: FIESTAdata_harps_mode2    ----- model: gp_multidimensional           
+rot_amp       id:  44  s:Linear      b:[    -10.0000,      10.0000]   p:Uniform   []
+con_amp       id:  45  s:Linear      b:[    -20.0000,      20.0000]   p:Uniform   []
+
+----- dataset:  FIESTAdata_harps_mode3
+jitter_0      id:  46  s:Linear      b:[      0.0044,      47.0591]   p:Uniform   []
+offset_0      id:  47  s:Linear      b:[ -10008.9121,   10007.9038]   p:Uniform   []
+
+----- dataset: FIESTAdata_harps_mode3    ----- model: gp_multidimensional           
+rot_amp       id:  48  s:Linear      b:[    -10.0000,      10.0000]   p:Uniform   []
+con_amp       id:  49  s:Linear      b:[    -20.0000,      20.0000]   p:Uniform   []
+
+----- dataset:  FIESTAdata_harpsn_mode1
+jitter_0      id:  50  s:Linear      b:[      0.0011,      12.0774]   p:Uniform   []
+offset_0      id:  51  s:Linear      b:[ -10002.4732,   10002.8195]   p:Uniform   []
+
+----- dataset: FIESTAdata_harpsn_mode1   ----- model: gp_multidimensional           
+rot_amp       id:  52  s:Linear      b:[    -10.0000,      10.0000]   p:Uniform   []
+con_amp       id:  53  s:Linear      b:[    -20.0000,      20.0000]   p:Uniform   []
+
+----- dataset:  FIESTAdata_harpsn_mode2
+jitter_0      id:  54  s:Linear      b:[      0.0012,      13.9895]   p:Uniform   []
+offset_0      id:  55  s:Linear      b:[ -10004.0119,   10002.8742]   p:Uniform   []
+
+----- dataset: FIESTAdata_harpsn_mode2   ----- model: gp_multidimensional           
+rot_amp       id:  56  s:Linear      b:[    -10.0000,      10.0000]   p:Uniform   []
+con_amp       id:  57  s:Linear      b:[    -20.0000,      20.0000]   p:Uniform   []
+
+----- dataset:  FIESTAdata_harpsn_mode3
+jitter_0      id:  58  s:Linear      b:[      0.0034,      39.1297]   p:Uniform   []
+offset_0      id:  59  s:Linear      b:[ -10007.4719,   10008.5960]   p:Uniform   []
+
+----- dataset: FIESTAdata_harpsn_mode3   ----- model: gp_multidimensional           
+rot_amp       id:  60  s:Linear      b:[    -10.0000,      10.0000]   p:Uniform   []
+con_amp       id:  61  s:Linear      b:[    -20.0000,      20.0000]   p:Uniform   []
+
+----- dataset:  FIESTAdata_neid_mode1
+jitter_0      id:  62  s:Linear      b:[      0.0016,      19.1206]   p:Uniform   []
+offset_0      id:  63  s:Linear      b:[ -10002.5624,   10002.0726]   p:Uniform   []
+
+----- dataset: FIESTAdata_neid_mode1     ----- model: gp_multidimensional           
+rot_amp       id:  64  s:Linear      b:[    -10.0000,      10.0000]   p:Uniform   []
+con_amp       id:  65  s:Linear      b:[    -20.0000,      20.0000]   p:Uniform   []
+
+----- dataset:  FIESTAdata_neid_mode2
+jitter_0      id:  66  s:Linear      b:[      0.0020,      23.1391]   p:Uniform   []
+offset_0      id:  67  s:Linear      b:[ -10003.5449,   10004.1555]   p:Uniform   []
+
+----- dataset: FIESTAdata_neid_mode2     ----- model: gp_multidimensional           
+rot_amp       id:  68  s:Linear      b:[    -10.0000,      10.0000]   p:Uniform   []
+con_amp       id:  69  s:Linear      b:[    -20.0000,      20.0000]   p:Uniform   []
+
+----- dataset:  FIESTAdata_neid_mode3
+jitter_0      id:  70  s:Linear      b:[      0.0050,      57.8429]   p:Uniform   []
+offset_0      id:  71  s:Linear      b:[ -10008.7119,   10006.3460]   p:Uniform   []
+
+----- dataset: FIESTAdata_neid_mode3     ----- model: gp_multidimensional           
+rot_amp       id:  72  s:Linear      b:[    -10.0000,      10.0000]   p:Uniform   []
+con_amp       id:  73  s:Linear      b:[    -20.0000,      20.0000]   p:Uniform   []
+
+----- common model:  b
+P             id:   0  s:Log_Base2   b:[      0.3785,       6.6439]   p:Uniform   []
+K             id:   1  s:Log_Base2   b:[     -9.9658,       3.3219]   p:Uniform   []
+sre_coso      id:   2  s:Linear      b:[     -1.0000,       1.0000]   p:Uniform   []
+sre_sino      id:   3  s:Linear      b:[     -1.0000,       1.0000]   p:Uniform   []
+mean_long     id:   4  s:Linear      b:[      0.0000,     360.0000]   p:Uniform   []
+e             derived (no id, space, bound)                           p:Gaussian   [0.    0.098]
+omega         derived (no id, space, bound)                           p:Uniform   [0.0, 360.0]
+
+----- common model:  c
+P             id:   5  s:Log_Base2   b:[      0.3785,       6.6439]   p:Uniform   []
+K             id:   6  s:Log_Base2   b:[     -9.9658,       3.3219]   p:Uniform   []
+sre_coso      id:   7  s:Linear      b:[     -1.0000,       1.0000]   p:Uniform   []
+sre_sino      id:   8  s:Linear      b:[     -1.0000,       1.0000]   p:Uniform   []
+mean_long     id:   9  s:Linear      b:[      0.0000,     360.0000]   p:Uniform   []
+e             derived (no id, space, bound)                           p:Gaussian   [0.    0.098]
+omega         derived (no id, space, bound)                           p:Uniform   [0.0, 360.0]
+
+----- common model:  activity
+Prot          id:  10  s:Linear      b:[     20.0000,      35.0000]   p:Gaussian   [28.   0.5]
+Pdec          id:  11  s:Linear      b:[     30.0000,    1000.0000]   p:Uniform   []
+Oamp          id:  12  s:Log_Base2   b:[     -6.6439,       0.0000]   p:Gaussian   [0.35  0.035]
+
+----- common model:  star_parameters
+mass          derived (no id, space, bound)                           p:Gaussian   [1.e+00 1.e-06]
+radius        derived (no id, space, bound)                           p:Gaussian   [1.e+00 1.e-06]
+density       derived (no id, space, bound)                           p:Gaussian   [1.e+00 1.e-06]
+
+Include priors:  True
+
+Reference Time Tref:  59334.700184
+
+Dimensions =  74
+Nwalkers =  296
+
+Using threading pool for PyDE: True
+PyDE running
+Boundaries redefined after PyDE output
+PyDE completed, it took        254.1 seconds
+
+====================================================================================================
+     Starting point of the sample/optimization routines    
+====================================================================================================
+
+----- dataset:  RVdata_expres
+jitter_0        13      1.305351 [    0.0010,    11.5000]
+offset_0        14      8.806255 [-9995.9050, 10012.5570]
+
+----- dataset: RVdata_expres             ----- model: gp_multidimensional           
+rot_amp         15      7.489612 [    0.0000,    10.0000]
+con_amp         16      8.620955 [  -20.0000,    20.0000]
+
+----- dataset:  RVdata_harps
+jitter_0        17      1.352669 [    0.0009,    12.2000]
+offset_0        18      9.402826 [-9994.3035, 10013.7475]
+offset_1        19     10.394964 [-9994.3035, 10013.7475]
+
+----- dataset: RVdata_harps              ----- model: gp_multidimensional           
+rot_amp         20      3.069496 [    0.0000,    10.0000]
+con_amp         21      9.861444 [  -20.0000,    20.0000]
+
+----- dataset:  RVdata_neid
+jitter_0        22      1.153696 [    0.0010,    12.2000]
+offset_0        23      9.699281 [-9993.3866, 10013.1434]
+
+----- dataset: RVdata_neid               ----- model: gp_multidimensional           
+rot_amp         24      2.465663 [    0.0000,    10.0000]
+con_amp         25     10.664225 [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_expres_mode1
+jitter_0        26      0.905724 [    0.0017,    18.9342]
+offset_0        27      0.010851 [-10002.0587, 10002.3918]
+
+----- dataset: FIESTAdata_expres_mode1   ----- model: gp_multidimensional           
+rot_amp         28     -8.748264 [  -10.0000,    10.0000]
+con_amp         29     -2.486887 [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_expres_mode2
+jitter_0        30      1.189666 [    0.0019,    21.6805]
+offset_0        31     -0.017572 [-10003.5672, 10002.6393]
+
+----- dataset: FIESTAdata_expres_mode2   ----- model: gp_multidimensional           
+rot_amp         32      8.622727 [  -10.0000,    10.0000]
+con_amp         33      3.461167 [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_expres_mode3
+jitter_0        34      4.006322 [    0.0045,    50.3391]
+offset_0        35      0.116375 [-10009.7207, 10010.7123]
+
+----- dataset: FIESTAdata_expres_mode3   ----- model: gp_multidimensional           
+rot_amp         36     -2.795940 [  -10.0000,    10.0000]
+con_amp         37      6.554459 [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_harps_mode1
+jitter_0        38      0.819060 [    0.0013,    13.9050]
+offset_0        39     -0.016389 [-10001.2043, 10001.7494]
+
+----- dataset: FIESTAdata_harps_mode1    ----- model: gp_multidimensional           
+rot_amp         40     -1.748268 [  -10.0000,    10.0000]
+con_amp         41      2.064279 [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_harps_mode2
+jitter_0        42      1.303158 [    0.0016,    16.4267]
+offset_0        43      0.035021 [-10002.9651, 10001.8967]
+
+----- dataset: FIESTAdata_harps_mode2    ----- model: gp_multidimensional           
+rot_amp         44     -2.734275 [  -10.0000,    10.0000]
+con_amp         45      1.000767 [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_harps_mode3
+jitter_0        46      3.750522 [    0.0044,    47.0591]
+offset_0        47      0.104096 [-10008.9121, 10007.9038]
+
+----- dataset: FIESTAdata_harps_mode3    ----- model: gp_multidimensional           
+rot_amp         48      5.705417 [  -10.0000,    10.0000]
+con_amp         49    -17.853154 [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_harpsn_mode1
+jitter_0        50      0.967617 [    0.0011,    12.0774]
+offset_0        51      0.010407 [-10002.4732, 10002.8195]
+
+----- dataset: FIESTAdata_harpsn_mode1   ----- model: gp_multidimensional           
+rot_amp         52      0.748789 [  -10.0000,    10.0000]
+con_amp         53      0.339254 [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_harpsn_mode2
+jitter_0        54      1.310252 [    0.0012,    13.9895]
+offset_0        55     -0.036130 [-10004.0119, 10002.8742]
+
+----- dataset: FIESTAdata_harpsn_mode2   ----- model: gp_multidimensional           
+rot_amp         56      1.958507 [  -10.0000,    10.0000]
+con_amp         57      0.675404 [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_harpsn_mode3
+jitter_0        58      3.222491 [    0.0034,    39.1297]
+offset_0        59     -0.052264 [-10007.4719, 10008.5960]
+
+----- dataset: FIESTAdata_harpsn_mode3   ----- model: gp_multidimensional           
+rot_amp         60     -7.073125 [  -10.0000,    10.0000]
+con_amp         61     -3.861377 [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_neid_mode1
+jitter_0        62      0.793844 [    0.0016,    19.1206]
+offset_0        63      0.070435 [-10002.5624, 10002.0726]
+
+----- dataset: FIESTAdata_neid_mode1     ----- model: gp_multidimensional           
+rot_amp         64     -3.369435 [  -10.0000,    10.0000]
+con_amp         65      4.447357 [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_neid_mode2
+jitter_0        66      1.271464 [    0.0020,    23.1391]
+offset_0        67     -0.096116 [-10003.5449, 10004.1555]
+
+----- dataset: FIESTAdata_neid_mode2     ----- model: gp_multidimensional           
+rot_amp         68      5.714937 [  -10.0000,    10.0000]
+con_amp         69     -7.363833 [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_neid_mode3
+jitter_0        70      3.057800 [    0.0050,    57.8429]
+offset_0        71      0.100160 [-10008.7119, 10006.3460]
+
+----- dataset: FIESTAdata_neid_mode3     ----- model: gp_multidimensional           
+rot_amp         72     -2.423738 [  -10.0000,    10.0000]
+con_amp         73      7.194487 [  -20.0000,    20.0000]
+
+----- common model:  b
+P                0      5.205565 [    0.3785,     6.6439]
+K                1     -0.478948 [   -9.9658,     3.3219]
+sre_coso         2      0.024337 [   -1.0000,     1.0000]
+sre_sino         3     -0.027416 [   -1.0000,     1.0000]
+mean_long        4    180.489662 [    0.4897,   360.4897]
+
+----- common model:  c
+P                5      2.232911 [    0.3785,     6.6439]
+K                6     -0.237968 [   -9.9658,     3.3219]
+sre_coso         7      0.023032 [   -1.0000,     1.0000]
+sre_sino         8      0.016510 [   -1.0000,     1.0000]
+mean_long        9    236.130758 [   56.1308,   416.1308]
+
+----- common model:  activity
+Prot            10     27.636163 [   20.0000,    35.0000]
+Pdec            11    356.984467 [   30.0000,  1000.0000]
+Oamp            12     -1.511697 [   -6.6439,     0.0000]
+
+----- common model:  star_parameters
+
+====================================================================================================
+     Starting point projected onto the model parameter space     
+====================================================================================================
+
+----- dataset:  RVdata_expres
+jitter_0              1.305351 
+offset_0              8.806255 
+
+
+----- dataset: RVdata_expres             ----- model: gp_multidimensional           
+rot_amp               7.489612 
+con_amp               8.620955 
+
+----- dataset:  RVdata_harps
+jitter_0              1.352669 
+offset_0              9.402826 
+offset_1             10.394964 
+
+
+----- dataset: RVdata_harps              ----- model: gp_multidimensional           
+rot_amp               3.069496 
+con_amp               9.861444 
+
+----- dataset:  RVdata_neid
+jitter_0              1.153696 
+offset_0              9.699281 
+
+
+----- dataset: RVdata_neid               ----- model: gp_multidimensional           
+rot_amp               2.465663 
+con_amp              10.664225 
+
+----- dataset:  FIESTAdata_expres_mode1
+jitter_0              0.905724 
+offset_0              0.010851 
+
+
+----- dataset: FIESTAdata_expres_mode1   ----- model: gp_multidimensional           
+rot_amp              -8.748264 
+con_amp              -2.486887 
+
+----- dataset:  FIESTAdata_expres_mode2
+jitter_0              1.189666 
+offset_0             -0.017572 
+
+
+----- dataset: FIESTAdata_expres_mode2   ----- model: gp_multidimensional           
+rot_amp               8.622727 
+con_amp               3.461167 
+
+----- dataset:  FIESTAdata_expres_mode3
+jitter_0              4.006322 
+offset_0              0.116375 
+
+
+----- dataset: FIESTAdata_expres_mode3   ----- model: gp_multidimensional           
+rot_amp              -2.795940 
+con_amp               6.554459 
+
+----- dataset:  FIESTAdata_harps_mode1
+jitter_0              0.819060 
+offset_0             -0.016389 
+
+
+----- dataset: FIESTAdata_harps_mode1    ----- model: gp_multidimensional           
+rot_amp              -1.748268 
+con_amp               2.064279 
+
+----- dataset:  FIESTAdata_harps_mode2
+jitter_0              1.303158 
+offset_0              0.035021 
+
+
+----- dataset: FIESTAdata_harps_mode2    ----- model: gp_multidimensional           
+rot_amp              -2.734275 
+con_amp               1.000767 
+
+----- dataset:  FIESTAdata_harps_mode3
+jitter_0              3.750522 
+offset_0              0.104096 
+
+
+----- dataset: FIESTAdata_harps_mode3    ----- model: gp_multidimensional           
+rot_amp               5.705417 
+con_amp             -17.853154 
+
+----- dataset:  FIESTAdata_harpsn_mode1
+jitter_0              0.967617 
+offset_0              0.010407 
+
+
+----- dataset: FIESTAdata_harpsn_mode1   ----- model: gp_multidimensional           
+rot_amp               0.748789 
+con_amp               0.339254 
+
+----- dataset:  FIESTAdata_harpsn_mode2
+jitter_0              1.310252 
+offset_0             -0.036130 
+
+
+----- dataset: FIESTAdata_harpsn_mode2   ----- model: gp_multidimensional           
+rot_amp               1.958507 
+con_amp               0.675404 
+
+----- dataset:  FIESTAdata_harpsn_mode3
+jitter_0              3.222491 
+offset_0             -0.052264 
+
+
+----- dataset: FIESTAdata_harpsn_mode3   ----- model: gp_multidimensional           
+rot_amp              -7.073125 
+con_amp              -3.861377 
+
+----- dataset:  FIESTAdata_neid_mode1
+jitter_0              0.793844 
+offset_0              0.070435 
+
+
+----- dataset: FIESTAdata_neid_mode1     ----- model: gp_multidimensional           
+rot_amp              -3.369435 
+con_amp               4.447357 
+
+----- dataset:  FIESTAdata_neid_mode2
+jitter_0              1.271464 
+offset_0             -0.096116 
+
+
+----- dataset: FIESTAdata_neid_mode2     ----- model: gp_multidimensional           
+rot_amp               5.714937 
+con_amp              -7.363833 
+
+----- dataset:  FIESTAdata_neid_mode3
+jitter_0              3.057800 
+offset_0              0.100160 
+
+
+----- dataset: FIESTAdata_neid_mode3     ----- model: gp_multidimensional           
+rot_amp              -2.423738 
+con_amp               7.194487 
+
+----- common model:  b
+P                    36.900421 
+K                     0.717501 
+mean_long           180.489662 
+e                     0.001344 
+omega               -48.404810 
+
+----- common model:  c
+P                     4.700816 
+K                     0.847939 
+mean_long           236.130758 
+e                     0.000803 
+omega                35.634728 
+
+----- common model:  activity
+Prot                 27.636163 
+Pdec                356.984467 
+Oamp                  0.350698 
+
+----- common model:  star_parameters
+
+====================================================================================================
+     Derived parameters obtained from starting point     
+====================================================================================================
+
+----- common model:  b
+Inclination fixed to 90 deg!
+a_Rs                 46.623372 
+M_Mj                  0.011751 
+M_Me                  3.735523 
+Tc                59362.314821 
+a_AU_(M)              0.216915 
+a_AU_(rho,R)          0.216914 
+
+----- common model:  c
+Inclination fixed to 90 deg!
+a_Rs                 11.804047 
+M_Mj                  0.006988 
+M_Me                  2.221296 
+Tc                59337.491874 
+a_AU_(M)              0.054918 
+a_AU_(rho,R)          0.054918 
+
+
+====================================================================================================
+     Statistics on the log-likelihood     
+====================================================================================================
+
+ LN probability: -2483.923036 
+
+====================================================================================================
+     ------------------------------------------------------------------------------------------     
+====================================================================================================
+
+
+
+*************************************************************
+
+Running emcee
+
+emcee version:  3.1.6
+Using threading pool for emcee: True
+
+Saving temporary steps
+
+
+Computing the autocorrelation time of the chains
+
+***** WARNING ******
+The integrated autocorrelation time cannot be reliably estimated
+likely the chains are too short, and ACF analysis is not fully reliable
+emcee.autocorr.integrated_time tolerance lowered to 20
+If you still get a warning, you should drop these results entirely
+Chains too short to apply convergence criteria
+They should be at least 17900*nthin = 179000
+
+====================================================================================================
+     Statistics on the posterior of the sampler parameters     
+====================================================================================================
+
+----- dataset:  RVdata_expres
+jitter_0        13         1.253       -0.096         0.11   (15-84 p)   [    0.0010,    11.5000]
+offset_0        14          8.71        -0.41         0.36   (15-84 p)   [-9995.9050, 10012.5570]
+
+----- dataset: RVdata_expres             ----- model: gp_multidimensional           
+rot_amp         15           7.6         -2.9          1.8   (15-84 p)   [    0.0000,    10.0000]
+con_amp         16           9.3         -2.7          3.5   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  RVdata_harps
+jitter_0        17          1.24        -0.11         0.12   (15-84 p)   [    0.0009,    12.2000]
+offset_0        18          9.33        -0.47         0.46   (15-84 p)   [-9994.3035, 10013.7475]
+offset_1        19         10.42        -0.55         0.54   (15-84 p)   [-9994.3035, 10013.7475]
+
+----- dataset: RVdata_harps              ----- model: gp_multidimensional           
+rot_amp         20           2.8         -2.0          3.5   (15-84 p)   [    0.0000,    10.0000]
+con_amp         21          10.7         -2.6          3.7   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  RVdata_neid
+jitter_0        22         1.132       -0.099         0.11   (15-84 p)   [    0.0010,    12.2000]
+offset_0        23          9.60        -0.57         0.47   (15-84 p)   [-9993.3866, 10013.1434]
+
+----- dataset: RVdata_neid               ----- model: gp_multidimensional           
+rot_amp         24           4.1         -2.8          3.5   (15-84 p)   [    0.0000,    10.0000]
+con_amp         25          12.0         -3.0          3.9   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_expres_mode1
+jitter_0        26         0.946       -0.071        0.081   (15-84 p)   [    0.0017,    18.9342]
+offset_0        27          0.03        -0.12         0.13   (15-84 p)   [-10002.0587, 10002.3918]
+
+----- dataset: FIESTAdata_expres_mode1   ----- model: gp_multidimensional           
+rot_amp         28          -8.3         -1.2          2.4   (15-84 p)   [  -10.0000,    10.0000]
+con_amp         29          -1.9         -1.6          1.3   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_expres_mode2
+jitter_0        30         1.215       -0.089        0.096   (15-84 p)   [    0.0019,    21.6805]
+offset_0        31         -0.04        -0.17         0.16   (15-84 p)   [-10003.5672, 10002.6393]
+
+----- dataset: FIESTAdata_expres_mode2   ----- model: gp_multidimensional           
+rot_amp         32           8.2         -2.1          1.3   (15-84 p)   [  -10.0000,    10.0000]
+con_amp         33           2.1         -1.6          1.8   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_expres_mode3
+jitter_0        34          4.02        -0.27         0.30   (15-84 p)   [    0.0045,    50.3391]
+offset_0        35          0.02        -0.56         0.51   (15-84 p)   [-10009.7207, 10010.7123]
+
+----- dataset: FIESTAdata_expres_mode3   ----- model: gp_multidimensional           
+rot_amp         36          -2.8         -5.1          7.3   (15-84 p)   [  -10.0000,    10.0000]
+con_amp         37           7.8         -4.7          5.4   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_harps_mode1
+jitter_0        38          0.84        -0.12         0.15   (15-84 p)   [    0.0013,    13.9050]
+offset_0        39         -0.02        -0.22         0.22   (15-84 p)   [-10001.2043, 10001.7494]
+
+----- dataset: FIESTAdata_harps_mode1    ----- model: gp_multidimensional           
+rot_amp         40          -1.8         -3.8          3.8   (15-84 p)   [  -10.0000,    10.0000]
+con_amp         41           2.4         -1.4          1.5   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_harps_mode2
+jitter_0        42          1.34        -0.18         0.23   (15-84 p)   [    0.0016,    16.4267]
+offset_0        43          0.03        -0.32         0.30   (15-84 p)   [-10002.9651, 10001.8967]
+
+----- dataset: FIESTAdata_harps_mode2    ----- model: gp_multidimensional           
+rot_amp         44          -1.0         -5.4          5.2   (15-84 p)   [  -10.0000,    10.0000]
+con_amp         45           1.0         -2.4          2.4   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_harps_mode3
+jitter_0        46          3.87        -0.59         0.69   (15-84 p)   [    0.0044,    47.0591]
+offset_0        47           0.2         -1.1          1.2   (15-84 p)   [-10008.9121, 10007.9038]
+
+----- dataset: FIESTAdata_harps_mode3    ----- model: gp_multidimensional           
+rot_amp         48           3.1         -7.8          5.0   (15-84 p)   [  -10.0000,    10.0000]
+con_amp         49         -17.8         -1.7          3.5   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_harpsn_mode1
+jitter_0        50         0.978       -0.078        0.079   (15-84 p)   [    0.0011,    12.0774]
+offset_0        51          0.03        -0.12         0.11   (15-84 p)   [-10002.4732, 10002.8195]
+
+----- dataset: FIESTAdata_harpsn_mode1   ----- model: gp_multidimensional           
+rot_amp         52          -1.1         -4.4          4.2   (15-84 p)   [  -10.0000,    10.0000]
+con_amp         53           0.2         -1.2          1.2   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_harpsn_mode2
+jitter_0        54          1.33        -0.10         0.11   (15-84 p)   [    0.0012,    13.9895]
+offset_0        55         -0.03        -0.17         0.18   (15-84 p)   [-10004.0119, 10002.8742]
+
+----- dataset: FIESTAdata_harpsn_mode2   ----- model: gp_multidimensional           
+rot_amp         56           3.6         -4.8          4.2   (15-84 p)   [  -10.0000,    10.0000]
+con_amp         57           0.5         -1.8          1.7   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_harpsn_mode3
+jitter_0        58          3.33        -0.26         0.30   (15-84 p)   [    0.0034,    39.1297]
+offset_0        59         -0.02        -0.40         0.42   (15-84 p)   [-10007.4719, 10008.5960]
+
+----- dataset: FIESTAdata_harpsn_mode3   ----- model: gp_multidimensional           
+rot_amp         60          -5.2         -3.5          6.6   (15-84 p)   [  -10.0000,    10.0000]
+con_amp         61          -2.9         -4.2          4.1   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_neid_mode1
+jitter_0        62         0.820       -0.065        0.074   (15-84 p)   [    0.0016,    19.1206]
+offset_0        63          0.02        -0.18         0.20   (15-84 p)   [-10002.5624, 10002.0726]
+
+----- dataset: FIESTAdata_neid_mode1     ----- model: gp_multidimensional           
+rot_amp         64          -0.4         -3.7          3.3   (15-84 p)   [  -10.0000,    10.0000]
+con_amp         65           4.0         -1.3          1.6   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_neid_mode2
+jitter_0        66          1.30        -0.10         0.11   (15-84 p)   [    0.0020,    23.1391]
+offset_0        67         -0.04        -0.33         0.31   (15-84 p)   [-10003.5449, 10004.1555]
+
+----- dataset: FIESTAdata_neid_mode2     ----- model: gp_multidimensional           
+rot_amp         68          -0.2         -4.9          5.5   (15-84 p)   [  -10.0000,    10.0000]
+con_amp         69          -6.6         -2.4          2.1   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_neid_mode3
+jitter_0        70          3.09        -0.25         0.29   (15-84 p)   [    0.0050,    57.8429]
+offset_0        71          0.02        -0.43         0.46   (15-84 p)   [-10008.7119, 10006.3460]
+
+----- dataset: FIESTAdata_neid_mode3     ----- model: gp_multidimensional           
+rot_amp         72          -0.3         -5.9          6.3   (15-84 p)   [  -10.0000,    10.0000]
+con_amp         73           6.8         -3.8          4.2   (15-84 p)   [  -20.0000,    20.0000]
+
+----- common model:  b
+P                0          5.13         -2.9         0.13   (15-84 p)   [    0.3785,     6.6439]
+K                1         -0.21        -0.46         0.37   (15-84 p)   [   -9.9658,     3.3219]
+sre_coso         2          0.01        -0.24         0.23   (15-84 p)   [   -1.0000,     1.0000]
+sre_sino         3          0.00        -0.20         0.22   (15-84 p)   [   -1.0000,     1.0000]
+mean_long        4           159          -44           95   (15-84 p)   [    0.4897,   360.4897]
+
+----- common model:  c
+P                5        2.2346      -0.0070          3.0   (15-84 p)   [    0.3785,     6.6439]
+K                6          0.01        -0.56         0.25   (15-84 p)   [   -9.9658,     3.3219]
+sre_coso         7          0.14        -0.31         0.20   (15-84 p)   [   -1.0000,     1.0000]
+sre_sino         8         -0.04        -0.20         0.22   (15-84 p)   [   -1.0000,     1.0000]
+mean_long        9           247         -109           21   (15-84 p)   [   56.1308,   416.1308]
+
+----- common model:  activity
+Prot            10         27.51        -0.54         0.68   (15-84 p)   [   20.0000,    35.0000]
+Pdec            11           471         -179          251   (15-84 p)   [   30.0000,  1000.0000]
+Oamp            12         -1.48        -0.15         0.14   (15-84 p)   [   -6.6439,     0.0000]
+
+----- common model:  star_parameters
+
+====================================================================================================
+     Statistics on the model parameters obtained from the posteriors samples     
+====================================================================================================
+
+----- dataset:  RVdata_expres
+jitter_0                 1.253       -0.096         0.11    (15-84 p)
+offset_0                  8.71        -0.41         0.36    (15-84 p)
+
+
+----- dataset: RVdata_expres             ----- model: gp_multidimensional           
+rot_amp                    7.6         -2.9          1.8    (15-84 p)
+con_amp                    9.3         -2.7          3.5    (15-84 p)
+
+----- dataset:  RVdata_harps
+jitter_0                  1.24        -0.11         0.12    (15-84 p)
+offset_0                  9.33        -0.47         0.46    (15-84 p)
+offset_1                 10.42        -0.55         0.54    (15-84 p)
+
+
+----- dataset: RVdata_harps              ----- model: gp_multidimensional           
+rot_amp                    2.8         -2.0          3.5    (15-84 p)
+con_amp                   10.7         -2.6          3.7    (15-84 p)
+
+----- dataset:  RVdata_neid
+jitter_0                 1.132       -0.099         0.11    (15-84 p)
+offset_0                  9.60        -0.57         0.47    (15-84 p)
+
+
+----- dataset: RVdata_neid               ----- model: gp_multidimensional           
+rot_amp                    4.1         -2.8          3.5    (15-84 p)
+con_amp                   12.0         -3.0          3.9    (15-84 p)
+
+----- dataset:  FIESTAdata_expres_mode1
+jitter_0                 0.946       -0.071        0.081    (15-84 p)
+offset_0                  0.03        -0.12         0.13    (15-84 p)
+
+
+----- dataset: FIESTAdata_expres_mode1   ----- model: gp_multidimensional           
+rot_amp                   -8.3         -1.2          2.4    (15-84 p)
+con_amp                   -1.9         -1.6          1.3    (15-84 p)
+
+----- dataset:  FIESTAdata_expres_mode2
+jitter_0                 1.215       -0.089        0.096    (15-84 p)
+offset_0                 -0.04        -0.17         0.16    (15-84 p)
+
+
+----- dataset: FIESTAdata_expres_mode2   ----- model: gp_multidimensional           
+rot_amp                    8.2         -2.1          1.3    (15-84 p)
+con_amp                    2.1         -1.6          1.8    (15-84 p)
+
+----- dataset:  FIESTAdata_expres_mode3
+jitter_0                  4.02        -0.27         0.30    (15-84 p)
+offset_0                  0.02        -0.56         0.51    (15-84 p)
+
+
+----- dataset: FIESTAdata_expres_mode3   ----- model: gp_multidimensional           
+rot_amp                   -2.8         -5.1          7.3    (15-84 p)
+con_amp                    7.8         -4.7          5.4    (15-84 p)
+
+----- dataset:  FIESTAdata_harps_mode1
+jitter_0                  0.84        -0.12         0.15    (15-84 p)
+offset_0                 -0.02        -0.22         0.22    (15-84 p)
+
+
+----- dataset: FIESTAdata_harps_mode1    ----- model: gp_multidimensional           
+rot_amp                   -1.8         -3.8          3.8    (15-84 p)
+con_amp                    2.4         -1.4          1.5    (15-84 p)
+
+----- dataset:  FIESTAdata_harps_mode2
+jitter_0                  1.34        -0.18         0.23    (15-84 p)
+offset_0                  0.03        -0.32         0.30    (15-84 p)
+
+
+----- dataset: FIESTAdata_harps_mode2    ----- model: gp_multidimensional           
+rot_amp                   -1.0         -5.4          5.2    (15-84 p)
+con_amp                    1.0         -2.4          2.4    (15-84 p)
+
+----- dataset:  FIESTAdata_harps_mode3
+jitter_0                  3.87        -0.59         0.69    (15-84 p)
+offset_0                   0.2         -1.1          1.2    (15-84 p)
+
+
+----- dataset: FIESTAdata_harps_mode3    ----- model: gp_multidimensional           
+rot_amp                    3.1         -7.8          5.0    (15-84 p)
+con_amp                  -17.8         -1.7          3.5    (15-84 p)
+
+----- dataset:  FIESTAdata_harpsn_mode1
+jitter_0                 0.978       -0.078        0.079    (15-84 p)
+offset_0                  0.03        -0.12         0.11    (15-84 p)
+
+
+----- dataset: FIESTAdata_harpsn_mode1   ----- model: gp_multidimensional           
+rot_amp                   -1.1         -4.4          4.2    (15-84 p)
+con_amp                    0.2         -1.2          1.2    (15-84 p)
+
+----- dataset:  FIESTAdata_harpsn_mode2
+jitter_0                  1.33        -0.10         0.11    (15-84 p)
+offset_0                 -0.03        -0.17         0.18    (15-84 p)
+
+
+----- dataset: FIESTAdata_harpsn_mode2   ----- model: gp_multidimensional           
+rot_amp                    3.6         -4.8          4.2    (15-84 p)
+con_amp                    0.5         -1.8          1.7    (15-84 p)
+
+----- dataset:  FIESTAdata_harpsn_mode3
+jitter_0                  3.33        -0.26         0.30    (15-84 p)
+offset_0                 -0.02        -0.40         0.42    (15-84 p)
+
+
+----- dataset: FIESTAdata_harpsn_mode3   ----- model: gp_multidimensional           
+rot_amp                   -5.2         -3.5          6.6    (15-84 p)
+con_amp                   -2.9         -4.2          4.1    (15-84 p)
+
+----- dataset:  FIESTAdata_neid_mode1
+jitter_0                 0.820       -0.065        0.074    (15-84 p)
+offset_0                  0.02        -0.18         0.20    (15-84 p)
+
+
+----- dataset: FIESTAdata_neid_mode1     ----- model: gp_multidimensional           
+rot_amp                   -0.4         -3.7          3.3    (15-84 p)
+con_amp                    4.0         -1.3          1.6    (15-84 p)
+
+----- dataset:  FIESTAdata_neid_mode2
+jitter_0                  1.30        -0.10         0.11    (15-84 p)
+offset_0                 -0.04        -0.33         0.31    (15-84 p)
+
+
+----- dataset: FIESTAdata_neid_mode2     ----- model: gp_multidimensional           
+rot_amp                   -0.2         -4.9          5.5    (15-84 p)
+con_amp                   -6.6         -2.4          2.1    (15-84 p)
+
+----- dataset:  FIESTAdata_neid_mode3
+jitter_0                  3.09        -0.25         0.29    (15-84 p)
+offset_0                  0.02        -0.43         0.46    (15-84 p)
+
+
+----- dataset: FIESTAdata_neid_mode3     ----- model: gp_multidimensional           
+rot_amp                   -0.3         -5.9          6.3    (15-84 p)
+con_amp                    6.8         -3.8          4.2    (15-84 p)
+
+----- common model:  b
+P                         35.1          -30          3.3    (15-84 p)
+K                         0.87        -0.24         0.25    (15-84 p)
+mean_long                  159          -44           95    (15-84 p)
+e                        0.073       -0.053        0.082    (15-84 p)
+omega                        3         -118          129    (15-84 p)
+
+----- common model:  c
+P                        4.706       -0.023           33    (15-84 p)
+K                         1.01        -0.32         0.19    (15-84 p)
+mean_long                  247         -109           21    (15-84 p)
+e                        0.091       -0.060        0.076    (15-84 p)
+omega                      -12          -77          112    (15-84 p)
+
+----- common model:  activity
+Prot                     27.51        -0.54         0.68    (15-84 p)
+Pdec                       471         -179          251    (15-84 p)
+Oamp                     0.359       -0.036        0.036    (15-84 p)
+
+----- common model:  star_parameters
+
+====================================================================================================
+     Statistics on the derived parameters obtained from the posteriors samples     
+====================================================================================================
+
+----- common model:  b
+Inclination fixed to 90 deg!
+Computing planetary mass under the approximation M_planet << M_star (threshold at 30.0 Me)
+a_Rs                      45.1          -33          2.8    (15-84 p)
+M_Mj                    0.0102      -0.0027       0.0045    (15-84 p)
+M_Me                      3.24        -0.85          1.4    (15-84 p)
+Tc                     59365.2          -28          3.1    (15-84 p)
+a_AU_(M)                 0.210        -0.16        0.013    (15-84 p)
+a_AU_(rho,R)             0.210        -0.16        0.013    (15-84 p)
+
+----- common model:  c
+Inclination fixed to 90 deg!
+Computing planetary mass under the approximation M_planet << M_star (threshold at 30.0 Me)
+a_Rs                    11.813       -0.038           35    (15-84 p)
+M_Mj                    0.0095      -0.0017       0.0028    (15-84 p)
+M_Me                      3.02        -0.54         0.90    (15-84 p)
+Tc                    59337.26        -0.33           30    (15-84 p)
+a_AU_(M)               0.05496     -0.00018         0.16    (15-84 p)
+a_AU_(rho,R)           0.05496     -0.00018         0.16    (15-84 p)
+
+
+====================================================================================================
+     ------------------------------------------------------------------------------------------     
+====================================================================================================
+
+
+
+35000.0   steps completed, average lnprob:,  -2500.4815055405743
+
+
+Computing the autocorrelation time of the chains
+
+***** WARNING ******
+The integrated autocorrelation time cannot be reliably estimated
+likely the chains are too short, and ACF analysis is not fully reliable
+emcee.autocorr.integrated_time tolerance lowered to 20
+If you still get a warning, you should drop these results entirely
+Chains too short to apply convergence criteria
+They should be at least 35650*nthin = 356500
+
+====================================================================================================
+     Statistics on the posterior of the sampler parameters     
+====================================================================================================
+
+----- dataset:  RVdata_expres
+jitter_0        13         1.249       -0.098         0.11   (15-84 p)   [    0.0010,    11.5000]
+offset_0        14          8.71        -0.61         0.52   (15-84 p)   [-9995.9050, 10012.5570]
+
+----- dataset: RVdata_expres             ----- model: gp_multidimensional           
+rot_amp         15           7.6         -3.0          1.8   (15-84 p)   [    0.0000,    10.0000]
+con_amp         16           9.7         -3.0          3.6   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  RVdata_harps
+jitter_0        17          1.23        -0.11         0.12   (15-84 p)   [    0.0009,    12.2000]
+offset_0        18          9.32        -0.71         0.67   (15-84 p)   [-9994.3035, 10013.7475]
+offset_1        19         10.42        -0.77         0.69   (15-84 p)   [-9994.3035, 10013.7475]
+
+----- dataset: RVdata_harps              ----- model: gp_multidimensional           
+rot_amp         20           2.7         -2.0          3.4   (15-84 p)   [    0.0000,    10.0000]
+con_amp         21          11.2         -2.9          3.9   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  RVdata_neid
+jitter_0        22         1.126       -0.099         0.11   (15-84 p)   [    0.0010,    12.2000]
+offset_0        23          9.58        -0.81         0.70   (15-84 p)   [-9993.3866, 10013.1434]
+
+----- dataset: RVdata_neid               ----- model: gp_multidimensional           
+rot_amp         24           4.5         -3.0          3.4   (15-84 p)   [    0.0000,    10.0000]
+con_amp         25          12.4         -3.3          4.1   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_expres_mode1
+jitter_0        26         0.953       -0.073        0.085   (15-84 p)   [    0.0017,    18.9342]
+offset_0        27          0.03        -0.15         0.16   (15-84 p)   [-10002.0587, 10002.3918]
+
+----- dataset: FIESTAdata_expres_mode1   ----- model: gp_multidimensional           
+rot_amp         28          -8.2         -1.3          2.3   (15-84 p)   [  -10.0000,    10.0000]
+con_amp         29          -1.8         -1.5          1.3   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_expres_mode2
+jitter_0        30         1.219       -0.090         0.10   (15-84 p)   [    0.0019,    21.6805]
+offset_0        31         -0.05        -0.19         0.17   (15-84 p)   [-10003.5672, 10002.6393]
+
+----- dataset: FIESTAdata_expres_mode2   ----- model: gp_multidimensional           
+rot_amp         32           8.2         -2.4          1.3   (15-84 p)   [  -10.0000,    10.0000]
+con_amp         33           2.0         -1.7          1.9   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_expres_mode3
+jitter_0        34          4.04        -0.28         0.31   (15-84 p)   [    0.0045,    50.3391]
+offset_0        35          0.01        -0.68         0.62   (15-84 p)   [-10009.7207, 10010.7123]
+
+----- dataset: FIESTAdata_expres_mode3   ----- model: gp_multidimensional           
+rot_amp         36          -2.8         -5.0          7.1   (15-84 p)   [  -10.0000,    10.0000]
+con_amp         37           7.7         -4.7          5.5   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_harps_mode1
+jitter_0        38          0.84        -0.12         0.15   (15-84 p)   [    0.0013,    13.9050]
+offset_0        39         -0.03        -0.26         0.25   (15-84 p)   [-10001.2043, 10001.7494]
+
+----- dataset: FIESTAdata_harps_mode1    ----- model: gp_multidimensional           
+rot_amp         40          -2.0         -3.8          3.7   (15-84 p)   [  -10.0000,    10.0000]
+con_amp         41           2.5         -1.5          1.6   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_harps_mode2
+jitter_0        42          1.35        -0.19         0.23   (15-84 p)   [    0.0016,    16.4267]
+offset_0        43          0.02        -0.35         0.31   (15-84 p)   [-10002.9651, 10001.8967]
+
+----- dataset: FIESTAdata_harps_mode2    ----- model: gp_multidimensional           
+rot_amp         44          -1.1         -5.0          5.3   (15-84 p)   [  -10.0000,    10.0000]
+con_amp         45           1.1         -2.4          2.5   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_harps_mode3
+jitter_0        46          3.87        -0.60         0.71   (15-84 p)   [    0.0044,    47.0591]
+offset_0        47           0.3         -1.3          1.4   (15-84 p)   [-10008.9121, 10007.9038]
+
+----- dataset: FIESTAdata_harps_mode3    ----- model: gp_multidimensional           
+rot_amp         48           2.8         -7.8          5.2   (15-84 p)   [  -10.0000,    10.0000]
+con_amp         49         -17.5         -1.8          3.6   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_harpsn_mode1
+jitter_0        50         0.979       -0.077        0.084   (15-84 p)   [    0.0011,    12.0774]
+offset_0        51          0.03        -0.12         0.12   (15-84 p)   [-10002.4732, 10002.8195]
+
+----- dataset: FIESTAdata_harpsn_mode1   ----- model: gp_multidimensional           
+rot_amp         52          -1.5         -4.3          4.2   (15-84 p)   [  -10.0000,    10.0000]
+con_amp         53           0.2         -1.3          1.3   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_harpsn_mode2
+jitter_0        54          1.33        -0.11         0.12   (15-84 p)   [    0.0012,    13.9895]
+offset_0        55         -0.02        -0.18         0.18   (15-84 p)   [-10004.0119, 10002.8742]
+
+----- dataset: FIESTAdata_harpsn_mode2   ----- model: gp_multidimensional           
+rot_amp         56           3.9         -4.7          4.2   (15-84 p)   [  -10.0000,    10.0000]
+con_amp         57           0.5         -1.8          1.7   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_harpsn_mode3
+jitter_0        58          3.35        -0.26         0.31   (15-84 p)   [    0.0034,    39.1297]
+offset_0        59         -0.01        -0.44         0.45   (15-84 p)   [-10007.4719, 10008.5960]
+
+----- dataset: FIESTAdata_harpsn_mode3   ----- model: gp_multidimensional           
+rot_amp         60          -4.7         -3.9          7.0   (15-84 p)   [  -10.0000,    10.0000]
+con_amp         61          -2.8         -4.2          4.0   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_neid_mode1
+jitter_0        62         0.821       -0.064        0.074   (15-84 p)   [    0.0016,    19.1206]
+offset_0        63          0.01        -0.26         0.25   (15-84 p)   [-10002.5624, 10002.0726]
+
+----- dataset: FIESTAdata_neid_mode1     ----- model: gp_multidimensional           
+rot_amp         64           0.2         -4.0          3.5   (15-84 p)   [  -10.0000,    10.0000]
+con_amp         65           4.1         -1.3          1.6   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_neid_mode2
+jitter_0        66          1.30        -0.11         0.11   (15-84 p)   [    0.0020,    23.1391]
+offset_0        67         -0.03        -0.42         0.44   (15-84 p)   [-10003.5449, 10004.1555]
+
+----- dataset: FIESTAdata_neid_mode2     ----- model: gp_multidimensional           
+rot_amp         68          -0.9         -5.3          5.8   (15-84 p)   [  -10.0000,    10.0000]
+con_amp         69          -6.6         -2.6          2.1   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_neid_mode3
+jitter_0        70          3.11        -0.26         0.28   (15-84 p)   [    0.0050,    57.8429]
+offset_0        71          0.02        -0.53         0.55   (15-84 p)   [-10008.7119, 10006.3460]
+
+----- dataset: FIESTAdata_neid_mode3     ----- model: gp_multidimensional           
+rot_amp         72          -0.5         -6.1          6.2   (15-84 p)   [  -10.0000,    10.0000]
+con_amp         73           6.9         -3.8          4.4   (15-84 p)   [  -20.0000,    20.0000]
+
+----- common model:  b
+P                0          5.13         -2.9         0.12   (15-84 p)   [    0.3785,     6.6439]
+K                1         -0.17        -0.47         0.35   (15-84 p)   [   -9.9658,     3.3219]
+sre_coso         2          0.01        -0.24         0.24   (15-84 p)   [   -1.0000,     1.0000]
+sre_sino         3          0.01        -0.20         0.23   (15-84 p)   [   -1.0000,     1.0000]
+mean_long        4           155          -43          101   (15-84 p)   [    0.4897,   360.4897]
+
+----- common model:  c
+P                5        2.2347      -0.0068          3.0   (15-84 p)   [    0.3785,     6.6439]
+K                6          0.04        -0.55         0.25   (15-84 p)   [   -9.9658,     3.3219]
+sre_coso         7          0.12        -0.30         0.21   (15-84 p)   [   -1.0000,     1.0000]
+sre_sino         8         -0.04        -0.20         0.23   (15-84 p)   [   -1.0000,     1.0000]
+mean_long        9           248         -113           20   (15-84 p)   [   56.1308,   416.1308]
+
+----- common model:  activity
+Prot            10         27.49        -0.59         0.68   (15-84 p)   [   20.0000,    35.0000]
+Pdec            11           489         -189          256   (15-84 p)   [   30.0000,  1000.0000]
+Oamp            12         -1.47        -0.15         0.14   (15-84 p)   [   -6.6439,     0.0000]
+
+----- common model:  star_parameters
+
+====================================================================================================
+     Statistics on the model parameters obtained from the posteriors samples     
+====================================================================================================
+
+----- dataset:  RVdata_expres
+jitter_0                 1.249       -0.098         0.11    (15-84 p)
+offset_0                  8.71        -0.61         0.52    (15-84 p)
+
+
+----- dataset: RVdata_expres             ----- model: gp_multidimensional           
+rot_amp                    7.6         -3.0          1.8    (15-84 p)
+con_amp                    9.7         -3.0          3.6    (15-84 p)
+
+----- dataset:  RVdata_harps
+jitter_0                  1.23        -0.11         0.12    (15-84 p)
+offset_0                  9.32        -0.71         0.67    (15-84 p)
+offset_1                 10.42        -0.77         0.69    (15-84 p)
+
+
+----- dataset: RVdata_harps              ----- model: gp_multidimensional           
+rot_amp                    2.7         -2.0          3.4    (15-84 p)
+con_amp                   11.2         -2.9          3.9    (15-84 p)
+
+----- dataset:  RVdata_neid
+jitter_0                 1.126       -0.099         0.11    (15-84 p)
+offset_0                  9.58        -0.81         0.70    (15-84 p)
+
+
+----- dataset: RVdata_neid               ----- model: gp_multidimensional           
+rot_amp                    4.5         -3.0          3.4    (15-84 p)
+con_amp                   12.4         -3.3          4.1    (15-84 p)
+
+----- dataset:  FIESTAdata_expres_mode1
+jitter_0                 0.953       -0.073        0.085    (15-84 p)
+offset_0                  0.03        -0.15         0.16    (15-84 p)
+
+
+----- dataset: FIESTAdata_expres_mode1   ----- model: gp_multidimensional           
+rot_amp                   -8.2         -1.3          2.3    (15-84 p)
+con_amp                   -1.8         -1.5          1.3    (15-84 p)
+
+----- dataset:  FIESTAdata_expres_mode2
+jitter_0                 1.219       -0.090         0.10    (15-84 p)
+offset_0                 -0.05        -0.19         0.17    (15-84 p)
+
+
+----- dataset: FIESTAdata_expres_mode2   ----- model: gp_multidimensional           
+rot_amp                    8.2         -2.4          1.3    (15-84 p)
+con_amp                    2.0         -1.7          1.9    (15-84 p)
+
+----- dataset:  FIESTAdata_expres_mode3
+jitter_0                  4.04        -0.28         0.31    (15-84 p)
+offset_0                  0.01        -0.68         0.62    (15-84 p)
+
+
+----- dataset: FIESTAdata_expres_mode3   ----- model: gp_multidimensional           
+rot_amp                   -2.8         -5.0          7.1    (15-84 p)
+con_amp                    7.7         -4.7          5.5    (15-84 p)
+
+----- dataset:  FIESTAdata_harps_mode1
+jitter_0                  0.84        -0.12         0.15    (15-84 p)
+offset_0                 -0.03        -0.26         0.25    (15-84 p)
+
+
+----- dataset: FIESTAdata_harps_mode1    ----- model: gp_multidimensional           
+rot_amp                   -2.0         -3.8          3.7    (15-84 p)
+con_amp                    2.5         -1.5          1.6    (15-84 p)
+
+----- dataset:  FIESTAdata_harps_mode2
+jitter_0                  1.35        -0.19         0.23    (15-84 p)
+offset_0                  0.02        -0.35         0.31    (15-84 p)
+
+
+----- dataset: FIESTAdata_harps_mode2    ----- model: gp_multidimensional           
+rot_amp                   -1.1         -5.0          5.3    (15-84 p)
+con_amp                    1.1         -2.4          2.5    (15-84 p)
+
+----- dataset:  FIESTAdata_harps_mode3
+jitter_0                  3.87        -0.60         0.71    (15-84 p)
+offset_0                   0.3         -1.3          1.4    (15-84 p)
+
+
+----- dataset: FIESTAdata_harps_mode3    ----- model: gp_multidimensional           
+rot_amp                    2.8         -7.8          5.2    (15-84 p)
+con_amp                  -17.5         -1.8          3.6    (15-84 p)
+
+----- dataset:  FIESTAdata_harpsn_mode1
+jitter_0                 0.979       -0.077        0.084    (15-84 p)
+offset_0                  0.03        -0.12         0.12    (15-84 p)
+
+
+----- dataset: FIESTAdata_harpsn_mode1   ----- model: gp_multidimensional           
+rot_amp                   -1.5         -4.3          4.2    (15-84 p)
+con_amp                    0.2         -1.3          1.3    (15-84 p)
+
+----- dataset:  FIESTAdata_harpsn_mode2
+jitter_0                  1.33        -0.11         0.12    (15-84 p)
+offset_0                 -0.02        -0.18         0.18    (15-84 p)
+
+
+----- dataset: FIESTAdata_harpsn_mode2   ----- model: gp_multidimensional           
+rot_amp                    3.9         -4.7          4.2    (15-84 p)
+con_amp                    0.5         -1.8          1.7    (15-84 p)
+
+----- dataset:  FIESTAdata_harpsn_mode3
+jitter_0                  3.35        -0.26         0.31    (15-84 p)
+offset_0                 -0.01        -0.44         0.45    (15-84 p)
+
+
+----- dataset: FIESTAdata_harpsn_mode3   ----- model: gp_multidimensional           
+rot_amp                   -4.7         -3.9          7.0    (15-84 p)
+con_amp                   -2.8         -4.2          4.0    (15-84 p)
+
+----- dataset:  FIESTAdata_neid_mode1
+jitter_0                 0.821       -0.064        0.074    (15-84 p)
+offset_0                  0.01        -0.26         0.25    (15-84 p)
+
+
+----- dataset: FIESTAdata_neid_mode1     ----- model: gp_multidimensional           
+rot_amp                    0.2         -4.0          3.5    (15-84 p)
+con_amp                    4.1         -1.3          1.6    (15-84 p)
+
+----- dataset:  FIESTAdata_neid_mode2
+jitter_0                  1.30        -0.11         0.11    (15-84 p)
+offset_0                 -0.03        -0.42         0.44    (15-84 p)
+
+
+----- dataset: FIESTAdata_neid_mode2     ----- model: gp_multidimensional           
+rot_amp                   -0.9         -5.3          5.8    (15-84 p)
+con_amp                   -6.6         -2.6          2.1    (15-84 p)
+
+----- dataset:  FIESTAdata_neid_mode3
+jitter_0                  3.11        -0.26         0.28    (15-84 p)
+offset_0                  0.02        -0.53         0.55    (15-84 p)
+
+
+----- dataset: FIESTAdata_neid_mode3     ----- model: gp_multidimensional           
+rot_amp                   -0.5         -6.1          6.2    (15-84 p)
+con_amp                    6.9         -3.8          4.4    (15-84 p)
+
+----- common model:  b
+P                         35.0          -30          3.1    (15-84 p)
+K                         0.89        -0.25         0.25    (15-84 p)
+mean_long                  155          -43          101    (15-84 p)
+e                        0.076       -0.054        0.083    (15-84 p)
+omega                        4         -114          129    (15-84 p)
+
+----- common model:  c
+P                        4.707       -0.022           33    (15-84 p)
+K                         1.03        -0.33         0.20    (15-84 p)
+mean_long                  248         -113           20    (15-84 p)
+e                        0.091       -0.062        0.079    (15-84 p)
+omega                      -12          -77          122    (15-84 p)
+
+----- common model:  activity
+Prot                     27.49        -0.59         0.68    (15-84 p)
+Pdec                       489         -189          256    (15-84 p)
+Oamp                     0.360       -0.036        0.036    (15-84 p)
+
+----- common model:  star_parameters
+
+====================================================================================================
+     Statistics on the derived parameters obtained from the posteriors samples     
+====================================================================================================
+
+----- common model:  b
+Inclination fixed to 90 deg!
+Computing planetary mass under the approximation M_planet << M_star (threshold at 30.0 Me)
+a_Rs                      45.0          -33          2.6    (15-84 p)
+M_Mj                    0.0104      -0.0026       0.0047    (15-84 p)
+M_Me                      3.30        -0.82          1.5    (15-84 p)
+Tc                     59365.4          -28          3.0    (15-84 p)
+a_AU_(M)                 0.209        -0.15        0.012    (15-84 p)
+a_AU_(rho,R)             0.209        -0.15        0.012    (15-84 p)
+
+----- common model:  c
+Inclination fixed to 90 deg!
+Computing planetary mass under the approximation M_planet << M_star (threshold at 30.0 Me)
+a_Rs                    11.814       -0.037           35    (15-84 p)
+M_Mj                    0.0097      -0.0018       0.0032    (15-84 p)
+M_Me                      3.07        -0.56          1.0    (15-84 p)
+Tc                    59337.25        -0.33           30    (15-84 p)
+a_AU_(M)               0.05496     -0.00017         0.16    (15-84 p)
+a_AU_(rho,R)           0.05496     -0.00017         0.16    (15-84 p)
+
+
+====================================================================================================
+     ------------------------------------------------------------------------------------------     
+====================================================================================================
+
+
+
+70000.0   steps completed, average lnprob:,  -2501.163962332874
+
+
+emcee completed
+
+
+:::---::: PyORBIT v11.0.1 :::---:::
+
+Python version in use:
+3.10.18 (main, Jun  5 2025, 13:14:17) [GCC 11.2.0]
+LaTeX disabled by default
+
+Using orbital model:  keplerian
+Using orbital parametrization:  Eastman2013
+
+Using orbital model:  keplerian
+Using orbital parametrization:  Eastman2013
+
+gp_multidimensional  S+LEAF model, number of harmonics: 4
+
+GP model: gp_multidimensional  hyperparameters_condition:    True
+GP model: gp_multidimensional  rotation_decay_condition:     True
+
+### PyORBIT version used in the analysis:  11.0.1
+
+ emcee version:  3.1.6
+
+ Reference Time Tref: 59334.700184
+
+ Data points:1158
+ Dimensions: 74
+ Nwalkers:   296
+ Steps:      70000
+
+
+Number of samplings: 1628000
+
+Recomputing ln-prior, it may take a while...
+
+ln-probability   distribution:  -2501.17       -7.65      7.20 (15-84 p) 
+ln-prior         distribution:   -344.15       -2.47      1.52 (15-84 p) 
+ln-likelihood    distribution:  -2156.63       -7.80      7.55 (15-84 p) 
+
+
+*** Information criteria using the likelihood distribution
+
+ BIC from distribution  (using likelihood)  =   4835.29    -15.09   15.61 (15-84 p)
+ AIC from distribution  (using likelihood)  =   4461.26    -15.09   15.61 (15-84 p)
+ AICc from distribution (using likelihood)  =   4471.51    -15.09   15.61 (15-84 p)
+
+
+*** Information criteria using the median parameter set
+
+ ln_probability of Median solution =  -2484.34
+ ln_priors of Median solution      =   -342.03
+ ln_likelihood of Median solution  =  -2142.30
+
+ Median BIC  (using likelihood) =   4806.64
+ Median AIC  (using likelihood) =   4432.61
+ Median AICc (using likelihood) =   4442.86
+
+
+*** Information criteria using the MAP parameter set
+
+ ln_probability of MAP solution =  -2474.73
+ ln_priors of MAP solution      =   -342.64
+ ln_likelihood of MAP solution  =  -2132.09
+
+ MAP BIC  (using likelihood)    =   4786.20
+ MAP AIC  (using likelihood)    =   4412.17
+ MAP AICc (using likelihood)    =   4422.42
+
+ AICc suggested over AIC because NDATA ( 1158 ) < 40 * NDIM ( 74 )
+
+****************************************************************************************************
+
+
+Computing the autocorrelation time of the chains
+
+***** WARNING ******
+The integrated autocorrelation time cannot be reliably estimated
+likely the chains are too short, and ACF analysis is not fully reliable
+emcee.autocorr.integrated_time tolerance lowered to 20
+If you still get a warning, you should drop these results entirely
+Chains too short to apply convergence criteria
+They should be at least 35650*nthin = 356500
+
+ ACF computation failed, no plot will be generated 
+
+
+====================================================================================================
+     Ids, spaces (s), boundaries (b) and priors (p) of the sampler parameters     
+====================================================================================================
+
+----- dataset:  RVdata_expres
+jitter_0      id:  13  s:Linear      b:[      0.0010,      11.5000]   p:Uniform   []
+offset_0      id:  14  s:Linear      b:[  -9995.9050,   10012.5570]   p:Uniform   []
+
+----- dataset: RVdata_expres             ----- model: gp_multidimensional           
+rot_amp       id:  15  s:Linear      b:[      0.0000,      10.0000]   p:Uniform   []
+con_amp       id:  16  s:Linear      b:[    -20.0000,      20.0000]   p:Uniform   []
+
+----- dataset:  RVdata_harps
+jitter_0      id:  17  s:Linear      b:[      0.0009,      12.2000]   p:Uniform   []
+offset_0      id:  18  s:Linear      b:[  -9994.3035,   10013.7475]   p:Uniform   []
+offset_1      id:  19  s:Linear      b:[  -9994.3035,   10013.7475]   p:Uniform   []
+
+----- dataset: RVdata_harps              ----- model: gp_multidimensional           
+rot_amp       id:  20  s:Linear      b:[      0.0000,      10.0000]   p:Uniform   []
+con_amp       id:  21  s:Linear      b:[    -20.0000,      20.0000]   p:Uniform   []
+
+----- dataset:  RVdata_neid
+jitter_0      id:  22  s:Linear      b:[      0.0010,      12.2000]   p:Uniform   []
+offset_0      id:  23  s:Linear      b:[  -9993.3866,   10013.1434]   p:Uniform   []
+
+----- dataset: RVdata_neid               ----- model: gp_multidimensional           
+rot_amp       id:  24  s:Linear      b:[      0.0000,      10.0000]   p:Uniform   []
+con_amp       id:  25  s:Linear      b:[    -20.0000,      20.0000]   p:Uniform   []
+
+----- dataset:  FIESTAdata_expres_mode1
+jitter_0      id:  26  s:Linear      b:[      0.0017,      18.9342]   p:Uniform   []
+offset_0      id:  27  s:Linear      b:[ -10002.0587,   10002.3918]   p:Uniform   []
+
+----- dataset: FIESTAdata_expres_mode1   ----- model: gp_multidimensional           
+rot_amp       id:  28  s:Linear      b:[    -10.0000,      10.0000]   p:Uniform   []
+con_amp       id:  29  s:Linear      b:[    -20.0000,      20.0000]   p:Uniform   []
+
+----- dataset:  FIESTAdata_expres_mode2
+jitter_0      id:  30  s:Linear      b:[      0.0019,      21.6805]   p:Uniform   []
+offset_0      id:  31  s:Linear      b:[ -10003.5672,   10002.6393]   p:Uniform   []
+
+----- dataset: FIESTAdata_expres_mode2   ----- model: gp_multidimensional           
+rot_amp       id:  32  s:Linear      b:[    -10.0000,      10.0000]   p:Uniform   []
+con_amp       id:  33  s:Linear      b:[    -20.0000,      20.0000]   p:Uniform   []
+
+----- dataset:  FIESTAdata_expres_mode3
+jitter_0      id:  34  s:Linear      b:[      0.0045,      50.3391]   p:Uniform   []
+offset_0      id:  35  s:Linear      b:[ -10009.7207,   10010.7123]   p:Uniform   []
+
+----- dataset: FIESTAdata_expres_mode3   ----- model: gp_multidimensional           
+rot_amp       id:  36  s:Linear      b:[    -10.0000,      10.0000]   p:Uniform   []
+con_amp       id:  37  s:Linear      b:[    -20.0000,      20.0000]   p:Uniform   []
+
+----- dataset:  FIESTAdata_harps_mode1
+jitter_0      id:  38  s:Linear      b:[      0.0013,      13.9050]   p:Uniform   []
+offset_0      id:  39  s:Linear      b:[ -10001.2043,   10001.7494]   p:Uniform   []
+
+----- dataset: FIESTAdata_harps_mode1    ----- model: gp_multidimensional           
+rot_amp       id:  40  s:Linear      b:[    -10.0000,      10.0000]   p:Uniform   []
+con_amp       id:  41  s:Linear      b:[    -20.0000,      20.0000]   p:Uniform   []
+
+----- dataset:  FIESTAdata_harps_mode2
+jitter_0      id:  42  s:Linear      b:[      0.0016,      16.4267]   p:Uniform   []
+offset_0      id:  43  s:Linear      b:[ -10002.9651,   10001.8967]   p:Uniform   []
+
+----- dataset: FIESTAdata_harps_mode2    ----- model: gp_multidimensional           
+rot_amp       id:  44  s:Linear      b:[    -10.0000,      10.0000]   p:Uniform   []
+con_amp       id:  45  s:Linear      b:[    -20.0000,      20.0000]   p:Uniform   []
+
+----- dataset:  FIESTAdata_harps_mode3
+jitter_0      id:  46  s:Linear      b:[      0.0044,      47.0591]   p:Uniform   []
+offset_0      id:  47  s:Linear      b:[ -10008.9121,   10007.9038]   p:Uniform   []
+
+----- dataset: FIESTAdata_harps_mode3    ----- model: gp_multidimensional           
+rot_amp       id:  48  s:Linear      b:[    -10.0000,      10.0000]   p:Uniform   []
+con_amp       id:  49  s:Linear      b:[    -20.0000,      20.0000]   p:Uniform   []
+
+----- dataset:  FIESTAdata_harpsn_mode1
+jitter_0      id:  50  s:Linear      b:[      0.0011,      12.0774]   p:Uniform   []
+offset_0      id:  51  s:Linear      b:[ -10002.4732,   10002.8195]   p:Uniform   []
+
+----- dataset: FIESTAdata_harpsn_mode1   ----- model: gp_multidimensional           
+rot_amp       id:  52  s:Linear      b:[    -10.0000,      10.0000]   p:Uniform   []
+con_amp       id:  53  s:Linear      b:[    -20.0000,      20.0000]   p:Uniform   []
+
+----- dataset:  FIESTAdata_harpsn_mode2
+jitter_0      id:  54  s:Linear      b:[      0.0012,      13.9895]   p:Uniform   []
+offset_0      id:  55  s:Linear      b:[ -10004.0119,   10002.8742]   p:Uniform   []
+
+----- dataset: FIESTAdata_harpsn_mode2   ----- model: gp_multidimensional           
+rot_amp       id:  56  s:Linear      b:[    -10.0000,      10.0000]   p:Uniform   []
+con_amp       id:  57  s:Linear      b:[    -20.0000,      20.0000]   p:Uniform   []
+
+----- dataset:  FIESTAdata_harpsn_mode3
+jitter_0      id:  58  s:Linear      b:[      0.0034,      39.1297]   p:Uniform   []
+offset_0      id:  59  s:Linear      b:[ -10007.4719,   10008.5960]   p:Uniform   []
+
+----- dataset: FIESTAdata_harpsn_mode3   ----- model: gp_multidimensional           
+rot_amp       id:  60  s:Linear      b:[    -10.0000,      10.0000]   p:Uniform   []
+con_amp       id:  61  s:Linear      b:[    -20.0000,      20.0000]   p:Uniform   []
+
+----- dataset:  FIESTAdata_neid_mode1
+jitter_0      id:  62  s:Linear      b:[      0.0016,      19.1206]   p:Uniform   []
+offset_0      id:  63  s:Linear      b:[ -10002.5624,   10002.0726]   p:Uniform   []
+
+----- dataset: FIESTAdata_neid_mode1     ----- model: gp_multidimensional           
+rot_amp       id:  64  s:Linear      b:[    -10.0000,      10.0000]   p:Uniform   []
+con_amp       id:  65  s:Linear      b:[    -20.0000,      20.0000]   p:Uniform   []
+
+----- dataset:  FIESTAdata_neid_mode2
+jitter_0      id:  66  s:Linear      b:[      0.0020,      23.1391]   p:Uniform   []
+offset_0      id:  67  s:Linear      b:[ -10003.5449,   10004.1555]   p:Uniform   []
+
+----- dataset: FIESTAdata_neid_mode2     ----- model: gp_multidimensional           
+rot_amp       id:  68  s:Linear      b:[    -10.0000,      10.0000]   p:Uniform   []
+con_amp       id:  69  s:Linear      b:[    -20.0000,      20.0000]   p:Uniform   []
+
+----- dataset:  FIESTAdata_neid_mode3
+jitter_0      id:  70  s:Linear      b:[      0.0050,      57.8429]   p:Uniform   []
+offset_0      id:  71  s:Linear      b:[ -10008.7119,   10006.3460]   p:Uniform   []
+
+----- dataset: FIESTAdata_neid_mode3     ----- model: gp_multidimensional           
+rot_amp       id:  72  s:Linear      b:[    -10.0000,      10.0000]   p:Uniform   []
+con_amp       id:  73  s:Linear      b:[    -20.0000,      20.0000]   p:Uniform   []
+
+----- common model:  b
+P             id:   0  s:Log_Base2   b:[      0.3785,       6.6439]   p:Uniform   []
+K             id:   1  s:Log_Base2   b:[     -9.9658,       3.3219]   p:Uniform   []
+sre_coso      id:   2  s:Linear      b:[     -1.0000,       1.0000]   p:Uniform   []
+sre_sino      id:   3  s:Linear      b:[     -1.0000,       1.0000]   p:Uniform   []
+mean_long     id:   4  s:Linear      b:[      0.4897,     360.4897]   p:Uniform   []
+e             derived (no id, space, bound)                           p:Gaussian   [0.    0.098]
+omega         derived (no id, space, bound)                           p:Uniform   [0.0, 360.0]
+
+----- common model:  c
+P             id:   5  s:Log_Base2   b:[      0.3785,       6.6439]   p:Uniform   []
+K             id:   6  s:Log_Base2   b:[     -9.9658,       3.3219]   p:Uniform   []
+sre_coso      id:   7  s:Linear      b:[     -1.0000,       1.0000]   p:Uniform   []
+sre_sino      id:   8  s:Linear      b:[     -1.0000,       1.0000]   p:Uniform   []
+mean_long     id:   9  s:Linear      b:[     56.1308,     416.1308]   p:Uniform   []
+e             derived (no id, space, bound)                           p:Gaussian   [0.    0.098]
+omega         derived (no id, space, bound)                           p:Uniform   [0.0, 360.0]
+
+----- common model:  activity
+Prot          id:  10  s:Linear      b:[     20.0000,      35.0000]   p:Gaussian   [28.   0.5]
+Pdec          id:  11  s:Linear      b:[     30.0000,    1000.0000]   p:Uniform   []
+Oamp          id:  12  s:Log_Base2   b:[     -6.6439,       0.0000]   p:Gaussian   [0.35  0.035]
+
+----- common model:  star_parameters
+mass          derived (no id, space, bound)                           p:Gaussian   [1.e+00 1.e-06]
+radius        derived (no id, space, bound)                           p:Gaussian   [1.e+00 1.e-06]
+density       derived (no id, space, bound)                           p:Gaussian   [1.e+00 1.e-06]
+
+
+****************************************************************************************************
+****************************************************************************************************
+
+ Confidence intervals (median value, 34.135th percentile from the median on the left and right side)
+
+====================================================================================================
+     Statistics on the posterior of the sampler parameters     
+====================================================================================================
+
+----- dataset:  RVdata_expres
+jitter_0        13         1.249       -0.098         0.11   (15-84 p)   [    0.0010,    11.5000]
+offset_0        14          8.71        -0.61         0.52   (15-84 p)   [-9995.9050, 10012.5570]
+
+----- dataset: RVdata_expres             ----- model: gp_multidimensional           
+rot_amp         15           7.6         -3.0          1.8   (15-84 p)   [    0.0000,    10.0000]
+con_amp         16           9.7         -3.0          3.6   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  RVdata_harps
+jitter_0        17          1.23        -0.11         0.12   (15-84 p)   [    0.0009,    12.2000]
+offset_0        18          9.32        -0.71         0.67   (15-84 p)   [-9994.3035, 10013.7475]
+offset_1        19         10.42        -0.77         0.69   (15-84 p)   [-9994.3035, 10013.7475]
+
+----- dataset: RVdata_harps              ----- model: gp_multidimensional           
+rot_amp         20           2.7         -2.0          3.4   (15-84 p)   [    0.0000,    10.0000]
+con_amp         21          11.2         -2.9          3.9   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  RVdata_neid
+jitter_0        22         1.126       -0.099         0.11   (15-84 p)   [    0.0010,    12.2000]
+offset_0        23          9.58        -0.81         0.70   (15-84 p)   [-9993.3866, 10013.1434]
+
+----- dataset: RVdata_neid               ----- model: gp_multidimensional           
+rot_amp         24           4.5         -3.0          3.4   (15-84 p)   [    0.0000,    10.0000]
+con_amp         25          12.4         -3.3          4.1   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_expres_mode1
+jitter_0        26         0.953       -0.073        0.085   (15-84 p)   [    0.0017,    18.9342]
+offset_0        27          0.03        -0.15         0.16   (15-84 p)   [-10002.0587, 10002.3918]
+
+----- dataset: FIESTAdata_expres_mode1   ----- model: gp_multidimensional           
+rot_amp         28          -8.2         -1.3          2.3   (15-84 p)   [  -10.0000,    10.0000]
+con_amp         29          -1.8         -1.5          1.3   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_expres_mode2
+jitter_0        30         1.219       -0.090         0.10   (15-84 p)   [    0.0019,    21.6805]
+offset_0        31         -0.05        -0.19         0.17   (15-84 p)   [-10003.5672, 10002.6393]
+
+----- dataset: FIESTAdata_expres_mode2   ----- model: gp_multidimensional           
+rot_amp         32           8.2         -2.4          1.3   (15-84 p)   [  -10.0000,    10.0000]
+con_amp         33           2.0         -1.7          1.9   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_expres_mode3
+jitter_0        34          4.04        -0.28         0.31   (15-84 p)   [    0.0045,    50.3391]
+offset_0        35          0.01        -0.68         0.62   (15-84 p)   [-10009.7207, 10010.7123]
+
+----- dataset: FIESTAdata_expres_mode3   ----- model: gp_multidimensional           
+rot_amp         36          -2.8         -5.0          7.1   (15-84 p)   [  -10.0000,    10.0000]
+con_amp         37           7.7         -4.7          5.5   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_harps_mode1
+jitter_0        38          0.84        -0.12         0.15   (15-84 p)   [    0.0013,    13.9050]
+offset_0        39         -0.03        -0.26         0.25   (15-84 p)   [-10001.2043, 10001.7494]
+
+----- dataset: FIESTAdata_harps_mode1    ----- model: gp_multidimensional           
+rot_amp         40          -2.0         -3.8          3.7   (15-84 p)   [  -10.0000,    10.0000]
+con_amp         41           2.5         -1.5          1.6   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_harps_mode2
+jitter_0        42          1.35        -0.19         0.23   (15-84 p)   [    0.0016,    16.4267]
+offset_0        43          0.02        -0.35         0.31   (15-84 p)   [-10002.9651, 10001.8967]
+
+----- dataset: FIESTAdata_harps_mode2    ----- model: gp_multidimensional           
+rot_amp         44          -1.1         -5.0          5.3   (15-84 p)   [  -10.0000,    10.0000]
+con_amp         45           1.1         -2.4          2.5   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_harps_mode3
+jitter_0        46          3.87        -0.60         0.71   (15-84 p)   [    0.0044,    47.0591]
+offset_0        47           0.3         -1.3          1.4   (15-84 p)   [-10008.9121, 10007.9038]
+
+----- dataset: FIESTAdata_harps_mode3    ----- model: gp_multidimensional           
+rot_amp         48           2.8         -7.8          5.2   (15-84 p)   [  -10.0000,    10.0000]
+con_amp         49         -17.5         -1.8          3.6   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_harpsn_mode1
+jitter_0        50         0.979       -0.077        0.084   (15-84 p)   [    0.0011,    12.0774]
+offset_0        51          0.03        -0.12         0.12   (15-84 p)   [-10002.4732, 10002.8195]
+
+----- dataset: FIESTAdata_harpsn_mode1   ----- model: gp_multidimensional           
+rot_amp         52          -1.5         -4.3          4.2   (15-84 p)   [  -10.0000,    10.0000]
+con_amp         53           0.2         -1.3          1.3   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_harpsn_mode2
+jitter_0        54          1.33        -0.11         0.12   (15-84 p)   [    0.0012,    13.9895]
+offset_0        55         -0.02        -0.18         0.18   (15-84 p)   [-10004.0119, 10002.8742]
+
+----- dataset: FIESTAdata_harpsn_mode2   ----- model: gp_multidimensional           
+rot_amp         56           3.9         -4.7          4.2   (15-84 p)   [  -10.0000,    10.0000]
+con_amp         57           0.5         -1.8          1.7   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_harpsn_mode3
+jitter_0        58          3.35        -0.26         0.31   (15-84 p)   [    0.0034,    39.1297]
+offset_0        59         -0.01        -0.44         0.45   (15-84 p)   [-10007.4719, 10008.5960]
+
+----- dataset: FIESTAdata_harpsn_mode3   ----- model: gp_multidimensional           
+rot_amp         60          -4.7         -3.9          7.0   (15-84 p)   [  -10.0000,    10.0000]
+con_amp         61          -2.8         -4.2          4.0   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_neid_mode1
+jitter_0        62         0.821       -0.064        0.074   (15-84 p)   [    0.0016,    19.1206]
+offset_0        63          0.01        -0.26         0.25   (15-84 p)   [-10002.5624, 10002.0726]
+
+----- dataset: FIESTAdata_neid_mode1     ----- model: gp_multidimensional           
+rot_amp         64           0.2         -4.0          3.5   (15-84 p)   [  -10.0000,    10.0000]
+con_amp         65           4.1         -1.3          1.6   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_neid_mode2
+jitter_0        66          1.30        -0.11         0.11   (15-84 p)   [    0.0020,    23.1391]
+offset_0        67         -0.03        -0.42         0.44   (15-84 p)   [-10003.5449, 10004.1555]
+
+----- dataset: FIESTAdata_neid_mode2     ----- model: gp_multidimensional           
+rot_amp         68          -0.9         -5.3          5.8   (15-84 p)   [  -10.0000,    10.0000]
+con_amp         69          -6.6         -2.6          2.1   (15-84 p)   [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_neid_mode3
+jitter_0        70          3.11        -0.26         0.28   (15-84 p)   [    0.0050,    57.8429]
+offset_0        71          0.02        -0.53         0.55   (15-84 p)   [-10008.7119, 10006.3460]
+
+----- dataset: FIESTAdata_neid_mode3     ----- model: gp_multidimensional           
+rot_amp         72          -0.5         -6.1          6.2   (15-84 p)   [  -10.0000,    10.0000]
+con_amp         73           6.9         -3.8          4.4   (15-84 p)   [  -20.0000,    20.0000]
+
+----- common model:  b
+P                0          5.13         -2.9         0.12   (15-84 p)   [    0.3785,     6.6439]
+K                1         -0.17        -0.47         0.35   (15-84 p)   [   -9.9658,     3.3219]
+sre_coso         2          0.01        -0.24         0.24   (15-84 p)   [   -1.0000,     1.0000]
+sre_sino         3          0.01        -0.20         0.23   (15-84 p)   [   -1.0000,     1.0000]
+mean_long        4           155          -43          101   (15-84 p)   [    0.4897,   360.4897]
+
+----- common model:  c
+P                5        2.2347      -0.0068          3.0   (15-84 p)   [    0.3785,     6.6439]
+K                6          0.04        -0.55         0.25   (15-84 p)   [   -9.9658,     3.3219]
+sre_coso         7          0.12        -0.30         0.21   (15-84 p)   [   -1.0000,     1.0000]
+sre_sino         8         -0.04        -0.20         0.23   (15-84 p)   [   -1.0000,     1.0000]
+mean_long        9           248         -113           20   (15-84 p)   [   56.1308,   416.1308]
+
+----- common model:  activity
+Prot            10         27.49        -0.59         0.68   (15-84 p)   [   20.0000,    35.0000]
+Pdec            11           489         -189          256   (15-84 p)   [   30.0000,  1000.0000]
+Oamp            12         -1.47        -0.15         0.14   (15-84 p)   [   -6.6439,     0.0000]
+
+----- common model:  star_parameters
+
+====================================================================================================
+     Statistics on the model parameters obtained from the posteriors samples     
+====================================================================================================
+
+----- dataset:  RVdata_expres
+jitter_0                 1.249       -0.098         0.11    (15-84 p)
+offset_0                  8.71        -0.61         0.52    (15-84 p)
+
+
+----- dataset: RVdata_expres             ----- model: gp_multidimensional           
+rot_amp                    7.6         -3.0          1.8    (15-84 p)
+con_amp                    9.7         -3.0          3.6    (15-84 p)
+
+----- dataset:  RVdata_harps
+jitter_0                  1.23        -0.11         0.12    (15-84 p)
+offset_0                  9.32        -0.71         0.67    (15-84 p)
+offset_1                 10.42        -0.77         0.69    (15-84 p)
+
+
+----- dataset: RVdata_harps              ----- model: gp_multidimensional           
+rot_amp                    2.7         -2.0          3.4    (15-84 p)
+con_amp                   11.2         -2.9          3.9    (15-84 p)
+
+----- dataset:  RVdata_neid
+jitter_0                 1.126       -0.099         0.11    (15-84 p)
+offset_0                  9.58        -0.81         0.70    (15-84 p)
+
+
+----- dataset: RVdata_neid               ----- model: gp_multidimensional           
+rot_amp                    4.5         -3.0          3.4    (15-84 p)
+con_amp                   12.4         -3.3          4.1    (15-84 p)
+
+----- dataset:  FIESTAdata_expres_mode1
+jitter_0                 0.953       -0.073        0.085    (15-84 p)
+offset_0                  0.03        -0.15         0.16    (15-84 p)
+
+
+----- dataset: FIESTAdata_expres_mode1   ----- model: gp_multidimensional           
+rot_amp                   -8.2         -1.3          2.3    (15-84 p)
+con_amp                   -1.8         -1.5          1.3    (15-84 p)
+
+----- dataset:  FIESTAdata_expres_mode2
+jitter_0                 1.219       -0.090         0.10    (15-84 p)
+offset_0                 -0.05        -0.19         0.17    (15-84 p)
+
+
+----- dataset: FIESTAdata_expres_mode2   ----- model: gp_multidimensional           
+rot_amp                    8.2         -2.4          1.3    (15-84 p)
+con_amp                    2.0         -1.7          1.9    (15-84 p)
+
+----- dataset:  FIESTAdata_expres_mode3
+jitter_0                  4.04        -0.28         0.31    (15-84 p)
+offset_0                  0.01        -0.68         0.62    (15-84 p)
+
+
+----- dataset: FIESTAdata_expres_mode3   ----- model: gp_multidimensional           
+rot_amp                   -2.8         -5.0          7.1    (15-84 p)
+con_amp                    7.7         -4.7          5.5    (15-84 p)
+
+----- dataset:  FIESTAdata_harps_mode1
+jitter_0                  0.84        -0.12         0.15    (15-84 p)
+offset_0                 -0.03        -0.26         0.25    (15-84 p)
+
+
+----- dataset: FIESTAdata_harps_mode1    ----- model: gp_multidimensional           
+rot_amp                   -2.0         -3.8          3.7    (15-84 p)
+con_amp                    2.5         -1.5          1.6    (15-84 p)
+
+----- dataset:  FIESTAdata_harps_mode2
+jitter_0                  1.35        -0.19         0.23    (15-84 p)
+offset_0                  0.02        -0.35         0.31    (15-84 p)
+
+
+----- dataset: FIESTAdata_harps_mode2    ----- model: gp_multidimensional           
+rot_amp                   -1.1         -5.0          5.3    (15-84 p)
+con_amp                    1.1         -2.4          2.5    (15-84 p)
+
+----- dataset:  FIESTAdata_harps_mode3
+jitter_0                  3.87        -0.60         0.71    (15-84 p)
+offset_0                   0.3         -1.3          1.4    (15-84 p)
+
+
+----- dataset: FIESTAdata_harps_mode3    ----- model: gp_multidimensional           
+rot_amp                    2.8         -7.8          5.2    (15-84 p)
+con_amp                  -17.5         -1.8          3.6    (15-84 p)
+
+----- dataset:  FIESTAdata_harpsn_mode1
+jitter_0                 0.979       -0.077        0.084    (15-84 p)
+offset_0                  0.03        -0.12         0.12    (15-84 p)
+
+
+----- dataset: FIESTAdata_harpsn_mode1   ----- model: gp_multidimensional           
+rot_amp                   -1.5         -4.3          4.2    (15-84 p)
+con_amp                    0.2         -1.3          1.3    (15-84 p)
+
+----- dataset:  FIESTAdata_harpsn_mode2
+jitter_0                  1.33        -0.11         0.12    (15-84 p)
+offset_0                 -0.02        -0.18         0.18    (15-84 p)
+
+
+----- dataset: FIESTAdata_harpsn_mode2   ----- model: gp_multidimensional           
+rot_amp                    3.9         -4.7          4.2    (15-84 p)
+con_amp                    0.5         -1.8          1.7    (15-84 p)
+
+----- dataset:  FIESTAdata_harpsn_mode3
+jitter_0                  3.35        -0.26         0.31    (15-84 p)
+offset_0                 -0.01        -0.44         0.45    (15-84 p)
+
+
+----- dataset: FIESTAdata_harpsn_mode3   ----- model: gp_multidimensional           
+rot_amp                   -4.7         -3.9          7.0    (15-84 p)
+con_amp                   -2.8         -4.2          4.0    (15-84 p)
+
+----- dataset:  FIESTAdata_neid_mode1
+jitter_0                 0.821       -0.064        0.074    (15-84 p)
+offset_0                  0.01        -0.26         0.25    (15-84 p)
+
+
+----- dataset: FIESTAdata_neid_mode1     ----- model: gp_multidimensional           
+rot_amp                    0.2         -4.0          3.5    (15-84 p)
+con_amp                    4.1         -1.3          1.6    (15-84 p)
+
+----- dataset:  FIESTAdata_neid_mode2
+jitter_0                  1.30        -0.11         0.11    (15-84 p)
+offset_0                 -0.03        -0.42         0.44    (15-84 p)
+
+
+----- dataset: FIESTAdata_neid_mode2     ----- model: gp_multidimensional           
+rot_amp                   -0.9         -5.3          5.8    (15-84 p)
+con_amp                   -6.6         -2.6          2.1    (15-84 p)
+
+----- dataset:  FIESTAdata_neid_mode3
+jitter_0                  3.11        -0.26         0.28    (15-84 p)
+offset_0                  0.02        -0.53         0.55    (15-84 p)
+
+
+----- dataset: FIESTAdata_neid_mode3     ----- model: gp_multidimensional           
+rot_amp                   -0.5         -6.1          6.2    (15-84 p)
+con_amp                    6.9         -3.8          4.4    (15-84 p)
+
+----- common model:  b
+P                         35.0          -30          3.1    (15-84 p)
+K                         0.89        -0.25         0.25    (15-84 p)
+mean_long                  155          -43          101    (15-84 p)
+e                        0.076       -0.054        0.083    (15-84 p)
+omega                      140         -128          132    (15-84 p)
+
+----- common model:  c
+P                        4.707       -0.022           33    (15-84 p)
+K                         1.03        -0.33         0.20    (15-84 p)
+mean_long                  248         -112           19    (15-84 p)
+e                        0.091       -0.062        0.079    (15-84 p)
+omega                      -34         -133           74    (15-84 p)
+
+----- common model:  activity
+Prot                     27.49        -0.59         0.68    (15-84 p)
+Pdec                       489         -189          256    (15-84 p)
+Oamp                     0.360       -0.036        0.036    (15-84 p)
+
+----- common model:  star_parameters
+
+====================================================================================================
+     Statistics on the derived parameters obtained from the posteriors samples     
+====================================================================================================
+
+----- common model:  b
+Inclination fixed to 90 deg!
+Computing planetary mass under the approximation M_planet << M_star (threshold at 30.0 Me)
+a_Rs                      45.0          -33          2.6    (15-84 p)
+M_Mj                    0.0104      -0.0026       0.0047    (15-84 p)
+M_Me                      3.30        -0.82          1.5    (15-84 p)
+Tc                     59365.4          -28          3.0    (15-84 p)
+a_AU_(M)                 0.209        -0.15        0.012    (15-84 p)
+a_AU_(rho,R)             0.209        -0.15        0.012    (15-84 p)
+
+----- common model:  c
+Inclination fixed to 90 deg!
+Computing planetary mass under the approximation M_planet << M_star (threshold at 30.0 Me)
+a_Rs                    11.814       -0.037           35    (15-84 p)
+M_Mj                    0.0097      -0.0018       0.0032    (15-84 p)
+M_Me                      3.07        -0.56          1.0    (15-84 p)
+Tc                    59337.25        -0.33           30    (15-84 p)
+a_AU_(M)               0.05496     -0.00017         0.16    (15-84 p)
+a_AU_(rho,R)           0.05496     -0.00017         0.16    (15-84 p)
+
+
+====================================================================================================
+     ------------------------------------------------------------------------------------------     
+====================================================================================================
+
+
+
+****************************************************************************************************
+
+ Parameters corresponding to the Maximum a Posteriori probability ( -2474.7261144326944 )
+
+====================================================================================================
+     Statistics on the posterior of the sampler parameters     
+====================================================================================================
+
+----- dataset:  RVdata_expres
+jitter_0        13      1.254782 [    0.0010,    11.5000]
+offset_0        14      8.197141 [-9995.9050, 10012.5570]
+
+----- dataset: RVdata_expres             ----- model: gp_multidimensional           
+rot_amp         15      8.392954 [    0.0000,    10.0000]
+con_amp         16      5.239639 [  -20.0000,    20.0000]
+
+----- dataset:  RVdata_harps
+jitter_0        17      1.346472 [    0.0009,    12.2000]
+offset_0        18      8.752143 [-9994.3035, 10013.7475]
+offset_1        19      9.719465 [-9994.3035, 10013.7475]
+
+----- dataset: RVdata_harps              ----- model: gp_multidimensional           
+rot_amp         20      0.375348 [    0.0000,    10.0000]
+con_amp         21      6.503205 [  -20.0000,    20.0000]
+
+----- dataset:  RVdata_neid
+jitter_0        22      1.152184 [    0.0010,    12.2000]
+offset_0        23      8.969922 [-9993.3866, 10013.1434]
+
+----- dataset: RVdata_neid               ----- model: gp_multidimensional           
+rot_amp         24      4.879710 [    0.0000,    10.0000]
+con_amp         25      6.169994 [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_expres_mode1
+jitter_0        26      0.932699 [    0.0017,    18.9342]
+offset_0        27      0.144190 [-10002.0587, 10002.3918]
+
+----- dataset: FIESTAdata_expres_mode1   ----- model: gp_multidimensional           
+rot_amp         28     -6.573726 [  -10.0000,    10.0000]
+con_amp         29     -1.918932 [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_expres_mode2
+jitter_0        30      1.136539 [    0.0019,    21.6805]
+offset_0        31     -0.101615 [-10003.5672, 10002.6393]
+
+----- dataset: FIESTAdata_expres_mode2   ----- model: gp_multidimensional           
+rot_amp         32      9.517709 [  -10.0000,    10.0000]
+con_amp         33      2.007461 [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_expres_mode3
+jitter_0        34      4.056288 [    0.0045,    50.3391]
+offset_0        35     -0.958549 [-10009.7207, 10010.7123]
+
+----- dataset: FIESTAdata_expres_mode3   ----- model: gp_multidimensional           
+rot_amp         36     -3.395001 [  -10.0000,    10.0000]
+con_amp         37      3.899361 [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_harps_mode1
+jitter_0        38      0.737767 [    0.0013,    13.9050]
+offset_0        39     -0.300420 [-10001.2043, 10001.7494]
+
+----- dataset: FIESTAdata_harps_mode1    ----- model: gp_multidimensional           
+rot_amp         40     -0.556643 [  -10.0000,    10.0000]
+con_amp         41      1.845803 [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_harps_mode2
+jitter_0        42      1.307010 [    0.0016,    16.4267]
+offset_0        43     -0.270131 [-10002.9651, 10001.8967]
+
+----- dataset: FIESTAdata_harps_mode2    ----- model: gp_multidimensional           
+rot_amp         44      0.550905 [  -10.0000,    10.0000]
+con_amp         45      0.819610 [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_harps_mode3
+jitter_0        46      3.261959 [    0.0044,    47.0591]
+offset_0        47      1.039709 [-10008.9121, 10007.9038]
+
+----- dataset: FIESTAdata_harps_mode3    ----- model: gp_multidimensional           
+rot_amp         48      5.080366 [  -10.0000,    10.0000]
+con_amp         49    -14.295481 [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_harpsn_mode1
+jitter_0        50      0.998644 [    0.0011,    12.0774]
+offset_0        51      0.037724 [-10002.4732, 10002.8195]
+
+----- dataset: FIESTAdata_harpsn_mode1   ----- model: gp_multidimensional           
+rot_amp         52      0.047159 [  -10.0000,    10.0000]
+con_amp         53     -0.458350 [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_harpsn_mode2
+jitter_0        54      1.458641 [    0.0012,    13.9895]
+offset_0        55      0.008323 [-10004.0119, 10002.8742]
+
+----- dataset: FIESTAdata_harpsn_mode2   ----- model: gp_multidimensional           
+rot_amp         56      1.283284 [  -10.0000,    10.0000]
+con_amp         57      0.732480 [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_harpsn_mode3
+jitter_0        58      3.213844 [    0.0034,    39.1297]
+offset_0        59     -0.228913 [-10007.4719, 10008.5960]
+
+----- dataset: FIESTAdata_harpsn_mode3   ----- model: gp_multidimensional           
+rot_amp         60     -8.901268 [  -10.0000,    10.0000]
+con_amp         61     -0.567573 [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_neid_mode1
+jitter_0        62      0.955599 [    0.0016,    19.1206]
+offset_0        63     -0.082178 [-10002.5624, 10002.0726]
+
+----- dataset: FIESTAdata_neid_mode1     ----- model: gp_multidimensional           
+rot_amp         64      2.303216 [  -10.0000,    10.0000]
+con_amp         65      1.024733 [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_neid_mode2
+jitter_0        66      1.329496 [    0.0020,    23.1391]
+offset_0        67      0.273937 [-10003.5449, 10004.1555]
+
+----- dataset: FIESTAdata_neid_mode2     ----- model: gp_multidimensional           
+rot_amp         68     -0.917449 [  -10.0000,    10.0000]
+con_amp         69     -3.391811 [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_neid_mode3
+jitter_0        70      3.401378 [    0.0050,    57.8429]
+offset_0        71     -0.098709 [-10008.7119, 10006.3460]
+
+----- dataset: FIESTAdata_neid_mode3     ----- model: gp_multidimensional           
+rot_amp         72      1.591676 [  -10.0000,    10.0000]
+con_amp         73      2.441467 [  -20.0000,    20.0000]
+
+----- common model:  b
+P                0      5.192313 [    0.3785,     6.6439]
+K                1     -0.426082 [   -9.9658,     3.3219]
+sre_coso         2     -0.195359 [   -1.0000,     1.0000]
+sre_sino         3      0.127345 [   -1.0000,     1.0000]
+mean_long        4    128.552464 [    0.4897,   360.4897]
+
+----- common model:  c
+P                5      2.229160 [    0.3785,     6.6439]
+K                6      0.097990 [   -9.9658,     3.3219]
+sre_coso         7      0.149123 [   -1.0000,     1.0000]
+sre_sino         8     -0.227946 [   -1.0000,     1.0000]
+mean_long        9    259.280754 [   56.1308,   416.1308]
+
+----- common model:  activity
+Prot            10     28.194477 [   20.0000,    35.0000]
+Pdec            11    330.028551 [   30.0000,  1000.0000]
+Oamp            12     -1.356905 [   -6.6439,     0.0000]
+
+----- common model:  star_parameters
+
+====================================================================================================
+     Statistics on the model parameters obtained from the posteriors samples     
+====================================================================================================
+
+----- dataset:  RVdata_expres
+jitter_0              1.254782 
+offset_0              8.197141 
+
+
+----- dataset: RVdata_expres             ----- model: gp_multidimensional           
+rot_amp               8.392954 
+con_amp               5.239639 
+
+----- dataset:  RVdata_harps
+jitter_0              1.346472 
+offset_0              8.752143 
+offset_1              9.719465 
+
+
+----- dataset: RVdata_harps              ----- model: gp_multidimensional           
+rot_amp               0.375348 
+con_amp               6.503205 
+
+----- dataset:  RVdata_neid
+jitter_0              1.152184 
+offset_0              8.969922 
+
+
+----- dataset: RVdata_neid               ----- model: gp_multidimensional           
+rot_amp               4.879710 
+con_amp               6.169994 
+
+----- dataset:  FIESTAdata_expres_mode1
+jitter_0              0.932699 
+offset_0              0.144190 
+
+
+----- dataset: FIESTAdata_expres_mode1   ----- model: gp_multidimensional           
+rot_amp              -6.573726 
+con_amp              -1.918932 
+
+----- dataset:  FIESTAdata_expres_mode2
+jitter_0              1.136539 
+offset_0             -0.101615 
+
+
+----- dataset: FIESTAdata_expres_mode2   ----- model: gp_multidimensional           
+rot_amp               9.517709 
+con_amp               2.007461 
+
+----- dataset:  FIESTAdata_expres_mode3
+jitter_0              4.056288 
+offset_0             -0.958549 
+
+
+----- dataset: FIESTAdata_expres_mode3   ----- model: gp_multidimensional           
+rot_amp              -3.395001 
+con_amp               3.899361 
+
+----- dataset:  FIESTAdata_harps_mode1
+jitter_0              0.737767 
+offset_0             -0.300420 
+
+
+----- dataset: FIESTAdata_harps_mode1    ----- model: gp_multidimensional           
+rot_amp              -0.556643 
+con_amp               1.845803 
+
+----- dataset:  FIESTAdata_harps_mode2
+jitter_0              1.307010 
+offset_0             -0.270131 
+
+
+----- dataset: FIESTAdata_harps_mode2    ----- model: gp_multidimensional           
+rot_amp               0.550905 
+con_amp               0.819610 
+
+----- dataset:  FIESTAdata_harps_mode3
+jitter_0              3.261959 
+offset_0              1.039709 
+
+
+----- dataset: FIESTAdata_harps_mode3    ----- model: gp_multidimensional           
+rot_amp               5.080366 
+con_amp             -14.295481 
+
+----- dataset:  FIESTAdata_harpsn_mode1
+jitter_0              0.998644 
+offset_0              0.037724 
+
+
+----- dataset: FIESTAdata_harpsn_mode1   ----- model: gp_multidimensional           
+rot_amp               0.047159 
+con_amp              -0.458350 
+
+----- dataset:  FIESTAdata_harpsn_mode2
+jitter_0              1.458641 
+offset_0              0.008323 
+
+
+----- dataset: FIESTAdata_harpsn_mode2   ----- model: gp_multidimensional           
+rot_amp               1.283284 
+con_amp               0.732480 
+
+----- dataset:  FIESTAdata_harpsn_mode3
+jitter_0              3.213844 
+offset_0             -0.228913 
+
+
+----- dataset: FIESTAdata_harpsn_mode3   ----- model: gp_multidimensional           
+rot_amp              -8.901268 
+con_amp              -0.567573 
+
+----- dataset:  FIESTAdata_neid_mode1
+jitter_0              0.955599 
+offset_0             -0.082178 
+
+
+----- dataset: FIESTAdata_neid_mode1     ----- model: gp_multidimensional           
+rot_amp               2.303216 
+con_amp               1.024733 
+
+----- dataset:  FIESTAdata_neid_mode2
+jitter_0              1.329496 
+offset_0              0.273937 
+
+
+----- dataset: FIESTAdata_neid_mode2     ----- model: gp_multidimensional           
+rot_amp              -0.917449 
+con_amp              -3.391811 
+
+----- dataset:  FIESTAdata_neid_mode3
+jitter_0              3.401378 
+offset_0             -0.098709 
+
+
+----- dataset: FIESTAdata_neid_mode3     ----- model: gp_multidimensional           
+rot_amp               1.591676 
+con_amp               2.441467 
+
+----- common model:  b
+P                    36.563000 
+K                     0.744280 
+mean_long           128.552464 
+e                     0.054382 
+omega               146.901536 
+
+----- common model:  c
+P                     4.688609 
+K                     1.070281 
+mean_long           259.280754 
+e                     0.074197 
+omega               -56.807131 
+
+----- common model:  activity
+Prot                 28.194477 
+Pdec                330.028551 
+Oamp                  0.390419 
+
+----- common model:  star_parameters
+
+====================================================================================================
+     Statistics on the derived parameters obtained from the posteriors samples     
+====================================================================================================
+
+----- common model:  b
+Inclination fixed to 90 deg!
+a_Rs                 46.338706 
+M_Mj                  0.012134 
+M_Me                  3.857385 
+Tc                59367.866101 
+a_AU_(M)              0.215591 
+a_AU_(rho,R)          0.215590 
+
+----- common model:  c
+Inclination fixed to 90 deg!
+a_Rs                 11.783629 
+M_Mj                  0.008788 
+M_Me                  2.793609 
+Tc                59337.120544 
+a_AU_(M)              0.054823 
+a_AU_(rho,R)          0.054823 
+
+
+====================================================================================================
+     ------------------------------------------------------------------------------------------     
+====================================================================================================
+
+
+
+****************************************************************************************************
+
+ Parameters corresponding to the sample closest to the median values ( -2490.3386032195845 )
+
+====================================================================================================
+     Statistics on the posterior of the sampler parameters     
+====================================================================================================
+
+----- dataset:  RVdata_expres
+jitter_0        13      1.240174 [    0.0010,    11.5000]
+offset_0        14      8.801799 [-9995.9050, 10012.5570]
+
+----- dataset: RVdata_expres             ----- model: gp_multidimensional           
+rot_amp         15      7.485064 [    0.0000,    10.0000]
+con_amp         16      7.393114 [  -20.0000,    20.0000]
+
+----- dataset:  RVdata_harps
+jitter_0        17      1.241498 [    0.0009,    12.2000]
+offset_0        18      9.647839 [-9994.3035, 10013.7475]
+offset_1        19     10.271888 [-9994.3035, 10013.7475]
+
+----- dataset: RVdata_harps              ----- model: gp_multidimensional           
+rot_amp         20      3.152164 [    0.0000,    10.0000]
+con_amp         21     10.949863 [  -20.0000,    20.0000]
+
+----- dataset:  RVdata_neid
+jitter_0        22      1.219040 [    0.0010,    12.2000]
+offset_0        23      9.888024 [-9993.3866, 10013.1434]
+
+----- dataset: RVdata_neid               ----- model: gp_multidimensional           
+rot_amp         24      4.848577 [    0.0000,    10.0000]
+con_amp         25     11.686420 [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_expres_mode1
+jitter_0        26      0.978125 [    0.0017,    18.9342]
+offset_0        27      0.111212 [-10002.0587, 10002.3918]
+
+----- dataset: FIESTAdata_expres_mode1   ----- model: gp_multidimensional           
+rot_amp         28     -7.496122 [  -10.0000,    10.0000]
+con_amp         29      0.526258 [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_expres_mode2
+jitter_0        30      1.301953 [    0.0019,    21.6805]
+offset_0        31     -0.144787 [-10003.5672, 10002.6393]
+
+----- dataset: FIESTAdata_expres_mode2   ----- model: gp_multidimensional           
+rot_amp         32      4.579079 [  -10.0000,    10.0000]
+con_amp         33      1.539899 [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_expres_mode3
+jitter_0        34      4.040088 [    0.0045,    50.3391]
+offset_0        35     -0.017547 [-10009.7207, 10010.7123]
+
+----- dataset: FIESTAdata_expres_mode3   ----- model: gp_multidimensional           
+rot_amp         36     -2.270016 [  -10.0000,    10.0000]
+con_amp         37      8.648359 [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_harps_mode1
+jitter_0        38      0.910551 [    0.0013,    13.9050]
+offset_0        39      0.034516 [-10001.2043, 10001.7494]
+
+----- dataset: FIESTAdata_harps_mode1    ----- model: gp_multidimensional           
+rot_amp         40      0.374355 [  -10.0000,    10.0000]
+con_amp         41      4.520222 [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_harps_mode2
+jitter_0        42      1.078955 [    0.0016,    16.4267]
+offset_0        43      0.075373 [-10002.9651, 10001.8967]
+
+----- dataset: FIESTAdata_harps_mode2    ----- model: gp_multidimensional           
+rot_amp         44     -0.712984 [  -10.0000,    10.0000]
+con_amp         45      2.841023 [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_harps_mode3
+jitter_0        46      4.381712 [    0.0044,    47.0591]
+offset_0        47      0.498336 [-10008.9121, 10007.9038]
+
+----- dataset: FIESTAdata_harps_mode3    ----- model: gp_multidimensional           
+rot_amp         48      0.297209 [  -10.0000,    10.0000]
+con_amp         49    -16.750498 [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_harpsn_mode1
+jitter_0        50      0.959005 [    0.0011,    12.0774]
+offset_0        51      0.116780 [-10002.4732, 10002.8195]
+
+----- dataset: FIESTAdata_harpsn_mode1   ----- model: gp_multidimensional           
+rot_amp         52     -0.356532 [  -10.0000,    10.0000]
+con_amp         53     -0.894374 [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_harpsn_mode2
+jitter_0        54      1.323733 [    0.0012,    13.9895]
+offset_0        55     -0.219426 [-10004.0119, 10002.8742]
+
+----- dataset: FIESTAdata_harpsn_mode2   ----- model: gp_multidimensional           
+rot_amp         56      8.132284 [  -10.0000,    10.0000]
+con_amp         57      1.023207 [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_harpsn_mode3
+jitter_0        58      3.276321 [    0.0034,    39.1297]
+offset_0        59      0.070413 [-10007.4719, 10008.5960]
+
+----- dataset: FIESTAdata_harpsn_mode3   ----- model: gp_multidimensional           
+rot_amp         60     -7.905735 [  -10.0000,    10.0000]
+con_amp         61     -4.318985 [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_neid_mode1
+jitter_0        62      0.852145 [    0.0016,    19.1206]
+offset_0        63      0.152753 [-10002.5624, 10002.0726]
+
+----- dataset: FIESTAdata_neid_mode1     ----- model: gp_multidimensional           
+rot_amp         64      1.262325 [  -10.0000,    10.0000]
+con_amp         65      3.560296 [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_neid_mode2
+jitter_0        66      1.360570 [    0.0020,    23.1391]
+offset_0        67     -0.337762 [-10003.5449, 10004.1555]
+
+----- dataset: FIESTAdata_neid_mode2     ----- model: gp_multidimensional           
+rot_amp         68      0.669883 [  -10.0000,    10.0000]
+con_amp         69     -5.756306 [  -20.0000,    20.0000]
+
+----- dataset:  FIESTAdata_neid_mode3
+jitter_0        70      2.672237 [    0.0050,    57.8429]
+offset_0        71      0.157260 [-10008.7119, 10006.3460]
+
+----- dataset: FIESTAdata_neid_mode3     ----- model: gp_multidimensional           
+rot_amp         72      1.877260 [  -10.0000,    10.0000]
+con_amp         73      4.880815 [  -20.0000,    20.0000]
+
+----- common model:  b
+P                0      5.267830 [    0.3785,     6.6439]
+K                1     -0.656167 [   -9.9658,     3.3219]
+sre_coso         2     -0.197053 [   -1.0000,     1.0000]
+sre_sino         3     -0.114896 [   -1.0000,     1.0000]
+mean_long        4    159.767295 [    0.4897,   360.4897]
+
+----- common model:  c
+P                5      2.226940 [    0.3785,     6.6439]
+K                6      0.139661 [   -9.9658,     3.3219]
+sre_coso         7      0.162472 [   -1.0000,     1.0000]
+sre_sino         8      0.015130 [   -1.0000,     1.0000]
+mean_long        9    246.440601 [   56.1308,   416.1308]
+
+----- common model:  activity
+Prot            10     27.499785 [   20.0000,    35.0000]
+Pdec            11    550.070754 [   30.0000,  1000.0000]
+Oamp            12     -1.281335 [   -6.6439,     0.0000]
+
+----- common model:  star_parameters
+
+====================================================================================================
+     Statistics on the model parameters obtained from the posteriors samples     
+====================================================================================================
+
+----- dataset:  RVdata_expres
+jitter_0              1.240174 
+offset_0              8.801799 
+
+
+----- dataset: RVdata_expres             ----- model: gp_multidimensional           
+rot_amp               7.485064 
+con_amp               7.393114 
+
+----- dataset:  RVdata_harps
+jitter_0              1.241498 
+offset_0              9.647839 
+offset_1             10.271888 
+
+
+----- dataset: RVdata_harps              ----- model: gp_multidimensional           
+rot_amp               3.152164 
+con_amp              10.949863 
+
+----- dataset:  RVdata_neid
+jitter_0              1.219040 
+offset_0              9.888024 
+
+
+----- dataset: RVdata_neid               ----- model: gp_multidimensional           
+rot_amp               4.848577 
+con_amp              11.686420 
+
+----- dataset:  FIESTAdata_expres_mode1
+jitter_0              0.978125 
+offset_0              0.111212 
+
+
+----- dataset: FIESTAdata_expres_mode1   ----- model: gp_multidimensional           
+rot_amp              -7.496122 
+con_amp               0.526258 
+
+----- dataset:  FIESTAdata_expres_mode2
+jitter_0              1.301953 
+offset_0             -0.144787 
+
+
+----- dataset: FIESTAdata_expres_mode2   ----- model: gp_multidimensional           
+rot_amp               4.579079 
+con_amp               1.539899 
+
+----- dataset:  FIESTAdata_expres_mode3
+jitter_0              4.040088 
+offset_0             -0.017547 
+
+
+----- dataset: FIESTAdata_expres_mode3   ----- model: gp_multidimensional           
+rot_amp              -2.270016 
+con_amp               8.648359 
+
+----- dataset:  FIESTAdata_harps_mode1
+jitter_0              0.910551 
+offset_0              0.034516 
+
+
+----- dataset: FIESTAdata_harps_mode1    ----- model: gp_multidimensional           
+rot_amp               0.374355 
+con_amp               4.520222 
+
+----- dataset:  FIESTAdata_harps_mode2
+jitter_0              1.078955 
+offset_0              0.075373 
+
+
+----- dataset: FIESTAdata_harps_mode2    ----- model: gp_multidimensional           
+rot_amp              -0.712984 
+con_amp               2.841023 
+
+----- dataset:  FIESTAdata_harps_mode3
+jitter_0              4.381712 
+offset_0              0.498336 
+
+
+----- dataset: FIESTAdata_harps_mode3    ----- model: gp_multidimensional           
+rot_amp               0.297209 
+con_amp             -16.750498 
+
+----- dataset:  FIESTAdata_harpsn_mode1
+jitter_0              0.959005 
+offset_0              0.116780 
+
+
+----- dataset: FIESTAdata_harpsn_mode1   ----- model: gp_multidimensional           
+rot_amp              -0.356532 
+con_amp              -0.894374 
+
+----- dataset:  FIESTAdata_harpsn_mode2
+jitter_0              1.323733 
+offset_0             -0.219426 
+
+
+----- dataset: FIESTAdata_harpsn_mode2   ----- model: gp_multidimensional           
+rot_amp               8.132284 
+con_amp               1.023207 
+
+----- dataset:  FIESTAdata_harpsn_mode3
+jitter_0              3.276321 
+offset_0              0.070413 
+
+
+----- dataset: FIESTAdata_harpsn_mode3   ----- model: gp_multidimensional           
+rot_amp              -7.905735 
+con_amp              -4.318985 
+
+----- dataset:  FIESTAdata_neid_mode1
+jitter_0              0.852145 
+offset_0              0.152753 
+
+
+----- dataset: FIESTAdata_neid_mode1     ----- model: gp_multidimensional           
+rot_amp               1.262325 
+con_amp               3.560296 
+
+----- dataset:  FIESTAdata_neid_mode2
+jitter_0              1.360570 
+offset_0             -0.337762 
+
+
+----- dataset: FIESTAdata_neid_mode2     ----- model: gp_multidimensional           
+rot_amp               0.669883 
+con_amp              -5.756306 
+
+----- dataset:  FIESTAdata_neid_mode3
+jitter_0              2.672237 
+offset_0              0.157260 
+
+
+----- dataset: FIESTAdata_neid_mode3     ----- model: gp_multidimensional           
+rot_amp               1.877260 
+con_amp               4.880815 
+
+----- common model:  b
+P                    38.527848 
+K                     0.634562 
+mean_long           159.767295 
+e                     0.052031 
+omega              -149.754703 
+
+----- common model:  c
+P                     4.681401 
+K                     1.101647 
+mean_long           246.440601 
+e                     0.026626 
+omega                 5.320182 
+
+----- common model:  activity
+Prot                 27.499785 
+Pdec                550.070754 
+Oamp                  0.411415 
+
+----- common model:  star_parameters
+
+====================================================================================================
+     Statistics on the derived parameters obtained from the posteriors samples     
+====================================================================================================
+
+----- common model:  b
+Inclination fixed to 90 deg!
+a_Rs                 47.984207 
+M_Mj                  0.010529 
+M_Me                  3.347048 
+Tc                59366.323483 
+a_AU_(M)              0.223247 
+a_AU_(rho,R)          0.223246 
+
+----- common model:  c
+Inclination fixed to 90 deg!
+a_Rs                 11.771531 
+M_Mj                  0.009063 
+M_Me                  2.880926 
+Tc                59337.307820 
+a_AU_(M)              0.054767 
+a_AU_(rho,R)          0.054767 
+
+
+====================================================================================================
+     ------------------------------------------------------------------------------------------     
+====================================================================================================
+
+
+
+****************************************************************************************************
+
+Inclination fixed to 90 deg!
+Inclination fixed to 90 deg!
+Note: stellar density derived from stellar mass and radius
+
+Inclination fixed to 90 deg!
+Inclination fixed to 90 deg!
+Inclination fixed to 90 deg!
+Inclination fixed to 90 deg!
+ Plot FLAT chain 
+
+****************************************************************************************************
+
+ Skipping full correlation plot due to the high number of parameters
+ To avoid this behaviour, set the keyword parameters:force_full_correlation_plot to True
+
+****************************************************************************************************
+
+ Plotting the chains... 
+
+****************************************************************************************************
+
+ Plotting the Gelman-Rubin traces... 
+
+     Gelman-Rubin:    13     1.240188 RVdata_expres_jitter_0 
+     Gelman-Rubin:    14     1.372382 RVdata_expres_offset_0 
+     Gelman-Rubin:    15     1.210906 RVdata_expres_gp_multidimensional_rot_amp 
+     Gelman-Rubin:    16     1.257318 RVdata_expres_gp_multidimensional_con_amp 
+     Gelman-Rubin:    17     1.231239 RVdata_harps_jitter_0 
+     Gelman-Rubin:    18     1.383534 RVdata_harps_offset_0 
+     Gelman-Rubin:    19     1.372072 RVdata_harps_offset_1 
+     Gelman-Rubin:    20     1.233645 RVdata_harps_gp_multidimensional_rot_amp 
+     Gelman-Rubin:    21     1.294276 RVdata_harps_gp_multidimensional_con_amp 
+     Gelman-Rubin:    22     1.187532 RVdata_neid_jitter_0 
+     Gelman-Rubin:    23     1.384674 RVdata_neid_offset_0 
+     Gelman-Rubin:    24     1.190200 RVdata_neid_gp_multidimensional_rot_amp 
+     Gelman-Rubin:    25     1.263138 RVdata_neid_gp_multidimensional_con_amp 
+     Gelman-Rubin:    26     1.206779 FIESTAdata_expres_mode1_jitter_0 
+     Gelman-Rubin:    27     1.300241 FIESTAdata_expres_mode1_offset_0 
+     Gelman-Rubin:    28     1.220307 FIESTAdata_expres_mode1_gp_multidimensional_rot_amp 
+     Gelman-Rubin:    29     1.228898 FIESTAdata_expres_mode1_gp_multidimensional_con_amp 
+     Gelman-Rubin:    30     1.214450 FIESTAdata_expres_mode2_jitter_0 
+     Gelman-Rubin:    31     1.304847 FIESTAdata_expres_mode2_offset_0 
+     Gelman-Rubin:    32     1.225959 FIESTAdata_expres_mode2_gp_multidimensional_rot_amp 
+     Gelman-Rubin:    33     1.253801 FIESTAdata_expres_mode2_gp_multidimensional_con_amp 
+     Gelman-Rubin:    34     1.183207 FIESTAdata_expres_mode3_jitter_0 
+     Gelman-Rubin:    35     1.320100 FIESTAdata_expres_mode3_offset_0 
+     Gelman-Rubin:    36     1.217512 FIESTAdata_expres_mode3_gp_multidimensional_rot_amp 
+     Gelman-Rubin:    37     1.214619 FIESTAdata_expres_mode3_gp_multidimensional_con_amp 
+     Gelman-Rubin:    38     1.198045 FIESTAdata_harps_mode1_jitter_0 
+     Gelman-Rubin:    39     1.259727 FIESTAdata_harps_mode1_offset_0 
+     Gelman-Rubin:    40     1.211771 FIESTAdata_harps_mode1_gp_multidimensional_rot_amp 
+     Gelman-Rubin:    41     1.218415 FIESTAdata_harps_mode1_gp_multidimensional_con_amp 
+     Gelman-Rubin:    42     1.203131 FIESTAdata_harps_mode2_jitter_0 
+     Gelman-Rubin:    43     1.219017 FIESTAdata_harps_mode2_offset_0 
+     Gelman-Rubin:    44     1.194559 FIESTAdata_harps_mode2_gp_multidimensional_rot_amp 
+     Gelman-Rubin:    45     1.223155 FIESTAdata_harps_mode2_gp_multidimensional_con_amp 
+     Gelman-Rubin:    46     1.188544 FIESTAdata_harps_mode3_jitter_0 
+     Gelman-Rubin:    47     1.322941 FIESTAdata_harps_mode3_offset_0 
+     Gelman-Rubin:    48     1.209729 FIESTAdata_harps_mode3_gp_multidimensional_rot_amp 
+     Gelman-Rubin:    49     1.237281 FIESTAdata_harps_mode3_gp_multidimensional_con_amp 
+     Gelman-Rubin:    50     1.198281 FIESTAdata_harpsn_mode1_jitter_0 
+     Gelman-Rubin:    51     1.196338 FIESTAdata_harpsn_mode1_offset_0 
+     Gelman-Rubin:    52     1.228150 FIESTAdata_harpsn_mode1_gp_multidimensional_rot_amp 
+     Gelman-Rubin:    53     1.222429 FIESTAdata_harpsn_mode1_gp_multidimensional_con_amp 
+     Gelman-Rubin:    54     1.200613 FIESTAdata_harpsn_mode2_jitter_0 
+     Gelman-Rubin:    55     1.212801 FIESTAdata_harpsn_mode2_offset_0 
+     Gelman-Rubin:    56     1.194264 FIESTAdata_harpsn_mode2_gp_multidimensional_rot_amp 
+     Gelman-Rubin:    57     1.205894 FIESTAdata_harpsn_mode2_gp_multidimensional_con_amp 
+     Gelman-Rubin:    58     1.165809 FIESTAdata_harpsn_mode3_jitter_0 
+     Gelman-Rubin:    59     1.226780 FIESTAdata_harpsn_mode3_offset_0 
+     Gelman-Rubin:    60     1.205505 FIESTAdata_harpsn_mode3_gp_multidimensional_rot_amp 
+     Gelman-Rubin:    61     1.204754 FIESTAdata_harpsn_mode3_gp_multidimensional_con_amp 
+     Gelman-Rubin:    62     1.176484 FIESTAdata_neid_mode1_jitter_0 
+     Gelman-Rubin:    63     1.338600 FIESTAdata_neid_mode1_offset_0 
+     Gelman-Rubin:    64     1.216811 FIESTAdata_neid_mode1_gp_multidimensional_rot_amp 
+     Gelman-Rubin:    65     1.250022 FIESTAdata_neid_mode1_gp_multidimensional_con_amp 
+     Gelman-Rubin:    66     1.177620 FIESTAdata_neid_mode2_jitter_0 
+     Gelman-Rubin:    67     1.371760 FIESTAdata_neid_mode2_offset_0 
+     Gelman-Rubin:    68     1.213771 FIESTAdata_neid_mode2_gp_multidimensional_rot_amp 
+     Gelman-Rubin:    69     1.237711 FIESTAdata_neid_mode2_gp_multidimensional_con_amp 
+     Gelman-Rubin:    70     1.208314 FIESTAdata_neid_mode3_jitter_0 
+     Gelman-Rubin:    71     1.290911 FIESTAdata_neid_mode3_offset_0 
+     Gelman-Rubin:    72     1.196285 FIESTAdata_neid_mode3_gp_multidimensional_rot_amp 
+     Gelman-Rubin:    73     1.215589 FIESTAdata_neid_mode3_gp_multidimensional_con_amp 
+     Gelman-Rubin:     0    19.195028 b_P 
+     Gelman-Rubin:     1     1.464388 b_K 
+     Gelman-Rubin:     2     1.371889 b_sre_coso 
+     Gelman-Rubin:     3     1.259553 b_sre_sino 
+     Gelman-Rubin:     4     2.930185 b_mean_long 
+     Gelman-Rubin:     5    16.485777 c_P 
+     Gelman-Rubin:     6     1.806731 c_K 
+     Gelman-Rubin:     7     1.457051 c_sre_coso 
+     Gelman-Rubin:     8     1.311804 c_sre_sino 
+     Gelman-Rubin:     9     3.463848 c_mean_long 
+     Gelman-Rubin:    10     1.259689 activity_Prot 
+     Gelman-Rubin:    11     1.239496 activity_Pdec 
+     Gelman-Rubin:    12     1.189526 activity_Oamp 
+
+****************************************************************************************************
+
+Plotting the common models corner plots
+     Common model:  b
+     Common model:  c
+     Common model:  activity
+     Common model:  star_parameters
+
+****************************************************************************************************
+
+Plotting the dataset + models corner plots 
+
+     Dataset:  RVdata_expres     model:  gp_multidimensional  corner plot  starting 
+     Dataset:  RVdata_expres     model:  gp_multidimensional  corner plot  done 
+     Dataset:  RVdata_expres     model:  radial_velocities_b  corner plot  starting 
+     Dataset:  RVdata_expres     model:  radial_velocities_b  corner plot  done 
+     Dataset:  RVdata_expres     model:  radial_velocities_c  corner plot  starting 
+     Dataset:  RVdata_expres     model:  radial_velocities_c  corner plot  done 
+     Dataset:  RVdata_harps     model:  gp_multidimensional  corner plot  starting 
+     Dataset:  RVdata_harps     model:  gp_multidimensional  corner plot  done 
+     Dataset:  RVdata_harps     model:  radial_velocities_b  corner plot  starting 
+     Dataset:  RVdata_harps     model:  radial_velocities_b  corner plot  done 
+     Dataset:  RVdata_harps     model:  radial_velocities_c  corner plot  starting 
+     Dataset:  RVdata_harps     model:  radial_velocities_c  corner plot  done 
+     Dataset:  RVdata_neid     model:  gp_multidimensional  corner plot  starting 
+     Dataset:  RVdata_neid     model:  gp_multidimensional  corner plot  done 
+     Dataset:  RVdata_neid     model:  radial_velocities_b  corner plot  starting 
+     Dataset:  RVdata_neid     model:  radial_velocities_b  corner plot  done 
+     Dataset:  RVdata_neid     model:  radial_velocities_c  corner plot  starting 
+     Dataset:  RVdata_neid     model:  radial_velocities_c  corner plot  done 
+     Dataset:  FIESTAdata_expres_mode1     model:  gp_multidimensional  corner plot  starting 
+     Dataset:  FIESTAdata_expres_mode1     model:  gp_multidimensional  corner plot  done 
+     Dataset:  FIESTAdata_expres_mode2     model:  gp_multidimensional  corner plot  starting 
+     Dataset:  FIESTAdata_expres_mode2     model:  gp_multidimensional  corner plot  done 
+     Dataset:  FIESTAdata_expres_mode3     model:  gp_multidimensional  corner plot  starting 
+     Dataset:  FIESTAdata_expres_mode3     model:  gp_multidimensional  corner plot  done 
+     Dataset:  FIESTAdata_harps_mode1     model:  gp_multidimensional  corner plot  starting 
+     Dataset:  FIESTAdata_harps_mode1     model:  gp_multidimensional  corner plot  done 
+     Dataset:  FIESTAdata_harps_mode2     model:  gp_multidimensional  corner plot  starting 
+     Dataset:  FIESTAdata_harps_mode2     model:  gp_multidimensional  corner plot  done 
+     Dataset:  FIESTAdata_harps_mode3     model:  gp_multidimensional  corner plot  starting 
+     Dataset:  FIESTAdata_harps_mode3     model:  gp_multidimensional  corner plot  done 
+     Dataset:  FIESTAdata_harpsn_mode1     model:  gp_multidimensional  corner plot  starting 
+     Dataset:  FIESTAdata_harpsn_mode1     model:  gp_multidimensional  corner plot  done 
+     Dataset:  FIESTAdata_harpsn_mode2     model:  gp_multidimensional  corner plot  starting 
+     Dataset:  FIESTAdata_harpsn_mode2     model:  gp_multidimensional  corner plot  done 
+     Dataset:  FIESTAdata_harpsn_mode3     model:  gp_multidimensional  corner plot  starting 
+     Dataset:  FIESTAdata_harpsn_mode3     model:  gp_multidimensional  corner plot  done 
+     Dataset:  FIESTAdata_neid_mode1     model:  gp_multidimensional  corner plot  starting 
+     Dataset:  FIESTAdata_neid_mode1     model:  gp_multidimensional  corner plot  done 
+     Dataset:  FIESTAdata_neid_mode2     model:  gp_multidimensional  corner plot  starting 
+     Dataset:  FIESTAdata_neid_mode2     model:  gp_multidimensional  corner plot  done 
+     Dataset:  FIESTAdata_neid_mode3     model:  gp_multidimensional  corner plot  starting 
+     Dataset:  FIESTAdata_neid_mode3     model:  gp_multidimensional  corner plot  done 
+
+****************************************************************************************************
+
+ Saving the planet parameter samplings to files (with plots)
+
+****************************************************************************************************
+
+ Saving all the parameter samplings to files (with plots)
+
+****************************************************************************************************
+
+ Computing the models for plot/data writing 
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 21 chunks of 84 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 21 chunks of 84 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 21 chunks of 84 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 15 chunks of 84 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 15 chunks of 84 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 15 chunks of 84 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 4 chunks of 84 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 4 chunks of 84 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 4 chunks of 84 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 12 chunks of 84 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 12 chunks of 84 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 12 chunks of 84 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 13 chunks of 84 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 13 chunks of 84 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 13 chunks of 84 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 21 chunks of 84 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 21 chunks of 84 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 21 chunks of 84 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 15 chunks of 84 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 15 chunks of 84 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 15 chunks of 84 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 4 chunks of 84 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 4 chunks of 84 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 4 chunks of 84 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 12 chunks of 84 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 12 chunks of 84 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 12 chunks of 84 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 13 chunks of 84 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 13 chunks of 84 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 13 chunks of 84 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 21 chunks of 84 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 21 chunks of 84 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 21 chunks of 84 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 15 chunks of 84 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 15 chunks of 84 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 15 chunks of 84 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 4 chunks of 84 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 4 chunks of 84 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 4 chunks of 84 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 12 chunks of 84 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 12 chunks of 84 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 12 chunks of 84 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 13 chunks of 84 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 13 chunks of 84 times each
+     Check the documentation if the code is taking too long or if it crashes...
+     Splitting the plot array to allow GP prediction of extended datasets, it may take a while...
+     # 13 chunks of 84 times each
+     Check the documentation if the code is taking too long or if it crashes...
+ Writing the plots 
+ Writing the   data files 
+ Writing the  MAP_ data files 
+ Writing the  sampleMED_ data files 
+
+****************************************************************************************************
+
