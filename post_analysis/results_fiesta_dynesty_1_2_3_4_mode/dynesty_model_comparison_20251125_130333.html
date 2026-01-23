@@ -1,0 +1,2615 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>PyORBIT Dynesty Model Comparison</title>
+    <style>
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #fafafa;
+            color: #2c3e50;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+        .dataset-section {
+            background-color: white;
+            margin: 30px 0;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        .dataset-header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px 30px;
+            font-size: 22px;
+            font-weight: 600;
+        }
+        .config-section {
+            margin: 0;
+            padding: 25px 30px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+        .config-section:last-child {
+            border-bottom: none;
+        }
+        h2 { 
+            color: #34495e;
+            margin: 0 0 15px 0;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        h3 {
+            color: #2c3e50;
+            margin: 25px 0 10px 0;
+            font-size: 16px;
+            font-weight: 600;
+            background-color: #ecf0f1;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+        table { 
+            border-collapse: collapse; 
+            margin: 15px 0;
+            width: 100%;
+            background-color: white;
+        }
+        .params-summary-section {
+            margin: 30px;
+            padding: 25px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+        .params-table {
+            border-collapse: collapse;
+            margin: 15px 0;
+            width: 100%;
+            background-color: white;
+            border: 2px solid #3498db;
+            font-size: 12px;
+        }
+        .params-table th {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 6px;
+            text-align: center;
+            font-weight: 600;
+            border: 1px solid #2980b9;
+            font-size: 11px;
+        }
+        .params-table td {
+            padding: 8px 6px;
+            border: 1px solid #bdc3c7;
+            text-align: center;
+        }
+        .params-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        .params-table tr:hover {
+            background-color: #e8f4f8;
+        }
+        th, td { 
+            padding: 12px 16px; 
+            text-align: left;
+            border-bottom: 1px solid #ecf0f1;
+        }
+        th { 
+            background-color: #f8f9fa;
+            color: #2c3e50;
+            font-weight: 600;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        td {
+            color: #34495e;
+            font-size: 14px;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        tr:hover td {
+            background-color: #f8f9fa;
+        }
+        .highlight-logz {
+            background-color: #e8f5e9 !important;
+            font-weight: 600;
+            color: #2e7d32;
+        }
+        .highlight-bic {
+            background-color: #fff3e0 !important;
+            font-weight: 600;
+            color: #e65100;
+        }
+        .evidence-strong {
+            color: #2e7d32;
+            font-weight: 600;
+        }
+        .evidence-moderate {
+            color: #f57c00;
+            font-weight: 600;
+        }
+        .evidence-weak {
+            color: #c62828;
+            font-weight: 600;
+        }
+        .summary {
+            margin: 15px 0 0 0;
+            padding: 15px 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #34495e;
+        }
+        .summary strong {
+            color: #2c3e50;
+        }
+        .legend {
+            margin: 0 0 30px 0;
+            padding: 20px 25px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .legend h3 {
+            margin: 0 0 15px 0;
+            color: #2c3e50;
+            font-size: 18px;
+            font-weight: 600;
+            background: none;
+            padding: 0;
+        }
+        .legend-item {
+            margin: 8px 0;
+            color: #34495e;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .badge-green {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+        .badge-orange {
+            background-color: #fff3e0;
+            color: #e65100;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>PyORBIT Dynesty Model Comparison</h1>
+        <div class="subtitle">Bayesian Evidence Analysis via Nested Sampling</div>
+        
+        <div class="legend">
+            <h3>Interpretation Guide</h3>
+            <div class="legend-item"><span class="badge badge-green">Green highlight</span> = Best log(Z) (highest evidence)</div>
+            <div class="legend-item"><span class="badge badge-orange">Orange highlight</span> = Best BIC (lowest value)</div>
+            <div class="legend-item"><strong>Δlog(Z):</strong> Difference in log-evidence from best model (0 = best)</div>
+            <div class="legend-item"><strong>Bayes Factor:</strong> exp(Δlog(Z)) - ratio of evidences</div>
+            <div class="legend-item">
+                <strong>Evidence strength:</strong><br>
+                • |Δlog(Z)| > 5.0: Decisive<br>
+                • |Δlog(Z)| > 2.5: Strong<br>
+                • |Δlog(Z)| > 1.0: Moderate<br>
+                • |Δlog(Z)| < 1.0: Weak
+            </div>
+        </div>
+        <div class="dataset-section">
+            <div class="dataset-header">DS1</div>
+            <div class="config-section">
+                <h2>Configuration: 1mode</h2>
+                <table>
+                    <tr><th>Planets</th><th>log(Z)</th><th>Δlog(Z)</th><th>Median BIC</th><th>ΔBIC</th><th>Efficiency %</th><th>N calls</th></tr>
+                    <tr>
+                        <td>0p</td>
+                        <td class="">-1094.17 ± 0.27</td>
+                        <td class="">-62.34</td>
+                        <td class="">2082.48</td>
+                        <td class="">130.86</td>
+                        <td>0.55%</td>
+                        <td>60,557,350</td>
+                    </tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="highlight-logz">-1031.84 ± 0.29</td>
+                        <td class="highlight-logz">0.00</td>
+                        <td class="highlight-bic">1951.62</td>
+                        <td class="highlight-bic">0.00</td>
+                        <td>0.46%</td>
+                        <td>82,887,092</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">-1032.06 ± 0.29</td>
+                        <td class="">-0.22</td>
+                        <td class="">1969.21</td>
+                        <td class="">17.59</td>
+                        <td>0.40%</td>
+                        <td>99,714,068</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">-1033.40 ± 0.30</td>
+                        <td class="">-1.57</td>
+                        <td class="">2009.55</td>
+                        <td class="">57.93</td>
+                        <td>0.34%</td>
+                        <td>121,007,308</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best by log(Z):</strong> 1p (log(Z) = -1031.84)<br>
+                    <strong>Best by BIC:</strong> 1p (BIC = 1951.62)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: 2mode</h2>
+                <table>
+                    <tr><th>Planets</th><th>log(Z)</th><th>Δlog(Z)</th><th>Median BIC</th><th>ΔBIC</th><th>Efficiency %</th><th>N calls</th></tr>
+                    <tr>
+                        <td>0p</td>
+                        <td class="">-1171.28 ± 0.26</td>
+                        <td class="">-62.56</td>
+                        <td class="">2246.81</td>
+                        <td class="">118.82</td>
+                        <td>0.55%</td>
+                        <td>57,261,538</td>
+                    </tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">-1111.16 ± 0.28</td>
+                        <td class="">-2.45</td>
+                        <td class="highlight-bic">2127.99</td>
+                        <td class="highlight-bic">0.00</td>
+                        <td>0.47%</td>
+                        <td>80,221,204</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="highlight-logz">-1108.71 ± 0.28</td>
+                        <td class="highlight-logz">0.00</td>
+                        <td class="">2158.35</td>
+                        <td class="">30.36</td>
+                        <td>0.39%</td>
+                        <td>103,505,135</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">-1109.48 ± 0.29</td>
+                        <td class="">-0.77</td>
+                        <td class="">2178.44</td>
+                        <td class="">50.45</td>
+                        <td>0.34%</td>
+                        <td>112,553,404</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best by log(Z):</strong> 2p (log(Z) = -1108.71)<br>
+                    <strong>Best by BIC:</strong> 1p (BIC = 2127.99)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: 3mode</h2>
+                <table>
+                    <tr><th>Planets</th><th>log(Z)</th><th>Δlog(Z)</th><th>Median BIC</th><th>ΔBIC</th><th>Efficiency %</th><th>N calls</th></tr>
+                    <tr>
+                        <td>0p</td>
+                        <td class="">-1434.45 ± 0.25</td>
+                        <td class="">-67.08</td>
+                        <td class="">2796.75</td>
+                        <td class="">133.53</td>
+                        <td>0.55%</td>
+                        <td>53,767,549</td>
+                    </tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="highlight-logz">-1367.37 ± 0.27</td>
+                        <td class="highlight-logz">0.00</td>
+                        <td class="highlight-bic">2663.22</td>
+                        <td class="highlight-bic">0.00</td>
+                        <td>0.47%</td>
+                        <td>73,168,671</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">-1370.21 ± 0.27</td>
+                        <td class="">-2.85</td>
+                        <td class="">2690.02</td>
+                        <td class="">26.80</td>
+                        <td>0.40%</td>
+                        <td>91,534,722</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">-1374.33 ± 0.28</td>
+                        <td class="">-6.96</td>
+                        <td class="">2798.50</td>
+                        <td class="">135.28</td>
+                        <td>0.36%</td>
+                        <td>100,435,807</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best by log(Z):</strong> 1p (log(Z) = -1367.37)<br>
+                    <strong>Best by BIC:</strong> 1p (BIC = 2663.22)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: 4mode</h2>
+                <table>
+                    <tr><th>Planets</th><th>log(Z)</th><th>Δlog(Z)</th><th>Median BIC</th><th>ΔBIC</th><th>Efficiency %</th><th>N calls</th></tr>
+                    <tr>
+                        <td>0p</td>
+                        <td class="">-1762.86 ± 0.25</td>
+                        <td class="">-70.12</td>
+                        <td class="">3463.98</td>
+                        <td class="">154.88</td>
+                        <td>0.55%</td>
+                        <td>50,380,281</td>
+                    </tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">-1703.58 ± 0.28</td>
+                        <td class="">-10.84</td>
+                        <td class="highlight-bic">3309.10</td>
+                        <td class="highlight-bic">0.00</td>
+                        <td>0.47%</td>
+                        <td>73,030,148</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="highlight-logz">-1692.74 ± 0.28</td>
+                        <td class="highlight-logz">0.00</td>
+                        <td class="">3316.88</td>
+                        <td class="">7.78</td>
+                        <td>0.40%</td>
+                        <td>89,263,358</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">-1701.73 ± 0.29</td>
+                        <td class="">-8.99</td>
+                        <td class="">3386.30</td>
+                        <td class="">77.20</td>
+                        <td>0.34%</td>
+                        <td>107,981,718</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best by log(Z):</strong> 2p (log(Z) = -1692.74)<br>
+                    <strong>Best by BIC:</strong> 1p (BIC = 3309.10)
+                </div>
+            </div>
+            <div class="params-summary-section">
+                <h2>Parameters Summary (Best Models by log(Z))</h2>
+                <h3>Table 1: Orbital Parameters</h3>
+                <table class="params-table">
+                    <tr><th>Config</th><th>Model</th><th>Planet</th><th>P (days)</th><th>K (m/s)</th><th>mean_long (°)</th><th>e</th><th>ω (°)</th></tr>
+                    <tr>
+                        <td rowspan="1">1mode</td>
+                        <td rowspan="1">1p</td>
+                        <td>b</td>
+                        <td>2.9128</td><td>2.00</td><td>199.1</td>
+                        <td>0.070</td><td>-162</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">2mode</td>
+                        <td rowspan="2">2p</td>
+                        <td>b</td>
+                        <td>2.9132</td><td>1.97</td><td>200.4</td>
+                        <td>0.070</td><td>202</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>11.5</td><td>0.23</td><td>143</td>
+                        <td>0.41</td><td>28</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="1">3mode</td>
+                        <td rowspan="1">1p</td>
+                        <td>b</td>
+                        <td>2.9118</td><td>2.11</td><td>197.4</td>
+                        <td>0.058</td><td>-132</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">4mode</td>
+                        <td rowspan="2">2p</td>
+                        <td>b</td>
+                        <td>5.179</td><td>0.58</td><td>268</td>
+                        <td>0.40</td><td>90</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>2.9147</td><td>2.092</td><td>199.6</td>
+                        <td>0.115</td><td>-155</td>
+                    </tr>
+                </table>
+                <h3>Table 2: Activity Parameters</h3>
+                <table class="params-table">
+                    <tr><th>Config</th><th>Model</th><th>Prot (days)</th><th>Pdec (days)</th><th>Oamp</th></tr>
+                    <tr>
+                        <td>1mode</td><td>1p</td>
+                        <td>24.83</td><td>72</td><td>0.404</td>
+                    </tr>
+                    <tr>
+                        <td>2mode</td><td>2p</td>
+                        <td>25.24</td><td>98</td><td>0.400</td>
+                    </tr>
+                    <tr>
+                        <td>3mode</td><td>1p</td>
+                        <td>25.81</td><td>118</td><td>0.397</td>
+                    </tr>
+                    <tr>
+                        <td>4mode</td><td>2p</td>
+                        <td>27.1</td><td>16.2</td><td>0.370</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="dataset-section">
+            <div class="dataset-header">DS2</div>
+            <div class="config-section">
+                <h2>Configuration: 1mode</h2>
+                <table>
+                    <tr><th>Planets</th><th>log(Z)</th><th>Δlog(Z)</th><th>Median BIC</th><th>ΔBIC</th><th>Efficiency %</th><th>N calls</th></tr>
+                    <tr>
+                        <td>0p</td>
+                        <td class="">-1168.89 ± 0.28</td>
+                        <td class="">-3.87</td>
+                        <td class="highlight-bic">2240.78</td>
+                        <td class="highlight-bic">0.00</td>
+                        <td>0.54%</td>
+                        <td>65,234,407</td>
+                    </tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">-1166.13 ± 0.28</td>
+                        <td class="">-1.12</td>
+                        <td class="">2259.62</td>
+                        <td class="">18.84</td>
+                        <td>0.43%</td>
+                        <td>85,241,520</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="highlight-logz">-1165.02 ± 0.29</td>
+                        <td class="highlight-logz">0.00</td>
+                        <td class="">2279.28</td>
+                        <td class="">38.50</td>
+                        <td>0.40%</td>
+                        <td>95,276,444</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">-1165.80 ± 0.29</td>
+                        <td class="">-0.78</td>
+                        <td class="">2306.62</td>
+                        <td class="">65.84</td>
+                        <td>0.35%</td>
+                        <td>113,846,441</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best by log(Z):</strong> 2p (log(Z) = -1165.02)<br>
+                    <strong>Best by BIC:</strong> 0p (BIC = 2240.78)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: 2mode</h2>
+                <table>
+                    <tr><th>Planets</th><th>log(Z)</th><th>Δlog(Z)</th><th>Median BIC</th><th>ΔBIC</th><th>Efficiency %</th><th>N calls</th></tr>
+                    <tr>
+                        <td>0p</td>
+                        <td class="">-1263.96 ± 0.27</td>
+                        <td class="">-2.95</td>
+                        <td class="highlight-bic">2431.81</td>
+                        <td class="highlight-bic">0.00</td>
+                        <td>0.54%</td>
+                        <td>64,067,765</td>
+                    </tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">-1261.62 ± 0.28</td>
+                        <td class="">-0.61</td>
+                        <td class="">2442.77</td>
+                        <td class="">10.96</td>
+                        <td>0.43%</td>
+                        <td>81,831,332</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">-1269.73 ± 0.28</td>
+                        <td class="">-8.72</td>
+                        <td class="">2505.76</td>
+                        <td class="">73.95</td>
+                        <td>0.39%</td>
+                        <td>94,551,683</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="highlight-logz">-1261.01 ± 0.29</td>
+                        <td class="highlight-logz">0.00</td>
+                        <td class="">2477.64</td>
+                        <td class="">45.83</td>
+                        <td>0.34%</td>
+                        <td>116,316,308</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best by log(Z):</strong> 3p (log(Z) = -1261.01)<br>
+                    <strong>Best by BIC:</strong> 0p (BIC = 2431.81)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: 3mode</h2>
+                <table>
+                    <tr><th>Planets</th><th>log(Z)</th><th>Δlog(Z)</th><th>Median BIC</th><th>ΔBIC</th><th>Efficiency %</th><th>N calls</th></tr>
+                    <tr>
+                        <td>0p</td>
+                        <td class="">-1555.89 ± 0.25</td>
+                        <td class="">-3.04</td>
+                        <td class="">3043.45</td>
+                        <td class="">2.21</td>
+                        <td>0.55%</td>
+                        <td>54,866,712</td>
+                    </tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="highlight-logz">-1552.84 ± 0.27</td>
+                        <td class="highlight-logz">0.00</td>
+                        <td class="highlight-bic">3041.24</td>
+                        <td class="highlight-bic">0.00</td>
+                        <td>0.46%</td>
+                        <td>69,244,035</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">-1553.06 ± 0.27</td>
+                        <td class="">-0.21</td>
+                        <td class="">3080.72</td>
+                        <td class="">39.48</td>
+                        <td>0.40%</td>
+                        <td>86,487,719</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">-1556.83 ± 0.28</td>
+                        <td class="">-3.98</td>
+                        <td class="">3129.43</td>
+                        <td class="">88.19</td>
+                        <td>0.35%</td>
+                        <td>104,417,417</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best by log(Z):</strong> 1p (log(Z) = -1552.84)<br>
+                    <strong>Best by BIC:</strong> 1p (BIC = 3041.24)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: 4mode</h2>
+                <table>
+                    <tr><th>Planets</th><th>log(Z)</th><th>Δlog(Z)</th><th>Median BIC</th><th>ΔBIC</th><th>Efficiency %</th><th>N calls</th></tr>
+                    <tr>
+                        <td>0p</td>
+                        <td class="">-1906.62 ± 0.25</td>
+                        <td class="">-8.85</td>
+                        <td class="highlight-bic">3745.50</td>
+                        <td class="highlight-bic">0.00</td>
+                        <td>0.54%</td>
+                        <td>53,988,903</td>
+                    </tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">-1898.15 ± 0.26</td>
+                        <td class="">-0.38</td>
+                        <td class="">3760.68</td>
+                        <td class="">15.18</td>
+                        <td>0.46%</td>
+                        <td>65,518,408</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="highlight-logz">-1897.77 ± 0.26</td>
+                        <td class="highlight-logz">0.00</td>
+                        <td class="">3783.08</td>
+                        <td class="">37.58</td>
+                        <td>0.40%</td>
+                        <td>81,573,751</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">-1898.13 ± 0.26</td>
+                        <td class="">-0.36</td>
+                        <td class="">nan</td>
+                        <td class="">nan</td>
+                        <td>0.35%</td>
+                        <td>91,161,707</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best by log(Z):</strong> 2p (log(Z) = -1897.77)<br>
+                    <strong>Best by BIC:</strong> 0p (BIC = 3745.50)
+                </div>
+            </div>
+            <div class="params-summary-section">
+                <h2>Parameters Summary (Best Models by log(Z))</h2>
+                <h3>Table 1: Orbital Parameters</h3>
+                <table class="params-table">
+                    <tr><th>Config</th><th>Model</th><th>Planet</th><th>P (days)</th><th>K (m/s)</th><th>mean_long (°)</th><th>e</th><th>ω (°)</th></tr>
+                    <tr>
+                        <td rowspan="2">1mode</td>
+                        <td rowspan="2">2p</td>
+                        <td>b</td>
+                        <td>96</td><td>0.45</td><td>126</td>
+                        <td>0.15</td><td>-135</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>13.41</td><td>0.59</td><td>204</td>
+                        <td>0.131</td><td>-161</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="3">2mode</td>
+                        <td rowspan="3">3p</td>
+                        <td>b</td>
+                        <td>43</td><td>0.18</td><td>320</td>
+                        <td>0.31</td><td>-41</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>8.7</td><td>0.021</td><td>276</td>
+                        <td>0.35</td><td>87</td>
+                    </tr>
+                    <tr>
+                        <td>d</td>
+                        <td>2.0811</td><td>0.71</td><td>111</td>
+                        <td>0.543</td><td>-51</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="1">3mode</td>
+                        <td rowspan="1">1p</td>
+                        <td>b</td>
+                        <td>25.05</td><td>0.98</td><td>320</td>
+                        <td>0.55</td><td>128</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">4mode</td>
+                        <td rowspan="2">2p</td>
+                        <td>b</td>
+                        <td>17.09</td><td>0.70</td><td>39</td>
+                        <td>0.48</td><td>118</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>16.7</td><td>0.028</td><td>282</td>
+                        <td>0.34</td><td>-96</td>
+                    </tr>
+                </table>
+                <h3>Table 2: Activity Parameters</h3>
+                <table class="params-table">
+                    <tr><th>Config</th><th>Model</th><th>Prot (days)</th><th>Pdec (days)</th><th>Oamp</th></tr>
+                    <tr>
+                        <td>1mode</td><td>2p</td>
+                        <td>30.6</td><td>54</td><td>0.402</td>
+                    </tr>
+                    <tr>
+                        <td>2mode</td><td>3p</td>
+                        <td>30.03</td><td>27</td><td>0.382</td>
+                    </tr>
+                    <tr>
+                        <td>3mode</td><td>1p</td>
+                        <td>30.85</td><td>93</td><td>0.382</td>
+                    </tr>
+                    <tr>
+                        <td>4mode</td><td>2p</td>
+                        <td>26.16</td><td>116</td><td>0.352</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="dataset-section">
+            <div class="dataset-header">DS3</div>
+            <div class="config-section">
+                <h2>Configuration: 1mode</h2>
+                <table>
+                    <tr><th>Planets</th><th>log(Z)</th><th>Δlog(Z)</th><th>Median BIC</th><th>ΔBIC</th><th>Efficiency %</th><th>N calls</th></tr>
+                    <tr>
+                        <td>0p</td>
+                        <td class="">-1181.90 ± 0.28</td>
+                        <td class="">-12.90</td>
+                        <td class="highlight-bic">2246.49</td>
+                        <td class="highlight-bic">0.00</td>
+                        <td>0.54%</td>
+                        <td>66,230,200</td>
+                    </tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">-1171.98 ± 0.28</td>
+                        <td class="">-2.99</td>
+                        <td class="">2273.26</td>
+                        <td class="">26.77</td>
+                        <td>0.46%</td>
+                        <td>76,832,167</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">-1171.92 ± 0.29</td>
+                        <td class="">-2.92</td>
+                        <td class="">2256.96</td>
+                        <td class="">10.47</td>
+                        <td>0.41%</td>
+                        <td>91,963,826</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="highlight-logz">-1168.99 ± 0.29</td>
+                        <td class="highlight-logz">0.00</td>
+                        <td class="">2296.29</td>
+                        <td class="">49.80</td>
+                        <td>0.35%</td>
+                        <td>115,439,907</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best by log(Z):</strong> 3p (log(Z) = -1168.99)<br>
+                    <strong>Best by BIC:</strong> 0p (BIC = 2246.49)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: 2mode</h2>
+                <table>
+                    <tr><th>Planets</th><th>log(Z)</th><th>Δlog(Z)</th><th>Median BIC</th><th>ΔBIC</th><th>Efficiency %</th><th>N calls</th></tr>
+                    <tr>
+                        <td>0p</td>
+                        <td class="">-1264.70 ± 0.27</td>
+                        <td class="">-3.22</td>
+                        <td class="highlight-bic">2432.57</td>
+                        <td class="highlight-bic">0.00</td>
+                        <td>0.54%</td>
+                        <td>60,966,819</td>
+                    </tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">-1262.67 ± 0.28</td>
+                        <td class="">-1.19</td>
+                        <td class="">2439.19</td>
+                        <td class="">6.62</td>
+                        <td>0.47%</td>
+                        <td>74,429,240</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="highlight-logz">-1261.48 ± 0.28</td>
+                        <td class="highlight-logz">0.00</td>
+                        <td class="">2466.68</td>
+                        <td class="">34.11</td>
+                        <td>0.41%</td>
+                        <td>89,588,938</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">-1266.13 ± 0.28</td>
+                        <td class="">-4.65</td>
+                        <td class="">2565.80</td>
+                        <td class="">133.23</td>
+                        <td>0.35%</td>
+                        <td>106,643,739</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best by log(Z):</strong> 2p (log(Z) = -1261.48)<br>
+                    <strong>Best by BIC:</strong> 0p (BIC = 2432.57)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: 3mode</h2>
+                <table>
+                    <tr><th>Planets</th><th>log(Z)</th><th>Δlog(Z)</th><th>Median BIC</th><th>ΔBIC</th><th>Efficiency %</th><th>N calls</th></tr>
+                    <tr>
+                        <td>0p</td>
+                        <td class="">-1561.56 ± 0.25</td>
+                        <td class="">-19.97</td>
+                        <td class="">3050.89</td>
+                        <td class="">1.61</td>
+                        <td>0.54%</td>
+                        <td>56,027,533</td>
+                    </tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">-1549.74 ± 0.26</td>
+                        <td class="">-8.14</td>
+                        <td class="highlight-bic">3049.28</td>
+                        <td class="highlight-bic">0.00</td>
+                        <td>0.45%</td>
+                        <td>71,694,759</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">-1550.63 ± 0.26</td>
+                        <td class="">-9.04</td>
+                        <td class="">3123.66</td>
+                        <td class="">74.38</td>
+                        <td>0.40%</td>
+                        <td>79,447,967</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="highlight-logz">-1541.59 ± 0.28</td>
+                        <td class="highlight-logz">0.00</td>
+                        <td class="">3061.95</td>
+                        <td class="">12.67</td>
+                        <td>0.35%</td>
+                        <td>105,618,383</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best by log(Z):</strong> 3p (log(Z) = -1541.59)<br>
+                    <strong>Best by BIC:</strong> 1p (BIC = 3049.28)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: 4mode</h2>
+                <table>
+                    <tr><th>Planets</th><th>log(Z)</th><th>Δlog(Z)</th><th>Median BIC</th><th>ΔBIC</th><th>Efficiency %</th><th>N calls</th></tr>
+                    <tr>
+                        <td>0p</td>
+                        <td class="">-1899.68 ± 0.25</td>
+                        <td class="">-12.82</td>
+                        <td class="highlight-bic">3730.27</td>
+                        <td class="highlight-bic">0.00</td>
+                        <td>0.54%</td>
+                        <td>54,176,801</td>
+                    </tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">-1892.25 ± 0.26</td>
+                        <td class="">-5.38</td>
+                        <td class="">3763.08</td>
+                        <td class="">32.81</td>
+                        <td>0.43%</td>
+                        <td>73,655,303</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="highlight-logz">-1886.87 ± 0.26</td>
+                        <td class="highlight-logz">0.00</td>
+                        <td class="">3747.61</td>
+                        <td class="">17.34</td>
+                        <td>0.40%</td>
+                        <td>79,950,712</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">-1891.89 ± 0.26</td>
+                        <td class="">-5.03</td>
+                        <td class="">3805.66</td>
+                        <td class="">75.39</td>
+                        <td>0.35%</td>
+                        <td>90,197,727</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best by log(Z):</strong> 2p (log(Z) = -1886.87)<br>
+                    <strong>Best by BIC:</strong> 0p (BIC = 3730.27)
+                </div>
+            </div>
+            <div class="params-summary-section">
+                <h2>Parameters Summary (Best Models by log(Z))</h2>
+                <h3>Table 1: Orbital Parameters</h3>
+                <table class="params-table">
+                    <tr><th>Config</th><th>Model</th><th>Planet</th><th>P (days)</th><th>K (m/s)</th><th>mean_long (°)</th><th>e</th><th>ω (°)</th></tr>
+                    <tr>
+                        <td rowspan="3">1mode</td>
+                        <td rowspan="3">3p</td>
+                        <td>b</td>
+                        <td>9.2</td><td>0.25</td><td>229</td>
+                        <td>0.30</td><td>42</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>12.668</td><td>1.42</td><td>141</td>
+                        <td>0.17</td><td>90</td>
+                    </tr>
+                    <tr>
+                        <td>d</td>
+                        <td>47.9</td><td>0.77</td><td>174</td>
+                        <td>0.48</td><td>108</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">2mode</td>
+                        <td rowspan="2">2p</td>
+                        <td>b</td>
+                        <td>29.59</td><td>1.51</td><td>316</td>
+                        <td>0.48</td><td>-45</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>74</td><td>0.55</td><td>270</td>
+                        <td>0.30</td><td>67</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="3">3mode</td>
+                        <td rowspan="3">3p</td>
+                        <td>b</td>
+                        <td>1.5229</td><td>0.617</td><td>283</td>
+                        <td>0.15</td><td>115</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>16.1</td><td>0.54</td><td>160</td>
+                        <td>0.14</td><td>42</td>
+                    </tr>
+                    <tr>
+                        <td>d</td>
+                        <td>12.81</td><td>1.05</td><td>132</td>
+                        <td>0.105</td><td>135</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">4mode</td>
+                        <td rowspan="2">2p</td>
+                        <td>b</td>
+                        <td>2.910</td><td>0.52</td><td>219</td>
+                        <td>0.36</td><td>-53</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>44.7</td><td>1.05</td><td>147</td>
+                        <td>0.47</td><td>-136</td>
+                    </tr>
+                </table>
+                <h3>Table 2: Activity Parameters</h3>
+                <table class="params-table">
+                    <tr><th>Config</th><th>Model</th><th>Prot (days)</th><th>Pdec (days)</th><th>Oamp</th></tr>
+                    <tr>
+                        <td>1mode</td><td>3p</td>
+                        <td>28.45</td><td>210</td><td>0.377</td>
+                    </tr>
+                    <tr>
+                        <td>2mode</td><td>2p</td>
+                        <td>25.70</td><td>119</td><td>0.383</td>
+                    </tr>
+                    <tr>
+                        <td>3mode</td><td>3p</td>
+                        <td>26.89</td><td>35.9</td><td>0.382</td>
+                    </tr>
+                    <tr>
+                        <td>4mode</td><td>2p</td>
+                        <td>26.63</td><td>69</td><td>0.397</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="dataset-section">
+            <div class="dataset-header">DS4</div>
+            <div class="config-section">
+                <h2>Configuration: 1mode</h2>
+                <table>
+                    <tr><th>Planets</th><th>log(Z)</th><th>Δlog(Z)</th><th>Median BIC</th><th>ΔBIC</th><th>Efficiency %</th><th>N calls</th></tr>
+                    <tr>
+                        <td>0p</td>
+                        <td class="">-996.55 ± 0.27</td>
+                        <td class="">-0.32</td>
+                        <td class="highlight-bic">1881.30</td>
+                        <td class="highlight-bic">0.00</td>
+                        <td>0.54%</td>
+                        <td>62,963,498</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="highlight-logz">-996.23 ± 0.27</td>
+                        <td class="highlight-logz">0.00</td>
+                        <td class="">1953.77</td>
+                        <td class="">72.47</td>
+                        <td>0.40%</td>
+                        <td>94,761,695</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">-998.11 ± 0.29</td>
+                        <td class="">-1.89</td>
+                        <td class="">2016.69</td>
+                        <td class="">135.39</td>
+                        <td>0.34%</td>
+                        <td>120,533,105</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best by log(Z):</strong> 2p (log(Z) = -996.23)<br>
+                    <strong>Best by BIC:</strong> 0p (BIC = 1881.30)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: 2mode</h2>
+                <table>
+                    <tr><th>Planets</th><th>log(Z)</th><th>Δlog(Z)</th><th>Median BIC</th><th>ΔBIC</th><th>Efficiency %</th><th>N calls</th></tr>
+                    <tr>
+                        <td>0p</td>
+                        <td class="">-1081.92 ± 0.26</td>
+                        <td class="">-1.59</td>
+                        <td class="highlight-bic">2079.76</td>
+                        <td class="highlight-bic">0.00</td>
+                        <td>0.54%</td>
+                        <td>59,104,825</td>
+                    </tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">-1081.81 ± 0.28</td>
+                        <td class="">-1.48</td>
+                        <td class="">2097.48</td>
+                        <td class="">17.72</td>
+                        <td>0.45%</td>
+                        <td>80,818,898</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">-1084.55 ± 0.26</td>
+                        <td class="">-4.22</td>
+                        <td class="">2151.77</td>
+                        <td class="">72.01</td>
+                        <td>0.39%</td>
+                        <td>89,160,685</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="highlight-logz">-1080.33 ± 0.28</td>
+                        <td class="highlight-logz">0.00</td>
+                        <td class="">nan</td>
+                        <td class="">nan</td>
+                        <td>0.35%</td>
+                        <td>106,056,574</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best by log(Z):</strong> 3p (log(Z) = -1080.33)<br>
+                    <strong>Best by BIC:</strong> 0p (BIC = 2079.76)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: 3mode</h2>
+                <table>
+                    <tr><th>Planets</th><th>log(Z)</th><th>Δlog(Z)</th><th>Median BIC</th><th>ΔBIC</th><th>Efficiency %</th><th>N calls</th></tr>
+                    <tr>
+                        <td>0p</td>
+                        <td class="">-1349.37 ± 0.25</td>
+                        <td class="">-1.00</td>
+                        <td class="highlight-bic">2626.33</td>
+                        <td class="highlight-bic">0.00</td>
+                        <td>0.54%</td>
+                        <td>55,005,746</td>
+                    </tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="highlight-logz">-1348.37 ± 0.26</td>
+                        <td class="highlight-logz">0.00</td>
+                        <td class="">2662.79</td>
+                        <td class="">36.46</td>
+                        <td>0.41%</td>
+                        <td>73,607,140</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">-1352.54 ± 0.26</td>
+                        <td class="">-4.17</td>
+                        <td class="">2687.73</td>
+                        <td class="">61.40</td>
+                        <td>0.39%</td>
+                        <td>81,762,544</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">-1348.37 ± 0.26</td>
+                        <td class="">-0.01</td>
+                        <td class="">2742.18</td>
+                        <td class="">115.85</td>
+                        <td>0.34%</td>
+                        <td>88,592,065</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best by log(Z):</strong> 1p (log(Z) = -1348.37)<br>
+                    <strong>Best by BIC:</strong> 0p (BIC = 2626.33)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: 4mode</h2>
+                <table>
+                    <tr><th>Planets</th><th>log(Z)</th><th>Δlog(Z)</th><th>Median BIC</th><th>ΔBIC</th><th>Efficiency %</th><th>N calls</th></tr>
+                    <tr>
+                        <td>0p</td>
+                        <td class="">-1666.98 ± 0.25</td>
+                        <td class="">-6.46</td>
+                        <td class="highlight-bic">3262.67</td>
+                        <td class="highlight-bic">0.00</td>
+                        <td>0.54%</td>
+                        <td>52,809,177</td>
+                    </tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">-1662.50 ± 0.26</td>
+                        <td class="">-1.99</td>
+                        <td class="">3272.09</td>
+                        <td class="">9.42</td>
+                        <td>0.46%</td>
+                        <td>65,669,405</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="highlight-logz">-1660.52 ± 0.26</td>
+                        <td class="highlight-logz">0.00</td>
+                        <td class="">3303.34</td>
+                        <td class="">40.67</td>
+                        <td>0.39%</td>
+                        <td>79,567,913</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">-1664.22 ± 0.26</td>
+                        <td class="">-3.70</td>
+                        <td class="">3340.56</td>
+                        <td class="">77.89</td>
+                        <td>0.34%</td>
+                        <td>101,791,528</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best by log(Z):</strong> 2p (log(Z) = -1660.52)<br>
+                    <strong>Best by BIC:</strong> 0p (BIC = 3262.67)
+                </div>
+            </div>
+            <div class="params-summary-section">
+                <h2>Parameters Summary (Best Models by log(Z))</h2>
+                <h3>Table 1: Orbital Parameters</h3>
+                <table class="params-table">
+                    <tr><th>Config</th><th>Model</th><th>Planet</th><th>P (days)</th><th>K (m/s)</th><th>mean_long (°)</th><th>e</th><th>ω (°)</th></tr>
+                    <tr>
+                        <td rowspan="2">1mode</td>
+                        <td rowspan="2">2p</td>
+                        <td>b</td>
+                        <td>30</td><td>0.018</td><td>268</td>
+                        <td>0.32</td><td>-24</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>21</td><td>0.13</td><td>84</td>
+                        <td>0.35</td><td>-135</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="3">2mode</td>
+                        <td rowspan="3">3p</td>
+                        <td>b</td>
+                        <td>31</td><td>0.19</td><td>95</td>
+                        <td>0.35</td><td>135</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>23</td><td>0.035</td><td>123</td>
+                        <td>0.30</td><td>190</td>
+                    </tr>
+                    <tr>
+                        <td>d</td>
+                        <td>23</td><td>0.46</td><td>203</td>
+                        <td>0.25</td><td>-154</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="1">3mode</td>
+                        <td rowspan="1">1p</td>
+                        <td>b</td>
+                        <td>2.5</td><td>0.38</td><td>325</td>
+                        <td>0.42</td><td>196</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">4mode</td>
+                        <td rowspan="2">2p</td>
+                        <td>b</td>
+                        <td>6.5</td><td>0.23</td><td>409</td>
+                        <td>0.33</td><td>3</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>56</td><td>1.4</td><td>40</td>
+                        <td>0.27</td><td>-82</td>
+                    </tr>
+                </table>
+                <h3>Table 2: Activity Parameters</h3>
+                <table class="params-table">
+                    <tr><th>Config</th><th>Model</th><th>Prot (days)</th><th>Pdec (days)</th><th>Oamp</th></tr>
+                    <tr>
+                        <td>1mode</td><td>2p</td>
+                        <td>22.85</td><td>62</td><td>0.370</td>
+                    </tr>
+                    <tr>
+                        <td>2mode</td><td>3p</td>
+                        <td>23.54</td><td>46</td><td>0.391</td>
+                    </tr>
+                    <tr>
+                        <td>3mode</td><td>1p</td>
+                        <td>28.65</td><td>73</td><td>0.392</td>
+                    </tr>
+                    <tr>
+                        <td>4mode</td><td>2p</td>
+                        <td>27.5</td><td>26.9</td><td>0.397</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="dataset-section">
+            <div class="dataset-header">DS5</div>
+            <div class="config-section">
+                <h2>Configuration: 1mode</h2>
+                <table>
+                    <tr><th>Planets</th><th>log(Z)</th><th>Δlog(Z)</th><th>Median BIC</th><th>ΔBIC</th><th>Efficiency %</th><th>N calls</th></tr>
+                    <tr>
+                        <td>0p</td>
+                        <td class="">-1058.16 ± 0.26</td>
+                        <td class="">-10.34</td>
+                        <td class="highlight-bic">2020.37</td>
+                        <td class="highlight-bic">0.00</td>
+                        <td>0.54%</td>
+                        <td>64,345,341</td>
+                    </tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">-1057.49 ± 0.28</td>
+                        <td class="">-9.66</td>
+                        <td class="">2052.64</td>
+                        <td class="">32.27</td>
+                        <td>0.47%</td>
+                        <td>81,428,483</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">-1056.89 ± 0.28</td>
+                        <td class="">-9.07</td>
+                        <td class="">2079.05</td>
+                        <td class="">58.68</td>
+                        <td>0.41%</td>
+                        <td>93,349,181</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="highlight-logz">-1047.82 ± 0.28</td>
+                        <td class="highlight-logz">0.00</td>
+                        <td class="">2064.64</td>
+                        <td class="">44.27</td>
+                        <td>0.34%</td>
+                        <td>116,779,955</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best by log(Z):</strong> 3p (log(Z) = -1047.82)<br>
+                    <strong>Best by BIC:</strong> 0p (BIC = 2020.37)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: 2mode</h2>
+                <table>
+                    <tr><th>Planets</th><th>log(Z)</th><th>Δlog(Z)</th><th>Median BIC</th><th>ΔBIC</th><th>Efficiency %</th><th>N calls</th></tr>
+                    <tr>
+                        <td>0p</td>
+                        <td class="">-1134.12 ± 0.28</td>
+                        <td class="">-11.36</td>
+                        <td class="highlight-bic">2138.63</td>
+                        <td class="highlight-bic">0.00</td>
+                        <td>0.55%</td>
+                        <td>63,524,064</td>
+                    </tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">-1128.25 ± 0.28</td>
+                        <td class="">-5.49</td>
+                        <td class="">2139.61</td>
+                        <td class="">0.98</td>
+                        <td>0.47%</td>
+                        <td>79,122,997</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="highlight-logz">-1122.76 ± 0.29</td>
+                        <td class="highlight-logz">0.00</td>
+                        <td class="">2162.52</td>
+                        <td class="">23.89</td>
+                        <td>0.40%</td>
+                        <td>98,230,340</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">-1129.02 ± 0.30</td>
+                        <td class="">-6.26</td>
+                        <td class="">2167.83</td>
+                        <td class="">29.20</td>
+                        <td>0.35%</td>
+                        <td>128,386,432</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best by log(Z):</strong> 2p (log(Z) = -1122.76)<br>
+                    <strong>Best by BIC:</strong> 0p (BIC = 2138.63)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: 3mode</h2>
+                <table>
+                    <tr><th>Planets</th><th>log(Z)</th><th>Δlog(Z)</th><th>Median BIC</th><th>ΔBIC</th><th>Efficiency %</th><th>N calls</th></tr>
+                    <tr>
+                        <td>0p</td>
+                        <td class="">-1369.53 ± 0.26</td>
+                        <td class="">-11.65</td>
+                        <td class="highlight-bic">2661.32</td>
+                        <td class="highlight-bic">0.00</td>
+                        <td>0.54%</td>
+                        <td>57,274,424</td>
+                    </tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">-1368.56 ± 0.26</td>
+                        <td class="">-10.68</td>
+                        <td class="">2677.29</td>
+                        <td class="">15.97</td>
+                        <td>0.46%</td>
+                        <td>70,600,298</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">-1360.83 ± 0.27</td>
+                        <td class="">-2.95</td>
+                        <td class="">2697.06</td>
+                        <td class="">35.74</td>
+                        <td>0.40%</td>
+                        <td>86,877,810</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="highlight-logz">-1357.88 ± 0.26</td>
+                        <td class="highlight-logz">0.00</td>
+                        <td class="">2758.23</td>
+                        <td class="">96.91</td>
+                        <td>0.35%</td>
+                        <td>93,237,065</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best by log(Z):</strong> 3p (log(Z) = -1357.88)<br>
+                    <strong>Best by BIC:</strong> 0p (BIC = 2661.32)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: 4mode</h2>
+                <table>
+                    <tr><th>Planets</th><th>log(Z)</th><th>Δlog(Z)</th><th>Median BIC</th><th>ΔBIC</th><th>Efficiency %</th><th>N calls</th></tr>
+                    <tr>
+                        <td>0p</td>
+                        <td class="">-1680.87 ± 0.25</td>
+                        <td class="">-8.65</td>
+                        <td class="highlight-bic">3293.45</td>
+                        <td class="highlight-bic">0.00</td>
+                        <td>0.54%</td>
+                        <td>52,053,466</td>
+                    </tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">-1677.64 ± 0.26</td>
+                        <td class="">-5.43</td>
+                        <td class="">3322.90</td>
+                        <td class="">29.45</td>
+                        <td>0.47%</td>
+                        <td>66,595,416</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">-1673.94 ± 0.26</td>
+                        <td class="">-1.73</td>
+                        <td class="">3341.96</td>
+                        <td class="">48.51</td>
+                        <td>0.41%</td>
+                        <td>77,670,794</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="highlight-logz">-1672.21 ± 0.26</td>
+                        <td class="highlight-logz">0.00</td>
+                        <td class="">nan</td>
+                        <td class="">nan</td>
+                        <td>0.35%</td>
+                        <td>98,912,838</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best by log(Z):</strong> 3p (log(Z) = -1672.21)<br>
+                    <strong>Best by BIC:</strong> 0p (BIC = 3293.45)
+                </div>
+            </div>
+            <div class="params-summary-section">
+                <h2>Parameters Summary (Best Models by log(Z))</h2>
+                <h3>Table 1: Orbital Parameters</h3>
+                <table class="params-table">
+                    <tr><th>Config</th><th>Model</th><th>Planet</th><th>P (days)</th><th>K (m/s)</th><th>mean_long (°)</th><th>e</th><th>ω (°)</th></tr>
+                    <tr>
+                        <td rowspan="3">1mode</td>
+                        <td rowspan="3">3p</td>
+                        <td>b</td>
+                        <td>4.7</td><td>0.033</td><td>80</td>
+                        <td>0.32</td><td>-88</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>80.9</td><td>1.19</td><td>41</td>
+                        <td>0.31</td><td>94</td>
+                    </tr>
+                    <tr>
+                        <td>d</td>
+                        <td>44.5</td><td>1.94</td><td>167</td>
+                        <td>0.51</td><td>65</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">2mode</td>
+                        <td rowspan="2">2p</td>
+                        <td>b</td>
+                        <td>94</td><td>1.37</td><td>102</td>
+                        <td>0.47</td><td>-22</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>13.06</td><td>0.65</td><td>181</td>
+                        <td>0.28</td><td>-204</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="3">3mode</td>
+                        <td rowspan="3">3p</td>
+                        <td>b</td>
+                        <td>31</td><td>0.51</td><td>244</td>
+                        <td>0.26</td><td>130</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>24</td><td>0.052</td><td>301</td>
+                        <td>0.27</td><td>-59</td>
+                    </tr>
+                    <tr>
+                        <td>d</td>
+                        <td>102</td><td>1.37</td><td>81</td>
+                        <td>0.42</td><td>-97</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="3">4mode</td>
+                        <td rowspan="3">3p</td>
+                        <td>b</td>
+                        <td>44</td><td>0.049</td><td>55</td>
+                        <td>0.18</td><td>46</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>43.1</td><td>1.27</td><td>157</td>
+                        <td>0.41</td><td>81</td>
+                    </tr>
+                    <tr>
+                        <td>d</td>
+                        <td>111</td><td>0.75</td><td>122</td>
+                        <td>0.14</td><td>-15</td>
+                    </tr>
+                </table>
+                <h3>Table 2: Activity Parameters</h3>
+                <table class="params-table">
+                    <tr><th>Config</th><th>Model</th><th>Prot (days)</th><th>Pdec (days)</th><th>Oamp</th></tr>
+                    <tr>
+                        <td>1mode</td><td>3p</td>
+                        <td>27.85</td><td>124</td><td>0.373</td>
+                    </tr>
+                    <tr>
+                        <td>2mode</td><td>2p</td>
+                        <td>24.80</td><td>13.4</td><td>0.358</td>
+                    </tr>
+                    <tr>
+                        <td>3mode</td><td>3p</td>
+                        <td>28.97</td><td>62</td><td>0.380</td>
+                    </tr>
+                    <tr>
+                        <td>4mode</td><td>3p</td>
+                        <td>29.46</td><td>33.4</td><td>0.360</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="dataset-section">
+            <div class="dataset-header">DS6</div>
+            <div class="config-section">
+                <h2>Configuration: 1mode</h2>
+                <table>
+                    <tr><th>Planets</th><th>log(Z)</th><th>Δlog(Z)</th><th>Median BIC</th><th>ΔBIC</th><th>Efficiency %</th><th>N calls</th></tr>
+                    <tr>
+                        <td>0p</td>
+                        <td class="">-1115.12 ± 0.28</td>
+                        <td class="">-12.11</td>
+                        <td class="highlight-bic">2097.73</td>
+                        <td class="highlight-bic">0.00</td>
+                        <td>0.53%</td>
+                        <td>67,772,032</td>
+                    </tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">-1113.93 ± 0.28</td>
+                        <td class="">-10.92</td>
+                        <td class="">2128.42</td>
+                        <td class="">30.69</td>
+                        <td>0.46%</td>
+                        <td>80,943,758</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="highlight-logz">-1103.01 ± 0.29</td>
+                        <td class="highlight-logz">0.00</td>
+                        <td class="">2108.09</td>
+                        <td class="">10.36</td>
+                        <td>0.41%</td>
+                        <td>95,508,997</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">-1108.40 ± 0.31</td>
+                        <td class="">-5.39</td>
+                        <td class="">2106.64</td>
+                        <td class="">8.91</td>
+                        <td>0.35%</td>
+                        <td>122,684,429</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best by log(Z):</strong> 2p (log(Z) = -1103.01)<br>
+                    <strong>Best by BIC:</strong> 0p (BIC = 2097.73)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: 2mode</h2>
+                <table>
+                    <tr><th>Planets</th><th>log(Z)</th><th>Δlog(Z)</th><th>Median BIC</th><th>ΔBIC</th><th>Efficiency %</th><th>N calls</th></tr>
+                    <tr>
+                        <td>0p</td>
+                        <td class="">-1224.02 ± 0.26</td>
+                        <td class="">-6.53</td>
+                        <td class="">2355.38</td>
+                        <td class="">26.17</td>
+                        <td>0.54%</td>
+                        <td>60,929,705</td>
+                    </tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">-1217.56 ± 0.29</td>
+                        <td class="">-0.07</td>
+                        <td class="highlight-bic">2329.21</td>
+                        <td class="highlight-bic">0.00</td>
+                        <td>0.46%</td>
+                        <td>80,969,936</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="highlight-logz">-1217.49 ± 0.30</td>
+                        <td class="highlight-logz">0.00</td>
+                        <td class="">2391.39</td>
+                        <td class="">62.18</td>
+                        <td>0.40%</td>
+                        <td>100,961,697</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">-1218.74 ± 0.28</td>
+                        <td class="">-1.25</td>
+                        <td class="">2421.73</td>
+                        <td class="">92.52</td>
+                        <td>0.36%</td>
+                        <td>102,768,563</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best by log(Z):</strong> 2p (log(Z) = -1217.49)<br>
+                    <strong>Best by BIC:</strong> 1p (BIC = 2329.21)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: 3mode</h2>
+                <table>
+                    <tr><th>Planets</th><th>log(Z)</th><th>Δlog(Z)</th><th>Median BIC</th><th>ΔBIC</th><th>Efficiency %</th><th>N calls</th></tr>
+                    <tr>
+                        <td>0p</td>
+                        <td class="">-1518.63 ± 0.25</td>
+                        <td class="">-9.42</td>
+                        <td class="">2965.38</td>
+                        <td class="">30.72</td>
+                        <td>0.54%</td>
+                        <td>57,024,317</td>
+                    </tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="highlight-logz">-1509.21 ± 0.27</td>
+                        <td class="highlight-logz">0.00</td>
+                        <td class="highlight-bic">2934.66</td>
+                        <td class="highlight-bic">0.00</td>
+                        <td>0.47%</td>
+                        <td>73,610,835</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">-1514.81 ± 0.27</td>
+                        <td class="">-5.60</td>
+                        <td class="">3011.29</td>
+                        <td class="">76.63</td>
+                        <td>0.40%</td>
+                        <td>86,463,489</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">-1513.28 ± 0.26</td>
+                        <td class="">-4.07</td>
+                        <td class="">3106.58</td>
+                        <td class="">171.92</td>
+                        <td>0.35%</td>
+                        <td>98,279,449</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best by log(Z):</strong> 1p (log(Z) = -1509.21)<br>
+                    <strong>Best by BIC:</strong> 1p (BIC = 2934.66)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: 4mode</h2>
+                <table>
+                    <tr><th>Planets</th><th>log(Z)</th><th>Δlog(Z)</th><th>Median BIC</th><th>ΔBIC</th><th>Efficiency %</th><th>N calls</th></tr>
+                    <tr>
+                        <td>0p</td>
+                        <td class="">-1888.38 ± 0.24</td>
+                        <td class="">-3.20</td>
+                        <td class="highlight-bic">3720.05</td>
+                        <td class="highlight-bic">0.00</td>
+                        <td>0.54%</td>
+                        <td>52,727,402</td>
+                    </tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">-1887.85 ± 0.25</td>
+                        <td class="">-2.66</td>
+                        <td class="">3750.27</td>
+                        <td class="">30.22</td>
+                        <td>0.46%</td>
+                        <td>66,421,958</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">-1886.69 ± 0.25</td>
+                        <td class="">-1.51</td>
+                        <td class="">3807.15</td>
+                        <td class="">87.10</td>
+                        <td>0.40%</td>
+                        <td>77,286,161</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="highlight-logz">-1885.18 ± 0.25</td>
+                        <td class="highlight-logz">0.00</td>
+                        <td class="">3840.21</td>
+                        <td class="">120.16</td>
+                        <td>0.35%</td>
+                        <td>94,443,346</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best by log(Z):</strong> 3p (log(Z) = -1885.18)<br>
+                    <strong>Best by BIC:</strong> 0p (BIC = 3720.05)
+                </div>
+            </div>
+            <div class="params-summary-section">
+                <h2>Parameters Summary (Best Models by log(Z))</h2>
+                <h3>Table 1: Orbital Parameters</h3>
+                <table class="params-table">
+                    <tr><th>Config</th><th>Model</th><th>Planet</th><th>P (days)</th><th>K (m/s)</th><th>mean_long (°)</th><th>e</th><th>ω (°)</th></tr>
+                    <tr>
+                        <td rowspan="2">1mode</td>
+                        <td rowspan="2">2p</td>
+                        <td>b</td>
+                        <td>61.6</td><td>2.01</td><td>267.2</td>
+                        <td>0.641</td><td>-47</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>2.1680</td><td>0.57</td><td>246</td>
+                        <td>0.25</td><td>146</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">2mode</td>
+                        <td rowspan="2">2p</td>
+                        <td>b</td>
+                        <td>60.9</td><td>1.88</td><td>267.4</td>
+                        <td>0.603</td><td>-40</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>2.76</td><td>0.41</td><td>218</td>
+                        <td>0.18</td><td>116</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="1">3mode</td>
+                        <td rowspan="1">1p</td>
+                        <td>b</td>
+                        <td>14.06</td><td>2.53</td><td>44</td>
+                        <td>0.164</td><td>-164</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="3">4mode</td>
+                        <td rowspan="3">3p</td>
+                        <td>b</td>
+                        <td>49</td><td>0.42</td><td>244</td>
+                        <td>0.35</td><td>29</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>2.179</td><td>0.41</td><td>240</td>
+                        <td>0.28</td><td>59</td>
+                    </tr>
+                    <tr>
+                        <td>d</td>
+                        <td>58</td><td>0.029</td><td>203</td>
+                        <td>0.13</td><td>-136</td>
+                    </tr>
+                </table>
+                <h3>Table 2: Activity Parameters</h3>
+                <table class="params-table">
+                    <tr><th>Config</th><th>Model</th><th>Prot (days)</th><th>Pdec (days)</th><th>Oamp</th></tr>
+                    <tr>
+                        <td>1mode</td><td>2p</td>
+                        <td>27.95</td><td>211</td><td>0.379</td>
+                    </tr>
+                    <tr>
+                        <td>2mode</td><td>2p</td>
+                        <td>27.79</td><td>128</td><td>0.386</td>
+                    </tr>
+                    <tr>
+                        <td>3mode</td><td>1p</td>
+                        <td>28.10</td><td>37</td><td>0.370</td>
+                    </tr>
+                    <tr>
+                        <td>4mode</td><td>3p</td>
+                        <td>28.09</td><td>131</td><td>0.381</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="dataset-section">
+            <div class="dataset-header">DS7</div>
+            <div class="config-section">
+                <h2>Configuration: 1mode</h2>
+                <table>
+                    <tr><th>Planets</th><th>log(Z)</th><th>Δlog(Z)</th><th>Median BIC</th><th>ΔBIC</th><th>Efficiency %</th><th>N calls</th></tr>
+                    <tr>
+                        <td>0p</td>
+                        <td class="">-1057.63 ± 0.27</td>
+                        <td class="">-25.75</td>
+                        <td class="">2022.43</td>
+                        <td class="">35.17</td>
+                        <td>0.54%</td>
+                        <td>61,930,349</td>
+                    </tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">-1042.11 ± 0.28</td>
+                        <td class="">-10.23</td>
+                        <td class="highlight-bic">1987.26</td>
+                        <td class="highlight-bic">0.00</td>
+                        <td>0.46%</td>
+                        <td>80,321,592</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">-1039.01 ± 0.29</td>
+                        <td class="">-7.13</td>
+                        <td class="">1988.54</td>
+                        <td class="">1.28</td>
+                        <td>0.41%</td>
+                        <td>94,386,796</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="highlight-logz">-1031.88 ± 0.29</td>
+                        <td class="highlight-logz">0.00</td>
+                        <td class="">2026.83</td>
+                        <td class="">39.57</td>
+                        <td>0.35%</td>
+                        <td>107,348,189</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best by log(Z):</strong> 3p (log(Z) = -1031.88)<br>
+                    <strong>Best by BIC:</strong> 1p (BIC = 1987.26)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: 2mode</h2>
+                <table>
+                    <tr><th>Planets</th><th>log(Z)</th><th>Δlog(Z)</th><th>Median BIC</th><th>ΔBIC</th><th>Efficiency %</th><th>N calls</th></tr>
+                    <tr>
+                        <td>0p</td>
+                        <td class="">-1141.90 ± 0.25</td>
+                        <td class="">-19.56</td>
+                        <td class="">2214.46</td>
+                        <td class="">49.86</td>
+                        <td>0.54%</td>
+                        <td>60,017,864</td>
+                    </tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">-1129.43 ± 0.28</td>
+                        <td class="">-7.09</td>
+                        <td class="highlight-bic">2164.60</td>
+                        <td class="highlight-bic">0.00</td>
+                        <td>0.46%</td>
+                        <td>79,608,135</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="highlight-logz">-1122.35 ± 0.28</td>
+                        <td class="highlight-logz">0.00</td>
+                        <td class="">2175.43</td>
+                        <td class="">10.83</td>
+                        <td>0.41%</td>
+                        <td>89,996,974</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">-1128.82 ± 0.29</td>
+                        <td class="">-6.47</td>
+                        <td class="">2205.30</td>
+                        <td class="">40.70</td>
+                        <td>0.34%</td>
+                        <td>118,093,111</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best by log(Z):</strong> 2p (log(Z) = -1122.35)<br>
+                    <strong>Best by BIC:</strong> 1p (BIC = 2164.60)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: 3mode</h2>
+                <table>
+                    <tr><th>Planets</th><th>log(Z)</th><th>Δlog(Z)</th><th>Median BIC</th><th>ΔBIC</th><th>Efficiency %</th><th>N calls</th></tr>
+                    <tr>
+                        <td>0p</td>
+                        <td class="">-1410.06 ± 0.25</td>
+                        <td class="">-9.41</td>
+                        <td class="">2746.38</td>
+                        <td class="">10.89</td>
+                        <td>0.55%</td>
+                        <td>55,698,971</td>
+                    </tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">-1400.67 ± 0.27</td>
+                        <td class="">-0.02</td>
+                        <td class="highlight-bic">2735.49</td>
+                        <td class="highlight-bic">0.00</td>
+                        <td>0.46%</td>
+                        <td>72,561,352</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">-1400.96 ± 0.28</td>
+                        <td class="">-0.31</td>
+                        <td class="">2763.44</td>
+                        <td class="">27.95</td>
+                        <td>0.39%</td>
+                        <td>90,699,555</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="highlight-logz">-1400.65 ± 0.29</td>
+                        <td class="highlight-logz">0.00</td>
+                        <td class="">2758.27</td>
+                        <td class="">22.78</td>
+                        <td>0.35%</td>
+                        <td>109,174,372</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best by log(Z):</strong> 3p (log(Z) = -1400.65)<br>
+                    <strong>Best by BIC:</strong> 1p (BIC = 2735.49)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: 4mode</h2>
+                <table>
+                    <tr><th>Planets</th><th>log(Z)</th><th>Δlog(Z)</th><th>Median BIC</th><th>ΔBIC</th><th>Efficiency %</th><th>N calls</th></tr>
+                    <tr>
+                        <td>0p</td>
+                        <td class="">-1736.31 ± 0.26</td>
+                        <td class="">-16.22</td>
+                        <td class="highlight-bic">3378.26</td>
+                        <td class="highlight-bic">0.00</td>
+                        <td>0.54%</td>
+                        <td>57,599,267</td>
+                    </tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">-1737.43 ± 0.27</td>
+                        <td class="">-17.34</td>
+                        <td class="">3418.13</td>
+                        <td class="">39.87</td>
+                        <td>0.45%</td>
+                        <td>75,377,252</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">-1721.68 ± 0.26</td>
+                        <td class="">-1.59</td>
+                        <td class="">3402.27</td>
+                        <td class="">24.01</td>
+                        <td>0.41%</td>
+                        <td>79,985,216</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="highlight-logz">-1720.09 ± 0.29</td>
+                        <td class="highlight-logz">0.00</td>
+                        <td class="">3548.01</td>
+                        <td class="">169.75</td>
+                        <td>0.36%</td>
+                        <td>103,140,710</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best by log(Z):</strong> 3p (log(Z) = -1720.09)<br>
+                    <strong>Best by BIC:</strong> 0p (BIC = 3378.26)
+                </div>
+            </div>
+            <div class="params-summary-section">
+                <h2>Parameters Summary (Best Models by log(Z))</h2>
+                <h3>Table 1: Orbital Parameters</h3>
+                <table class="params-table">
+                    <tr><th>Config</th><th>Model</th><th>Planet</th><th>P (days)</th><th>K (m/s)</th><th>mean_long (°)</th><th>e</th><th>ω (°)</th></tr>
+                    <tr>
+                        <td rowspan="3">1mode</td>
+                        <td rowspan="3">3p</td>
+                        <td>b</td>
+                        <td>33.1</td><td>0.69</td><td>86</td>
+                        <td>0.22</td><td>-43</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>4.698</td><td>1.25</td><td>261</td>
+                        <td>0.27</td><td>-30</td>
+                    </tr>
+                    <tr>
+                        <td>d</td>
+                        <td>25</td><td>0.72</td><td>78</td>
+                        <td>0.32</td><td>-19</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">2mode</td>
+                        <td rowspan="2">2p</td>
+                        <td>b</td>
+                        <td>38.7</td><td>0.88</td><td>131</td>
+                        <td>0.55</td><td>88</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>4.701</td><td>1.33</td><td>263.0</td>
+                        <td>0.288</td><td>-32</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="3">3mode</td>
+                        <td rowspan="3">3p</td>
+                        <td>b</td>
+                        <td>4.6981</td><td>1.25</td><td>257.3</td>
+                        <td>0.130</td><td>-62</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>3.39</td><td>0.44</td><td>81</td>
+                        <td>0.37</td><td>16</td>
+                    </tr>
+                    <tr>
+                        <td>d</td>
+                        <td>35.9</td><td>0.67</td><td>102</td>
+                        <td>0.26</td><td>91</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="3">4mode</td>
+                        <td rowspan="3">3p</td>
+                        <td>b</td>
+                        <td>140</td><td>1.64</td><td>257</td>
+                        <td>0.36</td><td>-101</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>4.712</td><td>1.10</td><td>271</td>
+                        <td>0.34</td><td>-18</td>
+                    </tr>
+                    <tr>
+                        <td>d</td>
+                        <td>14.31</td><td>1.33</td><td>120</td>
+                        <td>0.47</td><td>45</td>
+                    </tr>
+                </table>
+                <h3>Table 2: Activity Parameters</h3>
+                <table class="params-table">
+                    <tr><th>Config</th><th>Model</th><th>Prot (days)</th><th>Pdec (days)</th><th>Oamp</th></tr>
+                    <tr>
+                        <td>1mode</td><td>3p</td>
+                        <td>25.75</td><td>253</td><td>0.389</td>
+                    </tr>
+                    <tr>
+                        <td>2mode</td><td>2p</td>
+                        <td>25.78</td><td>264</td><td>0.390</td>
+                    </tr>
+                    <tr>
+                        <td>3mode</td><td>3p</td>
+                        <td>25.36</td><td>225</td><td>0.371</td>
+                    </tr>
+                    <tr>
+                        <td>4mode</td><td>3p</td>
+                        <td>25.99</td><td>47</td><td>0.392</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="dataset-section">
+            <div class="dataset-header">DS8</div>
+            <div class="config-section">
+                <h2>Configuration: 1mode</h2>
+                <table>
+                    <tr><th>Planets</th><th>log(Z)</th><th>Δlog(Z)</th><th>Median BIC</th><th>ΔBIC</th><th>Efficiency %</th><th>N calls</th></tr>
+                    <tr>
+                        <td>0p</td>
+                        <td class="">-1167.07 ± 0.27</td>
+                        <td class="">-15.93</td>
+                        <td class="">2220.22</td>
+                        <td class="">23.78</td>
+                        <td>0.53%</td>
+                        <td>63,304,799</td>
+                    </tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">-1157.71 ± 0.29</td>
+                        <td class="">-6.57</td>
+                        <td class="highlight-bic">2196.44</td>
+                        <td class="highlight-bic">0.00</td>
+                        <td>0.47%</td>
+                        <td>81,318,077</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="highlight-logz">-1151.14 ± 0.30</td>
+                        <td class="highlight-logz">0.00</td>
+                        <td class="">2201.18</td>
+                        <td class="">4.74</td>
+                        <td>0.39%</td>
+                        <td>103,818,958</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">-1162.81 ± 0.30</td>
+                        <td class="">-11.67</td>
+                        <td class="">nan</td>
+                        <td class="">nan</td>
+                        <td>0.33%</td>
+                        <td>134,161,665</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best by log(Z):</strong> 2p (log(Z) = -1151.14)<br>
+                    <strong>Best by BIC:</strong> 1p (BIC = 2196.44)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: 2mode</h2>
+                <table>
+                    <tr><th>Planets</th><th>log(Z)</th><th>Δlog(Z)</th><th>Median BIC</th><th>ΔBIC</th><th>Efficiency %</th><th>N calls</th></tr>
+                    <tr>
+                        <td>0p</td>
+                        <td class="">-1268.01 ± 0.27</td>
+                        <td class="">-12.41</td>
+                        <td class="">2427.98</td>
+                        <td class="">1.90</td>
+                        <td>0.53%</td>
+                        <td>63,215,772</td>
+                    </tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">-1265.90 ± 0.28</td>
+                        <td class="">-10.30</td>
+                        <td class="">2476.91</td>
+                        <td class="">50.83</td>
+                        <td>0.43%</td>
+                        <td>83,655,713</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">-1264.19 ± 0.30</td>
+                        <td class="">-8.58</td>
+                        <td class="highlight-bic">2426.08</td>
+                        <td class="highlight-bic">0.00</td>
+                        <td>0.38%</td>
+                        <td>106,400,314</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="highlight-logz">-1255.61 ± 0.29</td>
+                        <td class="highlight-logz">0.00</td>
+                        <td class="">3588.36</td>
+                        <td class="">1162.28</td>
+                        <td>0.31%</td>
+                        <td>125,133,596</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best by log(Z):</strong> 3p (log(Z) = -1255.61)<br>
+                    <strong>Best by BIC:</strong> 2p (BIC = 2426.08)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: 3mode</h2>
+                <table>
+                    <tr><th>Planets</th><th>log(Z)</th><th>Δlog(Z)</th><th>Median BIC</th><th>ΔBIC</th><th>Efficiency %</th><th>N calls</th></tr>
+                    <tr>
+                        <td>0p</td>
+                        <td class="">-1568.08 ± 0.25</td>
+                        <td class="">-10.45</td>
+                        <td class="">3067.08</td>
+                        <td class="">11.41</td>
+                        <td>0.54%</td>
+                        <td>55,471,835</td>
+                    </tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">-1560.37 ± 0.27</td>
+                        <td class="">-2.75</td>
+                        <td class="highlight-bic">3055.67</td>
+                        <td class="highlight-bic">0.00</td>
+                        <td>0.46%</td>
+                        <td>71,023,143</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="highlight-logz">-1557.62 ± 0.27</td>
+                        <td class="highlight-logz">0.00</td>
+                        <td class="">3152.74</td>
+                        <td class="">97.07</td>
+                        <td>0.38%</td>
+                        <td>91,721,664</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">-1557.96 ± 0.29</td>
+                        <td class="">-0.33</td>
+                        <td class="">3065.31</td>
+                        <td class="">9.64</td>
+                        <td>0.35%</td>
+                        <td>117,530,728</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best by log(Z):</strong> 2p (log(Z) = -1557.62)<br>
+                    <strong>Best by BIC:</strong> 1p (BIC = 3055.67)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: 4mode</h2>
+                <table>
+                    <tr><th>Planets</th><th>log(Z)</th><th>Δlog(Z)</th><th>Median BIC</th><th>ΔBIC</th><th>Efficiency %</th><th>N calls</th></tr>
+                    <tr>
+                        <td>0p</td>
+                        <td class="">-1939.52 ± 0.24</td>
+                        <td class="">-15.41</td>
+                        <td class="">3829.29</td>
+                        <td class="">37.77</td>
+                        <td>0.54%</td>
+                        <td>50,691,395</td>
+                    </tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">-1932.55 ± 0.26</td>
+                        <td class="">-8.44</td>
+                        <td class="">3845.85</td>
+                        <td class="">54.33</td>
+                        <td>0.45%</td>
+                        <td>68,334,485</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="highlight-logz">-1924.11 ± 0.28</td>
+                        <td class="highlight-logz">0.00</td>
+                        <td class="highlight-bic">3791.52</td>
+                        <td class="highlight-bic">0.00</td>
+                        <td>0.38%</td>
+                        <td>89,332,931</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">-1928.47 ± 0.30</td>
+                        <td class="">-4.36</td>
+                        <td class="">3800.72</td>
+                        <td class="">9.20</td>
+                        <td>0.33%</td>
+                        <td>114,151,500</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best by log(Z):</strong> 2p (log(Z) = -1924.11)<br>
+                    <strong>Best by BIC:</strong> 2p (BIC = 3791.52)
+                </div>
+            </div>
+            <div class="params-summary-section">
+                <h2>Parameters Summary (Best Models by log(Z))</h2>
+                <h3>Table 1: Orbital Parameters</h3>
+                <table class="params-table">
+                    <tr><th>Config</th><th>Model</th><th>Planet</th><th>P (days)</th><th>K (m/s)</th><th>mean_long (°)</th><th>e</th><th>ω (°)</th></tr>
+                    <tr>
+                        <td rowspan="2">1mode</td>
+                        <td rowspan="2">2p</td>
+                        <td>b</td>
+                        <td>176</td><td>5.20</td><td>36.4</td>
+                        <td>0.061</td><td>34</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>1.6526</td><td>0.54</td><td>72</td>
+                        <td>0.130</td><td>141</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="3">2mode</td>
+                        <td rowspan="3">3p</td>
+                        <td>b</td>
+                        <td>1.6458</td><td>0.747</td><td>19</td>
+                        <td>0.27</td><td>251</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>9.5</td><td>0.11</td><td>144</td>
+                        <td>0.35</td><td>111</td>
+                    </tr>
+                    <tr>
+                        <td>d</td>
+                        <td>123</td><td>3.80</td><td>361</td>
+                        <td>0.136</td><td>-29</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">3mode</td>
+                        <td rowspan="2">2p</td>
+                        <td>b</td>
+                        <td>2.45</td><td>0.49</td><td>178</td>
+                        <td>0.42</td><td>-107</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>153</td><td>5.15</td><td>28</td>
+                        <td>0.073</td><td>-55</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">4mode</td>
+                        <td rowspan="2">2p</td>
+                        <td>b</td>
+                        <td>1.6400</td><td>0.74</td><td>321</td>
+                        <td>0.32</td><td>229</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>165</td><td>5.07</td><td>27</td>
+                        <td>0.059</td><td>-91</td>
+                    </tr>
+                </table>
+                <h3>Table 2: Activity Parameters</h3>
+                <table class="params-table">
+                    <tr><th>Config</th><th>Model</th><th>Prot (days)</th><th>Pdec (days)</th><th>Oamp</th></tr>
+                    <tr>
+                        <td>1mode</td><td>2p</td>
+                        <td>27.93</td><td>27.8</td><td>0.370</td>
+                    </tr>
+                    <tr>
+                        <td>2mode</td><td>3p</td>
+                        <td>26.15</td><td>35.2</td><td>0.399</td>
+                    </tr>
+                    <tr>
+                        <td>3mode</td><td>2p</td>
+                        <td>28.18</td><td>51</td><td>0.372</td>
+                    </tr>
+                    <tr>
+                        <td>4mode</td><td>2p</td>
+                        <td>27.5</td><td>23.9</td><td>0.381</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="dataset-section">
+            <div class="dataset-header">DS9</div>
+            <div class="config-section">
+                <h2>Configuration: 1mode</h2>
+                <table>
+                    <tr><th>Planets</th><th>log(Z)</th><th>Δlog(Z)</th><th>Median BIC</th><th>ΔBIC</th><th>Efficiency %</th><th>N calls</th></tr>
+                    <tr>
+                        <td>0p</td>
+                        <td class="">-904.70 ± 0.26</td>
+                        <td class="">-19.44</td>
+                        <td class="">1715.03</td>
+                        <td class="">35.27</td>
+                        <td>0.54%</td>
+                        <td>58,820,318</td>
+                    </tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">-886.75 ± 0.27</td>
+                        <td class="">-1.48</td>
+                        <td class="highlight-bic">1679.76</td>
+                        <td class="highlight-bic">0.00</td>
+                        <td>0.46%</td>
+                        <td>73,773,853</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="highlight-logz">-885.27 ± 0.28</td>
+                        <td class="highlight-logz">0.00</td>
+                        <td class="">1714.05</td>
+                        <td class="">34.29</td>
+                        <td>0.39%</td>
+                        <td>95,764,235</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">-893.73 ± 0.29</td>
+                        <td class="">-8.46</td>
+                        <td class="">1749.28</td>
+                        <td class="">69.52</td>
+                        <td>0.34%</td>
+                        <td>111,447,213</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best by log(Z):</strong> 2p (log(Z) = -885.27)<br>
+                    <strong>Best by BIC:</strong> 1p (BIC = 1679.76)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: 2mode</h2>
+                <table>
+                    <tr><th>Planets</th><th>log(Z)</th><th>Δlog(Z)</th><th>Median BIC</th><th>ΔBIC</th><th>Efficiency %</th><th>N calls</th></tr>
+                    <tr>
+                        <td>0p</td>
+                        <td class="">-968.59 ± 0.26</td>
+                        <td class="">-17.61</td>
+                        <td class="">1857.63</td>
+                        <td class="">32.16</td>
+                        <td>0.54%</td>
+                        <td>57,561,419</td>
+                    </tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">-959.31 ± 0.28</td>
+                        <td class="">-8.34</td>
+                        <td class="highlight-bic">1825.47</td>
+                        <td class="highlight-bic">0.00</td>
+                        <td>0.46%</td>
+                        <td>77,723,403</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="highlight-logz">-950.97 ± 0.28</td>
+                        <td class="highlight-logz">0.00</td>
+                        <td class="">1834.70</td>
+                        <td class="">9.23</td>
+                        <td>0.40%</td>
+                        <td>88,488,610</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">-956.00 ± 0.28</td>
+                        <td class="">-5.02</td>
+                        <td class="">1884.17</td>
+                        <td class="">58.70</td>
+                        <td>0.35%</td>
+                        <td>108,543,926</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best by log(Z):</strong> 2p (log(Z) = -950.97)<br>
+                    <strong>Best by BIC:</strong> 1p (BIC = 1825.47)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: 3mode</h2>
+                <table>
+                    <tr><th>Planets</th><th>log(Z)</th><th>Δlog(Z)</th><th>Median BIC</th><th>ΔBIC</th><th>Efficiency %</th><th>N calls</th></tr>
+                    <tr>
+                        <td>0p</td>
+                        <td class="">-1200.18 ± 0.24</td>
+                        <td class="">-15.52</td>
+                        <td class="">2352.17</td>
+                        <td class="">14.34</td>
+                        <td>0.55%</td>
+                        <td>48,636,669</td>
+                    </tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">-1193.40 ± 0.26</td>
+                        <td class="">-8.73</td>
+                        <td class="highlight-bic">2337.83</td>
+                        <td class="highlight-bic">0.00</td>
+                        <td>0.46%</td>
+                        <td>69,556,029</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">-1190.11 ± 0.27</td>
+                        <td class="">-5.45</td>
+                        <td class="">2360.69</td>
+                        <td class="">22.86</td>
+                        <td>0.39%</td>
+                        <td>86,602,337</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="highlight-logz">-1184.66 ± 0.26</td>
+                        <td class="highlight-logz">0.00</td>
+                        <td class="">2378.59</td>
+                        <td class="">40.76</td>
+                        <td>0.34%</td>
+                        <td>100,101,458</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best by log(Z):</strong> 3p (log(Z) = -1184.66)<br>
+                    <strong>Best by BIC:</strong> 1p (BIC = 2337.83)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: 4mode</h2>
+                <table>
+                    <tr><th>Planets</th><th>log(Z)</th><th>Δlog(Z)</th><th>Median BIC</th><th>ΔBIC</th><th>Efficiency %</th><th>N calls</th></tr>
+                    <tr>
+                        <td>0p</td>
+                        <td class="">-1481.65 ± 0.23</td>
+                        <td class="">-15.70</td>
+                        <td class="">2917.35</td>
+                        <td class="">23.18</td>
+                        <td>0.55%</td>
+                        <td>47,436,570</td>
+                    </tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">-1474.70 ± 0.26</td>
+                        <td class="">-8.74</td>
+                        <td class="highlight-bic">2894.17</td>
+                        <td class="highlight-bic">0.00</td>
+                        <td>0.47%</td>
+                        <td>66,122,567</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="highlight-logz">-1465.96 ± 0.26</td>
+                        <td class="highlight-logz">0.00</td>
+                        <td class="">2935.65</td>
+                        <td class="">41.48</td>
+                        <td>0.40%</td>
+                        <td>87,539,228</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">-1469.73 ± 0.27</td>
+                        <td class="">-3.77</td>
+                        <td class="">2977.06</td>
+                        <td class="">82.89</td>
+                        <td>0.34%</td>
+                        <td>95,447,504</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best by log(Z):</strong> 2p (log(Z) = -1465.96)<br>
+                    <strong>Best by BIC:</strong> 1p (BIC = 2894.17)
+                </div>
+            </div>
+            <div class="params-summary-section">
+                <h2>Parameters Summary (Best Models by log(Z))</h2>
+                <h3>Table 1: Orbital Parameters</h3>
+                <table class="params-table">
+                    <tr><th>Config</th><th>Model</th><th>Planet</th><th>P (days)</th><th>K (m/s)</th><th>mean_long (°)</th><th>e</th><th>ω (°)</th></tr>
+                    <tr>
+                        <td rowspan="2">1mode</td>
+                        <td rowspan="2">2p</td>
+                        <td>b</td>
+                        <td>39.0</td><td>0.94</td><td>192</td>
+                        <td>0.617</td><td>80</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>2.4733</td><td>1.14</td><td>82</td>
+                        <td>0.081</td><td>-6</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">2mode</td>
+                        <td rowspan="2">2p</td>
+                        <td>b</td>
+                        <td>60</td><td>0.90</td><td>280</td>
+                        <td>0.56</td><td>-227</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>2.4734</td><td>1.14</td><td>90</td>
+                        <td>0.15</td><td>0</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="3">3mode</td>
+                        <td rowspan="3">3p</td>
+                        <td>b</td>
+                        <td>51</td><td>0.28</td><td>5</td>
+                        <td>0.34</td><td>-115</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>14</td><td>0.36</td><td>96</td>
+                        <td>0.30</td><td>88</td>
+                    </tr>
+                    <tr>
+                        <td>d</td>
+                        <td>2.4751</td><td>1.08</td><td>91</td>
+                        <td>0.091</td><td>-24</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">4mode</td>
+                        <td rowspan="2">2p</td>
+                        <td>b</td>
+                        <td>44.0</td><td>0.90</td><td>230</td>
+                        <td>0.30</td><td>100</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>2.4743</td><td>1.19</td><td>95</td>
+                        <td>0.17</td><td>10</td>
+                    </tr>
+                </table>
+                <h3>Table 2: Activity Parameters</h3>
+                <table class="params-table">
+                    <tr><th>Config</th><th>Model</th><th>Prot (days)</th><th>Pdec (days)</th><th>Oamp</th></tr>
+                    <tr>
+                        <td>1mode</td><td>2p</td>
+                        <td>26.87</td><td>193</td><td>0.385</td>
+                    </tr>
+                    <tr>
+                        <td>2mode</td><td>2p</td>
+                        <td>27.0</td><td>222</td><td>0.375</td>
+                    </tr>
+                    <tr>
+                        <td>3mode</td><td>3p</td>
+                        <td>28.35</td><td>194</td><td>0.360</td>
+                    </tr>
+                    <tr>
+                        <td>4mode</td><td>2p</td>
+                        <td>25.48</td><td>84</td><td>0.366</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

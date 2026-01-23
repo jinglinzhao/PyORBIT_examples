@@ -1,0 +1,1396 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Model Comparison Results</title>
+    <style>
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #fafafa;
+            color: #2c3e50;
+        }
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            font-weight: 600;
+            margin-bottom: 30px;
+            font-size: 32px;
+        }
+        .dataset-section {
+            background-color: white;
+            margin: 30px 0;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        .dataset-header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px 30px;
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        .config-section {
+            margin: 0;
+            padding: 25px 30px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+        h2 { 
+            color: #34495e;
+            margin: 20px 0 15px 0;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        h3 {
+            color: #2c3e50;
+            margin: 25px 0 10px 0;
+            font-size: 16px;
+            font-weight: 600;
+            background-color: #ecf0f1;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+        table { 
+            border-collapse: collapse; 
+            margin: 15px 0;
+            width: 100%;
+            background-color: white;
+            font-size: 13px;
+        }
+        .params-summary-section {
+            margin: 30px;
+            padding: 25px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+        .params-table {
+            border-collapse: collapse;
+            margin: 15px 0;
+            width: 100%;
+            background-color: white;
+            border: 2px solid #3498db;
+            font-size: 12px;
+        }
+        .params-table th {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 6px;
+            text-align: center;
+            font-weight: 600;
+            border: 1px solid #2980b9;
+            font-size: 11px;
+        }
+        .params-table td {
+            padding: 8px 6px;
+            border: 1px solid #bdc3c7;
+            text-align: center;
+        }
+        .params-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        .params-table tr:hover {
+            background-color: #e8f4f8;
+        }
+        .gr-converged {
+            color: #2e7d32;
+            font-weight: 600;
+        }
+        .gr-not-converged {
+            color: #c62828;
+            font-weight: 600;
+        }
+        th, td { 
+            padding: 12px 16px; 
+            text-align: left;
+            border-bottom: 1px solid #ecf0f1;
+        }
+        th { 
+            background-color: #f8f9fa;
+            color: #2c3e50;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        td {
+            color: #34495e;
+            font-size: 15px;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        tr:hover td {
+            background-color: #f8f9fa;
+        }
+        .highlight-bic {
+            background-color: #e8f5e9 !important;
+            font-weight: 600;
+            color: #2e7d32;
+        }
+        .convergence-good {
+            color: #2e7d32;
+            font-weight: 600;
+        }
+        .convergence-warning {
+            color: #f57c00;
+            font-weight: 600;
+        }
+        .convergence-bad {
+            color: #c62828;
+            font-weight: 600;
+        }
+        .summary {
+            margin: 15px 0 0 0;
+            padding: 15px 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            font-size: 15px;
+            color: #34495e;
+        }
+        .summary strong {
+            color: #2c3e50;
+        }
+        .legend {
+            margin: 0 0 30px 0;
+            padding: 20px 25px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .legend h3 {
+            margin: 0 0 15px 0;
+            color: #2c3e50;
+            font-size: 18px;
+            font-weight: 600;
+            background: none;
+            padding: 0;
+        }
+        .legend-item {
+            margin: 8px 0;
+            color: #34495e;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .badge-green {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>PyORBIT Model Comparison Results</h1>
+        
+        <div class="legend">
+            <h3>Legend</h3>
+            <div class="legend-item"><span class="badge badge-green">Green highlight</span> = Best BIC in configuration</div>
+            <div class="legend-item"><strong>Convergence %:</strong> Percentage of parameters with Gelman-Rubin < 1.1</div>
+            <div class="legend-item"><strong>Max GR:</strong> Maximum Gelman-Rubin value across all parameters</div>
+            <div class="legend-item">
+                <span class="convergence-good">Green</span> = 100% converged | 
+                <span class="convergence-warning">Orange</span> = 90-99% converged | 
+                <span class="convergence-bad">Red</span> = <90% converged
+            </div>
+            <div class="legend-item"><strong>GR values:</strong> <span class="gr-converged">Green</span> = GR < 1.1 (converged) | <span class="gr-not-converged">Red</span> = GR ≥ 1.1 (not converged)</div>
+            <div class="legend-item"><strong>Parameters split into 2 tables:</strong> (1) Orbital: P, K, mean_long, e, ω, coso_GR, sino_GR | (2) Activity: Prot, Pdec, Oamp</div>
+        </div>
+        <div class="dataset-section">
+            <div class="dataset-header">DS1</div>
+            <div class="config-section">
+                <h2>Configuration: 2modes</h2>
+                <table>
+                    <tr><th>Planets</th><th>Median BIC</th><th>ΔBIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>0p</td>
+                        <td class="">3143.94</td>
+                        <td class="">138.17</td>
+                        <td class="convergence-bad">75.0%</td>
+                        <td>1.4796</td>
+                    </tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">3008.16</td>
+                        <td class="">2.39</td>
+                        <td class="convergence-bad">75.5%</td>
+                        <td>1.5669</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="highlight-bic">3005.77</td>
+                        <td class="highlight-bic">0.00</td>
+                        <td class="convergence-bad">72.4%</td>
+                        <td>1.5445</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">3019.53</td>
+                        <td class="">13.76</td>
+                        <td class="convergence-bad">71.4%</td>
+                        <td>1.4813</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 2p model (BIC = 3005.77)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: 3modes</h2>
+                <table>
+                    <tr><th>Planets</th><th>Median BIC</th><th>ΔBIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>0p</td>
+                        <td class="">4778.08</td>
+                        <td class="">135.86</td>
+                        <td class="convergence-bad">75.0%</td>
+                        <td>1.5988</td>
+                    </tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="highlight-bic">4642.22</td>
+                        <td class="highlight-bic">0.00</td>
+                        <td class="convergence-bad">58.0%</td>
+                        <td>1.7443</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">4656.73</td>
+                        <td class="">14.51</td>
+                        <td class="convergence-bad">48.6%</td>
+                        <td>1.8124</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">4665.10</td>
+                        <td class="">22.88</td>
+                        <td class="convergence-bad">34.2%</td>
+                        <td>1.7370</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 1p model (BIC = 4642.22)
+                </div>
+            </div>
+            <div class="params-summary-section">
+                <h2>Parameters Summary (Best Models)</h2>
+                <h3>Table 1: Orbital Parameters</h3>
+                <table class="params-table">
+                    <tr><th>Config</th><th>Model</th><th>Planet</th><th>P (days)</th><th>P_GR</th><th>K (m/s)</th><th>K_GR</th><th>mean_long (°)</th><th>ml_GR</th><th>e</th><th>ω (°)</th><th>coso_GR</th><th>sino_GR</th></tr>
+                    <tr>
+                        <td rowspan="2">2modes</td>
+                        <td rowspan="2">2p</td>
+                        <td>b</td>
+                        <td>1.1407</td><td class="gr-not-converged">1.191</td>
+                        <td>0.7562</td><td class="gr-not-converged">1.351</td>
+                        <td>162.26</td><td class="gr-not-converged">1.131</td>
+                        <td>0.1689</td><td>122.78</td>
+                        <td class="gr-converged">1.059</td><td class="gr-converged">1.065</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>2.9157</td><td class="gr-converged">1.062</td>
+                        <td>1.8147</td><td class="gr-converged">1.065</td>
+                        <td>202.22</td><td class="gr-converged">1.063</td>
+                        <td>0.0170</td><td>-165.01</td>
+                        <td class="gr-converged">1.061</td><td class="gr-converged">1.071</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="1">3modes</td>
+                        <td rowspan="1">1p</td>
+                        <td>b</td>
+                        <td>2.9112</td><td class="gr-converged">1.075</td>
+                        <td>1.9058</td><td class="gr-converged">1.096</td>
+                        <td>197.64</td><td class="gr-converged">1.074</td>
+                        <td>0.0039</td><td>-129.62</td>
+                        <td class="gr-converged">1.091</td><td class="gr-converged">1.089</td>
+                    </tr>
+                </table>
+                <h3>Table 2: Activity Parameters</h3>
+                <table class="params-table">
+                    <tr><th>Config</th><th>Model</th><th>Prot (days)</th><th>Prot_GR</th><th>Pdec (days)</th><th>Pdec_GR</th><th>Oamp</th><th>Oamp_GR</th></tr>
+                    <tr>
+                        <td>2modes</td><td>2p</td>
+                        <td>24.1024</td><td class="gr-not-converged">1.107</td>
+                        <td>99.9699</td><td class="gr-converged">1.047</td>
+                        <td>0.3903</td><td class="gr-converged">1.061</td>
+                    </tr>
+                    <tr>
+                        <td>3modes</td><td>1p</td>
+                        <td>24.4239</td><td class="gr-not-converged">1.256</td>
+                        <td>104.5436</td><td class="gr-converged">1.053</td>
+                        <td>0.3817</td><td class="gr-converged">1.069</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="dataset-section">
+            <div class="dataset-header">DS2</div>
+            <div class="config-section">
+                <h2>Configuration: 2modes</h2>
+                <table>
+                    <tr><th>Planets</th><th>Median BIC</th><th>ΔBIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>0p</td>
+                        <td class="">3446.17</td>
+                        <td class="">22.66</td>
+                        <td class="convergence-bad">58.3%</td>
+                        <td>1.2798</td>
+                    </tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">3439.62</td>
+                        <td class="">16.11</td>
+                        <td class="convergence-bad">81.1%</td>
+                        <td>1.3063</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="highlight-bic">3423.51</td>
+                        <td class="highlight-bic">0.00</td>
+                        <td class="convergence-bad">79.3%</td>
+                        <td>1.3600</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">3477.03</td>
+                        <td class="">53.52</td>
+                        <td class="convergence-bad">28.6%</td>
+                        <td>1.4816</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 2p model (BIC = 3423.51)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: 3modes</h2>
+                <table>
+                    <tr><th>Planets</th><th>Median BIC</th><th>ΔBIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>0p</td>
+                        <td class="">5291.93</td>
+                        <td class="">13.99</td>
+                        <td class="convergence-bad">76.6%</td>
+                        <td>1.3545</td>
+                    </tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">5296.97</td>
+                        <td class="">19.03</td>
+                        <td class="convergence-bad">78.3%</td>
+                        <td>1.3429</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="highlight-bic">5277.94</td>
+                        <td class="highlight-bic">0.00</td>
+                        <td class="convergence-bad">78.4%</td>
+                        <td>1.3680</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">5316.27</td>
+                        <td class="">38.33</td>
+                        <td class="convergence-bad">43.0%</td>
+                        <td>1.4843</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 2p model (BIC = 5277.94)
+                </div>
+            </div>
+            <div class="params-summary-section">
+                <h2>Parameters Summary (Best Models)</h2>
+                <h3>Table 1: Orbital Parameters</h3>
+                <table class="params-table">
+                    <tr><th>Config</th><th>Model</th><th>Planet</th><th>P (days)</th><th>P_GR</th><th>K (m/s)</th><th>K_GR</th><th>mean_long (°)</th><th>ml_GR</th><th>e</th><th>ω (°)</th><th>coso_GR</th><th>sino_GR</th></tr>
+                    <tr>
+                        <td rowspan="2">2modes</td>
+                        <td rowspan="2">2p</td>
+                        <td>b</td>
+                        <td>13.1299</td><td class="gr-converged">1.045</td>
+                        <td>0.9378</td><td class="gr-converged">1.047</td>
+                        <td>200.54</td><td class="gr-converged">1.046</td>
+                        <td>0.0498</td><td>162.91</td>
+                        <td class="gr-converged">1.045</td><td class="gr-converged">1.046</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>16.1280</td><td class="gr-converged">1.045</td>
+                        <td>0.8493</td><td class="gr-converged">1.045</td>
+                        <td>370.19</td><td class="gr-converged">1.045</td>
+                        <td>0.1239</td><td>26.12</td>
+                        <td class="gr-converged">1.048</td><td class="gr-converged">1.047</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">3modes</td>
+                        <td rowspan="2">2p</td>
+                        <td>b</td>
+                        <td>14.0958</td><td class="gr-converged">1.062</td>
+                        <td>0.8384</td><td class="gr-converged">1.059</td>
+                        <td>269.14</td><td class="gr-converged">1.057</td>
+                        <td>0.0760</td><td>165.78</td>
+                        <td class="gr-converged">1.056</td><td class="gr-converged">1.061</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>2.0826</td><td class="gr-converged">1.056</td>
+                        <td>0.8694</td><td class="gr-converged">1.058</td>
+                        <td>110.07</td><td class="gr-converged">1.054</td>
+                        <td>0.4407</td><td>-59.71</td>
+                        <td class="gr-converged">1.074</td><td class="gr-converged">1.089</td>
+                    </tr>
+                </table>
+                <h3>Table 2: Activity Parameters</h3>
+                <table class="params-table">
+                    <tr><th>Config</th><th>Model</th><th>Prot (days)</th><th>Prot_GR</th><th>Pdec (days)</th><th>Pdec_GR</th><th>Oamp</th><th>Oamp_GR</th></tr>
+                    <tr>
+                        <td>2modes</td><td>2p</td>
+                        <td>28.1011</td><td class="gr-converged">1.046</td>
+                        <td>70.1659</td><td class="gr-converged">1.039</td>
+                        <td>0.3523</td><td class="gr-converged">1.043</td>
+                    </tr>
+                    <tr>
+                        <td>3modes</td><td>2p</td>
+                        <td>28.0029</td><td class="gr-converged">1.090</td>
+                        <td>39.8673</td><td class="gr-converged">1.058</td>
+                        <td>0.3675</td><td class="gr-converged">1.055</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="dataset-section">
+            <div class="dataset-header">DS3</div>
+            <div class="config-section">
+                <h2>Configuration: 2modes</h2>
+                <table>
+                    <tr><th>Planets</th><th>Median BIC</th><th>ΔBIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>0p</td>
+                        <td class="">3527.43</td>
+                        <td class="">42.08</td>
+                        <td class="convergence-bad">66.7%</td>
+                        <td>1.6899</td>
+                    </tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">3496.71</td>
+                        <td class="">11.36</td>
+                        <td class="convergence-bad">75.5%</td>
+                        <td>1.6566</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="highlight-bic">3485.35</td>
+                        <td class="highlight-bic">0.00</td>
+                        <td class="convergence-bad">56.9%</td>
+                        <td>1.6921</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">3500.52</td>
+                        <td class="">15.17</td>
+                        <td class="convergence-bad">49.2%</td>
+                        <td>1.6852</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 2p model (BIC = 3485.35)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: 3modes</h2>
+                <table>
+                    <tr><th>Planets</th><th>Median BIC</th><th>ΔBIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>0p</td>
+                        <td class="">5387.07</td>
+                        <td class="">25.82</td>
+                        <td class="convergence-bad">45.3%</td>
+                        <td>1.7851</td>
+                    </tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="highlight-bic">5361.25</td>
+                        <td class="highlight-bic">0.00</td>
+                        <td class="convergence-bad">39.1%</td>
+                        <td>1.8150</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">5368.28</td>
+                        <td class="">7.03</td>
+                        <td class="convergence-bad">10.8%</td>
+                        <td>1.8282</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">5368.31</td>
+                        <td class="">7.06</td>
+                        <td class="convergence-bad">32.9%</td>
+                        <td>1.7358</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 1p model (BIC = 5361.25)
+                </div>
+            </div>
+            <div class="params-summary-section">
+                <h2>Parameters Summary (Best Models)</h2>
+                <h3>Table 1: Orbital Parameters</h3>
+                <table class="params-table">
+                    <tr><th>Config</th><th>Model</th><th>Planet</th><th>P (days)</th><th>P_GR</th><th>K (m/s)</th><th>K_GR</th><th>mean_long (°)</th><th>ml_GR</th><th>e</th><th>ω (°)</th><th>coso_GR</th><th>sino_GR</th></tr>
+                    <tr>
+                        <td rowspan="2">2modes</td>
+                        <td rowspan="2">2p</td>
+                        <td>b</td>
+                        <td>12.7081</td><td class="gr-converged">1.095</td>
+                        <td>1.1525</td><td class="gr-converged">1.086</td>
+                        <td>140.73</td><td class="gr-converged">1.090</td>
+                        <td>0.0816</td><td>83.02</td>
+                        <td class="gr-not-converged">1.104</td><td class="gr-not-converged">1.106</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>44.7219</td><td class="gr-not-converged">1.184</td>
+                        <td>0.9660</td><td class="gr-not-converged">1.126</td>
+                        <td>136.16</td><td class="gr-not-converged">1.187</td>
+                        <td>0.5715</td><td>107.42</td>
+                        <td class="gr-not-converged">1.135</td><td class="gr-not-converged">1.180</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="1">3modes</td>
+                        <td rowspan="1">1p</td>
+                        <td>b</td>
+                        <td>12.4423</td><td class="gr-not-converged">1.117</td>
+                        <td>1.0716</td><td class="gr-not-converged">1.114</td>
+                        <td>122.20</td><td class="gr-not-converged">1.122</td>
+                        <td>0.0340</td><td>29.61</td>
+                        <td class="gr-converged">1.087</td><td class="gr-converged">1.100</td>
+                    </tr>
+                </table>
+                <h3>Table 2: Activity Parameters</h3>
+                <table class="params-table">
+                    <tr><th>Config</th><th>Model</th><th>Prot (days)</th><th>Prot_GR</th><th>Pdec (days)</th><th>Pdec_GR</th><th>Oamp</th><th>Oamp_GR</th></tr>
+                    <tr>
+                        <td>2modes</td><td>2p</td>
+                        <td>28.4174</td><td class="gr-converged">1.095</td>
+                        <td>258.5012</td><td class="gr-converged">1.073</td>
+                        <td>0.3926</td><td class="gr-converged">1.062</td>
+                    </tr>
+                    <tr>
+                        <td>3modes</td><td>1p</td>
+                        <td>27.7259</td><td class="gr-not-converged">1.121</td>
+                        <td>275.4743</td><td class="gr-converged">1.075</td>
+                        <td>0.3636</td><td class="gr-converged">1.085</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="dataset-section">
+            <div class="dataset-header">DS4</div>
+            <div class="config-section">
+                <h2>Configuration: 2modes</h2>
+                <table>
+                    <tr><th>Planets</th><th>Median BIC</th><th>ΔBIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>0p</td>
+                        <td class="">2913.55</td>
+                        <td class="">37.29</td>
+                        <td class="convergence-bad">81.2%</td>
+                        <td>1.3421</td>
+                    </tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">2926.42</td>
+                        <td class="">50.16</td>
+                        <td class="convergence-bad">69.8%</td>
+                        <td>1.3372</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="highlight-bic">2876.26</td>
+                        <td class="highlight-bic">0.00</td>
+                        <td class="convergence-bad">82.8%</td>
+                        <td>1.2770</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">2890.33</td>
+                        <td class="">14.07</td>
+                        <td class="convergence-bad">79.4%</td>
+                        <td>1.3618</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 2p model (BIC = 2876.26)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: 3modes</h2>
+                <table>
+                    <tr><th>Planets</th><th>Median BIC</th><th>ΔBIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>0p</td>
+                        <td class="">4545.89</td>
+                        <td class="">22.93</td>
+                        <td class="convergence-bad">67.2%</td>
+                        <td>1.5842</td>
+                    </tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="highlight-bic">4522.96</td>
+                        <td class="highlight-bic">0.00</td>
+                        <td class="convergence-bad">71.0%</td>
+                        <td>1.4364</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">4554.34</td>
+                        <td class="">31.38</td>
+                        <td class="convergence-bad">52.7%</td>
+                        <td>1.4081</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">4525.53</td>
+                        <td class="">2.57</td>
+                        <td class="convergence-bad">64.6%</td>
+                        <td>1.4632</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 1p model (BIC = 4522.96)
+                </div>
+            </div>
+            <div class="params-summary-section">
+                <h2>Parameters Summary (Best Models)</h2>
+                <h3>Table 1: Orbital Parameters</h3>
+                <table class="params-table">
+                    <tr><th>Config</th><th>Model</th><th>Planet</th><th>P (days)</th><th>P_GR</th><th>K (m/s)</th><th>K_GR</th><th>mean_long (°)</th><th>ml_GR</th><th>e</th><th>ω (°)</th><th>coso_GR</th><th>sino_GR</th></tr>
+                    <tr>
+                        <td rowspan="2">2modes</td>
+                        <td rowspan="2">2p</td>
+                        <td>b</td>
+                        <td>1.1681</td><td class="gr-converged">1.045</td>
+                        <td>0.6205</td><td class="gr-converged">1.047</td>
+                        <td>173.66</td><td class="gr-converged">1.037</td>
+                        <td>0.1852</td><td>-47.99</td>
+                        <td class="gr-converged">1.059</td><td class="gr-converged">1.055</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>22.2930</td><td class="gr-converged">1.065</td>
+                        <td>1.6390</td><td class="gr-converged">1.045</td>
+                        <td>331.57</td><td class="gr-converged">1.056</td>
+                        <td>0.2713</td><td>29.77</td>
+                        <td class="gr-converged">1.070</td><td class="gr-converged">1.054</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="1">3modes</td>
+                        <td rowspan="1">1p</td>
+                        <td>b</td>
+                        <td>21.3916</td><td class="gr-converged">1.085</td>
+                        <td>1.4494</td><td class="gr-converged">1.090</td>
+                        <td>294.86</td><td class="gr-converged">1.078</td>
+                        <td>0.0127</td><td>71.47</td>
+                        <td class="gr-converged">1.085</td><td class="gr-converged">1.065</td>
+                    </tr>
+                </table>
+                <h3>Table 2: Activity Parameters</h3>
+                <table class="params-table">
+                    <tr><th>Config</th><th>Model</th><th>Prot (days)</th><th>Prot_GR</th><th>Pdec (days)</th><th>Pdec_GR</th><th>Oamp</th><th>Oamp_GR</th></tr>
+                    <tr>
+                        <td>2modes</td><td>2p</td>
+                        <td>23.0621</td><td class="gr-converged">1.070</td>
+                        <td>55.2481</td><td class="gr-converged">1.052</td>
+                        <td>0.3635</td><td class="gr-converged">1.038</td>
+                    </tr>
+                    <tr>
+                        <td>3modes</td><td>1p</td>
+                        <td>23.1376</td><td class="gr-converged">1.053</td>
+                        <td>52.1788</td><td class="gr-converged">1.058</td>
+                        <td>0.4170</td><td class="gr-converged">1.059</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="dataset-section">
+            <div class="dataset-header">DS5</div>
+            <div class="config-section">
+                <h2>Configuration: 2modes</h2>
+                <table>
+                    <tr><th>Planets</th><th>Median BIC</th><th>ΔBIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>0p</td>
+                        <td class="">3030.80</td>
+                        <td class="">25.69</td>
+                        <td class="convergence-bad">85.4%</td>
+                        <td>1.1099</td>
+                    </tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">3021.43</td>
+                        <td class="">16.32</td>
+                        <td class="convergence-bad">22.6%</td>
+                        <td>2.1898</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">3081.99</td>
+                        <td class="">76.88</td>
+                        <td class="convergence-bad">17.2%</td>
+                        <td>2.1057</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="highlight-bic">3005.11</td>
+                        <td class="highlight-bic">0.00</td>
+                        <td class="convergence-bad">17.5%</td>
+                        <td>1.9070</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 3p model (BIC = 3005.11)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: 3modes</h2>
+                <table>
+                    <tr><th>Planets</th><th>Median BIC</th><th>ΔBIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>0p</td>
+                        <td class="">4636.15</td>
+                        <td class="">6.64</td>
+                        <td class="convergence-bad">75.0%</td>
+                        <td>1.2540</td>
+                    </tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="highlight-bic">4629.51</td>
+                        <td class="highlight-bic">0.00</td>
+                        <td class="convergence-bad">62.3%</td>
+                        <td>1.3442</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">4630.84</td>
+                        <td class="">1.33</td>
+                        <td class="convergence-bad">41.9%</td>
+                        <td>1.3497</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">4723.41</td>
+                        <td class="">93.90</td>
+                        <td class="convergence-bad">0.0%</td>
+                        <td>1.7647</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 1p model (BIC = 4629.51)
+                </div>
+            </div>
+            <div class="params-summary-section">
+                <h2>Parameters Summary (Best Models)</h2>
+                <h3>Table 1: Orbital Parameters</h3>
+                <table class="params-table">
+                    <tr><th>Config</th><th>Model</th><th>Planet</th><th>P (days)</th><th>P_GR</th><th>K (m/s)</th><th>K_GR</th><th>mean_long (°)</th><th>ml_GR</th><th>e</th><th>ω (°)</th><th>coso_GR</th><th>sino_GR</th></tr>
+                    <tr>
+                        <td rowspan="3">2modes</td>
+                        <td rowspan="3">3p</td>
+                        <td>b</td>
+                        <td>13.7196</td><td class="gr-not-converged">1.232</td>
+                        <td>0.8711</td><td class="gr-not-converged">1.164</td>
+                        <td>243.01</td><td class="gr-not-converged">1.214</td>
+                        <td>0.1803</td><td>-105.21</td>
+                        <td class="gr-not-converged">1.112</td><td class="gr-not-converged">1.202</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>31.4060</td><td class="gr-not-converged">1.191</td>
+                        <td>1.5419</td><td class="gr-not-converged">1.219</td>
+                        <td>-8.63</td><td class="gr-not-converged">1.176</td>
+                        <td>0.3757</td><td>-63.79</td>
+                        <td class="gr-not-converged">1.238</td><td class="gr-not-converged">1.390</td>
+                    </tr>
+                    <tr>
+                        <td>d</td>
+                        <td>52.1780</td><td class="gr-not-converged">1.143</td>
+                        <td>2.0133</td><td class="gr-not-converged">1.112</td>
+                        <td>245.56</td><td class="gr-not-converged">1.115</td>
+                        <td>0.2553</td><td>108.28</td>
+                        <td class="gr-not-converged">1.182</td><td class="gr-not-converged">1.229</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="1">3modes</td>
+                        <td rowspan="1">1p</td>
+                        <td>b</td>
+                        <td>73.4073</td><td class="gr-not-converged">1.104</td>
+                        <td>1.5103</td><td class="gr-converged">1.097</td>
+                        <td>350.18</td><td class="gr-not-converged">1.104</td>
+                        <td>0.6152</td><td>-99.29</td>
+                        <td class="gr-converged">1.096</td><td class="gr-not-converged">1.159</td>
+                    </tr>
+                </table>
+                <h3>Table 2: Activity Parameters</h3>
+                <table class="params-table">
+                    <tr><th>Config</th><th>Model</th><th>Prot (days)</th><th>Prot_GR</th><th>Pdec (days)</th><th>Pdec_GR</th><th>Oamp</th><th>Oamp_GR</th></tr>
+                    <tr>
+                        <td>2modes</td><td>3p</td>
+                        <td>24.0129</td><td class="gr-not-converged">1.907</td>
+                        <td>37.7083</td><td class="gr-not-converged">1.845</td>
+                        <td>0.3892</td><td class="gr-converged">1.095</td>
+                    </tr>
+                    <tr>
+                        <td>3modes</td><td>1p</td>
+                        <td>24.4673</td><td class="gr-converged">1.065</td>
+                        <td>18.3447</td><td class="gr-converged">1.054</td>
+                        <td>0.3625</td><td class="gr-converged">1.059</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="dataset-section">
+            <div class="dataset-header">DS6</div>
+            <div class="config-section">
+                <h2>Configuration: 2modes</h2>
+                <table>
+                    <tr><th>Planets</th><th>Median BIC</th><th>ΔBIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>0p</td>
+                        <td class="highlight-bic">3253.47</td>
+                        <td class="highlight-bic">0.00</td>
+                        <td class="convergence-good">100.0%</td>
+                        <td>1.0390</td>
+                    </tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">3297.70</td>
+                        <td class="">44.23</td>
+                        <td class="convergence-bad">79.2%</td>
+                        <td>1.3490</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">3304.79</td>
+                        <td class="">51.32</td>
+                        <td class="convergence-bad">79.3%</td>
+                        <td>1.4223</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">3313.26</td>
+                        <td class="">59.79</td>
+                        <td class="convergence-bad">65.1%</td>
+                        <td>1.4106</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 0p model (BIC = 3253.47)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: 3modes</h2>
+                <table>
+                    <tr><th>Planets</th><th>Median BIC</th><th>ΔBIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>0p</td>
+                        <td class="">5164.49</td>
+                        <td class="">47.02</td>
+                        <td class="convergence-bad">75.0%</td>
+                        <td>1.6383</td>
+                    </tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">5172.15</td>
+                        <td class="">54.68</td>
+                        <td class="convergence-bad">73.9%</td>
+                        <td>1.6488</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">5171.97</td>
+                        <td class="">54.50</td>
+                        <td class="convergence-bad">67.6%</td>
+                        <td>1.6340</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="highlight-bic">5117.47</td>
+                        <td class="highlight-bic">0.00</td>
+                        <td class="convergence-bad">45.6%</td>
+                        <td>1.4018</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 3p model (BIC = 5117.47)
+                </div>
+            </div>
+            <div class="params-summary-section">
+                <h2>Parameters Summary (Best Models)</h2>
+                <h3>Table 1: Orbital Parameters</h3>
+                <table class="params-table">
+                    <tr><th>Config</th><th>Model</th><th>Planet</th><th>P (days)</th><th>P_GR</th><th>K (m/s)</th><th>K_GR</th><th>mean_long (°)</th><th>ml_GR</th><th>e</th><th>ω (°)</th><th>coso_GR</th><th>sino_GR</th></tr>
+                    <tr>
+                        <td>2modes</td><td>0p</td><td>-</td>
+                        <td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td>
+                        <td>-</td><td>-</td><td>-</td><td>-</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="3">3modes</td>
+                        <td rowspan="3">3p</td>
+                        <td>b</td>
+                        <td>2.1686</td><td class="gr-converged">1.072</td>
+                        <td>0.5967</td><td class="gr-converged">1.070</td>
+                        <td>250.57</td><td class="gr-converged">1.074</td>
+                        <td>0.0150</td><td>-174.62</td>
+                        <td class="gr-converged">1.063</td><td class="gr-converged">1.071</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>37.4343</td><td class="gr-not-converged">1.170</td>
+                        <td>0.7129</td><td class="gr-not-converged">1.402</td>
+                        <td>162.14</td><td class="gr-not-converged">1.132</td>
+                        <td>0.1438</td><td>120.73</td>
+                        <td class="gr-converged">1.094</td><td class="gr-not-converged">1.119</td>
+                    </tr>
+                    <tr>
+                        <td>d</td>
+                        <td>2.0826</td><td class="gr-converged">1.096</td>
+                        <td>0.5826</td><td class="gr-not-converged">1.149</td>
+                        <td>19.33</td><td class="gr-converged">1.098</td>
+                        <td>0.4728</td><td>67.83</td>
+                        <td class="gr-converged">1.092</td><td class="gr-not-converged">1.129</td>
+                    </tr>
+                </table>
+                <h3>Table 2: Activity Parameters</h3>
+                <table class="params-table">
+                    <tr><th>Config</th><th>Model</th><th>Prot (days)</th><th>Prot_GR</th><th>Pdec (days)</th><th>Pdec_GR</th><th>Oamp</th><th>Oamp_GR</th></tr>
+                    <tr>
+                        <td>2modes</td><td>0p</td>
+                        <td>28.4612</td><td class="gr-converged">1.016</td>
+                        <td>15.9972</td><td class="gr-converged">1.021</td>
+                        <td>0.3921</td><td class="gr-converged">1.013</td>
+                    </tr>
+                    <tr>
+                        <td>3modes</td><td>3p</td>
+                        <td>28.8358</td><td class="gr-converged">1.064</td>
+                        <td>46.1546</td><td class="gr-not-converged">1.151</td>
+                        <td>0.4443</td><td class="gr-converged">1.070</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="dataset-section">
+            <div class="dataset-header">DS7</div>
+            <div class="config-section">
+                <h2>Configuration: 2modes</h2>
+                <table>
+                    <tr><th>Planets</th><th>Median BIC</th><th>ΔBIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>0p</td>
+                        <td class="">3118.26</td>
+                        <td class="">39.36</td>
+                        <td class="convergence-bad">72.9%</td>
+                        <td>1.6147</td>
+                    </tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">3088.60</td>
+                        <td class="">9.70</td>
+                        <td class="convergence-bad">75.5%</td>
+                        <td>1.7375</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="highlight-bic">3078.90</td>
+                        <td class="highlight-bic">0.00</td>
+                        <td class="convergence-bad">58.6%</td>
+                        <td>1.6586</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">3083.11</td>
+                        <td class="">4.21</td>
+                        <td class="convergence-bad">49.2%</td>
+                        <td>1.5989</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 2p model (BIC = 3078.90)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: 3modes</h2>
+                <table>
+                    <tr><th>Planets</th><th>Median BIC</th><th>ΔBIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>0p</td>
+                        <td class="">4800.12</td>
+                        <td class="">48.91</td>
+                        <td class="convergence-bad">48.4%</td>
+                        <td>1.7604</td>
+                    </tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">4770.16</td>
+                        <td class="">18.95</td>
+                        <td class="convergence-bad">39.1%</td>
+                        <td>1.8663</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="highlight-bic">4751.21</td>
+                        <td class="highlight-bic">0.00</td>
+                        <td class="convergence-bad">29.7%</td>
+                        <td>1.7890</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">4758.79</td>
+                        <td class="">7.58</td>
+                        <td class="convergence-bad">30.4%</td>
+                        <td>1.7298</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 2p model (BIC = 4751.21)
+                </div>
+            </div>
+            <div class="params-summary-section">
+                <h2>Parameters Summary (Best Models)</h2>
+                <h3>Table 1: Orbital Parameters</h3>
+                <table class="params-table">
+                    <tr><th>Config</th><th>Model</th><th>Planet</th><th>P (days)</th><th>P_GR</th><th>K (m/s)</th><th>K_GR</th><th>mean_long (°)</th><th>ml_GR</th><th>e</th><th>ω (°)</th><th>coso_GR</th><th>sino_GR</th></tr>
+                    <tr>
+                        <td rowspan="2">2modes</td>
+                        <td rowspan="2">2p</td>
+                        <td>b</td>
+                        <td>4.6891</td><td class="gr-converged">1.069</td>
+                        <td>1.3189</td><td class="gr-converged">1.077</td>
+                        <td>263.74</td><td class="gr-converged">1.067</td>
+                        <td>0.2407</td><td>-15.63</td>
+                        <td class="gr-not-converged">1.111</td><td class="gr-converged">1.075</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>39.0459</td><td class="gr-not-converged">1.112</td>
+                        <td>0.7026</td><td class="gr-not-converged">1.120</td>
+                        <td>149.19</td><td class="gr-not-converged">1.112</td>
+                        <td>0.3817</td><td>99.55</td>
+                        <td class="gr-not-converged">1.103</td><td class="gr-not-converged">1.156</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">3modes</td>
+                        <td rowspan="2">2p</td>
+                        <td>b</td>
+                        <td>38.9958</td><td class="gr-not-converged">1.150</td>
+                        <td>0.8236</td><td class="gr-not-converged">1.142</td>
+                        <td>144.28</td><td class="gr-not-converged">1.161</td>
+                        <td>0.4507</td><td>108.69</td>
+                        <td class="gr-not-converged">1.161</td><td class="gr-not-converged">1.185</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>4.6949</td><td class="gr-not-converged">1.112</td>
+                        <td>1.1362</td><td class="gr-not-converged">1.104</td>
+                        <td>256.12</td><td class="gr-not-converged">1.105</td>
+                        <td>0.1438</td><td>-30.54</td>
+                        <td class="gr-not-converged">1.143</td><td class="gr-converged">1.093</td>
+                    </tr>
+                </table>
+                <h3>Table 2: Activity Parameters</h3>
+                <table class="params-table">
+                    <tr><th>Config</th><th>Model</th><th>Prot (days)</th><th>Prot_GR</th><th>Pdec (days)</th><th>Pdec_GR</th><th>Oamp</th><th>Oamp_GR</th></tr>
+                    <tr>
+                        <td>2modes</td><td>2p</td>
+                        <td>25.9083</td><td class="gr-not-converged">1.598</td>
+                        <td>253.5888</td><td class="gr-converged">1.084</td>
+                        <td>0.4053</td><td class="gr-converged">1.064</td>
+                    </tr>
+                    <tr>
+                        <td>3modes</td><td>2p</td>
+                        <td>26.1901</td><td class="gr-not-converged">1.681</td>
+                        <td>195.3850</td><td class="gr-not-converged">1.109</td>
+                        <td>0.3692</td><td class="gr-converged">1.089</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="dataset-section">
+            <div class="dataset-header">DS8</div>
+            <div class="config-section">
+                <h2>Configuration: 2modes</h2>
+                <table>
+                    <tr><th>Planets</th><th>Median BIC</th><th>ΔBIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>0p</td>
+                        <td class="">3478.30</td>
+                        <td class="">56.24</td>
+                        <td class="convergence-bad">60.4%</td>
+                        <td>1.9156</td>
+                    </tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="highlight-bic">3422.06</td>
+                        <td class="highlight-bic">0.00</td>
+                        <td class="convergence-bad">64.2%</td>
+                        <td>1.2805</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">3441.66</td>
+                        <td class="">19.60</td>
+                        <td class="convergence-bad">44.8%</td>
+                        <td>1.3775</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">3435.03</td>
+                        <td class="">12.97</td>
+                        <td class="convergence-bad">57.1%</td>
+                        <td>1.3714</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 1p model (BIC = 3422.06)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: 3modes</h2>
+                <table>
+                    <tr><th>Planets</th><th>Median BIC</th><th>ΔBIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>0p</td>
+                        <td class="">5341.65</td>
+                        <td class="">31.71</td>
+                        <td class="convergence-bad">68.8%</td>
+                        <td>1.7201</td>
+                    </tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="highlight-bic">5309.94</td>
+                        <td class="highlight-bic">0.00</td>
+                        <td class="convergence-bad">14.5%</td>
+                        <td>1.4003</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">5344.01</td>
+                        <td class="">34.07</td>
+                        <td class="convergence-bad">0.0%</td>
+                        <td>1.6105</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">5349.18</td>
+                        <td class="">39.24</td>
+                        <td class="convergence-bad">12.7%</td>
+                        <td>1.8859</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 1p model (BIC = 5309.94)
+                </div>
+            </div>
+            <div class="params-summary-section">
+                <h2>Parameters Summary (Best Models)</h2>
+                <h3>Table 1: Orbital Parameters</h3>
+                <table class="params-table">
+                    <tr><th>Config</th><th>Model</th><th>Planet</th><th>P (days)</th><th>P_GR</th><th>K (m/s)</th><th>K_GR</th><th>mean_long (°)</th><th>ml_GR</th><th>e</th><th>ω (°)</th><th>coso_GR</th><th>sino_GR</th></tr>
+                    <tr>
+                        <td rowspan="1">2modes</td>
+                        <td rowspan="1">1p</td>
+                        <td>b</td>
+                        <td>1.6412</td><td class="gr-not-converged">1.119</td>
+                        <td>1.1224</td><td class="gr-converged">1.071</td>
+                        <td>313.14</td><td class="gr-not-converged">1.124</td>
+                        <td>0.4837</td><td>170.64</td>
+                        <td class="gr-not-converged">1.183</td><td class="gr-converged">1.089</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="1">3modes</td>
+                        <td rowspan="1">1p</td>
+                        <td>b</td>
+                        <td>1.6396</td><td class="gr-not-converged">1.129</td>
+                        <td>0.7740</td><td class="gr-not-converged">1.143</td>
+                        <td>307.04</td><td class="gr-not-converged">1.128</td>
+                        <td>0.2212</td><td>-163.78</td>
+                        <td class="gr-not-converged">1.180</td><td class="gr-not-converged">1.126</td>
+                    </tr>
+                </table>
+                <h3>Table 2: Activity Parameters</h3>
+                <table class="params-table">
+                    <tr><th>Config</th><th>Model</th><th>Prot (days)</th><th>Prot_GR</th><th>Pdec (days)</th><th>Pdec_GR</th><th>Oamp</th><th>Oamp_GR</th></tr>
+                    <tr>
+                        <td>2modes</td><td>1p</td>
+                        <td>23.6573</td><td class="gr-converged">1.071</td>
+                        <td>45.8414</td><td class="gr-converged">1.044</td>
+                        <td>0.4124</td><td class="gr-converged">1.042</td>
+                    </tr>
+                    <tr>
+                        <td>3modes</td><td>1p</td>
+                        <td>26.3567</td><td class="gr-not-converged">1.250</td>
+                        <td>50.9757</td><td class="gr-not-converged">1.105</td>
+                        <td>0.3770</td><td class="gr-converged">1.092</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="dataset-section">
+            <div class="dataset-header">DS9</div>
+            <div class="config-section">
+                <h2>Configuration: 2modes</h2>
+                <table>
+                    <tr><th>Planets</th><th>Median BIC</th><th>ΔBIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>0p</td>
+                        <td class="">2584.22</td>
+                        <td class="">60.97</td>
+                        <td class="convergence-bad">68.8%</td>
+                        <td>1.6230</td>
+                    </tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="highlight-bic">2523.25</td>
+                        <td class="highlight-bic">0.00</td>
+                        <td class="convergence-bad">75.5%</td>
+                        <td>1.3355</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">2567.49</td>
+                        <td class="">44.24</td>
+                        <td class="convergence-bad">70.7%</td>
+                        <td>1.5745</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="">2531.40</td>
+                        <td class="">8.15</td>
+                        <td class="convergence-bad">22.2%</td>
+                        <td>1.8453</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 1p model (BIC = 2523.25)
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Configuration: 3modes</h2>
+                <table>
+                    <tr><th>Planets</th><th>Median BIC</th><th>ΔBIC</th><th>Convergence %</th><th>Max GR</th></tr>
+                    <tr>
+                        <td>0p</td>
+                        <td class="">3981.80</td>
+                        <td class="">20.06</td>
+                        <td class="convergence-bad">59.4%</td>
+                        <td>1.6408</td>
+                    </tr>
+                    <tr>
+                        <td>1p</td>
+                        <td class="">3993.31</td>
+                        <td class="">31.57</td>
+                        <td class="convergence-bad">10.1%</td>
+                        <td>1.5972</td>
+                    </tr>
+                    <tr>
+                        <td>2p</td>
+                        <td class="">4019.24</td>
+                        <td class="">57.50</td>
+                        <td class="convergence-bad">0.0%</td>
+                        <td>1.6834</td>
+                    </tr>
+                    <tr>
+                        <td>3p</td>
+                        <td class="highlight-bic">3961.74</td>
+                        <td class="highlight-bic">0.00</td>
+                        <td class="convergence-bad">41.8%</td>
+                        <td>1.5563</td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <strong>Best BIC:</strong> 3p model (BIC = 3961.74)
+                </div>
+            </div>
+            <div class="params-summary-section">
+                <h2>Parameters Summary (Best Models)</h2>
+                <h3>Table 1: Orbital Parameters</h3>
+                <table class="params-table">
+                    <tr><th>Config</th><th>Model</th><th>Planet</th><th>P (days)</th><th>P_GR</th><th>K (m/s)</th><th>K_GR</th><th>mean_long (°)</th><th>ml_GR</th><th>e</th><th>ω (°)</th><th>coso_GR</th><th>sino_GR</th></tr>
+                    <tr>
+                        <td rowspan="1">2modes</td>
+                        <td rowspan="1">1p</td>
+                        <td>b</td>
+                        <td>2.4637</td><td class="gr-converged">1.034</td>
+                        <td>0.9879</td><td class="gr-converged">1.031</td>
+                        <td>73.24</td><td class="gr-converged">1.035</td>
+                        <td>0.0648</td><td>-53.35</td>
+                        <td class="gr-converged">1.042</td><td class="gr-converged">1.034</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="3">3modes</td>
+                        <td rowspan="3">3p</td>
+                        <td>b</td>
+                        <td>2.4755</td><td class="gr-not-converged">1.102</td>
+                        <td>0.9429</td><td class="gr-not-converged">1.106</td>
+                        <td>96.25</td><td class="gr-not-converged">1.101</td>
+                        <td>0.0130</td><td>6.30</td>
+                        <td class="gr-converged">1.097</td><td class="gr-converged">1.098</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>13.8008</td><td class="gr-not-converged">1.130</td>
+                        <td>1.1239</td><td class="gr-not-converged">1.120</td>
+                        <td>278.20</td><td class="gr-not-converged">1.107</td>
+                        <td>0.3646</td><td>-60.30</td>
+                        <td class="gr-not-converged">1.133</td><td class="gr-not-converged">1.155</td>
+                    </tr>
+                    <tr>
+                        <td>d</td>
+                        <td>19.0461</td><td class="gr-not-converged">1.147</td>
+                        <td>1.1004</td><td class="gr-not-converged">1.243</td>
+                        <td>221.75</td><td class="gr-not-converged">1.161</td>
+                        <td>0.0001</td><td>118.17</td>
+                        <td class="gr-not-converged">1.115</td><td class="gr-not-converged">1.107</td>
+                    </tr>
+                </table>
+                <h3>Table 2: Activity Parameters</h3>
+                <table class="params-table">
+                    <tr><th>Config</th><th>Model</th><th>Prot (days)</th><th>Prot_GR</th><th>Pdec (days)</th><th>Pdec_GR</th><th>Oamp</th><th>Oamp_GR</th></tr>
+                    <tr>
+                        <td>2modes</td><td>1p</td>
+                        <td>28.6592</td><td class="gr-not-converged">1.144</td>
+                        <td>65.9028</td><td class="gr-converged">1.055</td>
+                        <td>0.3635</td><td class="gr-converged">1.035</td>
+                    </tr>
+                    <tr>
+                        <td>3modes</td><td>3p</td>
+                        <td>28.6685</td><td class="gr-not-converged">1.162</td>
+                        <td>54.5326</td><td class="gr-converged">1.022</td>
+                        <td>0.3444</td><td class="gr-converged">1.075</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
