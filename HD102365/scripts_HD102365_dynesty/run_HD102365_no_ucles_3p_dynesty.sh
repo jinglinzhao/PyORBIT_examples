@@ -30,27 +30,14 @@ cd /work2/lbuc/jzhao/PyORBIT_ESSP/HD102365/results_HD102365_dynesty_test/no_ucle
 rm -f configuration_file_dynesty_run_HD102365_no_ucles_3p_dynesty.log
 
 # Activate PyORBIT environment
-# source ~/anaconda3/etc/profile.d/conda.sh
-source /zhome/9d/b/207249/anaconda3/etc/profile.d/conda.sh
+source ~/anaconda3/etc/profile.d/conda.sh
+# source /zhome/9d/b/207249/anaconda3/etc/profile.d/conda.sh
 # source /work2/lbuc/iara/anaconda3/etc/profile.d/conda.sh
 conda activate pyorbit
-
-# Set CPU affinity and threading environment variables
-export OMP_NUM_THREADS=1              # Prevent nested parallelism
-export MKL_NUM_THREADS=1              # Intel MKL threading
-export OPENBLAS_NUM_THREADS=1         # OpenBLAS threading
-export NUMEXPR_NUM_THREADS=1          # NumExpr threading
-export OMP_PROC_BIND=true             # Bind threads to cores
-export OMP_PLACES=cores               # Use physical cores
 
 # Run PyORBIT analysis with dynesty
 pyorbit_run dynesty HD102365_no_ucles_3p_dynesty.yaml > configuration_file_dynesty_run_HD102365_no_ucles_3p_dynesty.log
 pyorbit_results dynesty HD102365_no_ucles_3p_dynesty.yaml -all >> configuration_file_dynesty_run_HD102365_no_ucles_3p_dynesty.log
-
-# Create results directory and copy files
-# mkdir -p /work2/lbuc/jzhao/PyORBIT_ESSP/HD102365/results_HD102365_dynesty_test/no_ucles/3p/HD102365_no_ucles_3p_dynesty/HD102365_no_ucles_3p_dynesty
-# cp HD102365_no_ucles_3p_dynesty.yaml /work2/lbuc/jzhao/PyORBIT_ESSP/HD102365/results_HD102365_dynesty_test/no_ucles/3p/HD102365_no_ucles_3p_dynesty/HD102365_no_ucles_3p_dynesty/
-# cp configuration_file_dynesty_run_HD102365_no_ucles_3p_dynesty.log /work2/lbuc/jzhao/PyORBIT_ESSP/HD102365/results_HD102365_dynesty_test/no_ucles/3p/HD102365_no_ucles_3p_dynesty/HD102365_no_ucles_3p_dynesty/
 
 # Deactivate environment
 conda deactivate

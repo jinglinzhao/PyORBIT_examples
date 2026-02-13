@@ -7,12 +7,12 @@
 #   - espresso_only (ESPRESSO data only with GP)
 #   - no_espresso (all classical instruments with GP)
 #   - ucles_only (UCLES data only with GP)
-#   - no_ucles (all data except UCLES, GP only on ESPRESSO)
+#   - no_ucles (all data except UCLES, GP on all instruments)
 #   - 0p, 1p, 2p, 3p planet configurations
 #   - emcee sampler
 
 base_dir="/work2/lbuc/jzhao/PyORBIT_ESSP/HD102365"
-data_dir="/work2/lbuc/iara/GitHub/PyORBIT_iara/HD102365/processed_data"
+data_dir="/work2/lbuc/jzhao/PyORBIT_ESSP/HD102365/data/processed_data"
 results_dir="${base_dir}/results_HD102365_emcee"
 out_dir="${base_dir}/out_HD102365_emcee"
 scripts_dir="${base_dir}/scripts_HD102365_emcee"
@@ -26,6 +26,7 @@ email="jzhao@space.dtu.dk"
 
 # Resources for emcee (GP jobs)
 cores_emcee=16
+threads_emcee=$((${cores_emcee}-1))
 mem_per_core_emcee="8GB"
 mem_limit_emcee="9GB"
 walltime_emcee="48:00"
@@ -115,7 +116,7 @@ generate_yaml() {
             include_espresso=true
             include_classical=true
             gp_on_espresso=true
-            gp_on_classical=false
+            gp_on_classical=true
             exclude_ucles=true
             ;;
         *)
@@ -212,12 +213,17 @@ EOF
     kind: SHK
     models:
       - gp_multidimensional
+EOF
+        # UCLES activity indicator only when UCLES data is included
+        if [ "${exclude_ucles}" != true ]; then
+            cat >> "${yaml_file}" << EOF
   HD102365_UCLES_EWHa:
     file: ${data_dir}/HD102365_UCLES_EWHa.dat
     kind: EWHa
     models:
       - gp_multidimensional
 EOF
+        fi
     fi
 
     if [ "${is_ucles_only}" == true ]; then
@@ -249,8 +255,8 @@ EOF
       orbit: keplerian
       parametrization: Eastman2013
       boundaries:
-        P: [1.1, 8000.0]
-        K: [0.1, 10.0]
+        P: [1.1, 2000.0]
+        K: [0.1, 5.0]
         e: [0.00, 0.95]
 EOF
         done
@@ -272,7 +278,7 @@ EOF
         cat >> "${yaml_file}" << EOF
   activity:
     boundaries:
-      Prot: [20.0, 200.0]
+      Prot: [20.0, 60.0]
       Pdec: [10.0, 1000.0]
       Oamp: [0.01, 1.0]
     priors:
@@ -428,7 +434,7 @@ parameters:
   Tref: ${tref}
   low_ram_plot: True
   plot_split_threshold: 1000
-  cpu_threads: ${cores_emcee}
+  cpu_threads: ${threads_emcee}
 
 solver:
   pyde:
@@ -486,17 +492,13 @@ cd ${config_dir}
 rm -f configuration_file_emcee_run_${job_name}.log
 
 # Activate PyORBIT environment
+# source ~/anaconda3/etc/profile.d/conda.sh
 source /work2/lbuc/iara/anaconda3/etc/profile.d/conda.sh
 conda activate pyorbit
 
 # Run PyORBIT analysis with emcee
 pyorbit_run emcee ${yaml_name} > configuration_file_emcee_run_${job_name}.log
 pyorbit_results emcee ${yaml_name} -all >> configuration_file_emcee_run_${job_name}.log
-
-# Create results directory and copy files
-mkdir -p ${config_dir}/${job_name}
-cp ${yaml_name} ${config_dir}/${job_name}/
-cp configuration_file_emcee_run_${job_name}.log ${config_dir}/${job_name}/
 
 # Deactivate environment
 conda deactivate

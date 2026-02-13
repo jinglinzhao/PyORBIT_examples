@@ -8,7 +8,7 @@
 #   - espresso_only (ESPRESSO data only with GP)
 #   - no_espresso (all classical instruments with GP)
 #   - ucles_only (UCLES data only with GP)
-#   - no_ucles (all data except UCLES, GP only on ESPRESSO)
+#   - no_ucles (all data except UCLES, GP on all instruments)
 #   - 0p, 1p, 2p, 3p planet configurations
 #   - dynesty sampler
 
@@ -114,7 +114,7 @@ generate_yaml() {
             include_espresso=true
             include_classical=true
             gp_on_espresso=true
-            gp_on_classical=false
+            gp_on_classical=true
             exclude_ucles=true
             ;;
         *)
@@ -215,12 +215,17 @@ EOF
     kind: SHK
     models:
       - gp_multidimensional
+EOF
+        # UCLES activity indicator only when UCLES data is included
+        if [ "${exclude_ucles}" != true ]; then
+            cat >> "${yaml_file}" << EOF
   HD102365_UCLES_EWHa:
     file: ${data_dir}/HD102365_UCLES_EWHa.dat
     kind: EWHa
     models:
       - gp_multidimensional
 EOF
+        fi
     fi
 
     if [ "${is_ucles_only}" == true ]; then
@@ -438,13 +443,12 @@ solver:
     ngen: 50000
     npop_mult: 6
   nested_sampling:
-    nlive: 500
-    dlogz: 0.5
+    nlive: 600
+    dlogz: 0.1
     nthreads: ${cores}
-    # maxiter: 50000
-    # sample: 'auto'
-    # bound: 'multi'
-    # threading: True
+    sample: 'auto'
+    bound: 'multi'
+    use_threading_pool: True    
   recenter_bounds: True
 EOF
 }
@@ -494,27 +498,14 @@ cd ${config_dir}
 rm -f configuration_file_dynesty_run_${job_name}.log
 
 # Activate PyORBIT environment
-# source ~/anaconda3/etc/profile.d/conda.sh
-source /zhome/9d/b/207249/anaconda3/etc/profile.d/conda.sh
+source ~/anaconda3/etc/profile.d/conda.sh
+# source /zhome/9d/b/207249/anaconda3/etc/profile.d/conda.sh
 # source /work2/lbuc/iara/anaconda3/etc/profile.d/conda.sh
 conda activate pyorbit
-
-# Set CPU affinity and threading environment variables
-export OMP_NUM_THREADS=1              # Prevent nested parallelism
-export MKL_NUM_THREADS=1              # Intel MKL threading
-export OPENBLAS_NUM_THREADS=1         # OpenBLAS threading
-export NUMEXPR_NUM_THREADS=1          # NumExpr threading
-export OMP_PROC_BIND=true             # Bind threads to cores
-export OMP_PLACES=cores               # Use physical cores
 
 # Run PyORBIT analysis with dynesty
 pyorbit_run dynesty ${yaml_name} > configuration_file_dynesty_run_${job_name}.log
 pyorbit_results dynesty ${yaml_name} -all >> configuration_file_dynesty_run_${job_name}.log
-
-# Create results directory and copy files
-# mkdir -p ${config_dir}/${job_name}
-# cp ${yaml_name} ${config_dir}/${job_name}/
-# cp configuration_file_dynesty_run_${job_name}.log ${config_dir}/${job_name}/
 
 # Deactivate environment
 conda deactivate

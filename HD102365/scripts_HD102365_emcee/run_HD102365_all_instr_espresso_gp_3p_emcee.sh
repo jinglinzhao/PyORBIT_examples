@@ -30,17 +30,13 @@ cd /work2/lbuc/jzhao/PyORBIT_ESSP/HD102365/results_HD102365_emcee/all_instr_espr
 rm -f configuration_file_emcee_run_HD102365_all_instr_espresso_gp_3p_emcee.log
 
 # Activate PyORBIT environment
+# source ~/anaconda3/etc/profile.d/conda.sh
 source /work2/lbuc/iara/anaconda3/etc/profile.d/conda.sh
 conda activate pyorbit
 
 # Run PyORBIT analysis with emcee
 pyorbit_run emcee HD102365_all_instr_espresso_gp_3p_emcee.yaml > configuration_file_emcee_run_HD102365_all_instr_espresso_gp_3p_emcee.log
 pyorbit_results emcee HD102365_all_instr_espresso_gp_3p_emcee.yaml -all >> configuration_file_emcee_run_HD102365_all_instr_espresso_gp_3p_emcee.log
-
-# Create results directory and copy files
-mkdir -p /work2/lbuc/jzhao/PyORBIT_ESSP/HD102365/results_HD102365_emcee/all_instr_espresso_gp/3p/HD102365_all_instr_espresso_gp_3p_emcee/HD102365_all_instr_espresso_gp_3p_emcee
-cp HD102365_all_instr_espresso_gp_3p_emcee.yaml /work2/lbuc/jzhao/PyORBIT_ESSP/HD102365/results_HD102365_emcee/all_instr_espresso_gp/3p/HD102365_all_instr_espresso_gp_3p_emcee/HD102365_all_instr_espresso_gp_3p_emcee/
-cp configuration_file_emcee_run_HD102365_all_instr_espresso_gp_3p_emcee.log /work2/lbuc/jzhao/PyORBIT_ESSP/HD102365/results_HD102365_emcee/all_instr_espresso_gp/3p/HD102365_all_instr_espresso_gp_3p_emcee/HD102365_all_instr_espresso_gp_3p_emcee/
 
 # Deactivate environment
 conda deactivate
