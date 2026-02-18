@@ -13,7 +13,7 @@
 ### -- specify that we want the job to get killed if it exceeds 9GB per core/slot -- 
 #BSUB -M 9GB
 ### -- set walltime limit: hh:mm -- 
-#BSUB -W 48:00
+#BSUB -W 72:00
 ### -- set the email address -- 
 #BSUB -u jzhao@space.dtu.dk
 ### -- send notification at start -- 
@@ -24,7 +24,7 @@
 #BSUB -o /work2/lbuc/jzhao/PyORBIT_ESSP/HD102365/out_HD102365_emcee/Output_HD102365_no_ucles_2p_emcee.out
 
 # Change to configuration directory
-cd /work2/lbuc/jzhao/PyORBIT_ESSP/HD102365/results_HD102365_emcee/no_ucles/2p/HD102365_no_ucles_2p_emcee
+cd /work2/lbuc/jzhao/PyORBIT_ESSP/HD102365/results_HD102365_emcee_no_derivative/no_ucles/2p/HD102365_no_ucles_2p_emcee
 
 # Clean up previous runs
 rm -f configuration_file_emcee_run_HD102365_no_ucles_2p_emcee.log

@@ -13,7 +13,7 @@
 
 base_dir="/work2/lbuc/jzhao/PyORBIT_ESSP/HD102365"
 data_dir="/work2/lbuc/jzhao/PyORBIT_ESSP/HD102365/data/processed_data"
-results_dir="${base_dir}/results_HD102365_emcee"
+results_dir="${base_dir}/results_HD102365_emcee_no_derivative"
 out_dir="${base_dir}/out_HD102365_emcee"
 scripts_dir="${base_dir}/scripts_HD102365_emcee"
 
@@ -327,7 +327,7 @@ EOF
       boundaries:
         rot_amp: [0.0, 10.0]
         con_amp: [-20.0, 20.0]
-      derivative: True
+      derivative: False
 EOF
     fi
 
@@ -345,7 +345,7 @@ EOF
       boundaries:
         rot_amp: [0.0, 10.0]
         con_amp: [${con_amp}]
-      derivative: True
+      derivative: False
 EOF
         done
     fi
@@ -357,7 +357,7 @@ EOF
       boundaries:
         rot_amp: [0.0, 10.0]
         con_amp: [-30.0, 20.0]
-      derivative: True
+      derivative: False
 EOF
     fi
 
@@ -368,7 +368,7 @@ EOF
       boundaries:
         rot_amp: [-80.0, 80.0]
         con_amp: [-10.0, 10.0]
-      derivative: True
+      derivative: False
 EOF
     fi
 
@@ -379,32 +379,32 @@ EOF
       boundaries:
         rot_amp: [-1.0, 1.0]
         con_amp: [-10.0, 10.0]
-      derivative: True
+      derivative: False
     HD102365_HARPS-Pre_SHK:
       boundaries:
         rot_amp: [-1.0, 1.0]
         con_amp: [-10.0, 10.0]
-      derivative: True
+      derivative: False
     HD102365_HIRES-Post_SHK:
       boundaries:
         rot_amp: [-1.0, 1.0]
         con_amp: [-10.0, 10.0]
-      derivative: True
+      derivative: False
     HD102365_PFS-Post_SHK:
       boundaries:
         rot_amp: [-1.0, 1.0]
         con_amp: [-10.0, 10.0]
-      derivative: True
+      derivative: False
     HD102365_PFS-Pre_SHK:
       boundaries:
         rot_amp: [-1.0, 1.0]
         con_amp: [-10.0, 10.0]
-      derivative: True
+      derivative: False
     HD102365_UCLES_EWHa:
       boundaries:
         rot_amp: [-1.0, 1.0]
         con_amp: [-10.0, 10.0]
-      derivative: True
+      derivative: False
 EOF
     fi
 
@@ -415,7 +415,7 @@ EOF
       boundaries:
         rot_amp: [-1.0, 1.0]
         con_amp: [-10.0, 10.0]
-      derivative: True
+      derivative: False
 EOF
     fi
 
