@@ -29,7 +29,7 @@ cores_emcee=16
 threads_emcee=$((${cores_emcee}-1))
 mem_per_core_emcee="8GB"
 mem_limit_emcee="9GB"
-walltime_emcee="48:00"
+walltime_emcee="72:00"
 
 # Configuration axes
 data_configs=("all_instr" "all_instr_espresso_gp" "espresso_only" "no_espresso" "ucles_only" "no_ucles")

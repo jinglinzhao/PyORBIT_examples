@@ -24,7 +24,7 @@
 #BSUB -o /work2/lbuc/jzhao/PyORBIT_ESSP/HD102365/out_HD102365_dynesty/Output_HD102365_no_espresso_0p_dynesty.out
 
 # Change to configuration directory
-cd /work2/lbuc/jzhao/PyORBIT_ESSP/HD102365/results_HD102365_dynesty_test/no_espresso/0p/HD102365_no_espresso_0p_dynesty
+cd /work2/lbuc/jzhao/PyORBIT_ESSP/HD102365/results_HD102365_dynesty_no_derivative/no_espresso/0p/HD102365_no_espresso_0p_dynesty
 
 # Clean up previous runs
 rm -f configuration_file_dynesty_run_HD102365_no_espresso_0p_dynesty.log
