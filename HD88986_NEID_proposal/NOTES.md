@@ -23,7 +23,7 @@ Working directory: `/work2/lbuc/jzhao/PyORBIT_ESSP/HD88986_NEID_proposal`
 | `HD88986_data.py` | Load RDBs → outlier clip → write PyORBIT `.dat` + timeseries plots |
 | `HD88986_figures_jz.py` | Load processed `.dat` → activity + Lomb–Scargle figures |
 | `build_paper_rdbs.py` | Rebuild **paper** RDBs from CDS only (does **not** overwrite APF) |
-| `scripts_HD88986_emcee/setup_HD88986_emcee.sh` | Generate YAML + LSF scripts for all-instr **no-GP** emcee (0p–3p) |
+| `scripts_HD88986_emcee/setup_HD88986_emcee.sh` | Generate YAML + LSF scripts for all-instr **no-GP** emcee (1p–3p) |
 
 Run order:
 
@@ -91,15 +91,15 @@ Generator: `scripts_HD88986_emcee/setup_HD88986_emcee.sh`
 ```bash
 bash scripts_HD88986_emcee/setup_HD88986_emcee.sh   # (re)create YAMLs + LSF scripts
 cd scripts_HD88986_emcee
-./submit_all_emcee.sh                               # or ./submit_0p_emcee.sh etc.
+./submit_all_emcee.sh                               # or ./submit_1p_emcee.sh etc.
 ```
 
 | Axis | Choice |
 |---|---|
 | Instruments | all (`APF`, `ELODIE`, `HIRES`, `HIRES-PLUS`, `SOPHIE`, `SOPHIE-PLUS`) |
 | Activity / GP | **none** (`no_gp`) |
-| Planets | `0p`, `1p` (b ~146 d), `2p` (b + outer c ~116 yr), `3p` (b + c + free d) |
+| Planets | `1p` (b ~146 d), `2p` (b + outer c ~116 yr), `3p` (b + c + free d) — no `0p` (no GP + no planets ⇒ no fit) |
 | Sampler | emcee |
 
-Results under `results_HD88986_emcee/all_instr/no_gp/{0,1,2,3}p/`.
+Results under `results_HD88986_emcee/all_instr/no_gp/{1,2,3}p/`.
 LS files under `out_HD88986_emcee/`.

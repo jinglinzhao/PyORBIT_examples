@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # HD88986 emcee PyORBIT Setup Generator
-# First-step models: NO GP, all instruments, 0p / 1p / 2p / 3p.
+# First-step models: NO GP, all instruments, 1p / 2p / 3p.
+# (0p omitted: no GP and no planets means no fit is needed.)
 #
 # Planet initial-guess guidance (Heidari+2024):
 #   b  — P~146.05 d, K~1.85 m/s, e~0.24, Tc~2458891.69
@@ -35,7 +36,7 @@ walltime_emcee="24:00"
 # First-step configuration axes (no GP)
 data_configs=("all_instr")
 gp_flag="no_gp"
-planets=("0p" "1p" "2p" "3p")
+planets=("1p" "2p" "3p")
 
 # All RV instruments (paper Tables D.1–D.3 + APF)
 rv_inputs=(
@@ -67,11 +68,10 @@ echo ""
 generate_yaml() {
     local yaml_file="$1"
     local data_config="$2"   # all_instr
-    local planet_conf="$3"   # 0p / 1p / 2p / 3p
+    local planet_conf="$3"   # 1p / 2p / 3p
 
     local num_planets
     case "${planet_conf}" in
-        "0p") num_planets=0 ;;
         "1p") num_planets=1 ;;
         "2p") num_planets=2 ;;
         "3p") num_planets=3 ;;
@@ -159,15 +159,11 @@ models:
     planets:
 EOF
 
-    if [ "${num_planets}" -gt 0 ]; then
-        local planet_letters=("b" "c" "d")
-        local p
-        for ((p = 0; p < num_planets; p++)); do
-            echo "      - ${planet_letters[$p]}" >> "${yaml_file}"
-        done
-    else
-        echo "      []" >> "${yaml_file}"
-    fi
+    local planet_letters=("b" "c" "d")
+    local p
+    for ((p = 0; p < num_planets; p++)); do
+        echo "      - ${planet_letters[$p]}" >> "${yaml_file}"
+    done
 
     cat >> "${yaml_file}" << EOF
 
@@ -344,7 +340,7 @@ echo "========================="
 bjobs | grep "HD88986_.*_emcee" || echo "No emcee jobs found."
 echo ""
 echo "Job counts by planet configuration:"
-for planets in 0p 1p 2p 3p; do
+for planets in 1p 2p 3p; do
   count=$(bjobs 2>/dev/null | grep -c "HD88986_.*_${planets}_emcee" || true)
   echo "  ${planets}: ${count}"
 done
@@ -392,7 +388,7 @@ results_dir="${results_dir}"
 for config in all_instr; do
   for gp in no_gp; do
     echo "Configuration: \${config} / \${gp}"
-    for planets in 0p 1p 2p 3p; do
+    for planets in 1p 2p 3p; do
       job_name="HD88986_\${config}_\${gp}_\${planets}_emcee"
       job_dir="\${results_dir}/\${config}/\${gp}/\${planets}/\${job_name}"
       if [ -d "\${job_dir}" ]; then
@@ -422,7 +418,6 @@ echo "Directory structure:"
 echo "  ${results_dir}/"
 echo "    └── all_instr/"
 echo "          └── no_gp/"
-echo "                ├── 0p/"
 echo "                ├── 1p/   (planet b ~146 d)"
 echo "                ├── 2p/   (b + outer companion c ~116 yr)"
 echo "                └── 3p/   (b + c + free d)"
@@ -430,7 +425,7 @@ echo ""
 echo "Available commands:"
 echo "  cd ${scripts_dir}"
 echo "  ./submit_all_emcee.sh"
-echo "  ./submit_0p_emcee.sh   # (also 1p / 2p / 3p)"
+echo "  ./submit_1p_emcee.sh   # (also 2p / 3p)"
 echo "  ./monitor_emcee.sh"
 echo "  ./status_emcee.sh"
 echo "  ./cancel_emcee.sh"

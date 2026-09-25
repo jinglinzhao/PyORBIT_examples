@@ -9,7 +9,7 @@ results_dir="/work2/lbuc/jzhao/PyORBIT_ESSP/HD88986_NEID_proposal/results_HD8898
 for config in all_instr; do
   for gp in no_gp; do
     echo "Configuration: ${config} / ${gp}"
-    for planets in 0p 1p 2p 3p; do
+    for planets in 1p 2p 3p; do
       job_name="HD88986_${config}_${gp}_${planets}_emcee"
       job_dir="${results_dir}/${config}/${gp}/${planets}/${job_name}"
       if [ -d "${job_dir}" ]; then
