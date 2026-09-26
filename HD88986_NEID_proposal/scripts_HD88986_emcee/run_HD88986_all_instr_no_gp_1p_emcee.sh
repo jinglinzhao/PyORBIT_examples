@@ -30,7 +30,7 @@ cd /work2/lbuc/jzhao/PyORBIT_ESSP/HD88986_NEID_proposal/results_HD88986_emcee/al
 rm -f configuration_file_emcee_run_HD88986_all_instr_no_gp_1p_emcee.log
 
 # Activate PyORBIT environment
-source /work2/lbuc/iara/anaconda3/etc/profile.d/conda.sh
+source ~/anaconda3/etc/profile.d/conda.sh
 conda activate pyorbit
 
 # Run PyORBIT analysis with emcee

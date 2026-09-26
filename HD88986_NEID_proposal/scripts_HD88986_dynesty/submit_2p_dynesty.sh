@@ -1,13 +1,13 @@
 #!/bin/bash
 cd "$(dirname "$0")" || exit 1
 
-echo "Submitting HD88986 2p emcee jobs..."
-echo "==============================================="
+echo "Submitting HD88986 2p dynesty jobs..."
+echo "================================================="
 echo "Working directory: $(pwd)"
 
 job_count=0
 shopt -s nullglob
-for script in run_HD88986_*_2p_emcee.sh; do
+for script in run_HD88986_*_2p_dynesty.sh; do
   echo "Submitting: $script"
   bsub < "$script"
   job_count=$((job_count + 1))

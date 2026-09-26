@@ -1,11 +1,19 @@
 #!/bin/bash
 
+# Use -w so LSF does not truncate Job Name (default bjobs
+# shortens HD88986_all_instr_no_gp_1p_emcee -> *_1p_emcee).
+
 echo "HD88986 emcee Job Monitor"
 echo "========================="
-bjobs | grep "HD88986_.*_emcee" || echo "No emcee jobs found."
+jobs=$(bjobs -w 2>/dev/null | grep -E "HD88986_.*_emcee" || true)
+if [ -z "$jobs" ]; then
+  echo "No emcee jobs found."
+else
+  echo "$jobs"
+fi
 echo ""
 echo "Job counts by planet configuration:"
 for planets in 1p 2p 3p; do
-  count=$(bjobs 2>/dev/null | grep -c "HD88986_.*_${planets}_emcee" || true)
+  count=$(bjobs -w 2>/dev/null | grep -cE "HD88986_.*_${planets}_emcee" || true)
   echo "  ${planets}: ${count}"
 done

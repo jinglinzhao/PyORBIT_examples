@@ -1,13 +1,13 @@
 #!/bin/bash
 cd "$(dirname "$0")" || exit 1
 
-echo "Submitting HD88986 2p emcee jobs..."
-echo "==============================================="
+echo "Submitting HD88986 1p dynesty jobs..."
+echo "================================================="
 echo "Working directory: $(pwd)"
 
 job_count=0
 shopt -s nullglob
-for script in run_HD88986_*_2p_emcee.sh; do
+for script in run_HD88986_*_1p_dynesty.sh; do
   echo "Submitting: $script"
   bsub < "$script"
   job_count=$((job_count + 1))
@@ -18,4 +18,4 @@ if [ "$job_count" -eq 0 ]; then
   echo "ERROR: no matching run scripts found in $(pwd)" >&2
   exit 1
 fi
-echo "Submitted $job_count 2p jobs."
+echo "Submitted $job_count 1p jobs."

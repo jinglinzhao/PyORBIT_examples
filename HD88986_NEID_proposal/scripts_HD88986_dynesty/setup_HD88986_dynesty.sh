@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# HD88986 emcee PyORBIT Setup Generator
+# HD88986 dynesty PyORBIT Setup Generator
 # First-step models: NO GP, all instruments, 1p / 2p / 3p.
 # (0p omitted: no GP and no planets means no fit is needed.)
 #
@@ -15,9 +15,9 @@
 
 base_dir="/work2/lbuc/jzhao/PyORBIT_ESSP/HD88986_NEID_proposal"
 data_dir="${base_dir}/data/processed_data"
-results_dir="${base_dir}/results_HD88986_emcee"
-out_dir="${base_dir}/out_HD88986_emcee"
-scripts_dir="${base_dir}/scripts_HD88986_emcee"
+results_dir="${base_dir}/results_HD88986_dynesty"
+out_dir="${base_dir}/out_HD88986_dynesty"
+scripts_dir="${base_dir}/scripts_HD88986_dynesty"
 
 mkdir -p "${results_dir}" "${out_dir}" "${scripts_dir}"
 cd "${scripts_dir}" || exit 1
@@ -26,12 +26,12 @@ cd "${scripts_dir}" || exit 1
 queue="hpc"
 email="jzhao@space.dtu.dk"
 
-# Resources for no-GP emcee jobs
-cores_emcee=16
-threads_emcee=$((cores_emcee - 1))
-mem_per_core_emcee="2GB"
-mem_limit_emcee="2GB"
-walltime_emcee="24:00"
+# Resources for no-GP dynesty jobs (32 cores; walltime longer than emcee)
+cores_dynesty=32
+threads_dynesty=$((cores_dynesty - 1))
+mem_per_core_dynesty="2GB"
+mem_limit_dynesty="2GB"
+walltime_dynesty="48:00"
 
 # First-step configuration axes (no GP)
 data_configs=("all_instr")
@@ -54,14 +54,14 @@ TREF="2450420.109460"
 yaml_count=0
 script_count=0
 
-echo "HD88986 emcee PyORBIT Setup (no GP, all instruments)"
-echo "===================================================="
+echo "HD88986 dynesty PyORBIT Setup (no GP, all instruments)"
+echo "======================================================"
 echo "Base dir:      ${base_dir}"
 echo "Data dir:      ${data_dir}"
 echo "Results dir:   ${results_dir}"
 echo "Output dir:    ${out_dir}"
 echo "Scripts dir:   ${scripts_dir}"
-echo "Cores:         ${cores_emcee}"
+echo "Cores:         ${cores_dynesty} (cpu_threads=${threads_dynesty})"
 echo ""
 
 # ------------------ YAML GENERATOR ------------------ #
@@ -171,20 +171,19 @@ parameters:
   Tref: ${TREF}
   low_ram_plot: True
   plot_split_threshold: 1000
-  cpu_threads: ${threads_emcee}
+  cpu_threads: ${threads_dynesty}
 
 solver:
   pyde:
     ngen: 50000
     npop_mult: 6
-  emcee:
-    npop_mult: 6
-    nsteps: 50000
-    nburn: 15000
-    nsave: 35000
-    thin: 15
   nested_sampling:
     nlive: 1000
+    dlogz: 0.01
+    nthreads: ${threads_dynesty}
+    sample: 'auto'
+    bound: 'multi'
+    use_threading_pool: True
   recenter_bounds: True
 EOF
 }
@@ -204,15 +203,15 @@ generate_job_script() {
 ### -- set the job Name --
 #BSUB -J ${job_name}
 ### -- ask for number of cores (default: 1) --
-#BSUB -n ${cores_emcee}
+#BSUB -n ${cores_dynesty}
 ### -- specify that the cores must be on the same host --
 #BSUB -R "span[hosts=1]"
-### -- specify that we need ${mem_per_core_emcee} of memory per core/slot --
-#BSUB -R "rusage[mem=${mem_per_core_emcee}]"
-### -- specify that we want the job to get killed if it exceeds ${mem_limit_emcee} per core/slot --
-#BSUB -M ${mem_limit_emcee}
+### -- specify that we need ${mem_per_core_dynesty} of memory per core/slot --
+#BSUB -R "rusage[mem=${mem_per_core_dynesty}]"
+### -- specify that we want the job to get killed if it exceeds ${mem_limit_dynesty} per core/slot --
+#BSUB -M ${mem_limit_dynesty}
 ### -- set walltime limit: hh:mm --
-#BSUB -W ${walltime_emcee}
+#BSUB -W ${walltime_dynesty}
 ### -- set the email address --
 #BSUB -u ${email}
 ### -- send notification at start --
@@ -226,15 +225,15 @@ generate_job_script() {
 cd ${config_dir}
 
 # Clean up previous runs
-rm -f configuration_file_emcee_run_${job_name}.log
+rm -f configuration_file_dynesty_run_${job_name}.log
 
 # Activate PyORBIT environment
 source ~/anaconda3/etc/profile.d/conda.sh
 conda activate pyorbit
 
-# Run PyORBIT analysis with emcee
-pyorbit_run emcee ${yaml_name} > configuration_file_emcee_run_${job_name}.log
-pyorbit_results emcee ${yaml_name} -all >> configuration_file_emcee_run_${job_name}.log
+# Run PyORBIT analysis with dynesty
+pyorbit_run dynesty ${yaml_name} > configuration_file_dynesty_run_${job_name}.log
+pyorbit_results dynesty ${yaml_name} -all >> configuration_file_dynesty_run_${job_name}.log
 
 # Deactivate environment
 conda deactivate
@@ -249,7 +248,7 @@ EOF
 for data_config in "${data_configs[@]}"; do
     for planet_conf in "${planets[@]}"; do
         # Include no_gp in the name so GP variants can be added later without clashing
-        job_name="HD88986_${data_config}_${gp_flag}_${planet_conf}_emcee"
+        job_name="HD88986_${data_config}_${gp_flag}_${planet_conf}_dynesty"
         config_dir="${results_dir}/${data_config}/${gp_flag}/${planet_conf}/${job_name}"
         mkdir -p "${config_dir}"
 
@@ -270,19 +269,19 @@ for data_config in "${data_configs[@]}"; do
 done
 
 # ------------------ MANAGEMENT SCRIPTS ------------------ #
-cat > "${scripts_dir}/submit_all_emcee.sh" << 'EOF'
+cat > "${scripts_dir}/submit_all_dynesty.sh" << 'EOF'
 #!/bin/bash
 # Always run from this script's directory so globs find run_*.sh
-# even if invoked as ../scripts_HD88986_emcee/submit_all_emcee.sh
+# even if invoked as ../scripts_HD88986_dynesty/submit_all_dynesty.sh
 cd "$(dirname "$0")" || exit 1
 
-echo "Submitting ALL HD88986 emcee jobs (no GP)..."
-echo "============================================"
+echo "Submitting ALL HD88986 dynesty jobs (no GP)..."
+echo "=============================================="
 echo "Working directory: $(pwd)"
 
 job_count=0
 shopt -s nullglob
-for script in run_HD88986_*_emcee.sh; do
+for script in run_HD88986_*_dynesty.sh; do
   echo "Submitting: $script"
   bsub < "$script"
   job_count=$((job_count + 1))
@@ -290,24 +289,24 @@ for script in run_HD88986_*_emcee.sh; do
 done
 
 if [ "$job_count" -eq 0 ]; then
-  echo "ERROR: no run_HD88986_*_emcee.sh scripts found in $(pwd)" >&2
+  echo "ERROR: no run_HD88986_*_dynesty.sh scripts found in $(pwd)" >&2
   exit 1
 fi
 echo "Submitted $job_count jobs."
 EOF
-chmod +x "${scripts_dir}/submit_all_emcee.sh"
+chmod +x "${scripts_dir}/submit_all_dynesty.sh"
 
-cat > "${scripts_dir}/submit_all_instr_emcee.sh" << 'EOF'
+cat > "${scripts_dir}/submit_all_instr_dynesty.sh" << 'EOF'
 #!/bin/bash
 cd "$(dirname "$0")" || exit 1
 
-echo "Submitting HD88986 all_instr emcee jobs..."
-echo "=========================================="
+echo "Submitting HD88986 all_instr dynesty jobs..."
+echo "============================================"
 echo "Working directory: $(pwd)"
 
 job_count=0
 shopt -s nullglob
-for script in run_HD88986_all_instr_*_emcee.sh; do
+for script in run_HD88986_all_instr_*_dynesty.sh; do
   echo "Submitting: $script"
   bsub < "$script"
   job_count=$((job_count + 1))
@@ -320,20 +319,20 @@ if [ "$job_count" -eq 0 ]; then
 fi
 echo "Submitted $job_count all_instr jobs."
 EOF
-chmod +x "${scripts_dir}/submit_all_instr_emcee.sh"
+chmod +x "${scripts_dir}/submit_all_instr_dynesty.sh"
 
 for planet_conf in "${planets[@]}"; do
-    cat > "${scripts_dir}/submit_${planet_conf}_emcee.sh" << EOF
+    cat > "${scripts_dir}/submit_${planet_conf}_dynesty.sh" << EOF
 #!/bin/bash
 cd "\$(dirname "\$0")" || exit 1
 
-echo "Submitting HD88986 ${planet_conf} emcee jobs..."
-echo "==============================================="
+echo "Submitting HD88986 ${planet_conf} dynesty jobs..."
+echo "================================================="
 echo "Working directory: \$(pwd)"
 
 job_count=0
 shopt -s nullglob
-for script in run_HD88986_*_${planet_conf}_emcee.sh; do
+for script in run_HD88986_*_${planet_conf}_dynesty.sh; do
   echo "Submitting: \$script"
   bsub < "\$script"
   job_count=\$((job_count + 1))
@@ -346,41 +345,41 @@ if [ "\$job_count" -eq 0 ]; then
 fi
 echo "Submitted \$job_count ${planet_conf} jobs."
 EOF
-    chmod +x "${scripts_dir}/submit_${planet_conf}_emcee.sh"
+    chmod +x "${scripts_dir}/submit_${planet_conf}_dynesty.sh"
 done
 
-cat > "${scripts_dir}/monitor_emcee.sh" << 'EOF'
+cat > "${scripts_dir}/monitor_dynesty.sh" << 'EOF'
 #!/bin/bash
 
 # Use -w so LSF does not truncate Job Name (default bjobs
-# shortens HD88986_all_instr_no_gp_1p_emcee -> *_1p_emcee).
+# shortens HD88986_all_instr_no_gp_1p_dynesty -> *_1p_dynesty).
 
-echo "HD88986 emcee Job Monitor"
-echo "========================="
-jobs=$(bjobs -w 2>/dev/null | grep -E "HD88986_.*_emcee" || true)
+echo "HD88986 dynesty Job Monitor"
+echo "==========================="
+jobs=$(bjobs -w 2>/dev/null | grep -E "HD88986_.*_dynesty" || true)
 if [ -z "$jobs" ]; then
-  echo "No emcee jobs found."
+  echo "No dynesty jobs found."
 else
   echo "$jobs"
 fi
 echo ""
 echo "Job counts by planet configuration:"
 for planets in 1p 2p 3p; do
-  count=$(bjobs -w 2>/dev/null | grep -cE "HD88986_.*_${planets}_emcee" || true)
+  count=$(bjobs -w 2>/dev/null | grep -cE "HD88986_.*_${planets}_dynesty" || true)
   echo "  ${planets}: ${count}"
 done
 EOF
-chmod +x "${scripts_dir}/monitor_emcee.sh"
+chmod +x "${scripts_dir}/monitor_dynesty.sh"
 
-cat > "${scripts_dir}/cancel_emcee.sh" << 'EOF'
+cat > "${scripts_dir}/cancel_dynesty.sh" << 'EOF'
 #!/bin/bash
 
-echo "Canceling all HD88986 emcee jobs..."
-echo "==================================="
+echo "Canceling all HD88986 dynesty jobs..."
+echo "====================================="
 
-job_ids=$(bjobs -w 2>/dev/null | grep -E "HD88986_.*_emcee" | awk '{print $1}')
+job_ids=$(bjobs -w 2>/dev/null | grep -E "HD88986_.*_dynesty" | awk '{print $1}')
 if [ -z "$job_ids" ]; then
-  echo "No emcee jobs to cancel."
+  echo "No dynesty jobs to cancel."
   exit 0
 fi
 
@@ -399,13 +398,13 @@ else
   echo "Aborted."
 fi
 EOF
-chmod +x "${scripts_dir}/cancel_emcee.sh"
+chmod +x "${scripts_dir}/cancel_dynesty.sh"
 
-cat > "${scripts_dir}/status_emcee.sh" << EOF
+cat > "${scripts_dir}/status_dynesty.sh" << EOF
 #!/bin/bash
 
-echo "HD88986 emcee Job Status Summary"
-echo "================================"
+echo "HD88986 dynesty Job Status Summary"
+echo "=================================="
 echo ""
 
 results_dir="${results_dir}"
@@ -414,12 +413,12 @@ for config in all_instr; do
   for gp in no_gp; do
     echo "Configuration: \${config} / \${gp}"
     for planets in 1p 2p 3p; do
-      job_name="HD88986_\${config}_\${gp}_\${planets}_emcee"
+      job_name="HD88986_\${config}_\${gp}_\${planets}_dynesty"
       job_dir="\${results_dir}/\${config}/\${gp}/\${planets}/\${job_name}"
       if [ -d "\${job_dir}" ]; then
-        if [ -f "\${job_dir}/emcee_results.pkl" ] || ls "\${job_dir}"/*emcee*results* >/dev/null 2>&1; then
+        if [ -f "\${job_dir}/dynesty_results.pkl" ] || ls "\${job_dir}"/*dynesty*results* >/dev/null 2>&1; then
           echo "  \${planets}: COMPLETED (or results present)"
-        elif [ -f "\${job_dir}/configuration_file_emcee_run_\${job_name}.log" ]; then
+        elif [ -f "\${job_dir}/configuration_file_dynesty_run_\${job_name}.log" ]; then
           echo "  \${planets}: RUNNING / LOG PRESENT"
         else
           echo "  \${planets}: NOT STARTED"
@@ -432,10 +431,10 @@ for config in all_instr; do
   done
 done
 EOF
-chmod +x "${scripts_dir}/status_emcee.sh"
+chmod +x "${scripts_dir}/status_dynesty.sh"
 
 echo ""
-echo "Setup complete for emcee sampling (no GP)."
+echo "Setup complete for dynesty sampling (no GP)."
 echo "YAML files created:   ${yaml_count}"
 echo "Job scripts created:  ${script_count}"
 echo ""
@@ -448,10 +447,10 @@ echo "                ├── 2p/   (b + outer companion c ~116 yr)"
 echo "                └── 3p/   (b + c + free d)"
 echo ""
 echo "Available commands (cwd-independent; safe from proposal root or scripts dir):"
-echo "  ${scripts_dir}/submit_all_emcee.sh"
-echo "  ${scripts_dir}/submit_1p_emcee.sh   # (also 2p / 3p)"
-echo "  ${scripts_dir}/monitor_emcee.sh"
-echo "  ${scripts_dir}/status_emcee.sh"
-echo "  ${scripts_dir}/cancel_emcee.sh"
+echo "  ${scripts_dir}/submit_all_dynesty.sh"
+echo "  ${scripts_dir}/submit_1p_dynesty.sh   # (also 2p / 3p)"
+echo "  ${scripts_dir}/monitor_dynesty.sh"
+echo "  ${scripts_dir}/status_dynesty.sh"
+echo "  ${scripts_dir}/cancel_dynesty.sh"
 echo ""
-echo "Or: cd ${scripts_dir} && bsub < run_HD88986_all_instr_no_gp_1p_emcee.sh"
+echo "Or: cd ${scripts_dir} && bsub < run_HD88986_all_instr_no_gp_1p_dynesty.sh"

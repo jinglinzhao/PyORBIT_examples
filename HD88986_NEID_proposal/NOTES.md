@@ -24,6 +24,7 @@ Working directory: `/work2/lbuc/jzhao/PyORBIT_ESSP/HD88986_NEID_proposal`
 | `HD88986_figures_jz.py` | Load processed `.dat` → activity + Lomb–Scargle figures |
 | `build_paper_rdbs.py` | Rebuild **paper** RDBs from CDS only (does **not** overwrite APF) |
 | `scripts_HD88986_emcee/setup_HD88986_emcee.sh` | Generate YAML + LSF scripts for all-instr **no-GP** emcee (1p–3p) |
+| `scripts_HD88986_dynesty/setup_HD88986_dynesty.sh` | Generate YAML + LSF scripts for all-instr **no-GP** dynesty (1p–3p) |
 
 Run order:
 
@@ -103,3 +104,57 @@ cd scripts_HD88986_emcee
 
 Results under `results_HD88986_emcee/all_instr/no_gp/{1,2,3}p/`.
 LS files under `out_HD88986_emcee/`.
+
+---
+
+## PyORBIT dynesty (first step: no GP)
+
+Generator: `scripts_HD88986_dynesty/setup_HD88986_dynesty.sh`
+
+Same scientific setup as emcee (all instruments, no GP, 1p–3p; no 0p). Sampler is dynesty; jobs use **32 cores** (`cpu_threads` / `nthreads` = 31), walltime 48:00.
+
+```bash
+bash scripts_HD88986_dynesty/setup_HD88986_dynesty.sh   # (re)create YAMLs + LSF scripts
+cd scripts_HD88986_dynesty
+./submit_all_dynesty.sh                                 # or ./submit_1p_dynesty.sh etc.
+```
+
+| Axis | Choice |
+|---|---|
+| Instruments | all (`APF`, `ELODIE`, `HIRES`, `HIRES-PLUS`, `SOPHIE`, `SOPHIE-PLUS`) |
+| Activity / GP | **none** (`no_gp`) |
+| Planets | `1p` (b ~146 d), `2p` (b + outer c ~116 yr), `3p` (b + c + free d) — no `0p` |
+| Sampler | dynesty |
+| Resources | 32 cores, 2GB/core, walltime 48:00 |
+
+Results under `results_HD88986_dynesty/all_instr/no_gp/{1,2,3}p/`.
+LS files under `out_HD88986_dynesty/`.
+
+### Dynesty model comparison (1p–3p)
+
+Script: `post_analysis/compare_dynesty_models_HD88986.py`  
+(Adapted from `PyORBIT_ESSP/post_analysis/compare_dynesty_models.py`; star-specific HD102365 copy was not in-tree.)
+
+```bash
+cd /work2/lbuc/jzhao/PyORBIT_ESSP/HD88986_NEID_proposal
+python post_analysis/compare_dynesty_models_HD88986.py
+```
+
+Compares `all_instr` / `no_gp` dynesty runs for **1p, 2p, 3p** (skips any missing/incomplete logs).  
+Outputs go to `post_analysis/dynesty_model_comparison/` (CSV, HTML, best-model planetFit CSV).
+
+---
+
+## Emcee model comparison (1p–3p)
+
+Script: `post_analysis/compare_emcee_models_HD88986.py`  
+(Adapted from `PyORBIT_ESSP/post_analysis/compare_emcee_models.py`; star-specific HD102365 copy was not in-tree.)
+
+```bash
+cd /work2/lbuc/jzhao/PyORBIT_ESSP/HD88986_NEID_proposal
+python post_analysis/compare_emcee_models_HD88986.py
+```
+
+Compares `all_instr` / `no_gp` emcee runs for **1p, 2p, 3p** (skips any missing/incomplete logs).  
+Reads Median BIC / AIC / AICc + Gelman–Rubin; ranks with ΔBIC/ΔAIC and lnZ proxy (−BIC/2).  
+Outputs go to `post_analysis/results_emcee_all_instr_no_gp/` (CSV, HTML, metric/Δ plots, planetFit CSVs).
