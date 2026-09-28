@@ -25,6 +25,8 @@ Working directory: `/work2/lbuc/jzhao/PyORBIT_ESSP/HD88986_NEID_proposal`
 | `build_paper_rdbs.py` | Rebuild **paper** RDBs from CDS only (does **not** overwrite APF) |
 | `scripts_HD88986_emcee/setup_HD88986_emcee.sh` | Generate YAML + LSF scripts for all-instr **no-GP** emcee (1p–3p) |
 | `scripts_HD88986_dynesty/setup_HD88986_dynesty.sh` | Generate YAML + LSF scripts for all-instr **no-GP** dynesty (1p–3p) |
+| `scripts_HD88986_gp_emcee/setup_HD88986_gp_emcee.sh` | Generate YAML + LSF scripts for all-instr **sophie_gp** emcee (1p–3p) |
+| `scripts_HD88986_gp_dynesty/setup_HD88986_gp_dynesty.sh` | Generate YAML + LSF scripts for all-instr **sophie_gp** dynesty (1p–3p) |
 
 Run order:
 
@@ -143,6 +145,10 @@ python post_analysis/compare_dynesty_models_HD88986.py
 Compares `all_instr` / `no_gp` dynesty runs for **1p, 2p, 3p** (skips any missing/incomplete logs).  
 Outputs go to `post_analysis/dynesty_model_comparison/` (CSV, HTML, best-model planetFit CSV).
 
+Orbital / planetFit values are **posterior median with 15–84 percentile uncertainties**
+(`median^{+upper}_{-lower}`, ≈68% CI) taken from the PyORBIT log `(15-84 p)` columns.
+`t0` in planetFit CSVs is derived from median `mean_long` / `ω` / `P` only (no invented error).
+
 ---
 
 ## Emcee model comparison (1p–3p)
@@ -158,3 +164,53 @@ python post_analysis/compare_emcee_models_HD88986.py
 Compares `all_instr` / `no_gp` emcee runs for **1p, 2p, 3p** (skips any missing/incomplete logs).  
 Reads Median BIC / AIC / AICc + Gelman–Rubin; ranks with ΔBIC/ΔAIC and lnZ proxy (−BIC/2).  
 Outputs go to `post_analysis/results_emcee_all_instr_no_gp/` (CSV, HTML, metric/Δ plots, planetFit CSVs).
+
+Orbital / planetFit uncertainties use the same `median^{+upper}_{-lower}` format from the
+**last** PyORBIT stats block that reports `(15-84 p)` (later median-only dumps are skipped).
+`t0` is median-derived only.
+
+---
+
+## PyORBIT GP (first step: SOPHIE-PLUS RV + BIS)
+
+Separate folders from the no-GP setups (do **not** mix GP into `scripts_HD88986_emcee/` / `scripts_HD88986_dynesty/`).
+
+Analogous to HD102365 `all_instr_espresso_gp`: all instruments enter the RV model; GP is applied only to **SOPHIE-PLUS RV + BIS**; other instruments remain Keplerian-only.
+
+| Axis | Choice |
+|---|---|
+| Instruments | all RV (`APF`, `ELODIE`, `HIRES`, `HIRES-PLUS`, `SOPHIE`, `SOPHIE-PLUS`) + `HD88986_SOPHIE-PLUS_BIS.dat` |
+| Activity / GP | `sophie_gp` — `spleaf_multidimensional_esp` on SOPHIE-PLUS RV + BIS only |
+| Prot prior | G2; paper Prot = 25^{+8}_{-6} d → Gaussian(25, 7), bounds [10, 50] |
+| Planets | `1p` / `2p` / `3p` (same bounds as no-GP) |
+| Naming | `HD88986_all_instr_sophie_gp_{1,2,3}p_{emcee,dynesty}` |
+
+### Emcee (GP)
+
+Generator: `scripts_HD88986_gp_emcee/setup_HD88986_gp_emcee.sh`  
+Resources: **32 cores**, 4GB/core (limit 5GB), walltime 72:00.
+
+```bash
+bash scripts_HD88986_gp_emcee/setup_HD88986_gp_emcee.sh   # (re)create YAMLs + LSF scripts
+cd scripts_HD88986_gp_emcee
+./submit_all_emcee.sh                                     # or ./submit_1p_emcee.sh etc.
+# or: ./submit_all_instr_sophie_gp_emcee.sh
+```
+
+Results under `results_HD88986_gp_emcee/all_instr/sophie_gp/{1,2,3}p/`.  
+Logs under `out_HD88986_gp_emcee/`.
+
+### Dynesty (GP)
+
+Generator: `scripts_HD88986_gp_dynesty/setup_HD88986_gp_dynesty.sh`  
+Resources: **32 cores** (`cpu_threads` / `nthreads` = 31), 4GB/core (limit 5GB), walltime 72:00.
+
+```bash
+bash scripts_HD88986_gp_dynesty/setup_HD88986_gp_dynesty.sh   # (re)create YAMLs + LSF scripts
+cd scripts_HD88986_gp_dynesty
+./submit_all_dynesty.sh                                       # or ./submit_1p_dynesty.sh etc.
+# or: ./submit_all_instr_sophie_gp_dynesty.sh
+```
+
+Results under `results_HD88986_gp_dynesty/all_instr/sophie_gp/{1,2,3}p/`.  
+Logs under `out_HD88986_gp_dynesty/`.

@@ -49,6 +49,29 @@ def calculate_t0_from_mean_long(mean_long_deg, omega_deg, period_days, reference
     return reference_epoch - (mean_anomaly_rad / n)
 
 
+def format_param_unc(entry, placeholder="—"):
+    """
+    Format a parsed PyORBIT posterior entry as median^{+up}_{-lo}.
+
+    Errors come from the log's (15-84 p) columns (≈68% CI). Lower error in the
+    log is already signed negative; we display magnitudes with explicit signs.
+    """
+    if not entry or entry.get("value") is None:
+        return placeholder
+    med = entry.get("value_str")
+    if med is None:
+        med = f"{entry['value']}"
+    lo = entry.get("lower_error")
+    hi = entry.get("upper_error")
+    if lo is None or hi is None:
+        return med
+    lo_str = entry.get("lower_error_str")
+    hi_str = entry.get("upper_error_str")
+    lo_mag = (lo_str or f"{abs(lo)}").lstrip("+-")
+    hi_mag = (hi_str or f"{hi}").lstrip("+-")
+    return f"{med}^{{+{hi_mag}}}_{{-{lo_mag}}}"
+
+
 def expected_job_name(planets: str) -> str:
     return f"{STAR}_{DATA_CONFIG}_{GP_CONFIG}_{planets}_{SAMPLER}"
 
@@ -235,7 +258,7 @@ def evidence_strength(delta_logz: float) -> str:
 
 
 def export_planet_fit_csv(df, output_dir, reference_epoch=REFERENCE_EPOCH_EMJD):
-    """Export best-logZ planet-fit CSV for each configuration."""
+    """Export best-logZ planet-fit CSV for each configuration (median^{+up}_{-lo})."""
     exported = []
     for config_name, group in df.groupby("Configuration"):
         group = group.copy()
@@ -255,10 +278,6 @@ def export_planet_fit_csv(df, output_dir, reference_epoch=REFERENCE_EPOCH_EMJD):
             e = p.get("e", {}).get("value")
             omega = p.get("omega", {}).get("value")
             mean_long = p.get("mean_long", {}).get("value")
-            K_str = p.get("K", {}).get("value_str")
-            P_str = p.get("P", {}).get("value_str")
-            e_str = p.get("e", {}).get("value_str")
-            omega_str = p.get("omega", {}).get("value_str")
 
             if mean_long is not None and omega is not None:
                 t0 = calculate_t0_from_mean_long(mean_long, omega, P, reference_epoch)
@@ -267,19 +286,22 @@ def export_planet_fit_csv(df, output_dir, reference_epoch=REFERENCE_EPOCH_EMJD):
             else:
                 t0 = None
 
-            if e_str is None:
-                e_str = "0" if e == 0.0 else str(e)
-            if omega_str is None:
-                omega_str = "0" if omega == 0.0 else str(omega)
+            # t0 is derived from medians only — no invented uncertainty.
             t0_str = f"{t0:.10g}" if t0 is not None else ""
+            e_fmt = format_param_unc(p.get("e"), placeholder="")
+            if not e_fmt:
+                e_fmt = "0" if e == 0.0 else ("" if e is None else str(e))
+            omega_fmt = format_param_unc(p.get("omega"), placeholder="")
+            if not omega_fmt:
+                omega_fmt = "0" if omega == 0.0 else ("" if omega is None else str(omega))
 
             planet_rows.append(
                 {
-                    "K [m/s]": K_str if K_str is not None else str(K),
-                    "P [d]": P_str if P_str is not None else str(P),
+                    "K [m/s]": format_param_unc(p.get("K"), placeholder=str(K)),
+                    "P [d]": format_param_unc(p.get("P"), placeholder=str(P)),
                     "t0 [eMJD]": t0_str,
-                    "e": e_str,
-                    "w [deg]": omega_str,
+                    "e": e_fmt,
+                    "w [deg]": omega_fmt,
                 }
             )
 
@@ -378,9 +400,11 @@ th {{ background: #f8f9fa; text-transform: uppercase; font-size: 12px; letter-sp
             html += f"      <strong>Best by BIC:</strong> {group.loc[min_bic_idx, 'Planets']} (BIC = {min_bic:.2f})\n"
         html += "    </div>\n"
 
-        # Orbital params for best model
+        # Orbital params for best model (median^{+up}_{-lo} from 15–84 p)
         orbital = group.loc[max_logz_idx, "Orbital Parameters"] or {}
         html += "    <h3>Best-model orbital parameters</h3>\n"
+        html += '    <p style="color:#7f8c8d;font-size:0.95em;">Posterior median with '
+        html += "15–84 percentile uncertainties (≈68% CI), from PyORBIT log.</p>\n"
         html += "    <table>\n"
         html += "      <tr><th>Planet</th><th>P (d)</th><th>K (m/s)</th><th>mean_long (°)</th><th>e</th><th>ω (°)</th></tr>\n"
         if not orbital:
@@ -391,7 +415,7 @@ th {{ background: #f8f9fa; text-transform: uppercase; font-size: 12px; letter-sp
                 html += "      <tr>\n"
                 html += f"        <td>{planet}</td>\n"
                 for key in ("P", "K", "mean_long", "e", "omega"):
-                    html += f"        <td>{p.get(key, {}).get('value_str', '—')}</td>\n"
+                    html += f"        <td>{format_param_unc(p.get(key))}</td>\n"
                 html += "      </tr>\n"
         html += "    </table>\n"
         html += "  </div>\n"
@@ -477,11 +501,11 @@ def analyze_and_display(all_data, output_dir, missing):
                     f"BF = {bf:.2e} → {strength} evidence for {best_p}"
                 )
 
-        # Orbital summary for best model
+        # Orbital summary for best model (median^{+up}_{-lo})
         orbital = group.loc[max_logz_idx, "Orbital Parameters"] or {}
-        print("\nBest-model orbital parameters:")
-        print(f"{'Planet':<8} {'P (d)':<12} {'K (m/s)':<10} {'mean_long':<12} {'e':<10} {'ω':<10}")
-        print("-" * 70)
+        print("\nBest-model orbital parameters (median^{+up}_{-lo}, 15–84 p ≈ 68% CI):")
+        print(f"{'Planet':<8} {'P (d)':<28} {'K (m/s)':<24} {'mean_long':<24} {'e':<24} {'ω':<24}")
+        print("-" * 130)
         if not orbital:
             print("(none)")
         else:
@@ -489,11 +513,11 @@ def analyze_and_display(all_data, output_dir, missing):
                 p = orbital[planet]
                 print(
                     f"{planet:<8} "
-                    f"{p.get('P', {}).get('value_str', '-'):<12} "
-                    f"{p.get('K', {}).get('value_str', '-'):<10} "
-                    f"{p.get('mean_long', {}).get('value_str', '-'):<12} "
-                    f"{p.get('e', {}).get('value_str', '-'):<10} "
-                    f"{p.get('omega', {}).get('value_str', '-'):<10}"
+                    f"{format_param_unc(p.get('P'), '-'):<28} "
+                    f"{format_param_unc(p.get('K'), '-'):<24} "
+                    f"{format_param_unc(p.get('mean_long'), '-'):<24} "
+                    f"{format_param_unc(p.get('e'), '-'):<24} "
+                    f"{format_param_unc(p.get('omega'), '-'):<24}"
                 )
 
         for _, row in group.iterrows():

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8">
+<title>HD88986 emcee model comparison</title>
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+       margin: 24px; background: #fafafa; color: #2c3e50; }
+h1,h2,h3 { color: #1a237e; }
+table { border-collapse: collapse; background: white; margin: 12px 0 24px; }
+th, td { border: 1px solid #cfd8dc; padding: 8px 12px; text-align: right; }
+th { background: #eceff1; text-align: center; }
+td:first-child, th:first-child { text-align: center; }
+tr.best td { background: #e8f5e9; font-weight: 600; }
+.note { color: #546e7a; font-size: 0.95em; }
+</style></head><body>
+<h1>HD88986 emcee model comparison</h1>
+<p>Configuration: <b>all_instr / no_gp</b> &nbsp;|&nbsp; Models: 1p, 2p, 3p</p>
+<p class="note">lnZ proxy = −BIC/2 (rough Laplace/BIC evidence ranking; not a nested-sampling lnZ).
+Green row = lowest Median BIC.</p>
+<p><b>Preferred (BIC):</b> 3p
+(BIC = 2741.95, lnZ proxy = -1370.97)</p>
+<h2>Information criteria</h2>
+<table>
+<tr><th>Planets</th><th>BIC</th><th>ΔBIC</th><th>AIC</th><th>ΔAIC</th>
+<th>AICc</th><th>ΔAICc</th><th>lnZ proxy</th><th>ΔlnZ proxy</th>
+<th>Conv %</th><th>Max GR</th></tr>
+<tr><td>1p</td><td>3930.37</td><td>1188.42</td><td>3859.31</td><td>1230.22</td><td>3860.63</td><td>1228.22</td><td>-1965.18</td><td>-594.21</td><td>100.0%</td><td>1.0026</td></tr><tr><td>2p</td><td>2840.92</td><td>98.97</td><td>2748.96</td><td>119.87</td><td>2751.16</td><td>118.75</td><td>-1420.46</td><td>-49.49</td><td>50.0%</td><td>1.2117</td></tr><tr class="best"><td>3p</td><td>2741.95</td><td>0.00</td><td>2629.09</td><td>0.00</td><td>2632.41</td><td>0.00</td><td>-1370.97</td><td>0.00</td><td>48.1%</td><td>1.2645</td></tr>
+</table>
+<h2>Orbital parameters (posterior medians)</h2>
+<h3>1p</h3>
+<table><tr><th>Planet</th><th>P [d]</th><th>K [m/s]</th><th>e</th><th>ω [deg]</th><th>mean_long [deg]</th></tr>
+<tr><td>b</td><td>161.3961</td><td>5.1106</td><td>0.1322</td><td>102.15</td><td>301.06</td></tr>
+</table><h3>2p</h3>
+<table><tr><th>Planet</th><th>P [d]</th><th>K [m/s]</th><th>e</th><th>ω [deg]</th><th>mean_long [deg]</th></tr>
+<tr><td>b</td><td>146.1538</td><td>1.9525</td><td>0.2997</td><td>-64.82</td><td>78.21</td></tr>
+<tr><td>c</td><td>25720.3655</td><td>135.3574</td><td>0.3359</td><td>-41.28</td><td>136.42</td></tr>
+</table><h3>3p</h3>
+<table><tr><th>Planet</th><th>P [d]</th><th>K [m/s]</th><th>e</th><th>ω [deg]</th><th>mean_long [deg]</th></tr>
+<tr><td>b</td><td>146.2001</td><td>1.9226</td><td>0.2827</td><td>-37.41</td><td>90.22</td></tr>
+<tr><td>c</td><td>25864.1631</td><td>116.2356</td><td>0.2590</td><td>-52.64</td><td>129.97</td></tr>
+<tr><td>d</td><td>753.0049</td><td>1.9591</td><td>0.5158</td><td>-161.32</td><td>159.43</td></tr>
+</table>
+</body></html>

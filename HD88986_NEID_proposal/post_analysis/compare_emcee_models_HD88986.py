@@ -60,6 +60,38 @@ def calculate_t0_from_mean_long(mean_long_deg, omega_deg, period_days, reference
     return reference_epoch - mean_anomaly_rad / n
 
 
+def format_param_unc(entry, placeholder="—"):
+    """Format a parsed PyORBIT posterior entry as median^{+up}_{-lo} (15–84 p ≈ 68% CI)."""
+    if not entry or entry.get("value") is None:
+        return placeholder
+    med = entry.get("value_str")
+    if med is None:
+        med = f"{entry['value']}"
+    lo = entry.get("lower_error")
+    hi = entry.get("upper_error")
+    if lo is None or hi is None:
+        return med
+    lo_str = entry.get("lower_error_str")
+    hi_str = entry.get("upper_error_str")
+    lo_mag = (lo_str or f"{abs(lo)}").lstrip("+-")
+    hi_mag = (hi_str or f"{hi}").lstrip("+-")
+    return f"{med}^{{+{hi_mag}}}_{{-{lo_mag}}}"
+
+
+def _param_entry(median_str, lower_str=None, upper_str=None, gelman_rubin=None):
+    entry = {
+        "value": float(median_str),
+        "value_str": median_str,
+        "gelman_rubin": gelman_rubin,
+    }
+    if lower_str is not None and upper_str is not None:
+        entry["lower_error"] = float(lower_str)
+        entry["lower_error_str"] = lower_str
+        entry["upper_error"] = float(upper_str)
+        entry["upper_error_str"] = upper_str
+    return entry
+
+
 def parse_log_file(filepath: Path, planets_label: str):
     """Parse a PyORBIT emcee log. Returns None if Median BIC is missing."""
     try:
@@ -98,15 +130,28 @@ def parse_log_file(filepath: Path, planets_label: str):
     activity_parameters = {}
 
     lines = content.split("\n")
-    last_stats_idx = -1
-    for i, line in enumerate(lines):
-        if "Statistics on the model parameters obtained from the posteriors samples" in line:
-            last_stats_idx = i
+    stats_idxs = [
+        i
+        for i, line in enumerate(lines)
+        if "Statistics on the model parameters obtained from the posteriors samples" in line
+    ]
 
-    if last_stats_idx != -1:
+    # Prefer the last stats block that includes (15-84 p) uncertainties.
+    # Later blocks are often median-only MAP-style dumps without errors.
+    stats_idx = -1
+    for i in reversed(stats_idxs):
+        end = next((j for j in stats_idxs if j > i), len(lines))
+        chunk = "\n".join(lines[i:end])
+        if "(15-84 p)" in chunk:
+            stats_idx = i
+            break
+    if stats_idx == -1 and stats_idxs:
+        stats_idx = stats_idxs[-1]
+
+    if stats_idx != -1:
         current_planet = None
         in_activity_section = False
-        for i in range(last_stats_idx, len(lines)):
+        for i in range(stats_idx, len(lines)):
             line = lines[i]
             if "Statistics on the derived parameters" in line:
                 break
@@ -128,22 +173,32 @@ def parse_log_file(filepath: Path, planets_label: str):
                 in_activity_section = False
                 continue
 
-            param_match = re.match(r"^([A-Za-z_]+)\s+([-\d\.]+)\s*$", line.strip())
-            if not param_match:
+            unc_match = re.match(
+                r"^([A-Za-z_]+)\s+([-\d\.]+)\s+([-\d\.]+)\s+([\d\.]+).*\(15-84 p\)",
+                line.strip(),
+            )
+            med_match = re.match(r"^([A-Za-z_]+)\s+([-\d\.]+)\s*$", line.strip())
+            if unc_match:
+                param_name = unc_match.group(1)
+                entry = _param_entry(
+                    unc_match.group(2).strip(),
+                    unc_match.group(3).strip(),
+                    unc_match.group(4).strip(),
+                )
+            elif med_match:
+                param_name = med_match.group(1)
+                entry = _param_entry(med_match.group(2).strip())
+            else:
                 continue
-            param_name, param_value = param_match.group(1), float(param_match.group(2))
+
             if in_activity_section:
                 full = f"activity_{param_name}"
-                activity_parameters[param_name] = {
-                    "value": param_value,
-                    "gelman_rubin": gr_dict.get(full),
-                }
+                entry["gelman_rubin"] = gr_dict.get(full)
+                activity_parameters[param_name] = entry
             elif current_planet:
                 full = f"{current_planet}_{param_name}"
-                orbital_parameters[current_planet][param_name] = {
-                    "value": param_value,
-                    "gelman_rubin": gr_dict.get(full),
-                }
+                entry["gelman_rubin"] = gr_dict.get(full)
+                orbital_parameters[current_planet][param_name] = entry
 
         for planet in orbital_parameters:
             for key in ("sre_coso", "sre_sino"):
@@ -196,21 +251,28 @@ def export_planet_fit_csv(row, output_dir: Path):
             t0 = calculate_t0_from_mean_long(
                 mean_long, 0.0 if omega is None else omega, P, REFERENCE_EPOCH
             )
+            t0_str = f"{t0:.10g}"
         else:
-            t0 = np.nan
+            t0_str = ""
+        e_fmt = format_param_unc(pp.get("e"), placeholder="")
+        if not e_fmt:
+            e_fmt = "0" if e is None else str(e)
+        omega_fmt = format_param_unc(pp.get("omega"), placeholder="")
+        if not omega_fmt:
+            omega_fmt = "0" if omega is None else str(omega)
         planet_rows.append(
             {
-                "K [m/s]": K,
-                "P [d]": P,
-                "t0 [eMJD]": t0,
-                "e": 0.0 if e is None else e,
-                "w [deg]": 0.0 if omega is None else omega,
+                "K [m/s]": format_param_unc(pp.get("K"), placeholder=str(K)),
+                "P [d]": format_param_unc(pp.get("P"), placeholder=str(P)),
+                "t0 [eMJD]": t0_str,  # derived from medians only
+                "e": e_fmt,
+                "w [deg]": omega_fmt,
             }
         )
     df = pd.DataFrame(planet_rows, columns=columns)
     fname = f"{STAR}_{INSTR}_{GP}_{row['Planets']}_emcee_planetFit.csv"
     path = output_dir / fname
-    df.to_csv(path, index=False, encoding="utf-8", float_format="%.6f")
+    df.to_csv(path, index=False, encoding="utf-8")
     return path
 
 
@@ -313,15 +375,13 @@ def write_html(df: pd.DataFrame, output_path: Path):
         ]
         for planet in sorted(orb.keys()):
             pp = orb[planet]
-
-            def fmt(key, nd=4):
-                v = pp.get(key, {}).get("value")
-                return "—" if v is None else f"{v:.{nd}f}"
-
             lines.append(
-                f"<tr><td>{planet}</td><td>{fmt('P')}</td><td>{fmt('K')}</td>"
-                f"<td>{fmt('e')}</td><td>{fmt('omega', 2)}</td>"
-                f"<td>{fmt('mean_long', 2)}</td></tr>"
+                f"<tr><td>{planet}</td>"
+                f"<td>{format_param_unc(pp.get('P'))}</td>"
+                f"<td>{format_param_unc(pp.get('K'))}</td>"
+                f"<td>{format_param_unc(pp.get('e'))}</td>"
+                f"<td>{format_param_unc(pp.get('omega'))}</td>"
+                f"<td>{format_param_unc(pp.get('mean_long'))}</td></tr>"
             )
         lines.append("</table>")
         orb_sections.append("\n".join(lines))
@@ -353,7 +413,8 @@ Green row = lowest Median BIC.</p>
 <th>Conv %</th><th>Max GR</th></tr>
 {''.join(rows_html)}
 </table>
-<h2>Orbital parameters (posterior medians)</h2>
+<h2>Orbital parameters (posterior median ± 15–84% ≈ 68% CI)</h2>
+<p class="note">Format: median^{{+upper}}_{{-lower}} from the last PyORBIT stats block that reports (15-84 p).</p>
 {''.join(orb_sections)}
 </body></html>
 """
@@ -362,11 +423,14 @@ Green row = lowest Median BIC.</p>
 
 def print_orbital_table(rows):
     print("\n" + "=" * 100)
-    print("ORBITAL PARAMETERS (posterior medians from last stats block)")
+    print("ORBITAL PARAMETERS (median^{+up}_{-lo}, 15–84 p ≈ 68% CI)")
     print("=" * 100)
-    hdr = f"{'Model':<6} {'Pl':<4} {'P [d]':>12} {'K [m/s]':>10} {'e':>8} {'ω [deg]':>10} {'λ [deg]':>10}"
+    hdr = (
+        f"{'Model':<6} {'Pl':<4} {'P [d]':<28} {'K [m/s]':<24} "
+        f"{'e':<24} {'ω [deg]':<24} {'λ [deg]':<24}"
+    )
     print(hdr)
-    print("-" * 100)
+    print("-" * 140)
     for row in rows:
         orb = row["Orbital Parameters"] or {}
         if not orb:
@@ -374,18 +438,13 @@ def print_orbital_table(rows):
             continue
         for planet in sorted(orb.keys()):
             pp = orb[planet]
-
-            def v(key):
-                return pp.get(key, {}).get("value")
-
-            P, K, e, w, ml = v("P"), v("K"), v("e"), v("omega"), v("mean_long")
             print(
                 f"{row['Planets']:<6} {planet:<4} "
-                f"{(f'{P:.4f}' if P is not None else '—'):>12} "
-                f"{(f'{K:.4f}' if K is not None else '—'):>10} "
-                f"{(f'{e:.4f}' if e is not None else '—'):>8} "
-                f"{(f'{w:.2f}' if w is not None else '—'):>10} "
-                f"{(f'{ml:.2f}' if ml is not None else '—'):>10}"
+                f"{format_param_unc(pp.get('P'), '—'):<28} "
+                f"{format_param_unc(pp.get('K'), '—'):<24} "
+                f"{format_param_unc(pp.get('e'), '—'):<24} "
+                f"{format_param_unc(pp.get('omega'), '—'):<24} "
+                f"{format_param_unc(pp.get('mean_long'), '—'):<24}"
             )
 
 
